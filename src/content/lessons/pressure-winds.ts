@@ -1,0 +1,144 @@
+/**
+ * Class 8 · Curiosity · "Pressure, Winds, Storms, and Cyclones".
+ * Every fact here was checked against standard NCERT physics; recheck the
+ * wording against the chapter PDF whenever NCERT revises the book.
+ */
+
+export interface QuizQuestion {
+  q: string;
+  options: string[];
+  answer: number;
+  why: string;
+}
+
+export const LESSON_ID = "c8-pressure-winds";
+
+export const lesson = {
+  id: LESSON_ID,
+  classNum: 8,
+  book: "Curiosity",
+  chapter: "Pressure, Winds, Storms, and Cyclones",
+  title: "Why do storms rip roofs off?",
+  hook: {
+    title: "The roof puzzle",
+    text:
+      "In a cyclone the wind blows sideways, past the house. Yet roofs get lifted straight up into the air. Something invisible is pushing them. Let's find it in the wind tunnel.",
+  },
+  predict: {
+    question: "A strong wind blows across a roof. What happens to the air pressure just above the roof?",
+    options: ["It goes up, pressing the roof down", "It goes down, so the roof can be pushed up", "It stays the same"],
+    answer: 1,
+  },
+  tasks: [
+    {
+      id: "task:push",
+      title: "Find the push",
+      text:
+        "Pick the Box, set the wind to 60 km/h or more, and use the Pressure view. Wait until the readings are steady.",
+      found: "See the orange patch on the front? Air piles up there and its pressure rises. That is the push you feel when you face a strong wind.",
+    },
+    {
+      id: "task:roof",
+      title: "Lift the roof",
+      text: "Pick the House and turn the wind up to cyclone speed, 120 km/h or more. Watch the blue Lift arrow once the air settles.",
+      found:
+        "Above the roof the air rushes fast and its pressure drops (blue). Inside the house the air is still, at normal pressure, so it pushes the roof up.",
+    },
+    {
+      id: "task:shapes",
+      title: "Beat the drag",
+      text: "At 90 km/h or more, test the Ball, the Box and the Raindrop. Let each one settle so we can record its drag.",
+      found: "Smooth, pointed shapes let the air close in behind them, so less low-pressure wake pulls them back.",
+    },
+  ],
+  ideas: [
+    {
+      title: "Air exerts pressure",
+      text: "Pressure is the force acting on each unit of area. Where moving air is stopped, as on the front of the box, its pressure rises.",
+      formula: "Pressure = Force ÷ Area   (unit: pascal, Pa = N/m²)",
+    },
+    {
+      title: "Fast air, low pressure",
+      text: "Wind speeding over a roof has lower pressure than the still air inside the house. The difference pushes the roof up. That is why storms lift roofs.",
+    },
+    {
+      title: "Wind flows from high to low",
+      text: "Air always moves from a region of high pressure to one of low pressure. Uneven heating of land and water makes these differences, and that flow is wind.",
+    },
+    {
+      title: "Cyclones",
+      text: "A cyclone is a giant storm of winds spiralling around a calm centre called the eye, where the pressure is very low.",
+    },
+  ],
+  challenge: {
+    title: "Wing challenge",
+    text: "Pick the Wing, keep the wind at 90 km/h or more, and tilt it until its lift beats its drag. The higher lift ÷ drag, the more stars.",
+    /** Lift-to-drag ratios needed for 1, 2 and 3 stars. Tuned on both grid sizes. */
+    stars: [1.0, 1.3, 1.5],
+  },
+  quiz: [
+    {
+      q: "A box weighs 600 N and rests on a face of area 2 m². What pressure does it put on the floor?",
+      options: ["1200 Pa", "300 Pa", "602 Pa", "0.003 Pa"],
+      answer: 1,
+      why: "Pressure = 600 N ÷ 2 m² = 300 Pa.",
+    },
+    {
+      q: "A force of 50 N acts on an area of 0.25 m². What is the pressure?",
+      options: ["12.5 Pa", "50.25 Pa", "200 Pa", "0.005 Pa"],
+      answer: 2,
+      why: "Pressure = 50 N ÷ 0.25 m² = 200 Pa.",
+    },
+    {
+      q: "Why does a sharp knife cut better than a blunt one?",
+      options: [
+        "Its thin edge has a small area, so the same force makes more pressure",
+        "A sharp knife is heavier",
+        "Sharp metal is harder than blunt metal",
+        "A sharp knife has no friction",
+      ],
+      answer: 0,
+      why: "Smaller area for the same force means higher pressure.",
+    },
+    {
+      q: "Wind blows from…",
+      options: ["Low pressure to high pressure", "High pressure to low pressure", "Cold places to the Sun", "Only from the sea"],
+      answer: 1,
+      why: "Air moves from high pressure towards low pressure.",
+    },
+    {
+      q: "In a storm, why can a tin roof be lifted off?",
+      options: [
+        "The wind hits the roof from below",
+        "Fast wind above the roof lowers the pressure there, and the normal pressure inside pushes it up",
+        "The roof gets lighter in the rain",
+        "The house shakes it loose",
+      ],
+      answer: 1,
+      why: "High-speed wind has reduced pressure, just like in the wind tunnel.",
+    },
+    {
+      q: "On a sunny day by the sea, land heats up faster than water. Which way does the breeze blow in the daytime?",
+      options: ["From the land to the sea", "From the sea to the land", "Straight up", "There is no breeze"],
+      answer: 1,
+      why: "Warm air over land rises, lowering the pressure there, so cooler air flows in from the sea.",
+    },
+    {
+      q: "What is the calm centre of a cyclone called?",
+      options: ["The core", "The eye", "The funnel", "The front"],
+      answer: 1,
+      why: "The eye is a calm region of very low pressure.",
+    },
+  ] satisfies QuizQuestion[],
+};
+
+export const XP = {
+  hook: 10,
+  predict: 10,
+  predictCorrect: 10,
+  task: 20,
+  ideas: 10,
+  challenge: 30,
+  perStar: 10,
+  perQuizPoint: 10,
+};

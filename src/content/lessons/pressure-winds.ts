@@ -4,17 +4,16 @@
  * wording against the chapter PDF whenever NCERT revises the book.
  */
 
-export interface QuizQuestion {
-  q: string;
-  options: string[];
-  answer: number;
-  why: string;
-}
+import type { LessonDef } from "./types";
 
 export const LESSON_ID = "c8-pressure-winds";
 
-export const lesson = {
+/** Lift-to-drag ratios needed for 1, 2 and 3 stars in the wing challenge. Tuned on both grid sizes. */
+export const WING_STARS = [1.0, 1.3, 1.5];
+
+export const lesson: LessonDef = {
   id: LESSON_ID,
+  completionBadge: "wind-whisperer",
   classNum: 8,
   book: "Curiosity",
   chapter: "Pressure, Winds, Storms, and Cyclones",
@@ -50,6 +49,13 @@ export const lesson = {
       text: "At 90 km/h or more, test the Ball, the Box and the Raindrop. Let each one settle so we can record its drag.",
       found: "Smooth, pointed shapes let the air close in behind them, so less low-pressure wake pulls them back.",
     },
+    {
+      id: "task:car",
+      title: "Glue the car to the road",
+      text: "Pick the Sports car at 100 km/h or more. Its body lifts a little at speed. Tilt the rear wing's front edge down, a lot, until the blue meter shows Downforce.",
+      found:
+        "The upside-down wing makes air rush faster underneath it, so the pressure there drops. Higher pressure on top pushes the car onto the road for better grip, but notice the drag went up too.",
+    },
   ],
   ideas: [
     {
@@ -73,8 +79,6 @@ export const lesson = {
   challenge: {
     title: "Wing challenge",
     text: "Pick the Wing, keep the wind at 90 km/h or more, and tilt it until its lift beats its drag. The higher lift ÷ drag, the more stars.",
-    /** Lift-to-drag ratios needed for 1, 2 and 3 stars. Tuned on both grid sizes. */
-    stars: [1.0, 1.3, 1.5],
   },
   quiz: [
     {
@@ -129,16 +133,5 @@ export const lesson = {
       answer: 1,
       why: "The eye is a calm region of very low pressure.",
     },
-  ] satisfies QuizQuestion[],
-};
-
-export const XP = {
-  hook: 10,
-  predict: 10,
-  predictCorrect: 10,
-  task: 20,
-  ideas: 10,
-  challenge: 30,
-  perStar: 10,
-  perQuizPoint: 10,
+  ],
 };

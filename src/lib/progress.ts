@@ -38,8 +38,13 @@ export const BADGES: BadgeInfo[] = [
   { id: "first-gust", name: "First Gust", how: "Finish your first wind tunnel task", emoji: "💨" },
   { id: "storm-chaser", name: "Storm Chaser", how: "Lift a roof in a cyclone-speed wind", emoji: "🌀" },
   { id: "shape-shifter", name: "Shape Shifter", how: "Draw your own shape in the wind tunnel", emoji: "✏️" },
+  { id: "downforce", name: "Downforce", how: "Push a sports car onto the road with its rear wing", emoji: "🏎️" },
   { id: "wind-whisperer", name: "Wind Whisperer", how: "Finish every step of the pressure lesson", emoji: "🌬️" },
   { id: "first-flight", name: "First Flight", how: "Get 3 stars in the wing challenge", emoji: "🛩️" },
+  { id: "speed-demon", name: "Speed Demon", how: "Finish every step of the motion lesson", emoji: "🏁" },
+  { id: "perfect-stop", name: "Perfect Stop", how: "Get 3 stars in the stopping challenge", emoji: "🛑" },
+  { id: "bright-spark", name: "Bright Spark", how: "Finish every step of the circuits lesson", emoji: "💡" },
+  { id: "torch-fixer", name: "Torch Fixer", how: "Repair the torch in 3 moves", emoji: "🔦" },
   { id: "sharp-mind", name: "Sharp Mind", how: "Score full marks in a Master quiz", emoji: "🎯" },
 ];
 

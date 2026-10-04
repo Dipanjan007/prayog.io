@@ -1,12 +1,18 @@
 /** Obstacles for the wind tunnel, rasterised onto the simulation grid. */
 
-export type ShapeId = "circle" | "square" | "plate" | "teardrop" | "wing" | "house" | "custom";
+export type ShapeId = "circle" | "square" | "plate" | "teardrop" | "wing" | "house" | "car" | "custom";
 
 export interface ShapeInfo {
   id: ShapeId;
   label: string;
   /** Whether the angle slider does anything for this shape. */
   rotates: boolean;
+  /** What the angle slider is called for this shape. */
+  angleLabel?: string;
+  /** Sits on the ground rather than floating mid-tunnel. */
+  grounded?: boolean;
+  /** Slider range in degrees; defaults to -20..25. */
+  angleRange?: [number, number];
 }
 
 export const SHAPES: ShapeInfo[] = [
@@ -15,7 +21,9 @@ export const SHAPES: ShapeInfo[] = [
   { id: "teardrop", label: "Raindrop", rotates: true },
   { id: "plate", label: "Flat plate", rotates: true },
   { id: "wing", label: "Wing", rotates: true },
-  { id: "house", label: "House", rotates: false },
+  { id: "house", label: "House", rotates: false, grounded: true },
+  // Past about -12° the rear wing stalls on the coarse phone grid, so stop there.
+  { id: "car", label: "Sports car", rotates: true, angleLabel: "Rear wing tilt", grounded: true, angleRange: [-25, 10] },
   { id: "custom", label: "Draw your own", rotates: false },
 ];
 
@@ -44,6 +52,8 @@ export function rasterise(
   const th = (params.angle * Math.PI) / 180;
   const cos = Math.cos(th);
   const sin = Math.sin(th);
+
+  if (params.shape === "car") return car(nx, ny, size, cx, params.angle);
 
   if (params.shape === "house") {
     const groundTop = ny - groundRows(ny);
@@ -123,8 +133,86 @@ function airfoil(chord: number, t: number, m: number, p: number, minHalfCells: n
 
 /** The part of the mask whose force we report: everything but the ground. */
 export function measuredPart(nx: number, ny: number, params: ShapeParams, mask: Uint8Array): Uint8Array {
-  if (params.shape !== "house") return mask;
+  if (params.shape !== "house" && params.shape !== "car") return mask;
   const m = mask.slice();
   m.fill(0, (ny - groundRows(ny)) * nx);
   return m;
+}
+
+/** Height of the car body above its floor, in units of `size`, along its length (front at 0). */
+const CAR_PROFILE: [number, number][] = [
+  [0, 0.12],
+  [0.06, 0.3],
+  [0.3, 0.42],
+  [0.45, 0.85],
+  [0.66, 0.9],
+  [0.9, 0.55],
+  [1, 0.5],
+];
+
+function profileAt(t: number) {
+  for (let i = 1; i < CAR_PROFILE.length; i++) {
+    const [x1, h1] = CAR_PROFILE[i];
+    if (t <= x1) {
+      const [x0, h0] = CAR_PROFILE[i - 1];
+      return h0 + ((h1 - h0) * (t - x0)) / (x1 - x0);
+    }
+  }
+  return CAR_PROFILE[CAR_PROFILE.length - 1][1];
+}
+
+/**
+ * A low sports car on the ground: a wedge body with a gap underneath, two
+ * wheels, and an upside-down rear wing on a strut. The angle tilts only the
+ * wing; its curve pushes air up, so the air pushes the car down.
+ */
+function car(nx: number, ny: number, size: number, cx: number, angle: number) {
+  const mask = new Uint8Array(nx * ny);
+  const groundTop = ny - groundRows(ny);
+  const length = size * 3.2;
+  const front = cx - length / 2;
+  const clearance = size * 0.2;
+  const floor = groundTop - clearance; // underside of the body
+  const wheelR = size * 0.3;
+  const wheels = [front + length * 0.2, front + length * 0.8];
+  const wheelY = groundTop - wheelR;
+  const thin = Math.max(ny * 0.011, 1.1);
+
+  // Rear wing: an upside-down aerofoil on a strut, rotated about its middle.
+  const wingChord = size * 1.3;
+  const wingX = front + length * 0.88;
+  const wingY = floor - size * 1.35;
+  const strutTop = wingY + size * 0.1;
+  // Rotate so a negative tilt puts the front edge down, which makes downforce.
+  const th = (angle * Math.PI) / 180;
+  const cos = Math.cos(th);
+  const sin = Math.sin(th);
+  const wing = airfoil(wingChord, 0.12, 0.04, 0.4, thin / 2);
+
+  for (let y = 0; y < ny; y++) {
+    for (let x = 0; x < nx; x++) {
+      let inside = y >= groundTop;
+      if (!inside) {
+        const t = (x - front) / length;
+        if (t >= 0 && t <= 1 && y <= floor && floor - y <= profileAt(t) * size) inside = true;
+      }
+      if (!inside) {
+        for (const wx of wheels) if ((x - wx) ** 2 + (y - wheelY) ** 2 <= wheelR * wheelR) inside = true;
+      }
+      if (!inside) {
+        // Strut from the tail up to the wing.
+        if (Math.abs(x - wingX) <= thin && y >= strutTop && y <= floor - size * 0.4) inside = true;
+      }
+      if (!inside) {
+        const dx = x - wingX;
+        const dy = y - wingY;
+        const bx = dx * cos + dy * sin;
+        const by = -dx * sin + dy * cos;
+        // Flip vertically so the camber points down, like a racing car's wing.
+        if (wing(bx, -by)) inside = true;
+      }
+      if (inside) mask[y * nx + x] = 1;
+    }
+  }
+  return mask;
 }

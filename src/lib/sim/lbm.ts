@@ -42,6 +42,8 @@ export class FluidSim {
   /** Smoothed forces, so vortex shedding doesn't make the readout flicker. */
   avgForceX = 0;
   avgForceY = 0;
+  /** Steps since the shape or wind last changed, for averaging the forces. */
+  private sinceChange = 0;
   /** Density of the incoming air, used as "normal" pressure. */
   rhoRef = 1;
   steps = 0;
@@ -63,6 +65,11 @@ export class FluidSim {
   }
 
   /** Fill the tunnel with air moving at the inflow speed. */
+  /** Start averaging the forces afresh, after the shape or wind changes. */
+  restartAverage() {
+    this.sinceChange = 0;
+  }
+
   reset() {
     for (let k = 0; k < this.n; k++) {
       const u = this.solid[k] ? 0 : this.inflow;
@@ -72,6 +79,7 @@ export class FluidSim {
     }
     this.avgForceX = 0;
     this.avgForceY = 0;
+    this.sinceChange = 0;
     this.steps = 0;
   }
 
@@ -176,7 +184,10 @@ export class FluidSim {
     }
     this.forceX = fx;
     this.forceY = fy;
-    const a = this.steps < 50 ? 0.2 : 0.02;
+    // Follow the forces quickly while the flow adjusts to a change, then average over a long window,
+    // because the wake sheds vortices slowly and the forces swing up and down with them.
+    const since = ++this.sinceChange;
+    const a = since < 50 ? 0.2 : since < 1000 ? 0.02 : Math.max(1 / (since - 999), 1 / 4000);
     this.avgForceX += a * (fx - this.avgForceX);
     this.avgForceY += a * (fy - this.avgForceY);
 

@@ -37,7 +37,7 @@ export const STRANDS: Strand[] = [
     colour: "var(--c-cyan)",
     chapters: [
       { classNum: 7, title: "Measurement of Time and Motion", sim: "Pendulum timer and race track" },
-      { classNum: 9, title: "Describing Motion Around Us", sim: "Drive a car, watch its graphs draw live" },
+      { classNum: 9, title: "Describing Motion Around Us", href: "/learn/motion", sim: "Drive a sports car, watch its graphs draw live" },
     ],
   },
   {
@@ -58,7 +58,7 @@ export const STRANDS: Strand[] = [
         classNum: 8,
         title: "Pressure, Winds, Storms, and Cyclones",
         href: "/learn/pressure-winds",
-        sim: "Wind tunnel",
+        sim: "Wind tunnel with a sports car",
       },
     ],
   },
@@ -76,7 +76,7 @@ export const STRANDS: Strand[] = [
     name: "Electricity and magnetism",
     colour: "var(--c-lime)",
     chapters: [
-      { classNum: 7, title: "Electricity: Circuits and their Components", sim: "Drag-and-drop circuit builder" },
+      { classNum: 7, title: "Electricity: Circuits and their Components", href: "/learn/circuits", sim: "Torch builder and conductor tester" },
       { classNum: 8, title: "Electricity: Magnetic and Heating Effects", sim: "Electromagnet crane" },
       { classNum: 10, title: "Electricity", sim: "Ohm's law circuit lab" },
       { classNum: 10, title: "Magnetic Effects of Electric Current", sim: "Field lines and motor builder" },

@@ -24,6 +24,7 @@ interface Props {
   initialShape?: ShapeId;
   initialSpeed?: number;
   initialView?: ViewMode;
+  initialAngle?: number;
   /** Limit which shapes can be picked. */
   shapes?: ShapeId[];
   onReading?: (r: TunnelReading) => void;
@@ -87,6 +88,7 @@ export default function WindTunnel({
   initialShape = "square",
   initialSpeed = 60,
   initialView = "pressure",
+  initialAngle = 0,
   shapes,
   onReading,
 }: Props) {
@@ -96,7 +98,7 @@ export default function WindTunnel({
   const uiRef = useRef<HTMLCanvasElement>(null);
 
   const [shape, setShape] = useState<ShapeId>(initialShape);
-  const [angle, setAngle] = useState(0);
+  const [angle, setAngle] = useState(initialAngle);
   const [speed, setSpeed] = useState(initialSpeed);
   const [view, setView] = useState<ViewMode>(initialView);
   const [running, setRunning] = useState(true);
@@ -138,6 +140,7 @@ export default function WindTunnel({
     const mask = rasterise(sim.nx, sim.ny, p, paintedRef.current ?? undefined);
     sim.setSolid(mask, measuredPart(sim.nx, sim.ny, p, mask));
     lastChangeRef.current = sim.steps;
+    sim.restartAverage();
 
     // A sharper copy of the shape for drawing.
     const d = p.shape === "custom" ? 1 : SHAPE_DETAIL;
@@ -169,6 +172,7 @@ export default function WindTunnel({
     const sim = getSim();
     sim.inflow = kmhToLattice(speed);
     lastChangeRef.current = sim.steps;
+    sim.restartAverage();
   }, [speed, getSim]);
 
   useEffect(() => {
@@ -192,6 +196,7 @@ export default function WindTunnel({
     field.height = sim.ny;
     setAspect(`${sim.nx} / ${sim.ny}`);
     const image = fctx.createImageData(sim.nx, sim.ny);
+    const colRef = new Float32Array(sim.nx);
 
     let width = 0;
     let height = 0;
@@ -248,6 +253,12 @@ export default function WindTunnel({
       const data = image.data;
       const u0 = Math.max(sim.inflow, 0.01);
       const pScale = 1 / (1.5 * u0 * u0);
+      // With a ground, the floor's friction makes pressure fall steadily from the inlet to the outlet.
+      // Colour against that straight-line fall, so the colours show the shape's own effect.
+      const grounded = SHAPES.find((s) => s.id === st.shape)?.grounded ?? false;
+      if (grounded && st.view === "pressure") {
+        for (let x = 0; x < sim.nx; x++) colRef[x] = sim.rhoRef + ((1 - sim.rhoRef) * x) / (sim.nx - 1);
+      }
       for (let k = 0; k < sim.n; k++) {
         const o = k * 4;
         data[o + 3] = 255;
@@ -257,7 +268,7 @@ export default function WindTunnel({
           data[o + 2] = 230;
           continue;
         }
-        if (st.view === "pressure") pressureColour((sim.rho[k] - sim.rhoRef) * pScale, data, o);
+        if (st.view === "pressure") pressureColour((sim.rho[k] - (grounded ? colRef[k % sim.nx] : sim.rhoRef)) * pScale, data, o);
         else if (st.view === "speed") {
           const s = Math.hypot(sim.ux[k], sim.uy[k]);
           speedColour(s / (1.8 * u0), data, o);
@@ -424,7 +435,12 @@ export default function WindTunnel({
 
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
         <Meter label="Drag" value={readout.drag} colour="#fb923c" hint="pushes it back" />
-        <Meter label="Lift" value={readout.lift} colour="#22d3ee" hint={readout.lift < 0 ? "pushes it down" : "pushes it up"} />
+        <Meter
+          label={readout.lift < 0 ? "Downforce" : "Lift"}
+          value={readout.lift}
+          colour="#22d3ee"
+          hint={readout.lift < 0 ? "pushes it down" : "pushes it up"}
+        />
         <div className="col-span-2 flex items-center gap-1 rounded-2xl border border-white/10 bg-white/[0.03] p-1">
           {(["pressure", "speed", "smoke"] as ViewMode[]).map((v) => (
             <button
@@ -444,7 +460,11 @@ export default function WindTunnel({
         {shapeList.map((s) => (
           <button
             key={s.id}
-            onClick={() => setShape(s.id)}
+            onClick={() => {
+              setShape(s.id);
+              const [lo, hi] = s.angleRange ?? [-20, 25];
+              setAngle((a) => Math.min(hi, Math.max(lo, a)));
+            }}
             className={`rounded-full border px-3 py-1.5 text-sm transition ${
               shape === s.id ? "border-cyan-300 bg-cyan-300/15 text-cyan-100" : "border-white/10 text-white/70 hover:border-white/30"
             }`}
@@ -457,7 +477,15 @@ export default function WindTunnel({
       <div className="grid gap-3 sm:grid-cols-2">
         <Slider label="Wind speed" value={speed} min={0} max={MAX_KMH} step={5} unit=" km/h" onChange={setSpeed} />
         {current.rotates ? (
-          <Slider label="Tilt" value={angle} min={-20} max={25} step={1} unit="°" onChange={setAngle} />
+          <Slider
+            label={current.angleLabel ?? "Tilt"}
+            value={angle}
+            min={(current.angleRange ?? [-20, 25])[0]}
+            max={(current.angleRange ?? [-20, 25])[1]}
+            step={1}
+            unit="°"
+            onChange={setAngle}
+          />
         ) : shape === "custom" ? (
           <div className="flex items-end gap-2">
             <button onClick={() => setErase(false)} className={chip(!erase)}>Draw</button>

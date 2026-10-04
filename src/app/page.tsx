@@ -8,6 +8,12 @@ const LOOP = [
   { n: "04", title: "Master", text: "Challenges and questions that level you up.", colour: "text-pink-300" },
 ];
 
+const PLAYABLE = [
+  { href: "/learn/circuits", emoji: "🔦", cls: 7, title: "Build a torch that works", text: "Wire up cells, bulbs and switches, test what conducts, then fix a broken torch." },
+  { href: "/learn/pressure-winds", emoji: "🏎️", cls: 8, title: "Wind tunnel", text: "Blow roofs off in a cyclone and give a sports car downforce with its rear wing." },
+  { href: "/learn/motion", emoji: "🏁", cls: 9, title: "Drive and graph", text: "Drive a sports car and watch its distance and speed graphs draw live. Stop in the zone." },
+];
+
 export default function Home() {
   return (
     <div className="flex flex-col gap-20 pt-6">
@@ -35,6 +41,21 @@ export default function Home() {
           </div>
         </div>
         <HeroTunnel />
+      </section>
+
+      <section>
+        <h2 className="font-display text-3xl font-bold">Play now</h2>
+        <div className="mt-6 grid gap-3 md:grid-cols-3">
+          {PLAYABLE.map((l) => (
+            <Link key={l.href} href={l.href} className="glass group rounded-3xl p-5 transition hover:bg-white/10">
+              <div className="text-4xl">{l.emoji}</div>
+              <div className="mt-3 text-xs uppercase tracking-wider text-white/50">Class {l.cls}</div>
+              <div className="font-display mt-1 text-xl font-semibold">{l.title}</div>
+              <p className="mt-2 text-sm text-white/60">{l.text}</p>
+              <div className="mt-4 text-sm text-cyan-200 group-hover:underline">Play →</div>
+            </Link>
+          ))}
+        </div>
       </section>
 
       <section>

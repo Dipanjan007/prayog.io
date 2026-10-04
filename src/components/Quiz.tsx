@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { QuizQuestion } from "@/content/lessons/pressure-winds";
+import type { QuizQuestion } from "@/content/lessons/types";
 
 export default function Quiz({ questions, onFinish }: { questions: QuizQuestion[]; onFinish: (score: number) => void }) {
   const [index, setIndex] = useState(0);

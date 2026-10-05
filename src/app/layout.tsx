@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import ServiceWorker from "@/components/ServiceWorker";
+import SyncProgress from "@/components/SyncProgress";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({ variable: "--font-space-grotesk", subsets: ["latin"] });
@@ -24,12 +25,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <NavBar />
         <main className="mx-auto w-full max-w-6xl flex-1 px-4 pb-24 pt-4 sm:px-6">{children}</main>
         <footer className="mx-auto w-full max-w-6xl px-4 pb-8 text-xs text-white/40 sm:px-6">
-          Prayog follows the NCERT syllabus. No ads, no tracking, and progress stays on this device.{" "}
+          Prayog follows the NCERT syllabus. No ads and no tracking.{" "}
           <a href="/privacy" className="underline hover:text-white/70">
             Privacy
           </a>
         </footer>
         <ServiceWorker />
+        <SyncProgress />
       </body>
     </html>
   );

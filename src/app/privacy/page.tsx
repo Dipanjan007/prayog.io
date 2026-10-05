@@ -13,6 +13,7 @@ export default function PrivacyPage() {
       <h2 className="font-display mt-8 text-xl font-semibold text-white">What we keep</h2>
       <ul className="mt-2 list-disc space-y-1 pl-5">
         <li>The parent&apos;s name and email, and when they gave consent.</li>
+        <li>For school classes: the teacher&apos;s name, email and school, and the class.</li>
         <li>The child&apos;s nickname, class and chosen avatar. No real name, photo, phone number or location.</li>
         <li>Learning progress: steps finished, XP, badges, scores.</li>
       </ul>
@@ -23,10 +24,22 @@ export default function PrivacyPage() {
         <li>No selling or sharing of data.</li>
         <li>No paid rewards, loot boxes or cash prizes.</li>
       </ul>
-      <h2 className="font-display mt-8 text-xl font-semibold text-white">Where it lives today</h2>
+      <h2 className="font-display mt-8 text-xl font-semibold text-white">Who gives consent</h2>
       <p className="mt-2">
-        In this early version, everything is stored only in this browser on this device. Nothing is sent to a server.
-        You can delete it all from the Me page at any time.
+        A parent or guardian signs up with their email, proves it is theirs with a one-time code, and gives consent
+        before their child&apos;s profile is made. When a school uses Prayog, the school gives consent for the students
+        its teachers add.
+      </p>
+      <h2 className="font-display mt-8 text-xl font-semibold text-white">Where it lives</h2>
+      <p className="mt-2">
+        Without an account, everything stays only in this browser on this device. With an account, progress is also
+        saved on our servers in India so it works on any device. A teacher sees the progress of students in their
+        class; classmates see a nickname on the class leaderboard only if the child chooses to show it.
+      </p>
+      <h2 className="font-display mt-8 text-xl font-semibold text-white">Deleting it</h2>
+      <p className="mt-2">
+        A parent can delete a child&apos;s profile, or their whole account, at any time after signing in. A teacher can
+        remove a student or delete a class. Deleting removes the data from our servers straight away.
       </p>
     </article>
   );

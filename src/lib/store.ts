@@ -59,6 +59,13 @@ export function createLocalStore<T>(key: string, initial: T) {
       cache = initial;
       listeners.forEach((l) => l());
     },
+    /** Listen for changes made on this page (not other tabs). */
+    subscribeChanges(listener: () => void) {
+      listeners.add(listener);
+      return () => {
+        listeners.delete(listener);
+      };
+    },
     use(): T {
       return useSyncExternalStore(subscribe, read, () => initial);
     },

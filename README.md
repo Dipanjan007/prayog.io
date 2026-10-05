@@ -11,7 +11,16 @@ npm install
 npm run dev     # http://localhost:3000
 npm run build   # production build
 npm run lint
+npm test        # progress merge tests
 ```
+
+Without a database the app runs device-only: progress stays in the browser. To switch on accounts, set the variables in `.env.example` (at least `DATABASE_URL`) and run the migrations once:
+
+```bash
+npm run db:migrate
+```
+
+On Vercel, add Supabase from the Marketplace (Storage → Marketplace), pick the Mumbai region, and it sets `POSTGRES_URL`. Functions run in Mumbai too (`vercel.json`).
 
 ## What's here
 
@@ -26,6 +35,12 @@ npm run lint
 | `src/lib/progress.ts` | XP, levels, streaks with freezes, badges |
 | `src/lib/profile.ts`, `src/app/join/` | Parent consent and child profile (nickname, class, avatar) |
 | `public/sw.js` | Offline cache so lessons work without a connection after the first visit |
+| `db/migrations/` | Postgres schema: accounts, children, consents, progress, classes, sessions, sign-in codes |
+| `src/server/` | Database client, sessions (httpOnly cookies), sign-in codes by email, account deletion |
+| `src/app/api/` | Sign-in, children, progress sync, classes, class join, leaderboard, account deletion |
+| `src/lib/progress-merge.ts` | Merges progress from several devices; XP is recomputed so nothing counts twice |
+| `src/components/SyncProgress.tsx` | Saves progress on the device first, then syncs it when online |
+| `src/app/teach/`, `src/app/join/class/` | Teacher dashboard with join codes, and students joining with a code and picture password |
 
 ## Lesson loop
 
@@ -33,10 +48,15 @@ Every lesson follows the same loop: **Hook → Predict → Play (missions checke
 
 ## Privacy
 
-Every student is a child under India's DPDP Act, 2023. The app has no ads, no analytics or tracking SDKs, and stores only a nickname, class, avatar and progress. In this version everything lives in the browser's local storage; nothing is sent to a server. A parent gives consent before a profile is created.
+Every student is a child under India's DPDP Act, 2023. The app has no ads, no analytics or tracking SDKs, and stores only a nickname, class, avatar and progress for a child.
+
+- A parent proves their email with a one-time code before giving consent, and only then can add a child. Each consent is recorded with its version.
+- In school classes the school gives consent; teacher sign-up is invite-only during the pilot (`TEACHER_ALLOWLIST`).
+- Students never give an email. School students sign in with the class code, their nickname and a 3-picture password, locked for 15 minutes after 5 wrong tries.
+- Parents can delete a child or their whole account; teachers can remove students or delete a class. Deletes are immediate.
 
 ## Not built yet
 
-- Server accounts with verified parental consent, so progress syncs across devices
-- School mode: teacher sign-up, class codes, class-only leaderboards, teacher dashboard
+- Stronger parent verification (DigiLocker or similar) on top of the email code
+- Teacher assignments and weekly class challenges, parent weekly reports
 - The other Physics chapters (see `src/content/curriculum.ts`), Hindi, the paid Pro tier

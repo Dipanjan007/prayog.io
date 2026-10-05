@@ -3,10 +3,14 @@
 import Link from "next/link";
 import { BADGES, levelFor, progressStore, useProgress } from "@/lib/progress";
 import { profileStore, useProfile } from "@/lib/profile";
+import { api, refreshMe, useMe } from "@/lib/account";
+import ClassLeaderboard from "@/components/account/ClassLeaderboard";
 
 export default function MePage() {
   const progress = useProgress();
   const profile = useProfile();
+  const me = useMe();
+  const synced = Boolean(me?.server && me.child);
   const { level, start, next, fraction } = levelFor(progress.xp);
 
   return (
@@ -20,6 +24,7 @@ export default function MePage() {
             <h1 className="font-display text-3xl font-bold">{profile.child?.nickname ?? "Guest explorer"}</h1>
             <p className="text-white/60">
               {profile.child ? `Class ${profile.child.classNum}` : "Progress is saved on this device"} · Level {level}
+              {synced && " · Saved to your account"}
             </p>
           </div>
         </div>
@@ -38,12 +43,23 @@ export default function MePage() {
             />
           </div>
         </div>
-        {!profile.child && (
+        {!profile.child?.id && (
           <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-violet-300/30 bg-violet-300/10 p-4">
-            <p className="text-sm">Ask a parent to set up your profile to pick a nickname and avatar.</p>
-            <Link href="/join" className="btn-primary !py-2 text-sm">
-              Set up profile
-            </Link>
+            <p className="text-sm">
+              {me?.server
+                ? "Save your progress to an account so it's safe and works on any device."
+                : "Ask a parent to set up your profile to pick a nickname and avatar."}
+            </p>
+            <div className="flex gap-2">
+              {me?.server && (
+                <Link href="/join/class" className="btn-ghost !py-2 text-sm">
+                  Join a class
+                </Link>
+              )}
+              <Link href="/join" className="btn-primary !py-2 text-sm">
+                {me?.server ? "Parent sign-up" : "Set up profile"}
+              </Link>
+            </div>
           </div>
         )}
       </section>
@@ -75,16 +91,26 @@ export default function MePage() {
 
       <section className="glass rounded-3xl p-6">
         <h2 className="font-display text-xl font-semibold">Class leaderboard</h2>
-        <p className="mt-2 text-sm text-white/60">
-          When your teacher creates a class, you can choose to appear on its weekly leaderboard. It ranks XP earned this
-          week, so everyone starts fresh every Monday.
-        </p>
-        <p className="mt-3 text-sm text-white/40">
-          {profile.child?.showOnLeaderboard ? "You've said yes to showing up." : "You're hidden for now."}
-        </p>
+        <ClassLeaderboard />
       </section>
 
-      {(profile.parent || progress.xp > 0) && (
+      {synced ? (
+        <section className="flex flex-wrap gap-4 text-sm text-white/40 md:col-span-3">
+          <button
+            className="underline hover:text-white/70"
+            onClick={async () => {
+              if (!window.confirm("Sign out on this device? Your progress is saved to your account.")) return;
+              await api("/api/auth/signout", "POST", { who: "child" }).catch(() => {});
+              progressStore.clear();
+              profileStore.clear();
+              await refreshMe();
+            }}
+          >
+            Sign out on this device
+          </button>
+          <span>To delete this profile, a parent or teacher can do it from their account.</span>
+        </section>
+      ) : (profile.parent || progress.xp > 0) && (
         <section className="md:col-span-3">
           <button
             className="text-sm text-white/40 underline hover:text-rose-300"

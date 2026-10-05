@@ -181,9 +181,9 @@ export default function CraneLab({ onReading, order = null }: Props) {
   return (
     <div className="flex flex-col gap-3 select-none">
       {order === null && (
-        <div className="grid grid-cols-2 gap-1 rounded-2xl bg-black/20 p-1 text-sm">
+        <div className="grid grid-cols-2 gap-1 rounded-2xl bg-ink/20 p-1 text-sm">
           {(["crane", "heat"] as const).map((m) => (
-            <button key={m} onClick={() => setMode(m)} className={`rounded-xl py-2 ${activeMode === m ? "bg-white/10 text-white" : "text-white/50"}`}>
+            <button key={m} onClick={() => setMode(m)} className={`rounded-xl py-2 ${activeMode === m ? "bg-cream/10 text-cream" : "text-faint"}`}>
               {m === "crane" ? "Electromagnet crane" : "Heating effect"}
             </button>
           ))}
@@ -192,7 +192,7 @@ export default function CraneLab({ onReading, order = null }: Props) {
 
       <canvas
         ref={canvasRef}
-        className="h-64 w-full rounded-2xl border border-white/10 bg-[#0a0d1c] sm:h-80"
+        className="h-64 w-full rounded-2xl border border-line bg-well sm:h-80"
         role="img"
         aria-label={
           activeMode === "crane"
@@ -212,11 +212,11 @@ export default function CraneLab({ onReading, order = null }: Props) {
             <button
               disabled={travelling}
               onClick={() => update({ on: !crane.on })}
-              className={`rounded-xl border px-3 py-2.5 text-sm font-semibold disabled:opacity-40 ${crane.on ? "border-lime-300 bg-lime-300/15 text-lime-200" : "border-white/20 text-white/80"}`}
+              className={`rounded-xl border px-3 py-2.5 text-sm font-semibold disabled:opacity-40 ${crane.on ? "border-sage-300 bg-sage-300/15 text-sage-200" : "border-line-strong text-cream/85"}`}
             >
               Switch: {crane.on ? "ON" : "OFF"}
             </button>
-            <button disabled={travelling} onClick={swing} className="rounded-xl border border-cyan-300/60 px-3 py-2.5 text-sm text-cyan-200 disabled:opacity-40">
+            <button disabled={travelling} onClick={swing} className="rounded-xl border border-saffron-300/60 px-3 py-2.5 text-sm text-saffron-200 disabled:opacity-40">
               {crane.pos === "pile" ? "Swing to truck ▶" : "◀ Swing to pile"}
             </button>
           </div>
@@ -240,7 +240,7 @@ export default function CraneLab({ onReading, order = null }: Props) {
               onChange={(v) => !travelling && update({ load: v as LoadId })}
             />
           )}
-          <p className="text-center text-xs text-white/40">
+          <p className="text-center text-xs text-faint">
             {crane.load === "scrap"
               ? "Each iron piece is 50 g. The aluminium cans and the plastic bottle are in the pile too."
               : "Each paper clip is about 1 g."}{" "}
@@ -257,14 +257,14 @@ export default function CraneLab({ onReading, order = null }: Props) {
           <div className="grid grid-cols-2 gap-2">
             <button
               onClick={() => setHeatOn(!heatOn)}
-              className={`rounded-xl border px-3 py-2.5 text-sm font-semibold ${heatOn ? "border-lime-300 bg-lime-300/15 text-lime-200" : "border-white/20 text-white/80"}`}
+              className={`rounded-xl border px-3 py-2.5 text-sm font-semibold ${heatOn ? "border-sage-300 bg-sage-300/15 text-sage-200" : "border-line-strong text-cream/85"}`}
             >
               Switch: {heatOn ? "ON" : "OFF"}
             </button>
             <button
               disabled={!fuseBlown}
               onClick={() => setFuseBlown(false)}
-              className="rounded-xl border border-amber-300/60 px-3 py-2.5 text-sm text-amber-200 disabled:opacity-30"
+              className="rounded-xl border border-ochre-300/60 px-3 py-2.5 text-sm text-ochre-200 disabled:opacity-30"
             >
               Fit a new fuse
             </button>
@@ -283,7 +283,7 @@ export default function CraneLab({ onReading, order = null }: Props) {
             }}
           />
           <Slider label="Cells in series" value={crane.cells} shown={`${crane.cells} (${volts} V)`} min={CELLS.min} max={CELLS.max} step={1} onChange={(v) => update({ cells: v })} />
-          <div className="grid gap-2 text-xs text-white/60 sm:grid-cols-3">
+          <div className="grid gap-2 text-xs text-muted sm:grid-cols-3">
             <Use icon="🔥" title="Room heater">A long coil of nichrome glows red hot.</Use>
             <Use icon="👕" title="Electric iron">A nichrome element hidden inside heats the base.</Use>
             <Use icon="🔌" title="MCB">A switch that turns off by itself when the current is too big. Push it back up after fixing the fault.</Use>
@@ -296,17 +296,17 @@ export default function CraneLab({ onReading, order = null }: Props) {
 
 function Stat({ label, value, warn = false }: { label: string; value: string; warn?: boolean }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-1 py-2">
-      <div className="text-[11px] uppercase tracking-wider text-white/50">{label}</div>
-      <div className={`font-display text-lg tabular-nums ${warn ? "text-rose-300" : ""}`}>{value}</div>
+    <div className="rounded-2xl panel px-1 py-2">
+      <div className="text-[11px] uppercase tracking-wider text-faint">{label}</div>
+      <div className={`font-display text-lg tabular-nums ${warn ? "text-brick-300" : ""}`}>{value}</div>
     </div>
   );
 }
 
 function Use({ icon, title, children }: { icon: string; title: string; children: string }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2">
-      <div className="text-white/80">
+    <div className="rounded-xl panel px-3 py-2">
+      <div className="text-cream/85">
         {icon} {title}
       </div>
       <div>{children}</div>
@@ -316,10 +316,10 @@ function Use({ icon, title, children }: { icon: string; title: string; children:
 
 function Slider(props: { label: string; value: number; shown: string; min: number; max: number; step: number; disabled?: boolean; onChange: (v: number) => void }) {
   return (
-    <label className={`block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 ${props.disabled ? "opacity-50" : ""}`}>
+    <label className={`block rounded-2xl panel px-4 py-3 ${props.disabled ? "opacity-50" : ""}`}>
       <div className="flex justify-between text-sm">
-        <span className="text-white/60">{props.label}</span>
-        <span className="tabular-nums text-white">{props.shown}</span>
+        <span className="text-muted">{props.label}</span>
+        <span className="tabular-nums text-cream">{props.shown}</span>
       </div>
       <input
         type="range"
@@ -343,7 +343,7 @@ function Choice<T extends string>({ options, value, onChange }: { options: { id:
         <button
           key={o.id}
           onClick={() => onChange(o.id)}
-          className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${value === o.id ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/70"}`}
+          className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${value === o.id ? "chip-on" : "border-line text-muted"}`}
         >
           {o.label}
         </button>
@@ -453,9 +453,9 @@ function drawCrane(
   ctx.font = "11px system-ui, sans-serif";
 
   // Ground and rail.
-  ctx.fillStyle = "rgba(255,255,255,0.06)";
+  ctx.fillStyle = "rgba(240,233,221,0.06)";
   ctx.fillRect(0, g.ground, w, h - g.ground);
-  ctx.strokeStyle = "rgba(255,255,255,0.25)";
+  ctx.strokeStyle = "rgba(240,233,221,0.25)";
   ctx.lineWidth = 1;
   ctx.beginPath();
   ctx.moveTo(0, g.ground + 0.5);
@@ -489,7 +489,7 @@ function drawCrane(
     drawCan(ctx, g.pileX + 40, g.ground);
     drawBottle(ctx, g.pileX + 52, g.ground);
   }
-  ctx.fillStyle = "rgba(255,255,255,0.6)";
+  ctx.fillStyle = "rgba(240,233,221,0.6)";
   ctx.textAlign = "center";
   ctx.fillText(s.load === "scrap" ? "Scrap pile" : "Paper clips", g.pileX, h - 9);
 
@@ -507,7 +507,7 @@ function drawCrane(
   ctx.fill();
   ctx.fillStyle = "#bae6fd";
   ctx.fillRect(tx + 50, bedY - 10, 11, 9);
-  ctx.fillStyle = "#111827";
+  ctx.fillStyle = "#1a1714";
   for (const wx of [tx - 24, tx + 18, tx + 52]) {
     ctx.beginPath();
     ctx.arc(wx, g.ground - 6, 6, 0, Math.PI * 2);
@@ -519,14 +519,14 @@ function drawCrane(
     if (kind === "iron") drawIron(ctx, p.x, p.y, i + 3);
     else drawClip(ctx, p.x, p.y);
   }
-  ctx.fillStyle = order !== null && s.truck > order ? "#fda4af" : "rgba(255,255,255,0.75)";
+  ctx.fillStyle = order !== null && s.truck > order ? "#fda4af" : "rgba(240,233,221,0.75)";
   ctx.textAlign = "center";
   ctx.fillText(order !== null ? `Truck: ${s.truck} of ${order}` : `Truck: ${s.truck}`, tx + 8, h - 9);
 
   // Cable, trolley and electromagnet.
   ctx.fillStyle = "#e5e7eb";
   ctx.fillRect(mx - 12, g.railY + 2, 24, 8);
-  ctx.strokeStyle = "rgba(255,255,255,0.6)";
+  ctx.strokeStyle = "rgba(240,233,221,0.6)";
   ctx.lineWidth = 1.5;
   ctx.beginPath();
   ctx.moveTo(mx, g.railY + 10);
@@ -550,7 +550,7 @@ function drawCrane(
     ctx.fillStyle = "#9ca3af";
     ctx.fillRect(mx - 10, top - 4, 20, 34);
   } else {
-    ctx.strokeStyle = "rgba(255,255,255,0.35)";
+    ctx.strokeStyle = "rgba(240,233,221,0.35)";
     ctx.setLineDash([3, 3]);
     ctx.strokeRect(mx - 10, top - 4, 20, 34);
     ctx.setLineDash([]);
@@ -568,10 +568,10 @@ function drawCrane(
     ctx.lineTo(mx + mw / 2 - 4, y);
     ctx.stroke();
   }
-  ctx.strokeStyle = "rgba(255,255,255,0.5)";
+  ctx.strokeStyle = "rgba(240,233,221,0.5)";
   ctx.lineWidth = 1;
   ctx.strokeRect(mx - mw / 2, top, mw, 30);
-  ctx.fillStyle = "rgba(255,255,255,0.75)";
+  ctx.fillStyle = "rgba(240,233,221,0.75)";
   ctx.textAlign = "center";
   ctx.fillText(s.on ? "ON" : "OFF", mx + 24, top - 10);
 
@@ -603,7 +603,7 @@ function drawCan(ctx: CanvasRenderingContext2D, x: number, ground: number) {
   ctx.fillRect(x - 6, ground - 18, 12, 18);
   ctx.fillStyle = "#ef4444";
   ctx.fillRect(x - 6, ground - 13, 12, 6);
-  ctx.fillStyle = "#111827";
+  ctx.fillStyle = "#1a1714";
   ctx.font = "bold 7px system-ui, sans-serif";
   ctx.textAlign = "center";
   ctx.fillText("Al", x, ground - 8);
@@ -644,7 +644,7 @@ function drawHeat(
   const B = h - 44;
   const midX = w / 2;
   ctx.font = "11px system-ui, sans-serif";
-  const wireCol = closed ? "rgba(253,224,71,0.85)" : "rgba(255,255,255,0.45)";
+  const wireCol = closed ? "rgba(253,224,71,0.85)" : "rgba(240,233,221,0.45)";
 
   // Connecting wires around the loop, with gaps for the parts.
   const wireLeft = midX - Math.min(90, w * 0.24);
@@ -681,7 +681,7 @@ function drawHeat(
     ctx.fillStyle = "#fbbf24";
     ctx.fillRect(x + cellW - 3, B - 4, 3, 8);
   }
-  ctx.fillStyle = "rgba(255,255,255,0.6)";
+  ctx.fillStyle = "rgba(240,233,221,0.6)";
   ctx.textAlign = "center";
   ctx.fillText(`${cells} cell${cells > 1 ? "s" : ""} (${(cells * CELL.volts).toFixed(1)} V)`, batL + batW / 2, B + 24);
 
@@ -697,13 +697,13 @@ function drawHeat(
   ctx.moveTo(swL, B);
   ctx.lineTo(switchOn ? swR : swL + 30, switchOn ? B : B - 16);
   ctx.stroke();
-  ctx.fillStyle = "rgba(255,255,255,0.6)";
+  ctx.fillStyle = "rgba(240,233,221,0.6)";
   ctx.fillText("switch", (swL + swR) / 2, B + 24);
 
   // Fuse holder with the thin fuse wire.
   const fx = R;
-  ctx.fillStyle = "rgba(255,255,255,0.12)";
-  ctx.strokeStyle = "rgba(255,255,255,0.5)";
+  ctx.fillStyle = "rgba(240,233,221,0.12)";
+  ctx.strokeStyle = "rgba(240,233,221,0.5)";
   ctx.lineWidth = 1;
   ctx.beginPath();
   ctx.roundRect(fx - 9, fuseTop - 4, 18, fuseBot - fuseTop + 8, 4);
@@ -733,7 +733,7 @@ function drawHeat(
     ctx.stroke();
   }
   ctx.textAlign = "right";
-  ctx.fillStyle = blown ? "#fda4af" : "rgba(255,255,255,0.65)";
+  ctx.fillStyle = blown ? "#fda4af" : "rgba(240,233,221,0.65)";
   ctx.fillText(`${rating} A fuse`, fx - 14, (fuseTop + fuseBot) / 2 - 2);
   ctx.fillText(blown ? "melted!" : current > 0 ? `${current.toFixed(2)} A` : "", fx - 14, (fuseTop + fuseBot) / 2 + 12);
 
@@ -776,8 +776,8 @@ function drawHeat(
     }
   }
   ctx.textAlign = "center";
-  ctx.fillStyle = "rgba(255,255,255,0.75)";
+  ctx.fillStyle = "rgba(240,233,221,0.75)";
   ctx.fillText(`${WIRES[wire].label} wire, 10 cm`, midX, T + 18);
-  ctx.fillStyle = g.color ?? "rgba(255,255,255,0.55)";
+  ctx.fillStyle = g.color ?? "rgba(240,233,221,0.55)";
   ctx.fillText(`${Math.round(temp)} °C, ${g.name}`, midX, T + 33);
 }

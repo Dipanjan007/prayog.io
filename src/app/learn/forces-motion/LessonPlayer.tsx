@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import LessonShell from "@/components/lesson/LessonShell";
 import AirTrack, { type AirTrackResult } from "@/components/sim/AirTrack";
 import { ROUNDS, TOLERANCE, lesson } from "@/content/lessons/forces-motion";
@@ -15,6 +15,11 @@ export default function LessonPlayer() {
   const [pushes, setPushes] = useState<{ F: number; m: number; a: number }[]>([]);
   const [kinds, setKinds] = useState<string[]>([]);
   const handled = useRef(0);
+  // Each round remounts the track, and its run ids start again from 1, so forget the last one seen.
+  // Without this the first push of a round could share an id with the last judged run and be ignored.
+  useEffect(() => {
+    handled.current = 0;
+  }, [round]);
 
   const onReading = useCallback(
     (r: AirTrackResult) => {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import LessonShell from "@/components/lesson/LessonShell";
 import ForceLab, { type ForceReading } from "@/components/sim/ForceLab";
 import { lesson, ROUNDS } from "@/content/lessons/forces";
@@ -20,8 +20,10 @@ export default function LessonPlayer() {
   const sawHeld = useRef(false);
   const handledStop = useRef(0);
 
+  const lastReading = useRef<ForceReading | null>(null);
   const onReading = useCallback(
     (r: ForceReading) => {
+      lastReading.current = r;
       if (round !== null) {
         if (r.mode !== "push" || !r.stop || r.stop.id === handledStop.current) return;
         handledStop.current = r.stop.id;
@@ -85,6 +87,18 @@ export default function LessonPlayer() {
     },
     [round, isDone, finishTask, challengeStars, badge],
   );
+
+  // The sim only reports changes, so replay what it shows now once the prediction is locked in
+  // and again once the ideas are done, so a state set earlier still counts.
+  const replay = useRef(onReading);
+  useEffect(() => {
+    replay.current = onReading;
+  }, [onReading]);
+  const predicted = api.done.has("predict");
+  const ideasDone = api.done.has("ideas");
+  useEffect(() => {
+    if (predicted && lastReading.current) replay.current(lastReading.current);
+  }, [predicted, ideasDone]);
 
   const startRound = (n: number | null) => {
     handledStop.current = 0;

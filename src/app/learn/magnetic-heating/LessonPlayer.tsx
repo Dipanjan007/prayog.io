@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import LessonShell from "@/components/lesson/LessonShell";
 import CraneLab, { type CraneReading } from "@/components/sim/CraneLab";
 import { ORDERS, lesson } from "@/content/lessons/magnetic-heating";
@@ -14,8 +14,10 @@ export default function LessonPlayer() {
   const [filled, setFilled] = useState(0);
   const [miss, setMiss] = useState<number | null>(null);
 
+  const lastReading = useRef<CraneReading | null>(null);
   const onReading = useCallback(
     (r: CraneReading) => {
+      lastReading.current = r;
       if (round !== null) {
         // Judge the order once the magnet is empty and something has reached the truck.
         if (r.truck > 0 && r.held === 0 && miss === null) {
@@ -43,6 +45,18 @@ export default function LessonPlayer() {
     },
     [round, miss, isDone, finishTask, challengeStars, badge],
   );
+
+  // The sim only reports changes, so replay what it shows now once the prediction is locked in
+  // and again once the ideas are done, so a state set earlier still counts.
+  const replay = useRef(onReading);
+  useEffect(() => {
+    replay.current = onReading;
+  }, [onReading]);
+  const predicted = api.done.has("predict");
+  const ideasDone = api.done.has("ideas");
+  useEffect(() => {
+    if (predicted && lastReading.current) replay.current(lastReading.current);
+  }, [predicted, ideasDone]);
 
   const retry = () => {
     setMiss(null);

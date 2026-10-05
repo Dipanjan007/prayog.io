@@ -284,9 +284,9 @@ export default function SoundLab({ onReading, mystery = null }: Props) {
   return (
     <div className="flex flex-col gap-3 select-none">
       {!mystery && (
-        <div className="grid grid-cols-3 gap-1 rounded-2xl bg-black/20 p-1 text-sm">
+        <div className="grid grid-cols-3 gap-1 rounded-2xl bg-ink/20 p-1 text-sm">
           {(["wave", "echo", "sonar"] as const).map((m) => (
-            <button key={m} onClick={() => setMode(m)} className={`rounded-xl py-2 ${activeMode === m ? "bg-white/10 text-white" : "text-white/50"}`}>
+            <button key={m} onClick={() => setMode(m)} className={`rounded-xl py-2 ${activeMode === m ? "bg-cream/10 text-cream" : "text-faint"}`}>
               {m === "wave" ? "Sound wave" : m === "echo" ? "Echo" : "SONAR"}
             </button>
           ))}
@@ -295,7 +295,7 @@ export default function SoundLab({ onReading, mystery = null }: Props) {
 
       <canvas
         ref={canvasRef}
-        className="h-64 w-full rounded-2xl border border-white/10 bg-[#0a0d1c] sm:h-80"
+        className="h-64 w-full rounded-2xl border border-line bg-well sm:h-80"
         role="img"
         aria-label={
           activeMode === "wave"
@@ -313,7 +313,7 @@ export default function SoundLab({ onReading, mystery = null }: Props) {
             <Stat label="Wavelength" value={`${lambda < 10 ? lambda.toFixed(2) : lambda.toFixed(1)} m`} />
             <Stat label="Speed" value={`${v} m/s`} />
           </div>
-          <p className="text-center text-xs text-white/50 tabular-nums">
+          <p className="text-center text-xs text-faint tabular-nums">
             v = f × λ = {f} × {lambda.toFixed(3)} = {Math.round(f * lambda)} m/s
           </p>
           <Slider label="Frequency (pitch)" value={`${f} Hz`} min={100} max={1000} step={10} v={f} onChange={setF} />
@@ -321,7 +321,7 @@ export default function SoundLab({ onReading, mystery = null }: Props) {
           <Choice options={(Object.keys(MEDIA) as MediumId[]).map((id) => ({ id, label: MEDIA[id].label }))} value={medium} onChange={setMedium} />
           <HearingStrip f={f} band={band} />
           <button
-            className={`rounded-xl border px-3 py-2 text-sm ${playing ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/70"}`}
+            className={`rounded-xl border px-3 py-2 text-sm ${playing ? "chip-on" : "border-line text-muted"}`}
             onClick={togglePlay}
           >
             {playing ? "■ Stop the tone" : "▶ Play this tone (quiet)"}
@@ -336,7 +336,7 @@ export default function SoundLab({ onReading, mystery = null }: Props) {
             <Stat label="Distance = v × t ÷ 2" value={lastClap ? `${distanceFromEcho(lastClap.delay, AIR_V).toFixed(1)} m` : "–"} />
           </div>
           {lastClap && (
-            <p className={`text-center text-sm ${lastClap.distinct ? "text-lime-300" : "text-amber-200"}`}>
+            <p className={`text-center text-sm ${lastClap.distinct ? "text-sage-300" : "text-ochre-200"}`}>
               {lastClap.distinct
                 ? `Clear echo! It came back ${lastClap.delay.toFixed(3)} s later, which is more than 0.1 s.`
                 : `The echo came back after only ${lastClap.delay.toFixed(3)} s. That is less than 0.1 s, so it blends into the clap.`}
@@ -348,13 +348,13 @@ export default function SoundLab({ onReading, mystery = null }: Props) {
               👏 Clap
             </button>
             <button
-              className={`rounded-xl border px-3 py-2 text-sm ${hearClap ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/70"}`}
+              className={`rounded-xl border px-3 py-2 text-sm ${hearClap ? "chip-on" : "border-line text-muted"}`}
               onClick={toggleHearClap}
             >
               {hearClap ? "🔈 Sound on" : "🔇 Sound off"}
             </button>
           </div>
-          <p className="text-center text-xs text-white/40">Speed of sound in air: {AIR_V} m/s. The animation runs in slow motion. The timer shows real sound time.</p>
+          <p className="text-center text-xs text-faint">Speed of sound in air: {AIR_V} m/s. The animation runs in slow motion. The timer shows real sound time.</p>
         </>
       )}
 
@@ -368,7 +368,7 @@ export default function SoundLab({ onReading, mystery = null }: Props) {
           <button className="btn-primary !py-2 text-sm disabled:opacity-50" onClick={fire} disabled={busy}>
             📡 Send an ultrasound ping
           </button>
-          <p className="text-center text-xs text-white/40">
+          <p className="text-center text-xs text-faint">
             Speed of sound in sea water: about {SEA_V} m/s. SONAR uses ultrasound, so you could not hear the ping.
           </p>
         </>
@@ -379,8 +379,8 @@ export default function SoundLab({ onReading, mystery = null }: Props) {
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-1 py-2">
-      <div className="text-[11px] uppercase tracking-wider text-white/50">{label}</div>
+    <div className="rounded-2xl panel px-1 py-2">
+      <div className="text-[11px] uppercase tracking-wider text-faint">{label}</div>
       <div className="font-display text-lg tabular-nums">{value}</div>
     </div>
   );
@@ -388,10 +388,10 @@ function Stat({ label, value }: { label: string; value: string }) {
 
 function Slider({ label, value, min, max, step, v, onChange }: { label: string; value: string; min: number; max: number; step: number; v: number; onChange: (n: number) => void }) {
   return (
-    <label className="block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+    <label className="block rounded-2xl panel px-4 py-3">
       <div className="flex justify-between text-sm">
-        <span className="text-white/60">{label}</span>
-        <span className="tabular-nums text-white">{value}</span>
+        <span className="text-muted">{label}</span>
+        <span className="tabular-nums text-cream">{value}</span>
       </div>
       <input type="range" className="range mt-2 w-full" min={min} max={max} step={step} value={v} onChange={(e) => onChange(Number(e.target.value))} />
     </label>
@@ -405,7 +405,7 @@ function Choice<T extends string>({ options, value, onChange }: { options: { id:
         <button
           key={o.id}
           onClick={() => onChange(o.id)}
-          className={`flex-1 rounded-xl border px-2 py-2 text-sm whitespace-nowrap ${value === o.id ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/70"}`}
+          className={`flex-1 rounded-xl border px-2 py-2 text-sm whitespace-nowrap ${value === o.id ? "chip-on" : "border-line text-muted"}`}
         >
           {o.label}
         </button>
@@ -418,22 +418,22 @@ function Choice<T extends string>({ options, value, onChange }: { options: { id:
 function HearingStrip({ f, band }: { f: number; band: string }) {
   const pos = (hz: number) => ((Math.log10(hz) - 1) / 4) * 100;
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+    <div className="rounded-2xl panel px-4 py-3">
       <div className="flex justify-between text-sm">
-        <span className="text-white/60">Hearing range</span>
-        <span className="text-white">{band === "audible" ? "Humans can hear this" : band}</span>
+        <span className="text-muted">Hearing range</span>
+        <span className="text-cream">{band === "audible" ? "Humans can hear this" : band}</span>
       </div>
       <div className="relative mt-2 h-5 overflow-hidden rounded-full text-[10px] leading-5">
-        <div className="absolute inset-y-0 left-0 bg-violet-400/25" style={{ width: `${pos(20)}%` }} />
-        <div className="absolute inset-y-0 bg-cyan-300/25 text-center text-cyan-100" style={{ left: `${pos(20)}%`, width: `${pos(20000) - pos(20)}%` }}>
+        <div className="absolute inset-y-0 left-0 bg-heather-400/25" style={{ width: `${pos(20)}%` }} />
+        <div className="absolute inset-y-0 bg-saffron-300/25 text-center text-saffron-100" style={{ left: `${pos(20)}%`, width: `${pos(20000) - pos(20)}%` }}>
           audible
         </div>
-        <div className="absolute inset-y-0 right-0 bg-rose-400/25 text-center text-rose-100" style={{ left: `${pos(20000)}%` }}>
+        <div className="absolute inset-y-0 right-0 bg-brick-400/25 text-center text-brick-100" style={{ left: `${pos(20000)}%` }}>
           ultrasound
         </div>
-        <div className="absolute inset-y-0 w-1 -translate-x-1/2 rounded bg-white" style={{ left: `${pos(f)}%` }} />
+        <div className="absolute inset-y-0 w-1 -translate-x-1/2 rounded bg-cream" style={{ left: `${pos(f)}%` }} />
       </div>
-      <div className="relative mt-1 h-4 text-[10px] text-white/50">
+      <div className="relative mt-1 h-4 text-[10px] text-faint">
         <span className="absolute -translate-x-1/2" style={{ left: `${pos(20)}%` }}>
           20 Hz
         </span>
@@ -468,9 +468,9 @@ function drawWave(ctx: CanvasRenderingContext2D, w: number, h: number, phase: nu
 
   // Loudspeaker: its cone moves with the air next to it.
   const cone = displacement(0, phase, s0, k) * pxm;
-  ctx.fillStyle = "rgba(255,255,255,0.25)";
+  ctx.fillStyle = "rgba(240,233,221,0.25)";
   ctx.fillRect(4, (bandTop + bandBot) / 2 - 12, 8, 24);
-  ctx.strokeStyle = "rgba(255,255,255,0.7)";
+  ctx.strokeStyle = "rgba(240,233,221,0.7)";
   ctx.lineWidth = 2;
   ctx.beginPath();
   ctx.moveTo(12, (bandTop + bandBot) / 2 - 10);
@@ -518,7 +518,7 @@ function drawWave(ctx: CanvasRenderingContext2D, w: number, h: number, phase: nu
   for (let n = -Math.ceil(SPAN_M / lambda) - 1; n <= Math.ceil(SPAN_M / lambda) + 1; n++) {
     for (const [off, label, color] of [
       [0, "C", "#67e8f9"],
-      [lambda / 2, "R", "rgba(255,255,255,0.45)"],
+      [lambda / 2, "R", "rgba(240,233,221,0.45)"],
     ] as const) {
       const x = firstC + n * lambda + off;
       if (x < 0.05 || x > SPAN_M - 0.05) continue;
@@ -534,13 +534,13 @@ function drawWave(ctx: CanvasRenderingContext2D, w: number, h: number, phase: nu
   const mid = (gTop + gBot) / 2;
   const A = ((gBot - gTop) / 2) * 0.92;
   ctx.textAlign = "left";
-  ctx.fillStyle = "rgba(255,255,255,0.6)";
+  ctx.fillStyle = "rgba(240,233,221,0.6)";
   ctx.fillText("Pressure", 4, labelY);
-  ctx.fillStyle = "rgba(255,255,255,0.4)";
+  ctx.fillStyle = "rgba(240,233,221,0.4)";
   ctx.textAlign = "center";
   ctx.fillText(`slowed ${SLOW}×`, w / 2, labelY);
   // 1 m scale bar.
-  ctx.strokeStyle = "rgba(255,255,255,0.6)";
+  ctx.strokeStyle = "rgba(240,233,221,0.6)";
   ctx.lineWidth = 1.5;
   ctx.beginPath();
   ctx.moveTo(right - pxm, labelY - 4);
@@ -550,15 +550,15 @@ function drawWave(ctx: CanvasRenderingContext2D, w: number, h: number, phase: nu
   ctx.moveTo(right, labelY - 8);
   ctx.lineTo(right, labelY);
   ctx.stroke();
-  ctx.fillStyle = "rgba(255,255,255,0.6)";
+  ctx.fillStyle = "rgba(240,233,221,0.6)";
   ctx.textAlign = "right";
   ctx.fillText("1 m", right - pxm - 4, labelY);
 
   ctx.textAlign = "left";
-  ctx.fillStyle = "rgba(255,255,255,0.4)";
+  ctx.fillStyle = "rgba(240,233,221,0.4)";
   ctx.fillText("+", 8, gTop + 8);
   ctx.fillText("−", 8, gBot);
-  ctx.strokeStyle = "rgba(255,255,255,0.2)";
+  ctx.strokeStyle = "rgba(240,233,221,0.2)";
   ctx.lineWidth = 1;
   ctx.setLineDash([4, 4]);
   ctx.beginPath();
@@ -582,8 +582,8 @@ function drawWave(ctx: CanvasRenderingContext2D, w: number, h: number, phase: nu
 
   // Wavelength bracket between two neighbouring compressions.
   const by = h - 8;
-  ctx.fillStyle = "rgba(255,255,255,0.75)";
-  ctx.strokeStyle = "rgba(255,255,255,0.6)";
+  ctx.fillStyle = "rgba(240,233,221,0.75)";
+  ctx.strokeStyle = "rgba(240,233,221,0.6)";
   ctx.lineWidth = 1;
   // Start the bracket on a compression (peak); if a whole wave does not fit from there, use a rarefaction (trough).
   let x1 = firstC % lambda;
@@ -614,9 +614,9 @@ function drawWave(ctx: CanvasRenderingContext2D, w: number, h: number, phase: nu
     const text = `λ = ${lambda.toFixed(2)} m`;
     const tw = ctx.measureText(text).width;
     const tx = Math.min(right - tw / 2, Math.max(left + tw / 2, (a + b) / 2));
-    ctx.fillStyle = "#0a0d1c";
+    ctx.fillStyle = "#13110f";
     ctx.fillRect(tx - tw / 2 - 3, by - 13, tw + 6, 14);
-    ctx.fillStyle = "rgba(255,255,255,0.85)";
+    ctx.fillStyle = "rgba(240,233,221,0.85)";
     ctx.textAlign = "center";
     ctx.fillText(text, tx, by - 2);
   } else {
@@ -634,7 +634,7 @@ function stopwatch(ctx: CanvasRenderingContext2D, w: number, t: number | null, s
   if (t !== null && slow > 1.2) {
     ctx.font = FONT;
     ctx.textAlign = "right";
-    ctx.fillStyle = "rgba(255,255,255,0.5)";
+    ctx.fillStyle = "rgba(240,233,221,0.5)";
     ctx.fillText(`slow motion ×${Math.round(slow)}`, w - 8, 18);
   }
   ctx.font = FONT;
@@ -690,7 +690,7 @@ function drawEcho(ctx: CanvasRenderingContext2D, w: number, h: number, d: number
   ctx.stroke();
 
   // Person.
-  ctx.strokeStyle = "rgba(255,255,255,0.85)";
+  ctx.strokeStyle = "rgba(240,233,221,0.85)";
   ctx.lineWidth = 2;
   ctx.beginPath();
   ctx.arc(x0, ground - 52, 7, 0, Math.PI * 2);
@@ -707,7 +707,7 @@ function drawEcho(ctx: CanvasRenderingContext2D, w: number, h: number, d: number
 
   // Distance arrow.
   const ay = ground + 16;
-  ctx.strokeStyle = "rgba(255,255,255,0.6)";
+  ctx.strokeStyle = "rgba(240,233,221,0.6)";
   ctx.lineWidth = 1;
   ctx.beginPath();
   ctx.moveTo(x0, ay - 5);
@@ -720,9 +720,9 @@ function drawEcho(ctx: CanvasRenderingContext2D, w: number, h: number, d: number
   const label = `d = ${d} m`;
   const tw = ctx.measureText(label).width;
   const lx = Math.min(w - tw / 2 - 4, Math.max(tw / 2 + 4, (x0 + wallX) / 2));
-  ctx.fillStyle = "#0a0d1c";
+  ctx.fillStyle = "#13110f";
   ctx.fillRect(lx - tw / 2 - 3, ay + 4, tw + 6, 14);
-  ctx.fillStyle = "rgba(255,255,255,0.85)";
+  ctx.fillStyle = "rgba(240,233,221,0.85)";
   ctx.textAlign = "center";
   ctx.fillText(label, lx, ay + 15);
   ctx.textAlign = "left";
@@ -796,7 +796,7 @@ function drawSonar(ctx: CanvasRenderingContext2D, w: number, h: number, depth: n
 
   // Depth marker.
   const mx = w - 26;
-  ctx.strokeStyle = "rgba(255,255,255,0.6)";
+  ctx.strokeStyle = "rgba(240,233,221,0.6)";
   ctx.lineWidth = 1;
   ctx.beginPath();
   ctx.moveTo(mx - 5, sea);
@@ -809,9 +809,9 @@ function drawSonar(ctx: CanvasRenderingContext2D, w: number, h: number, depth: n
   const text = mystery ? "depth = ?" : `${depth} m`;
   const tw = ctx.measureText(text).width;
   const ty = Math.max(sea + 14, (sea + floorY) / 2);
-  ctx.fillStyle = "#0a0d1c";
+  ctx.fillStyle = "#13110f";
   ctx.fillRect(mx - tw - 10, ty - 11, tw + 6, 14);
-  ctx.fillStyle = "rgba(255,255,255,0.85)";
+  ctx.fillStyle = "rgba(240,233,221,0.85)";
   ctx.textAlign = "right";
   ctx.fillText(text, mx - 6, ty);
   ctx.textAlign = "left";

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import LessonShell from "@/components/lesson/LessonShell";
 import SoundLab, { type SoundReading } from "@/components/sim/SoundLab";
 import { DEPTH_TOLERANCE, SEA_SPOTS, lesson } from "@/content/lessons/sound";
@@ -17,8 +17,10 @@ export default function LessonPlayer() {
   const [guess, setGuess] = useState("");
   const [feedback, setFeedback] = useState<string | null>(null);
 
+  const lastReading = useRef<SoundReading | null>(null);
   const onReading = useCallback(
     (r: SoundReading) => {
+      lastReading.current = r;
       if (round !== null) {
         if (r.ping?.mystery) setPingTime(r.ping.delay);
         return;
@@ -39,6 +41,18 @@ export default function LessonPlayer() {
     },
     [round, isDone, finishTask],
   );
+
+  // The sim only reports changes, so replay what it shows now once the prediction is locked in
+  // and again once the ideas are done, so a state set earlier still counts.
+  const replay = useRef(onReading);
+  useEffect(() => {
+    replay.current = onReading;
+  }, [onReading]);
+  const predicted = api.done.has("predict");
+  const ideasDone = api.done.has("ideas");
+  useEffect(() => {
+    if (predicted && lastReading.current) replay.current(lastReading.current);
+  }, [predicted, ideasDone]);
 
   const startRound = (n: number | null) => {
     setRound(n);

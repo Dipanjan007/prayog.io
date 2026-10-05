@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import LessonShell from "@/components/lesson/LessonShell";
 import EnergyLab, { type EnergyReading } from "@/components/sim/EnergyLab";
 import { CREST_STARS, TEST_TRACK, lesson } from "@/content/lessons/work-energy";
@@ -16,8 +16,10 @@ export default function LessonPlayer() {
   const [classes, setClasses] = useState<number[]>([]);
   const judged = useRef(false);
 
+  const lastReading = useRef<EnergyReading | null>(null);
   const onReading = useCallback(
     (r: EnergyReading) => {
+      lastReading.current = r;
       if (testing) {
         if (!r.running) {
           judged.current = false;
@@ -59,6 +61,18 @@ export default function LessonPlayer() {
     },
     [testing, isDone, finishTask, challengeStars, badge],
   );
+
+  // The sim only reports changes, so replay what it shows now once the prediction is locked in
+  // and again once the ideas are done, so a state set earlier still counts.
+  const replay = useRef(onReading);
+  useEffect(() => {
+    replay.current = onReading;
+  }, [onReading]);
+  const predicted = api.done.has("predict");
+  const ideasDone = api.done.has("ideas");
+  useEffect(() => {
+    if (predicted && lastReading.current) replay.current(lastReading.current);
+  }, [predicted, ideasDone]);
 
   return (
     <LessonShell

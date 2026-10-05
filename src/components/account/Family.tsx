@@ -68,10 +68,10 @@ export default function Family() {
   if (showForm) {
     return (
       <section className="glass rounded-3xl p-6">
-        <div className="text-sm text-violet-300">Hand the device to your child</div>
+        <div className="text-sm text-heather-300">Hand the device to your child</div>
         <h1 className="font-display mt-2 text-3xl font-bold">Make your explorer</h1>
         <ChildForm onSubmit={create} submitLabel="Start exploring" busy={busy} onBack={children.length ? () => setAdding(false) : undefined} />
-        {error && <p className="mt-3 text-sm text-rose-300">{error}</p>}
+        {error && <p className="mt-3 text-sm text-brick-300">{error}</p>}
         {children.length === 0 && <AccountActions role="parent" />}
       </section>
     );
@@ -79,17 +79,17 @@ export default function Family() {
 
   return (
     <section className="glass rounded-3xl p-6">
-      <div className="text-sm text-cyan-300">Signed in as {me?.account?.name}</div>
+      <div className="text-sm text-saffron-300">Signed in as {me?.account?.name}</div>
       <h1 className="font-display mt-2 text-3xl font-bold">Who is learning on this device?</h1>
       <ul className="mt-5 grid gap-2">
         {children.map((c) => (
-          <li key={c.id} className="flex items-center gap-3 rounded-2xl border border-white/10 p-3">
+          <li key={c.id} className="flex items-center gap-3 rounded-2xl border border-line p-3">
             <span className="text-3xl">{c.avatar}</span>
             <div className="flex-1">
               <div className="font-semibold">{c.nickname}</div>
-              <div className="text-xs text-white/50">Class {c.classNum}</div>
+              <div className="text-xs text-faint">Class {c.classNum}</div>
             </div>
-            <button className="text-xs text-white/40 underline hover:text-rose-300" disabled={busy} onClick={() => remove(c.id, c.nickname)}>
+            <button className="text-xs text-faint underline hover:text-brick-300" disabled={busy} onClick={() => remove(c.id, c.nickname)}>
               Delete
             </button>
             <button className="btn-primary !py-2 text-sm" disabled={busy} onClick={() => use(c.id)}>
@@ -98,7 +98,7 @@ export default function Family() {
           </li>
         ))}
       </ul>
-      {error && <p className="mt-3 text-sm text-rose-300">{error}</p>}
+      {error && <p className="mt-3 text-sm text-brick-300">{error}</p>}
       <button className="btn-ghost mt-4" onClick={() => setAdding(true)}>
         ＋ Add a child
       </button>

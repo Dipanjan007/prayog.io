@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { InkArrow } from "@/components/Ink";
 
 /** A lightweight decorative flow around a wing for the home page (not the real solver). */
 export default function HeroTunnel() {
@@ -25,7 +26,7 @@ export default function HeroTunnel() {
     window.addEventListener("resize", resize);
 
     // Potential flow around a cylinder, mapped to look like air bending over a shape.
-    const N = 520;
+    const N = 380;
     const ps = Array.from({ length: N }, () => ({ x: Math.random(), y: Math.random() }));
     const vel = (x: number, y: number) => {
       const cx = 0.42;
@@ -41,7 +42,7 @@ export default function HeroTunnel() {
     let raf = 0;
     const frame = () => {
       raf = requestAnimationFrame(frame);
-      ctx.fillStyle = "rgba(8,10,22,0.07)";
+      ctx.fillStyle = "rgba(19,17,15,0.08)";
       ctx.fillRect(0, 0, w, h);
       ctx.lineWidth = 1.6;
       for (const p of ps) {
@@ -49,7 +50,7 @@ export default function HeroTunnel() {
         const nx = p.x + u * 0.003;
         const ny = p.y + v * 0.003 * (w / h);
         const speed = Math.hypot(u, v);
-        ctx.strokeStyle = speed > 1.3 ? "rgba(34,211,238,0.9)" : speed < 0.6 ? "rgba(251,146,60,0.9)" : "rgba(167,139,250,0.7)";
+        ctx.strokeStyle = speed > 1.3 ? "rgba(236,182,119,0.9)" : speed < 0.6 ? "rgba(139,163,199,0.85)" : "rgba(240,233,221,0.5)";
         ctx.beginPath();
         ctx.moveTo(p.x * w, p.y * h);
         ctx.lineTo(nx * w, ny * h);
@@ -62,7 +63,7 @@ export default function HeroTunnel() {
         }
       }
       const R = 0.12 * h;
-      ctx.fillStyle = "#eef1ff";
+      ctx.fillStyle = "#f0e9dd";
       ctx.beginPath();
       ctx.arc(0.42 * w, 0.5 * h, R - 2, 0, Math.PI * 2);
       ctx.fill();
@@ -76,18 +77,36 @@ export default function HeroTunnel() {
   }, []);
 
   return (
-    <Link href="/learn/pressure-winds" className="group relative block overflow-hidden rounded-[2rem] border border-white/10">
-      <canvas ref={ref} className="block aspect-[4/3] w-full bg-[#080a16]" aria-label="Air flowing around a ball" role="img" />
-      <div className="glass absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-2xl px-4 py-3">
-        <div>
-          <div className="text-xs text-white/50">Class 8 · Pressure, Winds, Storms, and Cyclones</div>
-          <div className="font-display font-semibold">Why do storms rip roofs off?</div>
+    <Link href="/learn/pressure-winds" className="group block">
+      <figure>
+      <div className="relative overflow-hidden rounded-[1.75rem] border border-line bg-well">
+        <canvas ref={ref} className="block aspect-[4/3] w-full" aria-label="Air flowing around a ball" role="img" />
+        <div className="pointer-events-none absolute left-4 top-4 flex flex-col gap-1 text-sm sm:left-5 sm:top-5">
+          <span className="flex items-center gap-2 font-display italic text-saffron-300">
+            <span className="h-0.5 w-5 rounded-full bg-saffron-300" aria-hidden /> fast air
+          </span>
+          <span className="flex items-center gap-2 font-display italic text-[#a9bcd8]">
+            <span className="h-0.5 w-5 rounded-full bg-[#8ba3c7]" aria-hidden /> slow air
+          </span>
         </div>
-        <span className="text-cyan-300 transition group-hover:translate-x-1">→</span>
+        <div className="pointer-events-none absolute right-[8%] top-[9%] hidden items-start gap-1 text-cream/80 sm:flex">
+          <span className="font-display mt-0.5 text-sm italic">air speeds up over the top</span>
+          <InkArrow className="mt-3 h-8 w-12 -scale-x-100 rotate-[20deg]" />
+        </div>
       </div>
-      <div className="animate-floaty glass absolute right-4 top-4 rounded-full px-3 py-1 text-xs">
-        <span className="text-cyan-300">fast air</span> · <span className="text-orange-300">slow air</span>
-      </div>
+      <figcaption className="mt-4 flex items-center justify-between gap-4 px-1">
+        <div>
+          <div className="eyebrow">Class 8 · Pressure, Winds, Storms, and Cyclones</div>
+          <div className="font-display mt-1 text-xl">Why do storms rip roofs off?</div>
+        </div>
+        <span
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line-strong text-saffron-300 transition-transform group-hover:translate-x-1"
+          aria-hidden
+        >
+          →
+        </span>
+      </figcaption>
+      </figure>
     </Link>
   );
 }

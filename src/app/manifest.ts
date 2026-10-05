@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "NCERT Physics for Classes 7 to 10, learned through live simulations.",
     start_url: "/learn",
     display: "standalone",
-    background_color: "#070a14",
-    theme_color: "#070a14",
+    background_color: "#1a1714",
+    theme_color: "#1a1714",
     icons: [
       { src: "/icon-192.png", sizes: "192x192", type: "image/png" },
       { src: "/icon-512.png", sizes: "512x512", type: "image/png" },

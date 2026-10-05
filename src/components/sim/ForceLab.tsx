@@ -50,7 +50,7 @@ export type ForceReading =
 interface Props {
   onReading?: (r: ForceReading) => void;
   /** Challenge: the floor is fixed, a target zone is shown, and you get one push per try. */
-  challenge?: { surface: SurfaceId; zone: [number, number] } | null;
+  challenge?: { surface: SurfaceId; zone: [number, number]; push: number } | null;
 }
 
 const LEFT = 46; // px kept free at the left of the floor for the person pushing
@@ -60,7 +60,7 @@ export default function ForceLab({ onReading, challenge = null }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [mode, setMode] = useState<ForceMode>("push");
   const [surfacePick, setSurface] = useState<SurfaceId>("wood");
-  const [push, setPush] = useState(60);
+  const [pushPick, setPush] = useState(60);
   const [pushing, setPushing] = useState(false);
   const [item, setItem] = useState<ItemId>("bottle");
   const [place, setPlace] = useState<Place>("earth");
@@ -72,6 +72,7 @@ export default function ForceLab({ onReading, challenge = null }: Props) {
 
   const activeMode: ForceMode = challenge ? "push" : mode;
   const surface = challenge?.surface ?? surfacePick;
+  const push = challenge?.push ?? pushPick;
 
   const onReadingRef = useRef(onReading);
   useEffect(() => {
@@ -229,7 +230,7 @@ export default function ForceLab({ onReading, challenge = null }: Props) {
   return (
     <div className="flex flex-col gap-3 select-none">
       {!challenge && (
-        <div className="grid grid-cols-3 gap-1 rounded-2xl bg-black/20 p-1 text-sm">
+        <div className="grid grid-cols-3 gap-1 rounded-2xl bg-ink/20 p-1 text-sm">
           {(
             [
               ["push", "Push a crate"],
@@ -243,7 +244,7 @@ export default function ForceLab({ onReading, challenge = null }: Props) {
                 press(false);
                 setMode(m);
               }}
-              className={`rounded-xl py-2 ${activeMode === m ? "bg-white/10 text-white" : "text-white/50"}`}
+              className={`rounded-xl py-2 ${activeMode === m ? "bg-cream/10 text-cream" : "text-faint"}`}
             >
               {label}
             </button>
@@ -251,7 +252,7 @@ export default function ForceLab({ onReading, challenge = null }: Props) {
         </div>
       )}
 
-      <canvas ref={canvasRef} className="h-56 w-full rounded-2xl border border-white/10 bg-[#0a0d1c] sm:h-72" role="img" aria-label={ariaLabel} />
+      <canvas ref={canvasRef} className="h-56 w-full rounded-2xl border border-line bg-well sm:h-72" role="img" aria-label={ariaLabel} />
 
       {activeMode === "push" && (
         <>
@@ -268,13 +269,20 @@ export default function ForceLab({ onReading, challenge = null }: Props) {
               onChange={setSurface}
             />
           )}
-          <label className="block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
-            <div className="flex justify-between text-sm">
-              <span className="text-white/60">Push force</span>
-              <span className="tabular-nums text-white">{push} N</span>
+          {challenge ? (
+            <div className="rounded-2xl panel px-4 py-3 text-sm">
+              <span className="text-muted">Push force on this floor: </span>
+              <span className="tabular-nums text-cream">{push} N</span>
             </div>
-            <input type="range" className="range mt-2 w-full" min={0} max={MAX_PUSH} step={5} value={push} onChange={(e) => setPush(Number(e.target.value))} />
-          </label>
+          ) : (
+            <label className="block rounded-2xl panel px-4 py-3">
+              <div className="flex justify-between text-sm">
+                <span className="text-muted">Push force</span>
+                <span className="tabular-nums text-cream">{push} N</span>
+              </div>
+              <input type="range" className="range mt-2 w-full" min={0} max={MAX_PUSH} step={5} value={push} onChange={(e) => setPush(Number(e.target.value))} />
+            </label>
+          )}
           <div className="grid grid-cols-[1fr_auto] gap-2">
             <button
               disabled={locked}
@@ -286,16 +294,16 @@ export default function ForceLab({ onReading, challenge = null }: Props) {
               onPointerCancel={() => press(false)}
               onContextMenu={(e) => e.preventDefault()}
               className={`touch-none rounded-2xl border py-4 font-semibold transition disabled:opacity-40 ${
-                pushing ? "border-lime-300 bg-lime-400/30" : "border-lime-300/30 bg-lime-400/10"
+                pushing ? "border-sage-300 bg-sage-400/30" : "border-sage-300/30 bg-sage-400/10"
               }`}
             >
               {locked ? "Push used: press Reset" : "Hold to push ▶"}
             </button>
-            <button onClick={reset} className="rounded-2xl border border-white/10 px-4 text-sm text-white/70 hover:bg-white/10">
+            <button onClick={reset} className="rounded-2xl border border-line px-4 text-sm text-muted hover:bg-cream/10">
               Reset
             </button>
           </div>
-          <p className="text-center text-xs text-white/40">
+          <p className="text-center text-xs text-faint">
             Crate mass 20 kg. On {SURFACES[surface].label.toLowerCase()}, static friction can hold up to {limit.toFixed(0)} N.
             {challenge ? " One push per try: hold, then let go." : " Keyboard: hold → or Space to push."}
           </p>
@@ -313,7 +321,7 @@ export default function ForceLab({ onReading, challenge = null }: Props) {
             value={place}
             onChange={setPlace}
           />
-          <p className="text-center text-xs text-white/40">
+          <p className="text-center text-xs text-faint">
             W = m × g = {it.mass} kg × {g} m/s² = {W.toFixed(2)} N. The mass is the same everywhere; the weight is not.
           </p>
         </>
@@ -327,14 +335,14 @@ export default function ForceLab({ onReading, challenge = null }: Props) {
           </div>
           <Choice options={(Object.keys(SOURCES) as SourceId[]).map((id) => ({ id, label: SOURCES[id].label }))} value={source} onChange={setSource} />
           <Choice options={(Object.keys(PIECES) as PieceId[]).map((id) => ({ id, label: PIECES[id].label }))} value={piece} onChange={setPiece} />
-          <label className="block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+          <label className="block rounded-2xl panel px-4 py-3">
             <div className="flex justify-between text-sm">
-              <span className="text-white/60">Gap above the pieces</span>
-              <span className="tabular-nums text-white">{gap.toFixed(1)} cm</span>
+              <span className="text-muted">Gap above the pieces</span>
+              <span className="tabular-nums text-cream">{gap.toFixed(1)} cm</span>
             </div>
             <input type="range" className="range mt-2 w-full" min={0.5} max={8} step={0.5} value={gap} onChange={(e) => setGap(Number(e.target.value))} />
           </label>
-          <p className="text-center text-xs text-white/40">Rub the comb in dry hair to charge it. The pull sizes here are for showing the idea, not measured.</p>
+          <p className="text-center text-xs text-faint">Rub the comb in dry hair to charge it. The pull sizes here are for showing the idea, not measured.</p>
         </>
       )}
     </div>
@@ -347,13 +355,13 @@ function itemMass(id: ItemId) {
 
 function Readout({ label, value, unit, sub }: { label: string; value: string; unit: string; sub?: string }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-1 py-2">
-      <div className="text-[11px] uppercase tracking-wider text-white/50">{label}</div>
+    <div className="rounded-2xl panel px-1 py-2">
+      <div className="text-[11px] uppercase tracking-wider text-faint">{label}</div>
       <div className="font-display text-lg tabular-nums">
         {value}
-        {unit && <span className="ml-0.5 text-xs text-white/50">{unit}</span>}
+        {unit && <span className="ml-0.5 text-xs text-faint">{unit}</span>}
       </div>
-      {sub && <div className="text-[11px] text-white/40">{sub}</div>}
+      {sub && <div className="text-[11px] text-faint">{sub}</div>}
     </div>
   );
 }
@@ -365,7 +373,7 @@ function Choice<T extends string>({ options, value, onChange }: { options: { id:
         <button
           key={o.id}
           onClick={() => onChange(o.id)}
-          className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${value === o.id ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/70"}`}
+          className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${value === o.id ? "chip-on" : "border-line text-muted"}`}
         >
           {o.label}
         </button>
@@ -417,7 +425,7 @@ function drawPush(ctx: CanvasRenderingContext2D, w: number, h: number, s: PushSc
   const surf = SURFACES[s.surface];
 
   // Back wall glow and floor.
-  ctx.fillStyle = "rgba(255,255,255,0.02)";
+  ctx.fillStyle = "rgba(240,233,221,0.02)";
   ctx.fillRect(0, 0, w, floorY);
   ctx.fillStyle = surf.color;
   ctx.globalAlpha = 0.28;
@@ -426,7 +434,7 @@ function drawPush(ctx: CanvasRenderingContext2D, w: number, h: number, s: PushSc
   ctx.fillStyle = surf.color;
   ctx.fillRect(0, floorY, w, 3);
   // Floor texture: speckles for rough floors, streaks for ice.
-  ctx.fillStyle = "rgba(255,255,255,0.18)";
+  ctx.fillStyle = "rgba(240,233,221,0.18)";
   const grain = s.surface === "ice" ? 0 : s.surface === "wood" ? 14 : s.surface === "carpet" ? 6 : 3;
   if (grain) for (let px = 4; px < w; px += grain) ctx.fillRect(px, floorY + 6 + ((px * 7) % 9), s.surface === "wood" ? 8 : 1.5, 1.5);
   else for (let px = 10; px < w; px += 60) ctx.fillRect(px, floorY + 10, 30, 1);
@@ -448,7 +456,7 @@ function drawPush(ctx: CanvasRenderingContext2D, w: number, h: number, s: PushSc
   ctx.font = "11px system-ui, sans-serif";
   ctx.textAlign = "center";
   for (let m = 0; m <= TRACK_LENGTH - 1; m++) {
-    ctx.fillStyle = m === 0 ? "#f472b6" : "rgba(255,255,255,0.45)";
+    ctx.fillStyle = m === 0 ? "#f472b6" : "rgba(240,233,221,0.45)";
     ctx.fillRect(X(m) - 0.75, floorY + 3, 1.5, 6);
     if (!(s.zone && m > s.zone[0] - 0.4 && m < s.zone[1] + 0.4)) ctx.fillText(m === 0 ? "start" : `${m} m`, X(m), floorY + 22);
   }
@@ -479,7 +487,7 @@ function drawPush(ctx: CanvasRenderingContext2D, w: number, h: number, s: PushSc
   const px = X(s.personX) - 4;
   const lean = pushingNow ? 10 : 0;
   const ph = Math.min(64, floorY - 20);
-  ctx.strokeStyle = "rgba(255,255,255,0.85)";
+  ctx.strokeStyle = "rgba(240,233,221,0.85)";
   ctx.lineWidth = 3;
   ctx.lineCap = "round";
   const hip = { x: px - 14, y: floorY - ph * 0.45 };
@@ -513,7 +521,7 @@ function drawPush(ctx: CanvasRenderingContext2D, w: number, h: number, s: PushSc
   ctx.fillStyle = "#fb7185";
   ctx.fillText(`← Friction ${s.friction.toFixed(0)} N${s.kind === "static" ? " (static)" : s.kind === "kinetic" ? " (sliding)" : ""}`, 10, 35);
   ctx.font = "12px system-ui, sans-serif";
-  ctx.fillStyle = "rgba(255,255,255,0.75)";
+  ctx.fillStyle = "rgba(240,233,221,0.75)";
   const status =
     s.result
       ? s.result.inZone
@@ -530,7 +538,7 @@ function drawPush(ctx: CanvasRenderingContext2D, w: number, h: number, s: PushSc
         : s.push > 0
           ? "Balanced: friction holds it still"
           : "At rest";
-  ctx.fillStyle = s.result ? (s.result.inZone ? "#a3e635" : "#fda4af") : "rgba(255,255,255,0.75)";
+  ctx.fillStyle = s.result ? (s.result.inZone ? "#a3e635" : "#fda4af") : "rgba(240,233,221,0.75)";
   ctx.fillText(status, 10, 52);
 }
 
@@ -548,9 +556,9 @@ function drawSpring(ctx: CanvasRenderingContext2D, w: number, h: number, itemId:
   const pointerY = zeroY + stretch * span;
 
   // Ceiling hook.
-  ctx.fillStyle = "rgba(255,255,255,0.15)";
+  ctx.fillStyle = "rgba(240,233,221,0.15)";
   ctx.fillRect(bx - 40, 0, 80, 4);
-  ctx.strokeStyle = "rgba(255,255,255,0.6)";
+  ctx.strokeStyle = "rgba(240,233,221,0.6)";
   ctx.lineWidth = 2;
   ctx.beginPath();
   ctx.moveTo(bx, 4);
@@ -572,12 +580,12 @@ function drawSpring(ctx: CanvasRenderingContext2D, w: number, h: number, itemId:
   ctx.textAlign = "right";
   for (let n = 0; n <= BALANCE_MAX; n += 5) {
     const y = zeroY + (n / BALANCE_MAX) * span;
-    ctx.fillStyle = "rgba(255,255,255,0.6)";
+    ctx.fillStyle = "rgba(240,233,221,0.6)";
     ctx.fillRect(bx - cwid / 2 + 4, y - 0.5, n % 10 === 0 ? 10 : 5, 1);
     if (n % 10 === 0) ctx.fillText(`${n}`, bx - cwid / 2 - 4, y + 3);
   }
   ctx.textAlign = "left";
-  ctx.fillStyle = "rgba(255,255,255,0.5)";
+  ctx.fillStyle = "rgba(240,233,221,0.5)";
   ctx.fillText("N", bx - cwid / 2 - 14, top + caseH + 12);
 
   // Spring zigzag from the top of the casing down to the pointer.
@@ -607,7 +615,7 @@ function drawSpring(ctx: CanvasRenderingContext2D, w: number, h: number, itemId:
 
   // Rod and hook, sliding out as the spring stretches.
   const rodEnd = top + caseH + 10 + stretch * span * 0.15;
-  ctx.strokeStyle = "rgba(255,255,255,0.75)";
+  ctx.strokeStyle = "rgba(240,233,221,0.75)";
   ctx.lineWidth = 2;
   ctx.beginPath();
   ctx.moveTo(bx + 6, pointerY);
@@ -623,14 +631,14 @@ function drawSpring(ctx: CanvasRenderingContext2D, w: number, h: number, itemId:
   // Weight arrow and reading on the right.
   const rx = Math.round(Math.min(w * 0.5, bx + 92));
   ctx.textAlign = "left";
-  ctx.fillStyle = "rgba(255,255,255,0.55)";
+  ctx.fillStyle = "rgba(240,233,221,0.55)";
   ctx.font = "12px system-ui, sans-serif";
   ctx.fillText("Spring balance reads", rx, 30);
   ctx.fillStyle = "#fbbf24";
   ctx.font = "700 28px system-ui, sans-serif";
   ctx.fillText(`${W.toFixed(W < 10 ? 2 : 1)} N`, rx, 62);
   ctx.font = "12px system-ui, sans-serif";
-  ctx.fillStyle = "rgba(255,255,255,0.75)";
+  ctx.fillStyle = "rgba(240,233,221,0.75)";
   ctx.fillText(`${item.label}: mass ${item.mass} kg`, rx, 86);
   ctx.fillText(place === "moon" ? "On the Moon, g = 1.6 m/s²" : "On the Earth, g = 9.8 m/s²", rx, 104);
   // Gravity arrow beside the object.
@@ -651,7 +659,7 @@ function drawItem(ctx: CanvasRenderingContext2D, id: ItemId, x: number, y: numbe
     ctx.beginPath();
     ctx.arc(x, y + r, r, 0, Math.PI * 2);
     ctx.fill();
-    ctx.strokeStyle = id === "apple" ? "#4ade80" : "rgba(255,255,255,0.8)";
+    ctx.strokeStyle = id === "apple" ? "#4ade80" : "rgba(240,233,221,0.8)";
     ctx.beginPath();
     if (id === "apple") {
       ctx.moveTo(x, y + 2);
@@ -706,7 +714,7 @@ function drawField(ctx: CanvasRenderingContext2D, w: number, h: number, source: 
 
   // Gap measure on the left of the source.
   const mx = cx - srcW / 2 - 18;
-  ctx.strokeStyle = "rgba(255,255,255,0.5)";
+  ctx.strokeStyle = "rgba(240,233,221,0.5)";
   ctx.lineWidth = 1;
   ctx.setLineDash([3, 3]);
   ctx.beginPath();
@@ -715,10 +723,10 @@ function drawField(ctx: CanvasRenderingContext2D, w: number, h: number, source: 
   ctx.stroke();
   ctx.setLineDash([]);
   if (tableY - srcBottom > 14) {
-    arrow(ctx, mx, (srcBottom + tableY) / 2, mx, srcBottom + 1, "rgba(255,255,255,0.6)", 1.5);
-    arrow(ctx, mx, (srcBottom + tableY) / 2, mx, tableY - 1, "rgba(255,255,255,0.6)", 1.5);
+    arrow(ctx, mx, (srcBottom + tableY) / 2, mx, srcBottom + 1, "rgba(240,233,221,0.6)", 1.5);
+    arrow(ctx, mx, (srcBottom + tableY) / 2, mx, tableY - 1, "rgba(240,233,221,0.6)", 1.5);
   }
-  ctx.fillStyle = "rgba(255,255,255,0.7)";
+  ctx.fillStyle = "rgba(240,233,221,0.7)";
   ctx.font = "11px system-ui, sans-serif";
   ctx.textAlign = "right";
   ctx.fillText(`${gap.toFixed(1)} cm`, mx - 5, Math.min(tableY - 4, (srcBottom + tableY) / 2 + 4));
@@ -785,7 +793,7 @@ function drawField(ctx: CanvasRenderingContext2D, w: number, h: number, source: 
     ctx.fillStyle = "#64748b";
     ctx.fillRect(cx - srcW / 2, sy, srcW, sh * 0.5);
     for (let t = cx - srcW / 2 + 3; t < cx + srcW / 2 - 2; t += 5) ctx.fillRect(t, sy + sh * 0.5, 2.5, sh * 0.5);
-    ctx.strokeStyle = "rgba(255,255,255,0.5)";
+    ctx.strokeStyle = "rgba(240,233,221,0.5)";
     ctx.lineWidth = 1;
     ctx.strokeRect(cx - srcW / 2, sy, srcW, sh * 0.5);
     if (source === "rubbed") {
@@ -799,7 +807,7 @@ function drawField(ctx: CanvasRenderingContext2D, w: number, h: number, source: 
 
   // Status.
   ctx.font = "600 12px system-ui, sans-serif";
-  ctx.fillStyle = up ? "#a3e635" : ratio > 0 ? "#fcd34d" : "rgba(255,255,255,0.7)";
+  ctx.fillStyle = up ? "#a3e635" : ratio > 0 ? "#fcd34d" : "rgba(240,233,221,0.7)";
   const name = PIECES[piece].label.toLowerCase();
   const msg = up
     ? `The pull beats gravity: the ${name} jump up!`

@@ -28,7 +28,7 @@ export default function ClassLeaderboard() {
 
   if (!me?.server || !child) {
     return (
-      <p className="mt-2 text-sm text-white/60">
+      <p className="mt-2 text-sm text-muted">
         When your teacher creates a class, you can choose to appear on its weekly leaderboard. It ranks XP earned this
         week, so everyone starts fresh every Monday.
       </p>
@@ -50,7 +50,7 @@ export default function ClassLeaderboard() {
   return (
     <>
       {child.classes.length === 0 ? (
-        <p className="mt-2 text-sm text-white/60">
+        <p className="mt-2 text-sm text-muted">
           You&apos;re not in a class yet.{" "}
           <Link href="/join/class" className="underline">
             Join with your teacher&apos;s code
@@ -62,24 +62,24 @@ export default function ClassLeaderboard() {
           <div key={b.id} className="mt-3">
             <div className="text-sm font-semibold">{b.name} · this week</div>
             {b.rows.length === 0 ? (
-              <p className="mt-1 text-sm text-white/50">No one is showing yet.</p>
+              <p className="mt-1 text-sm text-faint">No one is showing yet.</p>
             ) : (
               <ol className="mt-2 space-y-1 text-sm">
                 {b.rows.map((r, i) => (
-                  <li key={r.nickname} className={`flex items-center gap-2 rounded-xl px-2 py-1 ${r.you ? "bg-cyan-300/15" : ""}`}>
-                    <span className="w-5 text-white/40">{i + 1}</span>
+                  <li key={r.nickname} className={`flex items-center gap-2 rounded-xl px-2 py-1 ${r.you ? "bg-saffron-300/15" : ""}`}>
+                    <span className="w-5 text-faint">{i + 1}</span>
                     <span>{r.avatar}</span>
                     <span className="flex-1 truncate">{r.nickname}</span>
-                    <span className="text-white/70">{r.weekXp}</span>
+                    <span className="text-muted">{r.weekXp}</span>
                   </li>
                 ))}
               </ol>
             )}
-            {!child.showOnLeaderboard && <p className="mt-2 text-xs text-white/50">You&apos;re hidden. This week you&apos;ve earned {b.you} XP.</p>}
+            {!child.showOnLeaderboard && <p className="mt-2 text-xs text-faint">You&apos;re hidden. This week you&apos;ve earned {b.you} XP.</p>}
           </div>
         ))
       )}
-      <button className="mt-3 text-sm text-white/50 underline" disabled={busy} onClick={toggle}>
+      <button className="mt-3 text-sm text-faint underline" disabled={busy} onClick={toggle}>
         {child.showOnLeaderboard ? "Hide me from the leaderboard" : "Show me on the leaderboard"}
       </button>
     </>

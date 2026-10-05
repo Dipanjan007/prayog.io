@@ -20,12 +20,12 @@ export default function JoinClassPage() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
-  if (!me) return <div className="mx-auto mt-16 max-w-xl text-center text-white/50">Loading…</div>;
+  if (!me) return <div className="mx-auto mt-16 max-w-xl text-center text-faint">Loading…</div>;
   if (!me.server) {
     return (
       <div className="glass mx-auto mt-8 max-w-md rounded-3xl p-6 text-center">
         <h1 className="font-display text-2xl font-bold">Classes are coming soon</h1>
-        <p className="mt-2 text-white/60">Your teacher will share a code when they are ready.</p>
+        <p className="mt-2 text-muted">Your teacher will share a code when they are ready.</p>
       </div>
     );
   }
@@ -63,10 +63,10 @@ export default function JoinClassPage() {
   return (
     <div className="mx-auto max-w-md pt-4">
       <section className="glass rounded-3xl p-6">
-        <div className="text-sm text-cyan-300">For students</div>
+        <div className="text-sm text-saffron-300">For students</div>
         <h1 className="font-display mt-2 text-3xl font-bold">Join your class</h1>
         <label className="mt-5 grid gap-1 text-sm">
-          <span className="text-white/60">Class code from your teacher</span>
+          <span className="text-muted">Class code from your teacher</span>
           <input
             className="field text-center font-mono text-2xl uppercase tracking-[0.4em]"
             maxLength={6}
@@ -78,16 +78,16 @@ export default function JoinClassPage() {
         </label>
 
         {familyChild ? (
-          <p className="mt-4 text-sm text-white/60">
+          <p className="mt-4 text-sm text-muted">
             You&apos;ll join as {familyChild.avatar} {familyChild.nickname}.
           </p>
         ) : (
           <>
-            <div className="mt-5 grid grid-cols-2 gap-1 rounded-2xl bg-black/20 p-1 text-sm">
+            <div className="mt-5 grid grid-cols-2 gap-1 rounded-2xl bg-ink/20 p-1 text-sm">
               {(["new", "returning"] as const).map((m) => (
                 <button
                   key={m}
-                  className={`rounded-xl py-2 ${mode === m ? "bg-white/10 text-white" : "text-white/50"}`}
+                  className={`rounded-xl py-2 ${mode === m ? "bg-cream/10 text-cream" : "text-faint"}`}
                   onClick={() => {
                     setMode(m);
                     setError("");
@@ -98,14 +98,14 @@ export default function JoinClassPage() {
               ))}
             </div>
             <label className="mt-4 grid gap-1 text-sm">
-              <span className="text-white/60">Nickname (not your real name)</span>
+              <span className="text-muted">Nickname (not your real name)</span>
               <input className="field" value={nickname} maxLength={16} onChange={(e) => setNickname(e.target.value)} placeholder="e.g. StormRider" />
             </label>
 
-            <div className="mt-4 text-sm text-white/60">
+            <div className="mt-4 text-sm text-muted">
               {mode === "new" ? "Pick 3 pictures as your secret password. Remember the order!" : "Tap your 3 secret pictures in order"}
             </div>
-            <div className="mt-2 flex h-12 items-center justify-center gap-3 rounded-2xl bg-black/20 text-3xl" aria-live="polite">
+            <div className="mt-2 flex h-12 items-center justify-center gap-3 rounded-2xl bg-ink/20 text-3xl" aria-live="polite">
               {Array.from({ length: PICTURE_COUNT }, (_, i) => (
                 <span key={i} className={picture[i] ? "" : "opacity-30"}>
                   {picture[i] ? PICTURES.find((p) => p.id === picture[i])?.emoji : "•"}
@@ -116,7 +116,7 @@ export default function JoinClassPage() {
               {PICTURES.map((p) => (
                 <button
                   key={p.id}
-                  className="rounded-xl border border-white/10 py-2 text-3xl disabled:opacity-40"
+                  className="rounded-xl border border-line py-2 text-3xl disabled:opacity-40"
                   disabled={picture.length >= PICTURE_COUNT}
                   onClick={() => setPicture([...picture, p.id])}
                   aria-label={p.id}
@@ -126,20 +126,20 @@ export default function JoinClassPage() {
               ))}
             </div>
             {picture.length > 0 && (
-              <button className="mt-2 text-xs text-white/50 underline" onClick={() => setPicture([])}>
+              <button className="mt-2 text-xs text-faint underline" onClick={() => setPicture([])}>
                 Clear pictures
               </button>
             )}
 
             {mode === "new" && (
               <>
-                <div className="mt-4 text-sm text-white/60">Avatar</div>
+                <div className="mt-4 text-sm text-muted">Avatar</div>
                 <div className="mt-1 grid grid-cols-6 gap-2">
                   {AVATARS.map((a) => (
                     <button
                       key={a}
                       onClick={() => setAvatar(a)}
-                      className={`rounded-xl border py-2 text-2xl ${avatar === a ? "border-violet-300 bg-violet-300/15" : "border-white/10"}`}
+                      className={`rounded-xl border py-2 text-2xl ${avatar === a ? "border-heather-300 bg-heather-300/15" : "border-line"}`}
                       aria-label={`Avatar ${a}`}
                     >
                       {a}
@@ -149,13 +149,13 @@ export default function JoinClassPage() {
                 <label className="mt-4 flex items-start gap-3 text-sm">
                   <input
                     type="checkbox"
-                    className="mt-1 h-4 w-4 accent-cyan-400"
+                    className="mt-1 h-4 w-4 accent-saffron-400"
                     checked={showOnLeaderboard}
                     onChange={(e) => setShowOnLeaderboard(e.target.checked)}
                   />
                   <span>Show my nickname on my class leaderboard (you can change this later).</span>
                 </label>
-                <p className="mt-3 text-xs text-white/40">
+                <p className="mt-3 text-xs text-faint">
                   Your school signed up for Prayog. We only keep your nickname, avatar and progress. Your teacher sees your
                   progress; classmates see your nickname only if you say yes above.
                 </p>
@@ -164,7 +164,7 @@ export default function JoinClassPage() {
           </>
         )}
 
-        {error && <p className="mt-3 text-sm text-rose-300">{error}</p>}
+        {error && <p className="mt-3 text-sm text-brick-300">{error}</p>}
         <button className="btn-primary mt-5 w-full" disabled={!ready || busy} onClick={submit}>
           {busy ? "Joining…" : mode === "returning" && !familyChild ? "Sign in" : "Join class"}
         </button>

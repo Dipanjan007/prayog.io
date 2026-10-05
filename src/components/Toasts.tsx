@@ -20,14 +20,12 @@ export function useToasts() {
 
 export function ToastStack({ toasts }: { toasts: Toast[] }) {
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-6 z-50 flex flex-col items-center gap-2 px-4" aria-live="polite">
+    <div className="pointer-events-none fixed inset-x-0 bottom-[max(1.5rem,env(safe-area-inset-bottom))] z-50 flex flex-col items-center gap-2 px-4" aria-live="polite">
       {toasts.map((t) => (
         <div
           key={t.id}
-          className={`animate-pop rounded-full px-5 py-2.5 font-semibold shadow-2xl ${
-            t.big
-              ? "bg-gradient-to-r from-amber-300 via-pink-400 to-violet-400 text-black"
-              : "glass text-white"
+          className={`animate-pop rounded-full border px-5 py-2.5 font-semibold shadow-[0_12px_40px_-12px_rgb(0_0_0/0.7)] ${
+            t.big ? "border-saffron-300 bg-saffron-400 text-ink" : "border-line-strong bg-raised text-cream"
           }`}
         >
           {t.text}

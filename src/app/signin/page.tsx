@@ -18,12 +18,12 @@ export default function SignInPage() {
     if (me?.account?.role === "teacher") router.replace("/teach");
   }, [me, router]);
 
-  if (!me) return <div className="mx-auto mt-16 max-w-xl text-center text-white/50">Loading…</div>;
+  if (!me) return <div className="mx-auto mt-16 max-w-xl text-center text-faint">Loading…</div>;
   if (!me.server) {
     return (
       <div className="glass mx-auto mt-8 max-w-md rounded-3xl p-6 text-center">
         <h1 className="font-display text-2xl font-bold">Accounts are coming soon</h1>
-        <p className="mt-2 text-white/60">For now your progress is saved on this device.</p>
+        <p className="mt-2 text-muted">For now your progress is saved on this device.</p>
       </div>
     );
   }
@@ -38,7 +38,7 @@ export default function SignInPage() {
   return (
     <div className="mx-auto max-w-md pt-4">
       <section className="glass rounded-3xl p-6">
-        <div className="text-sm text-cyan-300">Parents and teachers</div>
+        <div className="text-sm text-saffron-300">Parents and teachers</div>
         <h1 className="font-display mt-2 text-3xl font-bold">Sign in</h1>
         <EmailCode
           email={email}
@@ -55,7 +55,7 @@ export default function SignInPage() {
           }}
         />
         {noAccount && (
-          <p className="mt-3 text-sm text-amber-200">
+          <p className="mt-3 text-sm text-ochre-200">
             There&apos;s no account with that email yet.{" "}
             <Link href="/join" className="underline">
               Sign up as a parent
@@ -67,7 +67,7 @@ export default function SignInPage() {
             .
           </p>
         )}
-        <p className="mt-5 text-center text-sm text-white/50">
+        <p className="mt-5 text-center text-sm text-faint">
           Student with a class code?{" "}
           <Link href="/join/class" className="underline">
             Join or sign in to your class

@@ -212,9 +212,9 @@ export default function CircuitLab({ onReading, puzzle = null }: Props) {
   return (
     <div className="flex flex-col gap-3 select-none">
       {!puzzle && (
-        <div className="grid grid-cols-3 gap-1 rounded-2xl bg-black/20 p-1 text-sm">
+        <div className="grid grid-cols-3 gap-1 rounded-2xl bg-ink/20 p-1 text-sm">
           {tabs.map((t) => (
-            <button key={t.id} onClick={() => setMode(t.id)} className={`rounded-xl px-1 py-2 leading-tight ${activeMode === t.id ? "bg-white/10 text-white" : "text-white/50"}`}>
+            <button key={t.id} onClick={() => setMode(t.id)} className={`rounded-xl px-1 py-2 leading-tight ${activeMode === t.id ? "bg-cream/10 text-cream" : "text-faint"}`}>
               {t.label}
             </button>
           ))}
@@ -223,7 +223,7 @@ export default function CircuitLab({ onReading, puzzle = null }: Props) {
 
       <canvas
         ref={canvasRef}
-        className="h-60 w-full rounded-2xl border border-white/10 bg-[#0a0d1c] sm:h-72"
+        className="h-60 w-full rounded-2xl border border-line bg-well sm:h-72"
         role="img"
         aria-label={`Circuit: a ${cells}-cell battery of ${volts} V, an ammeter in series reading ${fmtAmps(i)}, and ${
           activeMode === "pair"
@@ -256,7 +256,7 @@ export default function CircuitLab({ onReading, puzzle = null }: Props) {
       )}
 
       {overload && (
-        <p className="rounded-xl border border-rose-400/30 bg-rose-400/10 px-3 py-2 text-xs text-rose-200">
+        <p className="rounded-xl border border-brick-400/30 bg-brick-400/10 px-3 py-2 text-xs text-brick-200">
           Almost a short circuit. Copper has so little resistance that a huge current flows. In a real lab the wire gets hot and the cells run down fast.
         </p>
       )}
@@ -274,7 +274,7 @@ export default function CircuitLab({ onReading, puzzle = null }: Props) {
       {activeMode === "pair" ? (
         <>
           {puzzle ? (
-            <p className="text-center text-xs text-white/50">
+            <p className="text-center text-xs text-faint">
               Your resistors: R₁ = {r1} Ω and R₂ = {r2} Ω.
             </p>
           ) : (
@@ -297,7 +297,7 @@ export default function CircuitLab({ onReading, puzzle = null }: Props) {
           <Choice options={(Object.keys(MATERIALS) as MaterialId[]).map((id) => ({ id, label: MATERIALS[id].label }))} value={material} onChange={setMaterial} />
           <Slider label="Length L" value={`${length.toFixed(2)} m`} min={LENGTH.min} max={LENGTH.max} step={LENGTH.step} v={length} onChange={setLength} />
           <div>
-            <div className="mb-1 text-xs text-white/50">Area of cross-section A</div>
+            <div className="mb-1 text-xs text-faint">Area of cross-section A</div>
             <Choice options={AREAS_MM2.map((a) => ({ id: String(a), label: `${a} mm²` }))} value={String(area)} onChange={(v) => setArea(Number(v))} />
           </div>
           {activeMode === "heat" && <Slider label="Time switched on t" value={`${time} s`} min={10} max={600} step={10} v={time} onChange={setTime} />}
@@ -305,16 +305,16 @@ export default function CircuitLab({ onReading, puzzle = null }: Props) {
       )}
 
       {activeMode !== "heat" && !puzzle && (
-        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-2">
-          <div className="flex items-center justify-between px-1 pb-1 text-xs text-white/50">
+        <div className="rounded-2xl panel p-2">
+          <div className="flex items-center justify-between px-1 pb-1 text-xs text-faint">
             <span>V–I graph: points collect as you change the cells</span>
-            <button className="rounded-lg border border-white/10 px-2 py-0.5 text-white/60" onClick={() => setSeries([])}>
+            <button className="rounded-lg border border-line px-2 py-0.5 text-muted" onClick={() => setSeries([])}>
               Clear
             </button>
           </div>
           <canvas
             ref={plotRef}
-            className="h-44 w-full rounded-xl bg-[#0a0d1c]"
+            className="h-44 w-full rounded-xl bg-well"
             role="img"
             aria-label={`V–I graph with current on the x axis and voltage on the y axis. ${
               series.length ? series.map((s) => `${s.label}: ${s.volts.length} points on a straight line through the origin`).join(". ") : "No points yet"
@@ -323,7 +323,7 @@ export default function CircuitLab({ onReading, puzzle = null }: Props) {
         </div>
       )}
       {activeMode === "heat" && (
-        <p className="text-center text-xs text-white/40">
+        <p className="text-center text-xs text-faint">
           {MATERIALS[material].label} is {MATERIALS[material].note}. The glow is exaggerated so that even small powers show.
         </p>
       )}
@@ -333,20 +333,20 @@ export default function CircuitLab({ onReading, puzzle = null }: Props) {
 
 function Tile({ label, value, sub, accent, warn }: { label: string; value: string; sub?: string; accent?: boolean; warn?: boolean }) {
   return (
-    <div className={`rounded-2xl border px-1 py-2 ${accent ? "border-cyan-300/40 bg-cyan-300/10" : "border-white/10 bg-white/[0.03]"}`}>
-      <div className="text-[11px] uppercase tracking-wider text-white/50">{label}</div>
-      <div className={`font-display text-base tabular-nums sm:text-lg ${warn ? "text-rose-300" : ""}`}>{value}</div>
-      {sub && <div className="text-[10px] text-white/40">{sub}</div>}
+    <div className={`rounded-2xl border px-1 py-2 ${accent ? "border-saffron-300/40 bg-saffron-300/10" : "border-line bg-cream/[0.03]"}`}>
+      <div className="text-[11px] uppercase tracking-wider text-faint">{label}</div>
+      <div className={`font-display text-base tabular-nums sm:text-lg ${warn ? "text-brick-300" : ""}`}>{value}</div>
+      {sub && <div className="text-[10px] text-faint">{sub}</div>}
     </div>
   );
 }
 
 function Slider({ label, value, min, max, step, v, onChange }: { label: string; value: string; min: number; max: number; step: number; v: number; onChange: (v: number) => void }) {
   return (
-    <label className="block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+    <label className="block rounded-2xl panel px-4 py-3">
       <div className="flex justify-between gap-2 text-sm">
-        <span className="text-white/60">{label}</span>
-        <span className="tabular-nums text-white">{value}</span>
+        <span className="text-muted">{label}</span>
+        <span className="tabular-nums text-cream">{value}</span>
       </div>
       <input type="range" className="range mt-2 w-full" min={min} max={max} step={step} value={v} onChange={(e) => onChange(Number(e.target.value))} />
     </label>
@@ -360,7 +360,7 @@ function Choice<T extends string>({ options, value, onChange }: { options: { id:
         <button
           key={o.id}
           onClick={() => onChange(o.id)}
-          className={`flex-1 rounded-xl border px-2 py-2 text-sm whitespace-nowrap ${value === o.id ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/70"}`}
+          className={`flex-1 rounded-xl border px-2 py-2 text-sm whitespace-nowrap ${value === o.id ? "chip-on" : "border-line text-muted"}`}
         >
           {o.label}
         </button>
@@ -447,7 +447,7 @@ function drawCircuit(ctx: CanvasRenderingContext2D, w: number, h: number, s: Sce
   const vy = y1 - (parallel ? 58 : 46);
 
   // Connecting wires.
-  ctx.strokeStyle = "rgba(255,255,255,0.45)";
+  ctx.strokeStyle = "rgba(240,233,221,0.45)";
   ctx.lineWidth = 2;
   line(ctx, [{ x: bxR, y: y0 }, { x: x1, y: y0 }, { x: x1, y: y1 }, { x: xb, y: y1 }]);
   line(ctx, [{ x: xa, y: y1 }, { x: x0, y: y1 }, { x: x0, y: y0 }, { x: bxL, y: y0 }]);
@@ -462,11 +462,11 @@ function drawCircuit(ctx: CanvasRenderingContext2D, w: number, h: number, s: Sce
     line(ctx, [{ x: x + cellGap, y: y0 - 12 }, { x: x + cellGap, y: y0 + 12 }]);
     if (k < s.cells - 1) {
       ctx.lineWidth = 1;
-      ctx.strokeStyle = "rgba(255,255,255,0.45)";
+      ctx.strokeStyle = "rgba(240,233,221,0.45)";
       line(ctx, [{ x: x + cellGap, y: y0 }, { x: x + 2 * cellGap, y: y0 }]);
     }
   }
-  ctx.fillStyle = "rgba(255,255,255,0.7)";
+  ctx.fillStyle = "rgba(240,233,221,0.7)";
   ctx.textAlign = "center";
   ctx.fillText(`${s.cells} × 1.5 V = ${s.volts} V`, (bxL + bxR) / 2, y0 - 18);
   ctx.fillStyle = "#fda4af";
@@ -488,14 +488,14 @@ function drawCircuit(ctx: CanvasRenderingContext2D, w: number, h: number, s: Sce
       ctx.textAlign = "center";
       ctx.fillText(label, x, y + 4);
     };
-    ctx.strokeStyle = "rgba(255,255,255,0.45)";
+    ctx.strokeStyle = "rgba(240,233,221,0.45)";
     ctx.lineWidth = 2;
     if (parallel) {
       line(ctx, [{ x: xa, y: y1 }, { x: xa, y: y1 - br }, { x: xb, y: y1 - br }, { x: xb, y: y1 }]);
       line(ctx, [{ x: xa, y: y1 }, { x: xa, y: y1 + br }, { x: xb, y: y1 + br }, { x: xb, y: y1 }]);
       box(cx, y1 - br, `R₁ ${s.pair.r1} Ω`);
       box(cx, y1 + br, `R₂ ${s.pair.r2} Ω`);
-      ctx.fillStyle = "rgba(255,255,255,0.65)";
+      ctx.fillStyle = "rgba(240,233,221,0.65)";
       ctx.textAlign = "left";
       if (!s.overload) {
         ctx.fillText(`I₁ ${fmt(s.pair.i1)} A`, xb + 6, y1 - br - 4);
@@ -507,7 +507,7 @@ function drawCircuit(ctx: CanvasRenderingContext2D, w: number, h: number, s: Sce
       line(ctx, [{ x: xa, y: y1 }, { x: xb, y: y1 }]);
       box(cx - 34, y1, `R₁ ${s.pair.r1} Ω`);
       box(cx + 34, y1, `R₂ ${s.pair.r2} Ω`);
-      ctx.fillStyle = "rgba(255,255,255,0.65)";
+      ctx.fillStyle = "rgba(240,233,221,0.65)";
       ctx.textAlign = "center";
       ctx.fillText(`Rs = ${s.pair.r1} + ${s.pair.r2} = ${fmt(s.pair.r)} Ω`, cx, y1 + 32);
     }
@@ -526,7 +526,7 @@ function drawCircuit(ctx: CanvasRenderingContext2D, w: number, h: number, s: Sce
     ctx.shadowBlur = 0;
     ctx.fillStyle = "#475569";
     for (const x of [xa, xb]) ctx.fillRect(x - 4, y1 - 7, 8, 14);
-    ctx.fillStyle = "rgba(255,255,255,0.65)";
+    ctx.fillStyle = "rgba(240,233,221,0.65)";
     ctx.textAlign = "center";
     ctx.fillText(s.wire.label, cx, y1 + 26);
     ctx.fillStyle = "#a5f3fc";
@@ -629,9 +629,9 @@ function drawPlot(ctx: CanvasRenderingContext2D, w: number, h: number, series: S
   const Y = (v: number) => bottom - (v / vMax) * (bottom - top);
 
   // Grid and axes.
-  ctx.strokeStyle = "rgba(255,255,255,0.08)";
+  ctx.strokeStyle = "rgba(240,233,221,0.08)";
   ctx.lineWidth = 1;
-  ctx.fillStyle = "rgba(255,255,255,0.5)";
+  ctx.fillStyle = "rgba(240,233,221,0.5)";
   for (const v of [0, 3, 6, 9]) {
     line(ctx, [{ x: left, y: Y(v) }, { x: right, y: Y(v) }]);
     ctx.textAlign = "right";
@@ -650,7 +650,7 @@ function drawPlot(ctx: CanvasRenderingContext2D, w: number, h: number, series: S
   ctx.textAlign = "center";
   ctx.fillText("V (V) →", 0, 0);
   ctx.restore();
-  ctx.strokeStyle = "rgba(255,255,255,0.35)";
+  ctx.strokeStyle = "rgba(240,233,221,0.35)";
   line(ctx, [{ x: left, y: top }, { x: left, y: bottom }, { x: right, y: bottom }]);
 
   // Each resistance: points and the straight line V = IR through the origin.
@@ -689,7 +689,7 @@ function drawPlot(ctx: CanvasRenderingContext2D, w: number, h: number, series: S
   });
   ctx.globalAlpha = 1;
   if (!series.length) {
-    ctx.fillStyle = "rgba(255,255,255,0.4)";
+    ctx.fillStyle = "rgba(240,233,221,0.4)";
     ctx.textAlign = "center";
     ctx.fillText("Change the number of cells to plot points", (left + right) / 2, (top + bottom) / 2);
   }

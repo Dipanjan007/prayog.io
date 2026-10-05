@@ -29,7 +29,7 @@ interface Klass {
 
 export default function TeachPage() {
   const me = useMe();
-  if (!me) return <div className="mx-auto mt-16 max-w-xl text-center text-white/50">Loading…</div>;
+  if (!me) return <div className="mx-auto mt-16 max-w-xl text-center text-faint">Loading…</div>;
   if (!me.server) {
     return (
       <div className="glass mx-auto mt-8 max-w-md rounded-3xl p-6 text-center">
@@ -45,7 +45,7 @@ export default function TeachPage() {
     return (
       <div className="glass mx-auto mt-8 max-w-md rounded-3xl p-6 text-center">
         <h1 className="font-display text-2xl font-bold">You&apos;re signed in as a parent</h1>
-        <p className="mt-2 text-white/60">Teacher accounts need their own email.</p>
+        <p className="mt-2 text-muted">Teacher accounts need their own email.</p>
       </div>
     );
   }
@@ -61,18 +61,18 @@ function TeacherSignup() {
   return (
     <div className="mx-auto max-w-xl pt-4">
       <section className="glass rounded-3xl p-6">
-        <div className="text-sm text-violet-300">For teachers</div>
+        <div className="text-sm text-heather-300">For teachers</div>
         <h1 className="font-display mt-2 text-3xl font-bold">Bring Prayog to your class</h1>
-        <p className="mt-2 text-white/60">
+        <p className="mt-2 text-muted">
           Students join with a class code and a nickname, so they don&apos;t need an email. During the pilot, teacher
           sign-up is open to invited schools.
         </p>
         <label className="mt-5 grid gap-1 text-sm">
-          <span className="text-white/60">Your name</span>
+          <span className="text-muted">Your name</span>
           <input className="field" value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" />
         </label>
         <label className="mt-4 grid gap-1 text-sm">
-          <span className="text-white/60">School</span>
+          <span className="text-muted">School</span>
           <input className="field" value={school} onChange={(e) => setSchool(e.target.value)} autoComplete="organization" />
         </label>
         <EmailCode
@@ -85,7 +85,7 @@ function TeacherSignup() {
           <label className="mt-4 flex items-start gap-3 text-sm">
             <input
               type="checkbox"
-              className="mt-1 h-4 w-4 accent-violet-400"
+              className="mt-1 h-4 w-4 accent-heather-400"
               checked={schoolConsent}
               onChange={(e) => setSchoolConsent(e.target.checked)}
             />
@@ -98,7 +98,7 @@ function TeacherSignup() {
             </span>
           </label>
         </EmailCode>
-        <p className="mt-4 text-center text-sm text-white/50">
+        <p className="mt-4 text-center text-sm text-faint">
           Already signed up?{" "}
           <Link href="/signin" className="underline">
             Sign in
@@ -154,7 +154,7 @@ function Dashboard({ name, school }: { name: string; school: string }) {
     <div className="pt-4">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <div className="text-sm text-violet-300">{school}</div>
+          <div className="text-sm text-heather-300">{school}</div>
           <h1 className="font-display text-3xl font-bold">{name}&apos;s classes</h1>
         </div>
       </div>
@@ -180,30 +180,30 @@ function Dashboard({ name, school }: { name: string; school: string }) {
         </div>
       </section>
 
-      {error && <p className="mt-4 text-sm text-rose-300">{error}</p>}
-      {classes === null && !error && <p className="mt-6 text-white/50">Loading classes…</p>}
-      {classes?.length === 0 && <p className="mt-6 text-white/50">No classes yet. Create one, then share its code with your students.</p>}
+      {error && <p className="mt-4 text-sm text-brick-300">{error}</p>}
+      {classes === null && !error && <p className="mt-6 text-faint">Loading classes…</p>}
+      {classes?.length === 0 && <p className="mt-6 text-faint">No classes yet. Create one, then share its code with your students.</p>}
 
       {classes?.map((k) => (
         <section key={k.id} className="glass mt-4 rounded-3xl p-5">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <h2 className="font-display text-xl font-semibold">{k.name}</h2>
-              <div className="text-sm text-white/50">
+              <div className="text-sm text-faint">
                 Class {k.classNum} · {k.students.length} student{k.students.length === 1 ? "" : "s"}
               </div>
             </div>
             <div className="text-right">
-              <div className="text-xs text-white/50">Join code</div>
-              <div className="font-mono text-2xl tracking-widest text-cyan-200">{k.joinCode}</div>
+              <div className="text-xs text-faint">Join code</div>
+              <div className="font-mono text-2xl tracking-widest text-saffron-200">{k.joinCode}</div>
             </div>
           </div>
-          <p className="mt-2 text-xs text-white/40">Students open prayog → Join a class, and type this code.</p>
+          <p className="mt-2 text-xs text-faint">Students open prayog → Join a class, and type this code.</p>
 
           {k.students.length > 0 && (
             <div className="mt-4 overflow-x-auto">
               <table className="w-full min-w-[520px] text-sm">
-                <thead className="text-left text-white/50">
+                <thead className="text-left text-faint">
                   <tr>
                     <th className="py-2 font-normal">Student</th>
                     <th className="py-2 font-normal">This week</th>
@@ -218,7 +218,7 @@ function Dashboard({ name, school }: { name: string; school: string }) {
                 </thead>
                 <tbody>
                   {k.students.map((s) => (
-                    <tr key={s.id} className="border-t border-white/5">
+                    <tr key={s.id} className="border-t border-line">
                       <td className="py-2">
                         {s.avatar} {s.nickname}
                       </td>
@@ -228,7 +228,7 @@ function Dashboard({ name, school }: { name: string; school: string }) {
                         const f = lessonDone(s, l.id);
                         return (
                           <td key={l.id} className="py-2">
-                            <span className={f === 1 ? "text-lime-300" : f > 0 ? "text-amber-200" : "text-white/30"}>
+                            <span className={f === 1 ? "text-sage-300" : f > 0 ? "text-ochre-200" : "text-faint"}>
                               {f === 1 ? "Done" : `${Math.round(f * 100)}%`}
                             </span>
                           </td>
@@ -236,7 +236,7 @@ function Dashboard({ name, school }: { name: string; school: string }) {
                       })}
                       <td className="py-2 text-right">
                         <button
-                          className="text-xs text-white/40 underline hover:text-rose-300"
+                          className="text-xs text-faint underline hover:text-brick-300"
                           disabled={busy}
                           onClick={() => {
                             if (window.confirm(`Remove ${s.nickname} from ${k.name}?`)) run(() => api(`/api/classes/${k.id}/members/${s.id}`, "DELETE"));
@@ -252,7 +252,7 @@ function Dashboard({ name, school }: { name: string; school: string }) {
             </div>
           )}
           <button
-            className="mt-4 text-xs text-white/40 underline hover:text-rose-300"
+            className="mt-4 text-xs text-faint underline hover:text-brick-300"
             disabled={busy}
             onClick={() => {
               if (window.confirm(`Delete ${k.name}? Student profiles made for this class are deleted too.`)) run(() => api(`/api/classes/${k.id}`, "DELETE"));

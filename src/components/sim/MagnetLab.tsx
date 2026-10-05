@@ -155,9 +155,9 @@ export default function MagnetLab({ onReading, round = null, onGuess }: Props) {
   return (
     <div className="flex flex-col gap-3 select-none">
       {!round && (
-        <div className="grid grid-cols-4 gap-1 rounded-2xl bg-black/20 p-1 text-sm">
+        <div className="grid grid-cols-4 gap-1 rounded-2xl bg-ink/20 p-1 text-sm">
           {(["wire", "loop", "solenoid", "force"] as const).map((m) => (
-            <button key={m} onClick={() => switchMode(m)} className={`rounded-xl py-2 ${activeMode === m ? "bg-white/10 text-white" : "text-white/50"}`}>
+            <button key={m} onClick={() => switchMode(m)} className={`rounded-xl py-2 ${activeMode === m ? "bg-cream/10 text-cream" : "text-faint"}`}>
               {m === "wire" ? "Wire" : m === "loop" ? "Loop" : m === "solenoid" ? "Solenoid" : "Force"}
             </button>
           ))}
@@ -167,7 +167,7 @@ export default function MagnetLab({ onReading, round = null, onGuess }: Props) {
       <canvas
         ref={canvasRef}
         onPointerDown={onPointer}
-        className={`h-64 w-full touch-none rounded-2xl border border-white/10 bg-[#0a0d1c] sm:h-80 ${activeMode === "force" ? "" : "cursor-crosshair"}`}
+        className={`h-64 w-full touch-none rounded-2xl border border-line bg-well sm:h-80 ${activeMode === "force" ? "" : "cursor-crosshair"}`}
         role="img"
         aria-label={aria}
       />
@@ -175,12 +175,12 @@ export default function MagnetLab({ onReading, round = null, onGuess }: Props) {
       {activeMode !== "force" ? (
         <>
           <div className="grid grid-cols-2 gap-2 text-center">
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-1 py-2">
-              <div className="text-[11px] uppercase tracking-wider text-white/50">Field at the marker</div>
+            <div className="rounded-2xl panel px-1 py-2">
+              <div className="text-[11px] uppercase tracking-wider text-faint">Field at the marker</div>
               <div className="font-display text-lg tabular-nums">{fmtField(probeB.b)}</div>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-1 py-2">
-              <div className="text-[11px] uppercase tracking-wider text-white/50">
+            <div className="rounded-2xl panel px-1 py-2">
+              <div className="text-[11px] uppercase tracking-wider text-faint">
                 {activeMode === "solenoid" ? "North pole" : "Marker distance"}
               </div>
               <div className="font-display text-lg tabular-nums">
@@ -188,16 +188,16 @@ export default function MagnetLab({ onReading, round = null, onGuess }: Props) {
               </div>
             </div>
           </div>
-          <p className="-mt-1 text-center text-xs text-white/40">Tap the picture to move the marker. Red needle tips point north.</p>
+          <p className="-mt-1 text-center text-xs text-faint">Tap the picture to move the marker. Red needle tips point north.</p>
         </>
       ) : (
         <div className="grid grid-cols-2 gap-2 text-center">
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-1 py-2">
-            <div className="text-[11px] uppercase tracking-wider text-white/50">Force on rod</div>
+          <div className="rounded-2xl panel px-1 py-2">
+            <div className="text-[11px] uppercase tracking-wider text-faint">Force on rod</div>
             <div className="font-display text-lg tabular-nums">{round && guess === null ? "?" : `${(rod.force * 1000).toFixed(0)} mN`}</div>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-1 py-2">
-            <div className="text-[11px] uppercase tracking-wider text-white/50">Rod moves</div>
+          <div className="rounded-2xl panel px-1 py-2">
+            <div className="text-[11px] uppercase tracking-wider text-faint">Rod moves</div>
             <div className="font-display text-lg">{rod.dir === 0 ? (round ? "?" : "not at all") : rod.dir > 0 ? "right →" : "← left"}</div>
           </div>
         </div>
@@ -209,7 +209,7 @@ export default function MagnetLab({ onReading, round = null, onGuess }: Props) {
             {([-1, 1] as const).map((d) => (
               <button
                 key={d}
-                className="rounded-xl border border-cyan-300/50 bg-cyan-300/10 px-3 py-3 text-sm font-semibold text-cyan-100 hover:bg-cyan-300/20"
+                className="rounded-xl border border-saffron-300/50 bg-saffron-300/10 px-3 py-3 text-sm font-semibold text-saffron-100 hover:bg-saffron-300/20"
                 onClick={() => {
                   setGuess(d);
                   onGuess?.(d);
@@ -220,27 +220,27 @@ export default function MagnetLab({ onReading, round = null, onGuess }: Props) {
             ))}
           </div>
         ) : (
-          <p className="text-center text-sm text-white/60">Switch closed: {CHALLENGE_AMPS} A flows. Watch the rod.</p>
+          <p className="text-center text-sm text-muted">Switch closed: {CHALLENGE_AMPS} A flows. Watch the rod.</p>
         )
       ) : (
         <>
-          <label className="block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+          <label className="block rounded-2xl panel px-4 py-3">
             <div className="flex justify-between text-sm">
-              <span className="text-white/60">Current</span>
-              <span className="tabular-nums text-white">{current.toFixed(1)} A</span>
+              <span className="text-muted">Current</span>
+              <span className="tabular-nums text-cream">{current.toFixed(1)} A</span>
             </div>
             <input type="range" className="range mt-2 w-full" min={0} max={5} step={0.5} value={current} onChange={(e) => setCurrent(Number(e.target.value))} />
           </label>
           <div className="flex flex-wrap gap-2">
             <button
-              className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${reversed ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/70"}`}
+              className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${reversed ? "chip-on" : "border-line text-muted"}`}
               onClick={() => setReversed(!reversed)}
             >
               Reverse current ({dirLabel})
             </button>
             {activeMode === "force" && (
               <button
-                className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${!fieldDown ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/70"}`}
+                className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${!fieldDown ? "chip-on" : "border-line text-muted"}`}
                 onClick={() => setFieldDown(!fieldDown)}
               >
                 Flip the magnet ({fieldDown ? "N on top" : "S on top"})
@@ -441,7 +441,7 @@ function label(ctx: CanvasRenderingContext2D, text: string, x: number, y: number
   const x0 = align === "left" ? x : align === "right" ? x - m : x - m / 2;
   ctx.fillStyle = "rgba(10,13,28,0.8)";
   ctx.fillRect(x0 - 4, y - 12, m + 8, 16);
-  ctx.fillStyle = "rgba(255,255,255,0.75)";
+  ctx.fillStyle = "rgba(240,233,221,0.75)";
   ctx.fillText(text, x, y);
   ctx.textAlign = "left";
 }
@@ -506,7 +506,7 @@ function drawRod(ctx: CanvasRenderingContext2D, w: number, h: number, thetaDeg: 
   const restY = pivotY + len;
 
   // Stand.
-  ctx.strokeStyle = "rgba(255,255,255,0.4)";
+  ctx.strokeStyle = "rgba(240,233,221,0.4)";
   ctx.lineWidth = 3;
   ctx.beginPath();
   ctx.moveTo(cx - 60, pivotY);
@@ -554,14 +554,14 @@ function drawRod(ctx: CanvasRenderingContext2D, w: number, h: number, thetaDeg: 
   const th = (thetaDeg * Math.PI) / 180;
   const rx = cx + len * Math.sin(th);
   const ry = pivotY + len * Math.cos(th);
-  ctx.strokeStyle = "rgba(255,255,255,0.8)";
+  ctx.strokeStyle = "rgba(240,233,221,0.8)";
   ctx.lineWidth = 1.5;
   ctx.beginPath();
   ctx.moveTo(cx, pivotY);
   ctx.lineTo(rx, ry);
   ctx.stroke();
   ctx.setLineDash([3, 4]);
-  ctx.strokeStyle = "rgba(255,255,255,0.25)";
+  ctx.strokeStyle = "rgba(240,233,221,0.25)";
   ctx.beginPath();
   ctx.moveTo(cx, restY - 20);
   ctx.lineTo(cx, restY + 20);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import LessonShell from "@/components/lesson/LessonShell";
 import EyeBench, { type EyeReading } from "@/components/sim/EyeBench";
 import { PATIENTS, lesson } from "@/content/lessons/human-eye";
@@ -13,8 +13,10 @@ export default function LessonPlayer() {
   const [cured, setCured] = useState(0);
   const [seen, setSeen] = useState<string[]>([]);
 
+  const lastReading = useRef<EyeReading | null>(null);
   const onReading = useCallback(
     (r: EyeReading) => {
+      lastReading.current = r;
       if (round !== null) {
         if (r.sharp) {
           const done = round + 1;
@@ -46,6 +48,18 @@ export default function LessonPlayer() {
     },
     [round, isDone, finishTask, challengeStars, badge],
   );
+
+  // The sim only reports changes, so replay what it shows now once the prediction is locked in
+  // and again once the ideas are done, so a state set earlier still counts.
+  const replay = useRef(onReading);
+  useEffect(() => {
+    replay.current = onReading;
+  }, [onReading]);
+  const predicted = api.done.has("predict");
+  const ideasDone = api.done.has("ideas");
+  useEffect(() => {
+    if (predicted && lastReading.current) replay.current(lastReading.current);
+  }, [predicted, ideasDone]);
 
   const patient = round !== null ? PATIENTS[round] : null;
 

@@ -11,9 +11,9 @@ export default function AccountActions({ role }: { role: "parent" | "teacher" })
       ? "your account, your children's profiles and all their progress"
       : "your account, your classes, and the student profiles your school created";
   return (
-    <div className="mt-4 flex flex-wrap gap-4 text-sm text-white/40">
+    <div className="mt-4 flex flex-wrap gap-4 text-sm text-faint">
       <button
-        className="underline hover:text-white/70"
+        className="underline hover:text-muted"
         onClick={async () => {
           await api("/api/auth/signout", "POST", { who: "adult" }).catch(() => {});
           await refreshMe();
@@ -22,7 +22,7 @@ export default function AccountActions({ role }: { role: "parent" | "teacher" })
         Sign out
       </button>
       <button
-        className="underline hover:text-rose-300"
+        className="underline hover:text-brick-300"
         onClick={async () => {
           if (!window.confirm(`Delete ${what}? This can't be undone.`)) return;
           await api("/api/account", "DELETE").catch(() => {});

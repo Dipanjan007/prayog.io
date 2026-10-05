@@ -45,8 +45,8 @@ export const STRANDS: Strand[] = [
     name: "Force",
     colour: "var(--c-violet)",
     chapters: [
-      { classNum: 8, title: "Exploring Forces", sim: "Friction surfaces and magnet playground" },
-      { classNum: 9, title: "How Forces Affect Motion", sim: "Newton's laws sandbox and rocket launch" },
+      { classNum: 8, title: "Exploring Forces", href: "/learn/forces", sim: "Push a crate, spring balance and magnets" },
+      { classNum: 9, title: "How Forces Affect Motion", href: "/learn/forces-motion", sim: "Air track collisions and recoil" },
     ],
   },
   {
@@ -68,7 +68,7 @@ export const STRANDS: Strand[] = [
     colour: "var(--c-orange)",
     chapters: [
       { classNum: 7, title: "Heat Transfer in Nature", sim: "Particle view of conduction and convection" },
-      { classNum: 9, title: "Work, Energy, and Simple Machines", sim: "Roller coaster energy bars, lever builder" },
+      { classNum: 9, title: "Work, Energy, and Simple Machines", href: "/learn/work-energy", sim: "Roller coaster energy bars, lever builder" },
     ],
   },
   {
@@ -77,9 +77,9 @@ export const STRANDS: Strand[] = [
     colour: "var(--c-lime)",
     chapters: [
       { classNum: 7, title: "Electricity: Circuits and their Components", href: "/learn/circuits", sim: "Torch builder and conductor tester" },
-      { classNum: 8, title: "Electricity: Magnetic and Heating Effects", sim: "Electromagnet crane" },
-      { classNum: 10, title: "Electricity", sim: "Ohm's law circuit lab" },
-      { classNum: 10, title: "Magnetic Effects of Electric Current", sim: "Field lines and motor builder" },
+      { classNum: 8, title: "Electricity: Magnetic and Heating Effects", href: "/learn/magnetic-heating", sim: "Electromagnet crane and fuse" },
+      { classNum: 10, title: "Electricity", href: "/learn/electricity", sim: "Ohm's law circuit lab" },
+      { classNum: 10, title: "Magnetic Effects of Electric Current", href: "/learn/magnetic-effects", sim: "Field lines, compasses and the force on a wire" },
     ],
   },
   {
@@ -99,8 +99,8 @@ export const STRANDS: Strand[] = [
     colour: "var(--c-yellow)",
     chapters: [
       { classNum: 7, title: "Earth, Moon, and the Sun", sim: "Orbit, phases and eclipses" },
-      { classNum: 8, title: "Keeping Time with the Skies", sim: "Sky clock" },
-      { classNum: 9, title: "Sound Waves: Characteristics and Applications", sim: "Slinky and sound wave visualiser" },
+      { classNum: 8, title: "Keeping Time with the Skies", href: "/learn/sky-clock", sim: "Moon phases and a shadow stick" },
+      { classNum: 9, title: "Sound Waves: Characteristics and Applications", href: "/learn/sound", sim: "Sound waves, echoes and SONAR" },
     ],
   },
 ];

@@ -88,9 +88,9 @@ export const STRANDS: Strand[] = [
     colour: "var(--c-pink)",
     chapters: [
       { classNum: 7, title: "Light: Shadows and Reflections", sim: "Shadow and mirror bench" },
-      { classNum: 8, title: "Light: Mirrors and Lenses", sim: "Optics bench" },
-      { classNum: 10, title: "Light: Reflection and Refraction", sim: "Refraction through glass and lenses" },
-      { classNum: 10, title: "The Human Eye and the Colourful World", sim: "Eye model and prism" },
+      { classNum: 8, title: "Light: Mirrors and Lenses", href: "/learn/mirrors-lenses", sim: "Plane, concave and convex mirrors and lenses" },
+      { classNum: 10, title: "Light: Reflection and Refraction", href: "/learn/light-refraction", sim: "Glass block, lens and mirror bench with live ray diagrams" },
+      { classNum: 10, title: "The Human Eye and the Colourful World", sim: "Eye model and prism", href: "/learn/human-eye" },
     ],
   },
   {

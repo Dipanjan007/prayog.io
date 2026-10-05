@@ -45,6 +45,12 @@ export const BADGES: BadgeInfo[] = [
   { id: "perfect-stop", name: "Perfect Stop", how: "Get 3 stars in the stopping challenge", emoji: "🛑" },
   { id: "bright-spark", name: "Bright Spark", how: "Finish every step of the circuits lesson", emoji: "💡" },
   { id: "torch-fixer", name: "Torch Fixer", how: "Repair the torch in 3 moves", emoji: "🔦" },
+  { id: "mirror-maze", name: "Mirror Maze", how: "Finish every step of the Class 8 mirrors lesson", emoji: "🪞" },
+  { id: "image-matcher", name: "Image Matcher", how: "Make all three images in Image match", emoji: "🖼️" },
+  { id: "lens-crafter", name: "Lens Crafter", how: "Finish every step of the Class 10 light lesson", emoji: "🔍" },
+  { id: "sharp-focus", name: "Sharp Focus", how: "Focus all three projector screens", emoji: "📽️" },
+  { id: "eye-doctor", name: "Eye Doctor", how: "Finish every step of the human eye lesson", emoji: "👓" },
+  { id: "clear-vision", name: "Clear Vision", how: "Help all three patients in the eye clinic", emoji: "🌈" },
   { id: "sharp-mind", name: "Sharp Mind", how: "Score full marks in a Master quiz", emoji: "🎯" },
 ];
 

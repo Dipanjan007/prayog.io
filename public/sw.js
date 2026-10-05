@@ -1,7 +1,7 @@
 // Prayog offline cache: pages are network-first (fall back to the last copy),
 // and built assets are cache-first since their file names change per build.
-const CACHE = "prayog-v3";
-const PRECACHE = ["/", "/learn", "/lab", "/learn/pressure-winds", "/learn/motion", "/learn/circuits", "/me"];
+const CACHE = "prayog-v4";
+const PRECACHE = ["/", "/learn", "/lab", "/learn/pressure-winds", "/learn/motion", "/learn/circuits", "/learn/light-refraction", "/learn/mirrors-lenses", "/learn/human-eye", "/me"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

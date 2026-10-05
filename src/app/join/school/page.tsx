@@ -13,9 +13,9 @@ const STEPS = [
 export default function SchoolPage() {
   return (
     <div className="max-w-3xl pt-4">
-      <span className="rounded-full bg-violet-300/15 px-3 py-1 text-xs text-violet-200">Coming next</span>
+      <span className="rounded-full bg-violet-300/15 px-3 py-1 text-xs text-violet-200">Pilot</span>
       <h1 className="font-display mt-4 text-4xl font-bold">Prayog for schools</h1>
-      <p className="mt-2 text-white/60">School classes need a secure server, which is the next part we are building. Here is how it will work.</p>
+      <p className="mt-2 text-white/60">During the pilot, schools join by invitation. Here is how it works.</p>
       <ol className="mt-6 grid gap-3 sm:grid-cols-2">
         {STEPS.map((s, i) => (
           <li key={s.title} className="glass rounded-3xl p-5">
@@ -25,9 +25,14 @@ export default function SchoolPage() {
           </li>
         ))}
       </ol>
-      <Link href="/learn/pressure-winds" className="btn-primary mt-8">
-        Try a lesson meanwhile →
-      </Link>
+      <div className="mt-8 flex flex-wrap gap-3">
+        <Link href="/teach" className="btn-primary">
+          Teacher sign-up →
+        </Link>
+        <Link href="/join/class" className="btn-ghost">
+          Student: join a class
+        </Link>
+      </div>
     </div>
   );
 }

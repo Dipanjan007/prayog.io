@@ -40,6 +40,8 @@ On Vercel, add Supabase from the Marketplace (Storage → Marketplace), pick the
 | `src/app/api/` | Sign-in, children, progress sync, classes, class join, leaderboard, account deletion |
 | `src/lib/progress-merge.ts` | Merges progress from several devices; XP is recomputed so nothing counts twice |
 | `src/components/SyncProgress.tsx` | Saves progress on the device first, then syncs it when online |
+| `src/app/suggest/`, `src/app/api/suggestions/` | Suggestion box: anyone sends an idea, it becomes a GitHub issue (and a database row) for the weekly review |
+| `docs/weekly-review.md` | How the weekly review triages ideas and builds the approved ones |
 | `src/app/teach/`, `src/app/join/class/` | Teacher dashboard with join codes, and students joining with a code and picture password |
 
 ## Lesson loop
@@ -54,6 +56,12 @@ Every student is a child under India's DPDP Act, 2023. The app has no ads, no an
 - In school classes the school gives consent; teacher sign-up is invite-only during the pilot (`TEACHER_ALLOWLIST`).
 - Students never give an email. School students sign in with the class code, their nickname and a 3-picture password, locked for 15 minutes after 5 wrong tries.
 - Parents can delete a child or their whole account; teachers can remove students or delete a class. Deletes are immediate.
+
+## Suggestion box and weekly review
+
+Students, parents and teachers send ideas from "Suggest an idea" (footer, and the Me page). Each one is filed as a GitHub issue labelled `suggestion` + `needs-triage` in `SUGGESTIONS_GITHUB_REPO`, and kept in the `suggestions` table when there is a database. Only the sender's role and optional class are kept; emails, phone numbers, links and handles are stripped first. Offline or before the box is switched on, ideas wait on the device and send themselves later.
+
+Every week a review groups and ranks new ideas, posts a summary, and builds the ones labelled `approved`. See [docs/weekly-review.md](docs/weekly-review.md).
 
 ## Not built yet
 

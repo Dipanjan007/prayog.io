@@ -16,6 +16,11 @@ export default function PrivacyPage() {
         <li>For school classes: the teacher&apos;s name, email and school, and the class.</li>
         <li>The child&apos;s nickname, class and chosen avatar. No real name, photo, phone number or location.</li>
         <li>Learning progress: steps finished, XP, badges, scores.</li>
+        <li>
+          Ideas sent through &quot;Suggest an idea&quot;: the text, the page it came from, and whether a student, parent
+          or teacher sent it. Not who sent it. Emails, phone numbers and links typed into an idea are removed before
+          we keep it.
+        </li>
       </ul>
       <h2 className="font-display mt-8 text-xl font-semibold text-white">What we never do</h2>
       <ul className="mt-2 list-disc space-y-1 pl-5">

@@ -94,6 +94,17 @@ export default function MePage() {
         <ClassLeaderboard />
       </section>
 
+      <Link
+        href="/suggest?from=/me"
+        className="glass flex items-center gap-4 rounded-3xl p-5 transition hover:bg-white/10 md:col-span-3"
+      >
+        <span className="text-3xl">💡</span>
+        <span>
+          <span className="font-display block text-lg font-semibold">Got an idea for Prayog?</span>
+          <span className="text-sm text-white/60">Tell us what to build next. The best ideas become new lessons and games.</span>
+        </span>
+      </Link>
+
       {synced ? (
         <section className="flex flex-wrap gap-4 text-sm text-white/40 md:col-span-3">
           <button

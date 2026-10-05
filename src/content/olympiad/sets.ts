@@ -6,7 +6,7 @@ export const OLY_SETS: OlySet[] = [
     title: "Kinematics and projectiles",
     emoji: "🏏",
     blurb: "Ferries that fight the current, sixes over the rope and a throw onto a moving tram.",
-    colour: "#22d3ee",
+    colour: "#739ca8",
     sim: "Projectile and river sim",
   },
   {
@@ -14,7 +14,7 @@ export const OLY_SETS: OlySet[] = [
     title: "Newton's laws",
     emoji: "🏗️",
     blurb: "Pulleys, slopes and friction. Free-body diagrams decide everything here.",
-    colour: "#a78bfa",
+    colour: "#ae8ba6",
     sim: "Incline and pulley sim",
   },
   {
@@ -22,7 +22,7 @@ export const OLY_SETS: OlySet[] = [
     title: "Circular motion and energy",
     emoji: "🎢",
     blurb: "Banked ghat roads, roller coaster loops and a spring launcher.",
-    colour: "#f472b6",
+    colour: "#c97f8a",
     sim: "Loop track sim",
   },
   {
@@ -30,7 +30,7 @@ export const OLY_SETS: OlySet[] = [
     title: "Momentum",
     emoji: "💥",
     blurb: "Recoil in space, an air rifle pellet in a block and a crash at a crossing.",
-    colour: "#fb923c",
+    colour: "#cf7f5c",
     sim: "Collision sim",
   },
 ];

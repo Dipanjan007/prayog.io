@@ -37,7 +37,7 @@ export function SetCards() {
           return (
             <Link key={s.id} href={`/olympiad/${s.id}`} className="glass group rounded-3xl p-4 transition hover:-translate-y-0.5">
               <div className="flex items-center gap-2">
-                <span className="h-3 w-3 rounded-full" style={{ background: s.colour, boxShadow: `0 0 12px ${s.colour}` }} />
+                <span className="h-3 w-3 rounded-full" style={{ background: s.colour }} />
                 <h2 className="font-display text-lg font-semibold">
                   {s.emoji} {s.title}
                 </h2>

@@ -16,6 +16,19 @@ export const lesson: LessonDef = {
   book: "Exploration",
   chapter: "Describing Motion Around Us",
   title: "Drive it, then graph it",
+  intro: {
+    objective:
+      "Drive a sports car and watch its distance–time and speed–time graphs draw live, to understand speed and acceleration.",
+    learn: [
+      "Speed, and the difference between uniform and non-uniform motion",
+      "How to read the slope of a distance–time graph",
+      "What acceleration is and how to calculate it",
+      "How the equations of motion predict stopping distances",
+    ],
+    realLife:
+      "Car adverts that boast 0 to 100 km/h times, speed cameras and the safe braking distance on highways all use these ideas.",
+    minutes: 25,
+  },
   hook: {
     title: "The 0 to 100 question",
     text:

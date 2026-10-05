@@ -20,6 +20,19 @@ export const lesson: LessonDef = {
   book: "Science",
   chapter: "Electricity",
   title: "Push, flow and heat",
+  intro: {
+    objective:
+      "Run a virtual circuit lab with meters to discover Ohm's law, resistance, series and parallel circuits, and electric power.",
+    learn: [
+      "Ohm's law: V = IR, and how to read a V–I graph",
+      "How a wire's length, thickness and material set its resistance",
+      "How resistors combine in series and in parallel",
+      "How current heats a wire, and how power and energy are calculated",
+    ],
+    realLife:
+      "Your home's wiring is in parallel, heater coils are made of nichrome, and the electricity bill counts kilowatt-hours.",
+    minutes: 30,
+  },
   hook: {
     title: "Why does only the coil glow?",
     text:

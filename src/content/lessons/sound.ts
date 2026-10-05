@@ -23,6 +23,19 @@ export const lesson: LessonDef = {
   book: "Exploration",
   chapter: "Sound Waves: Characteristics and Applications",
   title: "See sound, bounce sound",
+  intro: {
+    objective:
+      "See sound as a wave, change its pitch and loudness, and use echoes to measure distances like a ship's SONAR.",
+    learn: [
+      "Sound is a longitudinal wave of compressions and rarefactions",
+      "Frequency sets the pitch and amplitude sets the loudness",
+      "Sound travels at different speeds in air, water and steel",
+      "How echoes and SONAR measure distance, and the human hearing range",
+    ],
+    realLife:
+      "Hearing a cricket bat's crack late in a big stadium, echoes in a hall, ultrasound scans and ships finding the sea depth all use sound waves.",
+    minutes: 25,
+  },
   hook: {
     title: "The late crack of the bat",
     text:

@@ -18,6 +18,19 @@ export const lesson: LessonDef = {
   book: "Curiosity",
   chapter: "Pressure, Winds, Storms, and Cyclones",
   title: "Why do storms rip roofs off?",
+  intro: {
+    objective:
+      "Use a wind tunnel to see how moving air creates pressure differences, and how that lifts roofs, planes and race cars.",
+    learn: [
+      "Air exerts pressure, and fast-moving air has lower pressure",
+      "Wind blows from high pressure to low pressure",
+      "How cyclones form and why they damage roofs",
+      "How a wing makes lift, and how a rear wing makes downforce",
+    ],
+    realLife:
+      "Cyclone warnings on the Odisha coast, aeroplane wings and the rear wing of a sports car all come from the same pressure ideas.",
+    minutes: 25,
+  },
   hook: {
     title: "The roof puzzle",
     text:

@@ -17,6 +17,19 @@ export const lesson: LessonDef = {
   book: "Exploration",
   chapter: "How Forces Affect Motion",
   title: "Push, crash and bounce",
+  intro: {
+    objective:
+      "Push carts on an air track and crash them together to discover Newton's three laws and momentum.",
+    learn: [
+      "Inertia: things keep moving or stay still unless a force acts",
+      "F = ma: the same push speeds up a light cart more than a heavy one",
+      "Action and reaction forces are equal and opposite",
+      "Momentum is conserved when objects collide",
+    ],
+    realLife:
+      "A fielder pulling the hands back to catch a ball, seatbelts and airbags, and a gun's recoil all follow these laws.",
+    minutes: 30,
+  },
   hook: {
     title: "Catch it like a pro",
     text:

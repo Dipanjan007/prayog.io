@@ -24,6 +24,19 @@ export const lesson: LessonDef = {
   book: "Curiosity",
   chapter: "Exploring Forces",
   title: "Push, pull and slide",
+  intro: {
+    objective:
+      "Push, pull and weigh things to discover what a force is and the different kinds of force around us.",
+    learn: [
+      "A force is a push or a pull that can change speed, direction or shape",
+      "How friction depends on the surface, and why things are hard to start moving",
+      "Magnetic, electrostatic and gravitational forces act without touching",
+      "Weight is a force, measured in newtons with a spring balance",
+    ],
+    realLife:
+      "Pushing a stalled scooter, a kabaddi raid, a bowler's grip on the ball and a fridge magnet all involve the forces in this lab.",
+    minutes: 25,
+  },
   hook: {
     title: "The stalled scooter",
     text:

@@ -16,6 +16,19 @@ export const lesson: LessonDef = {
   book: "Curiosity",
   chapter: "Light: Mirrors and Lenses",
   title: "Mirror, mirror, which one?",
+  intro: {
+    objective:
+      "Explore how plane, concave and convex mirrors and lenses form different kinds of images.",
+    learn: [
+      "Why a plane mirror image is the same size, erect and laterally inverted",
+      "How concave and convex mirrors make images bigger or smaller",
+      "The difference between a real image and a virtual image",
+      "How convex and concave lenses bend light",
+    ],
+    realLife:
+      "Shaving mirrors, car side mirrors, magnifying glasses and spectacles all use these mirrors and lenses.",
+    minutes: 25,
+  },
   hook: {
     title: "The backwards ambulance",
     text:

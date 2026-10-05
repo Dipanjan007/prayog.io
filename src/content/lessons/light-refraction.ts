@@ -16,6 +16,19 @@ export const lesson: LessonDef = {
   book: "Science",
   chapter: "Light: Reflection and Refraction",
   title: "Bend light, build images",
+  intro: {
+    objective:
+      "Bend light through glass and form images with lenses and mirrors, using the same rules a camera designer uses.",
+    learn: [
+      "The laws of refraction and Snell's law",
+      "What refractive index tells you about a material",
+      "How to use the lens and mirror formulas with the sign convention",
+      "Magnification and the power of a lens in dioptres",
+    ],
+    realLife:
+      "Phone cameras, projectors, car rear-view mirrors and the spectacles your classmates wear all depend on these rules.",
+    minutes: 30,
+  },
   hook: {
     title: "Closer than they appear",
     text:

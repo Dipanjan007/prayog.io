@@ -25,6 +25,19 @@ export const lesson: LessonDef = {
   book: "Curiosity",
   chapter: "Electricity: Circuits and their Components",
   title: "Build a torch that works",
+  intro: {
+    objective:
+      "Build a working torch circuit and find out which materials let electricity flow.",
+    learn: [
+      "What makes a circuit open or closed, and why a switch works",
+      "Which everyday materials are conductors and which are insulators",
+      "How cells, bulbs and switches are drawn as circuit symbols",
+      "How to stay safe around electricity",
+    ],
+    realLife:
+      "Torches, doorbells, the switchboard in your room and every charger at home are circuits like the one you will build.",
+    minutes: 20,
+  },
   hook: {
     title: "The dead torch",
     text:

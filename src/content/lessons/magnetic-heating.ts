@@ -16,6 +16,19 @@ export const lesson: LessonDef = {
   book: "Curiosity",
   chapter: "Electricity: Magnetic and Heating Effects",
   title: "Lift, glow and stay safe",
+  intro: {
+    objective:
+      "Build an electromagnet crane and a heating wire to see two big effects of electric current: magnetism and heat.",
+    learn: [
+      "A current in a coil makes a magnet that switches on and off",
+      "More turns, more current and an iron core make a stronger electromagnet",
+      "Current heats a wire, and some wires get hot enough to glow",
+      "How a fuse or MCB protects a home from too much current",
+    ],
+    realLife:
+      "Scrap-yard cranes, electric bells, room heaters, electric irons and the fuse box at home all use these effects.",
+    minutes: 25,
+  },
   hook: {
     title: "The crane that switches its grip",
     text:

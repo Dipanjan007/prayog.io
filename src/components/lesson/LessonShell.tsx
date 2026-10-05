@@ -72,6 +72,8 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
         </div>
       </div>
 
+      <LabIntro lesson={lesson} startOpen={!done.has("hook")} key={done.has("hook") ? "seen" : "new"} />
+
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
         <div className="lg:sticky lg:top-20 lg:self-start">
           <div className="mb-3 flex items-start gap-3 rounded-2xl border border-cyan-300/30 bg-cyan-300/[0.07] px-4 py-3" aria-live="polite">
@@ -200,6 +202,46 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
       </div>
       <ToastStack toasts={toasts} />
     </>
+  );
+}
+
+/** "About this lab": objective, learning outcomes and real-life links. Open until the student starts. */
+function LabIntro({ lesson, startOpen }: { lesson: LessonDef; startOpen: boolean }) {
+  const { intro } = lesson;
+  return (
+    <details open={startOpen} className="glass group mb-6 rounded-2xl px-4 py-3">
+      <summary className="flex cursor-pointer list-none items-center gap-3 [&::-webkit-details-marker]:hidden">
+        <span className="text-lg">🧭</span>
+        <span className="font-display font-semibold">About this lab</span>
+        <span className="ml-auto text-xs text-white/50">
+          About {intro.minutes} min <span className="inline-block transition group-open:rotate-180">▾</span>
+        </span>
+      </summary>
+      <div className="mt-3 grid gap-4 text-sm sm:grid-cols-3">
+        <div>
+          <h2 className="text-[11px] uppercase tracking-wider text-cyan-200/80">Objective</h2>
+          <p className="mt-1 text-white/80">{intro.objective}</p>
+          <p className="mt-2 text-xs text-white/50">
+            NCERT Class {lesson.classNum} {lesson.book}: {lesson.chapter}
+          </p>
+        </div>
+        <div>
+          <h2 className="text-[11px] uppercase tracking-wider text-cyan-200/80">You will learn</h2>
+          <ul className="mt-1 space-y-1 text-white/80">
+            {intro.learn.map((l) => (
+              <li key={l} className="flex gap-2">
+                <span className="text-lime-300">✓</span>
+                <span>{l}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2 className="text-[11px] uppercase tracking-wider text-cyan-200/80">Where you will see it</h2>
+          <p className="mt-1 text-white/80">{intro.realLife}</p>
+        </div>
+      </div>
+    </details>
   );
 }
 

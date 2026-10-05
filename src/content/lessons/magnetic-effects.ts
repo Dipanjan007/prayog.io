@@ -23,6 +23,19 @@ export const lesson: LessonDef = {
   book: "Science",
   chapter: "Magnetic Effects of Electric Current",
   title: "Currents make magnets",
+  intro: {
+    objective:
+      "Map the invisible magnetic field around wires, loops and coils, and see a current-carrying rod get pushed by a magnet.",
+    learn: [
+      "A current makes a magnetic field, drawn with field lines",
+      "The right-hand thumb rule for the field around a wire",
+      "How a loop and a solenoid make a field like a bar magnet",
+      "Fleming's left-hand rule for the force on a current-carrying conductor",
+    ],
+    realLife:
+      "Electromagnets, loudspeakers, MRI scanners and the safe wiring of your home all build on these ideas.",
+    minutes: 25,
+  },
   hook: {
     title: "The hidden magnet in every wire",
     text:

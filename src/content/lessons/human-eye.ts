@@ -21,6 +21,19 @@ export const lesson: LessonDef = {
   book: "Science",
   chapter: "The Human Eye and the Colourful World",
   title: "See clearly, split the light",
+  intro: {
+    objective:
+      "Look inside a working eye to see how it focuses, how glasses fix vision, and how a prism splits white light into colours.",
+    learn: [
+      "How the eye lens changes shape to focus (accommodation)",
+      "Why myopia and hypermetropia happen and which lens corrects each",
+      "How a prism splits white light into a spectrum (dispersion)",
+      "Why stars twinkle and the sky is blue",
+    ],
+    realLife:
+      "Eye tests at school, the glasses many of your friends wear, rainbows after the monsoon and the red sunset sky all come from this chapter.",
+    minutes: 25,
+  },
   hook: {
     title: "The camera in your head",
     text:

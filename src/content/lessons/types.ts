@@ -12,6 +12,15 @@ export interface LessonDef {
   book: string;
   chapter: string;
   title: string;
+  /** Shown before the lesson: what the lab is for and what students take away. */
+  intro: {
+    objective: string;
+    learn: string[];
+    /** Where students meet this outside the classroom. */
+    realLife: string;
+    /** Rough time to finish every step. */
+    minutes: number;
+  };
   /** Badge awarded when every step is done. */
   completionBadge: string;
   hook: { title: string; text: string };

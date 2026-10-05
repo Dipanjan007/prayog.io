@@ -25,6 +25,19 @@ export const lesson: LessonDef = {
   book: "Curiosity",
   chapter: "Keeping Time with the Skies",
   title: "Read the clock in the sky",
+  intro: {
+    objective:
+      "Use the Sun, the Moon and shadows as a clock and a calendar, just as people did for thousands of years.",
+    learn: [
+      "Day and night come from the Earth spinning on its axis",
+      "The Sun's path and shadow lengths change through the day and the year",
+      "Why the Moon shows phases, from Amavasya to Purnima",
+      "How lunar and solar calendars differ, and why some festivals move",
+    ],
+    realLife:
+      "Diwali on Amavasya, Eid by moon sighting, Purnima festivals and sundials at Jantar Mantar all follow the sky clock.",
+    minutes: 25,
+  },
   hook: {
     title: "Why does Diwali move around?",
     text:

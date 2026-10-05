@@ -18,6 +18,19 @@ export const lesson: LessonDef = {
   book: "Exploration",
   chapter: "Work, Energy, and Simple Machines",
   title: "Ride the energy, lift with a lever",
+  intro: {
+    objective:
+      "Design a roller coaster and balance a lever to see how energy changes form and how simple machines help us.",
+    learn: [
+      "Work is done when a force moves something: W = F × s",
+      "Kinetic energy and potential energy change into each other",
+      "Total energy is conserved, and friction turns some into heat",
+      "How levers use the principle of moments to make lifting easier",
+    ],
+    realLife:
+      "Roller coasters, hydroelectric dams, see-saws, scissors and the bottle opener in your kitchen all use these ideas.",
+    minutes: 30,
+  },
   hook: {
     title: "The coaster with no engine",
     text:

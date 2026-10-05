@@ -4,6 +4,8 @@ import "./globals.css";
 import NavBar from "@/components/NavBar";
 import ServiceWorker from "@/components/ServiceWorker";
 import SyncProgress from "@/components/SyncProgress";
+import SendSuggestions from "@/components/SendSuggestions";
+import SuggestLink from "@/components/SuggestLink";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({ variable: "--font-space-grotesk", subsets: ["latin"] });
@@ -29,9 +31,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <a href="/privacy" className="underline hover:text-white/70">
             Privacy
           </a>
+          {" · "}
+          <SuggestLink className="underline hover:text-white/70">Suggest an idea</SuggestLink>
         </footer>
         <ServiceWorker />
         <SyncProgress />
+        <SendSuggestions />
       </body>
     </html>
   );

@@ -34,7 +34,6 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
     if (id.startsWith("task:")) return done.has("predict");
     return currentIndex === -1 || order.indexOf(id) <= currentIndex;
   };
-  const tasksDone = lesson.tasks.every((t) => done.has(t.id));
   const nextTask = lesson.tasks.find((t) => !done.has(t.id));
   const mission = !done.has("hook")
     ? { title: "Start here", text: `Read "${lesson.hook.title}" to begin.` }
@@ -136,7 +135,7 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
             </Step>
           ))}
 
-          <Step n={++n} title="What you discovered" done={done.has("ideas")} open={tasksDone && isOpen("ideas")}>
+          <Step n={++n} title="What you discovered" done={done.has("ideas")} open={done.has("predict")} lockedHint="Make your prediction to unlock this.">
             {predictedRight !== undefined && (
               <p className={`mb-3 rounded-xl px-3 py-2 text-sm ${predictedRight ? "bg-lime-300/10 text-lime-200" : "bg-amber-300/10 text-amber-100"}`}>
                 {predictedRight
@@ -168,7 +167,7 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
             )}
           </Step>
 
-          <Step n={++n} title={lesson.challenge.title} done={done.has("challenge")} open={done.has("ideas")} badge="Challenge">
+          <Step n={++n} title={lesson.challenge.title} done={done.has("challenge")} open={done.has("ideas")} badge="Challenge" lockedHint={'Read "What you discovered" to unlock this.'}>
             <p className="text-white/75">{lesson.challenge.text}</p>
             <div className="mt-3 flex items-center gap-4">
               <div className="text-3xl tracking-widest" aria-label={`${lp?.challengeStars ?? 0} of 3 stars`}>
@@ -182,7 +181,7 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
             </div>
           </Step>
 
-          <Step n={++n} title="Master it" done={done.has("quiz")} open={done.has("ideas")} badge="Quiz">
+          <Step n={++n} title="Master it" done={done.has("quiz")} open={done.has("ideas")} badge="Quiz" lockedHint={'Read "What you discovered" to unlock this.'}>
             <Quiz
               questions={lesson.quiz}
               onFinish={(score) => {
@@ -194,8 +193,10 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
               }}
             />
             <div className="mt-4 flex items-center justify-between gap-2 rounded-xl border border-dashed border-violet-300/30 px-3 py-2 text-sm">
-              <span className="text-white/60">Olympiad-level problems (NSO, NSEJS style)</span>
-              <span className="shrink-0 rounded-full bg-violet-300/15 px-2 py-0.5 text-xs text-violet-200">Pro · coming soon</span>
+              <span className="text-white/60">Ready for harder problems? Try the Olympiad track.</span>
+              <Link href="/olympiad" className="shrink-0 rounded-full bg-violet-300/15 px-2 py-0.5 text-xs text-violet-200 hover:bg-violet-300/25">
+                Olympiad →
+              </Link>
             </div>
           </Step>
         </ol>
@@ -245,7 +246,24 @@ function LabIntro({ lesson, startOpen }: { lesson: LessonDef; startOpen: boolean
   );
 }
 
-function Step({ n, title, done, open, badge, children }: { n: number; title: string; done: boolean; open: boolean; badge?: string; children: ReactNode }) {
+function Step({
+  n,
+  title,
+  done,
+  open,
+  badge,
+  lockedHint,
+  children,
+}: {
+  n: number;
+  title: string;
+  done: boolean;
+  open: boolean;
+  badge?: string;
+  /** Shown on a locked step so it is clear what opens it. */
+  lockedHint?: string;
+  children: ReactNode;
+}) {
   return (
     <li className={`glass rounded-2xl p-4 transition ${open ? "" : "opacity-40"}`}>
       <div className="flex items-center gap-3">
@@ -261,6 +279,7 @@ function Step({ n, title, done, open, badge, children }: { n: number; title: str
         {!open && <span className="ml-auto text-xs text-white/40">🔒</span>}
       </div>
       {open && <div className="mt-3">{children}</div>}
+      {!open && lockedHint && <p className="mt-2 text-xs text-white/60">{lockedHint}</p>}
     </li>
   );
 }

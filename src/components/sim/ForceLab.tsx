@@ -50,7 +50,7 @@ export type ForceReading =
 interface Props {
   onReading?: (r: ForceReading) => void;
   /** Challenge: the floor is fixed, a target zone is shown, and you get one push per try. */
-  challenge?: { surface: SurfaceId; zone: [number, number] } | null;
+  challenge?: { surface: SurfaceId; zone: [number, number]; push: number } | null;
 }
 
 const LEFT = 46; // px kept free at the left of the floor for the person pushing
@@ -60,7 +60,7 @@ export default function ForceLab({ onReading, challenge = null }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [mode, setMode] = useState<ForceMode>("push");
   const [surfacePick, setSurface] = useState<SurfaceId>("wood");
-  const [push, setPush] = useState(60);
+  const [pushPick, setPush] = useState(60);
   const [pushing, setPushing] = useState(false);
   const [item, setItem] = useState<ItemId>("bottle");
   const [place, setPlace] = useState<Place>("earth");
@@ -72,6 +72,7 @@ export default function ForceLab({ onReading, challenge = null }: Props) {
 
   const activeMode: ForceMode = challenge ? "push" : mode;
   const surface = challenge?.surface ?? surfacePick;
+  const push = challenge?.push ?? pushPick;
 
   const onReadingRef = useRef(onReading);
   useEffect(() => {
@@ -268,13 +269,20 @@ export default function ForceLab({ onReading, challenge = null }: Props) {
               onChange={setSurface}
             />
           )}
-          <label className="block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
-            <div className="flex justify-between text-sm">
-              <span className="text-white/60">Push force</span>
+          {challenge ? (
+            <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm">
+              <span className="text-white/60">Push force on this floor: </span>
               <span className="tabular-nums text-white">{push} N</span>
             </div>
-            <input type="range" className="range mt-2 w-full" min={0} max={MAX_PUSH} step={5} value={push} onChange={(e) => setPush(Number(e.target.value))} />
-          </label>
+          ) : (
+            <label className="block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+              <div className="flex justify-between text-sm">
+                <span className="text-white/60">Push force</span>
+                <span className="tabular-nums text-white">{push} N</span>
+              </div>
+              <input type="range" className="range mt-2 w-full" min={0} max={MAX_PUSH} step={5} value={push} onChange={(e) => setPush(Number(e.target.value))} />
+            </label>
+          )}
           <div className="grid grid-cols-[1fr_auto] gap-2">
             <button
               disabled={locked}

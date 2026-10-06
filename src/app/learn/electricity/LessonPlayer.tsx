@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import LessonShell from "@/components/lesson/LessonShell";
 import CircuitLab, { type CircuitReading } from "@/components/sim/CircuitLab";
 import { TARGETS, lesson } from "@/content/lessons/electricity";
@@ -24,8 +24,10 @@ export default function LessonPlayer() {
   const joins = useRef(new Map<string, Set<string>>());
   const heats = useRef(new Map<string, Set<number>>());
 
+  const lastReading = useRef<CircuitReading | null>(null);
   const onReading = useCallback(
     (r: CircuitReading) => {
+      lastReading.current = r;
       if (round !== null) {
         const t = TARGETS[round];
         if (hitsTarget(r.i, t.amps)) {
@@ -78,6 +80,18 @@ export default function LessonPlayer() {
     },
     [round, isDone, finishTask, challengeStars, badge],
   );
+
+  // The sim only reports changes, so replay what it shows now once the prediction is locked in
+  // and again once the ideas are done, so a state set earlier still counts.
+  const replay = useRef(onReading);
+  useEffect(() => {
+    replay.current = onReading;
+  }, [onReading]);
+  const predicted = api.done.has("predict");
+  const ideasDone = api.done.has("ideas");
+  useEffect(() => {
+    if (predicted && lastReading.current) replay.current(lastReading.current);
+  }, [predicted, ideasDone]);
 
   const target = round !== null ? TARGETS[round] : null;
 

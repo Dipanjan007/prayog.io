@@ -11,10 +11,12 @@ export const LESSON_ID = "c8-forces";
  * Challenge: slide the crate so that it stops wholly inside the target zone, with one push per try.
  * One round per floor; each round passed earns one star. Zones are in metres from the start line.
  */
-export const ROUNDS: { surface: SurfaceId; zone: [number, number] }[] = [
-  { surface: "wood", zone: [2.5, 3.5] },
-  { surface: "sand", zone: [3, 4] },
-  { surface: "ice", zone: [4, 5] },
+// Each floor has a fixed push, set just above what static friction can hold, so the right hold lasts about a
+// second and the window for landing in the zone is a human-sized quarter of a second.
+export const ROUNDS: { surface: SurfaceId; zone: [number, number]; push: number }[] = [
+  { surface: "wood", zone: [2, 3.6], push: 100 },
+  { surface: "sand", zone: [2.5, 4.1], push: 160 },
+  { surface: "ice", zone: [3.5, 5.1], push: 25 },
 ];
 
 export const lesson: LessonDef = {
@@ -111,7 +113,7 @@ export const lesson: LessonDef = {
   ],
   challenge: {
     title: "Slide to the zone",
-    text: "One push per try. Push the crate and let go, so that it slides and stops with the whole crate inside the green zone. Win on wood, sand and then ice for three stars.",
+    text: "One push per try, with a fixed push force on each floor. Hold to push, then let go, so that the crate slides and stops with the whole crate inside the green zone. Win on wood, sand and then ice for three stars.",
   },
   quiz: [
     {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import LessonShell from "@/components/lesson/LessonShell";
 import OpticsBench, { type OpticsReading } from "@/components/sim/OpticsBench";
 import { SCREEN_ROUNDS, lesson } from "@/content/lessons/light-refraction";
@@ -13,8 +13,10 @@ export default function LessonPlayer() {
   const [focused, setFocused] = useState(0);
   const [tried, setTried] = useState<number[]>([]);
 
+  const lastReading = useRef<OpticsReading | null>(null);
   const onReading = useCallback(
     (r: OpticsReading) => {
+      lastReading.current = r;
       setTried(r.block.tried);
       if (round !== null && r.sharp) {
         const done = round + 1;
@@ -40,6 +42,18 @@ export default function LessonPlayer() {
     },
     [round, isDone, finishTask, challengeStars, badge],
   );
+
+  // The sim only reports changes, so replay what it shows now once the prediction is locked in
+  // and again once the ideas are done, so a state set earlier still counts.
+  const replay = useRef(onReading);
+  useEffect(() => {
+    replay.current = onReading;
+  }, [onReading]);
+  const predicted = api.done.has("predict");
+  const ideasDone = api.done.has("ideas");
+  useEffect(() => {
+    if (predicted && lastReading.current) replay.current(lastReading.current);
+  }, [predicted, ideasDone]);
 
   return (
     <LessonShell

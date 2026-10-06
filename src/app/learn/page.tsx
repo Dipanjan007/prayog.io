@@ -13,7 +13,7 @@ export default function LearnPage() {
       <h1 className="font-display text-4xl font-bold">Your physics map</h1>
       <p className="mt-2 max-w-2xl text-white/60">
         Seven strands that grow from Class 7 to Class 10, following the NCERT books. {live} of {total} chapters are
-        playable now; the rest are on the way.
+        playable now{live < total ? "; the rest are on the way" : ""}.
       </p>
 
       {/* Header row: classes */}

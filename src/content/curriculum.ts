@@ -36,7 +36,7 @@ export const STRANDS: Strand[] = [
     name: "Motion",
     colour: "var(--c-cyan)",
     chapters: [
-      { classNum: 7, title: "Measurement of Time and Motion", sim: "Pendulum timer and race track" },
+      { classNum: 7, title: "Measurement of Time and Motion", href: "/learn/time-motion", sim: "Pendulum timer and race track" },
       { classNum: 9, title: "Describing Motion Around Us", href: "/learn/motion", sim: "Drive a sports car, watch its graphs draw live" },
     ],
   },
@@ -67,7 +67,7 @@ export const STRANDS: Strand[] = [
     name: "Energy and heat",
     colour: "var(--c-orange)",
     chapters: [
-      { classNum: 7, title: "Heat Transfer in Nature", sim: "Particle view of conduction and convection" },
+      { classNum: 7, title: "Heat Transfer in Nature", href: "/learn/heat-transfer", sim: "Heated rod, convection pot and sea breeze" },
       { classNum: 9, title: "Work, Energy, and Simple Machines", href: "/learn/work-energy", sim: "Roller coaster energy bars, lever builder" },
     ],
   },
@@ -87,7 +87,7 @@ export const STRANDS: Strand[] = [
     name: "Light",
     colour: "var(--c-pink)",
     chapters: [
-      { classNum: 7, title: "Light: Shadows and Reflections", sim: "Shadow and mirror bench" },
+      { classNum: 7, title: "Light: Shadows and Reflections", href: "/learn/shadows-reflections", sim: "Shadow stage, pinhole camera and laser mirrors" },
       { classNum: 8, title: "Light: Mirrors and Lenses", href: "/learn/mirrors-lenses", sim: "Plane, concave and convex mirrors and lenses" },
       { classNum: 10, title: "Light: Reflection and Refraction", href: "/learn/light-refraction", sim: "Glass block, lens and mirror bench with live ray diagrams" },
       { classNum: 10, title: "The Human Eye and the Colourful World", sim: "Eye model and prism", href: "/learn/human-eye" },
@@ -98,7 +98,7 @@ export const STRANDS: Strand[] = [
     name: "Waves and sky",
     colour: "var(--c-yellow)",
     chapters: [
-      { classNum: 7, title: "Earth, Moon, and the Sun", sim: "Orbit, phases and eclipses" },
+      { classNum: 7, title: "Earth, Moon, and the Sun", href: "/learn/earth-moon-sun", sim: "Seasons, day length and eclipses" },
       { classNum: 8, title: "Keeping Time with the Skies", href: "/learn/sky-clock", sim: "Moon phases and a shadow stick" },
       { classNum: 9, title: "Sound Waves: Characteristics and Applications", href: "/learn/sound", sim: "Sound waves, echoes and SONAR" },
     ],

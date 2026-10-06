@@ -12,11 +12,19 @@ import { lesson as workEnergy } from "./work-energy";
 import { lesson as sound } from "./sound";
 import { lesson as electricity } from "./electricity";
 import { lesson as magneticEffects } from "./magnetic-effects";
+import { lesson as timeMotion } from "./time-motion";
+import { lesson as heatTransfer } from "./heat-transfer";
+import { lesson as shadows } from "./shadows-reflections";
+import { lesson as earthMoonSun } from "./earth-moon-sun";
 import type { LessonDef } from "./types";
 
 /** Every playable lesson, in class order. */
 export const LESSONS: LessonDef[] = [
+  timeMotion,
+  heatTransfer,
   circuits,
+  shadows,
+  earthMoonSun,
   pressureWinds,
   mirrorsLenses,
   forces,

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import LessonShell from "@/components/lesson/LessonShell";
 import SkyClock, { type SkyReading } from "@/components/sim/SkyClock";
 import { MOON_ROUNDS, MOON_TOLERANCE, lesson } from "@/content/lessons/sky-clock";
@@ -51,6 +51,16 @@ export default function LessonPlayer() {
     },
     [round, isDone, finishTask],
   );
+
+  // The sim only reports changes, so replay what it shows now once the prediction is locked in.
+  const replay = useRef(onReading);
+  useEffect(() => {
+    replay.current = onReading;
+  }, [onReading]);
+  const predicted = api.done.has("predict");
+  useEffect(() => {
+    if (predicted && last.current) replay.current(last.current);
+  }, [predicted]);
 
   const lockIn = () => {
     const r = last.current;

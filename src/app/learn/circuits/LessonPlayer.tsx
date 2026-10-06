@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import LessonShell from "@/components/lesson/LessonShell";
 import CircuitBoard, { type CircuitReading } from "@/components/sim/CircuitBoard";
 import { BROKEN_TORCH, lesson, repairStars } from "@/content/lessons/circuits";
@@ -14,8 +14,10 @@ export default function LessonPlayer() {
   const [tested, setTested] = useState<Partial<Record<MaterialId, boolean>>>({});
   const [repair, setRepair] = useState<{ moves: number; fixed: boolean } | null>(null);
 
+  const lastReading = useRef<CircuitReading | null>(null);
   const onReading = useCallback(
     (r: CircuitReading) => {
+      lastReading.current = r;
       setTested(r.tested);
       const glowing = r.state.closed && r.state.brightness > 0;
       if (r.preset === "torch") {
@@ -34,6 +36,18 @@ export default function LessonPlayer() {
     },
     [isDone, finishTask, challengeStars, badge],
   );
+
+  // The sim only reports changes, so replay what it shows now once the prediction is locked in
+  // and again once the ideas are done, so a state set earlier still counts.
+  const replay = useRef(onReading);
+  useEffect(() => {
+    replay.current = onReading;
+  }, [onReading]);
+  const predicted = api.done.has("predict");
+  const ideasDone = api.done.has("ideas");
+  useEffect(() => {
+    if (predicted && lastReading.current) replay.current(lastReading.current);
+  }, [predicted, ideasDone]);
 
   const entries = Object.entries(tested) as [MaterialId, boolean][];
 

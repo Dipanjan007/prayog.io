@@ -67,6 +67,14 @@ export const BADGES: BadgeInfo[] = [
   { id: "sonar-captain", name: "SONAR Captain", how: "Find the sea depth at all three spots with SONAR", emoji: "🚢" },
   { id: "sky-keeper", name: "Sky Keeper", how: "Finish every step of the Class 8 sky clock lesson", emoji: "🌓" },
   { id: "moon-watcher", name: "Moon Watcher", how: "Match all three Moons in Moon match", emoji: "🌙" },
+  { id: "time-keeper", name: "Time Keeper", how: "Finish every step of the Class 7 time and motion lesson", emoji: "⏱️" },
+  { id: "clock-maker", name: "Clock Maker", how: "Build pendulum clocks that tick at 1 s, 2 s and 1.5 s", emoji: "🕰️" },
+  { id: "heat-explorer", name: "Heat Explorer", how: "Finish every step of the heat transfer lesson", emoji: "🔥" },
+  { id: "heat-detective", name: "Heat Detective", how: "Answer all three heat detective questions", emoji: "🕵️" },
+  { id: "shadow-master", name: "Shadow Master", how: "Finish every step of the Class 7 shadows and reflections lesson", emoji: "🌗" },
+  { id: "laser-ace", name: "Laser Ace", how: "Guide the laser to the target in all three mirror levels", emoji: "🎯" },
+  { id: "orbit-explorer", name: "Orbit Explorer", how: "Finish every step of the Earth, Moon and Sun lesson", emoji: "🌍" },
+  { id: "eclipse-hunter", name: "Eclipse Hunter", how: "Finish all three Sky planner jobs, including a total solar and a total lunar eclipse", emoji: "🌑" },
   { id: "sharp-mind", name: "Sharp Mind", how: "Score full marks in a Master quiz", emoji: "🎯" },
 ];
 

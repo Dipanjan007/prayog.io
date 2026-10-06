@@ -8,6 +8,7 @@ import { useProfile } from "@/lib/profile";
 const LINKS = [
   { href: "/learn", label: "Learn" },
   { href: "/lab", label: "Lab" },
+  { href: "/olympiad", label: "Olympiad" },
   { href: "/me", label: "Me" },
 ];
 
@@ -19,7 +20,7 @@ export default function NavBar() {
 
   return (
     <header className="sticky top-0 z-30 border-b border-white/5 bg-[#070a14]/70 backdrop-blur-xl">
-      <nav className="mx-auto flex max-w-6xl items-center gap-2 px-4 py-3 sm:gap-4 sm:px-6">
+      <nav className="mx-auto flex max-w-6xl items-center gap-1.5 px-3 py-3 sm:gap-4 sm:px-6">
         <Link href="/" className="font-display text-xl font-bold">
           <span className="text-gradient">prayog</span>
         </Link>
@@ -28,7 +29,7 @@ export default function NavBar() {
             <Link
               key={l.href}
               href={l.href}
-              className={`rounded-full px-2.5 py-1.5 text-sm transition sm:px-3 ${
+              className={`rounded-full px-1.5 py-1.5 text-sm transition sm:px-3 ${
                 path.startsWith(l.href) ? "bg-white/10 text-white" : "text-white/60 hover:text-white"
               }`}
             >

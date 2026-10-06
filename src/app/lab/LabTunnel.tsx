@@ -58,8 +58,8 @@ export default function LabTunnel() {
           <button
             key={e.id}
             onClick={() => setEx(e)}
-            className={`rounded-2xl border p-3 text-left transition hover:bg-cream/10 ${
-              ex?.id === e.id ? "border-sage-300/60 bg-sage-300/10" : "border-line bg-cream/5"
+            className={`rounded-2xl border p-3 text-left transition hover:bg-white/10 ${
+              ex?.id === e.id ? "border-lime-300/60 bg-lime-300/10" : "border-white/10 bg-white/5"
             }`}
           >
             <div className="font-semibold">
@@ -68,7 +68,7 @@ export default function LabTunnel() {
           </button>
         ))}
       </div>
-      {ex && <p className="mt-3 max-w-3xl text-sm text-muted">{ex.text}</p>}
+      {ex && <p className="mt-3 max-w-3xl text-sm text-white/70">{ex.text}</p>}
       <div className="mt-4">
         <WindTunnel
           key={ex?.id ?? "free"}

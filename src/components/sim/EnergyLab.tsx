@@ -221,9 +221,9 @@ export default function EnergyLab({ onReading, challenge = null }: Props) {
   return (
     <div className="flex flex-col gap-3 select-none">
       {!challenge && (
-        <div className="grid grid-cols-2 gap-1 rounded-2xl bg-ink/20 p-1 text-sm">
+        <div className="grid grid-cols-2 gap-1 rounded-2xl bg-black/20 p-1 text-sm">
           {(["coaster", "lever"] as const).map((m) => (
-            <button key={m} onClick={() => setMode(m)} className={`rounded-xl py-2 ${activeMode === m ? "bg-cream/10 text-cream" : "text-faint"}`}>
+            <button key={m} onClick={() => setMode(m)} className={`rounded-xl py-2 ${activeMode === m ? "bg-white/10 text-white" : "text-white/50"}`}>
               {m === "coaster" ? "Roller coaster" : "Lever"}
             </button>
           ))}
@@ -232,7 +232,7 @@ export default function EnergyLab({ onReading, challenge = null }: Props) {
 
       <canvas
         ref={canvasRef}
-        className={`h-56 w-full rounded-2xl border border-line bg-well sm:h-72 ${activeMode === "coaster" ? "touch-none" : ""}`}
+        className={`h-56 w-full rounded-2xl border border-white/10 bg-[#0a0d1c] sm:h-72 ${activeMode === "coaster" ? "touch-none" : ""}`}
         role="img"
         aria-label={
           activeMode === "coaster"
@@ -247,21 +247,21 @@ export default function EnergyLab({ onReading, challenge = null }: Props) {
 
       {activeMode === "coaster" ? (
         <>
-          <div className="rounded-2xl panel p-3">
+          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-3">
             <Bar label="Potential energy (mgh)" value={e.pe} max={e0} colour="bg-cyan-400" />
             <Bar label="Kinetic energy (½mv²)" value={e.ke} max={e0} colour="bg-lime-400" />
             <Bar label="Heat from friction" value={e.heat} max={e0} colour="bg-orange-400" />
             <Bar label="Total" value={e.total} max={e0} colour="bg-violet-400" />
-            <div className="mt-2 flex justify-between text-xs text-faint">
+            <div className="mt-2 flex justify-between text-xs text-white/50">
               <span>
-                Height <b className="tabular-nums text-cream">{height.toFixed(1)} m</b>
+                Height <b className="tabular-nums text-white">{height.toFixed(1)} m</b>
               </span>
               <span>
-                Speed <b className="tabular-nums text-cream">{speed.toFixed(1)} m/s</b>
+                Speed <b className="tabular-nums text-white">{speed.toFixed(1)} m/s</b>
               </span>
               <span>Cart {MASS} kg</span>
             </div>
-            <div className="mt-1 text-xs text-faint">
+            <div className="mt-1 text-xs text-white/50">
               <span className={friction ? "text-orange-300" : "text-violet-300"}>- - -</span> Dashed line: the highest the cart can ever reach
               {friction ? ". Friction makes it fall as the cart travels." : ", its start height."}
             </div>
@@ -270,7 +270,7 @@ export default function EnergyLab({ onReading, challenge = null }: Props) {
           <div className="grid grid-cols-2 gap-2">
             <button
               onClick={() => (running ? reset() : setRunning(true))}
-              className={`rounded-2xl border py-3 font-semibold ${running ? "border-line text-muted" : "border-sage-300/40 bg-sage-400/15"}`}
+              className={`rounded-2xl border py-3 font-semibold ${running ? "border-white/10 text-white/70" : "border-lime-300/40 bg-lime-400/15"}`}
             >
               {running ? "Reset" : "Release the cart ▶"}
             </button>
@@ -280,18 +280,18 @@ export default function EnergyLab({ onReading, challenge = null }: Props) {
                 setFriction(!frictionOn);
                 reset();
               }}
-              className={`rounded-2xl border px-2 py-3 text-sm ${friction ? "border-clay-300 bg-clay-300/15" : "border-line text-muted"} ${challenge ? "opacity-70" : ""}`}
+              className={`rounded-2xl border px-2 py-3 text-sm ${friction ? "border-orange-300 bg-orange-300/15" : "border-white/10 text-white/70"} ${challenge ? "opacity-70" : ""}`}
             >
               Friction: {friction ? `on (μ = ${MU})` : "off"}
             </button>
           </div>
 
-          <div className="rounded-2xl panel px-4 py-3">
+          <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
             {HANDLES.filter((hd) => !challenge || hd.key === "h0").map((hd) => (
               <label key={hd.key} className="mb-1 block">
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted">{hd.label} height</span>
-                  <span className="tabular-nums text-cream">{track[hd.key].toFixed(1)} m</span>
+                  <span className="text-white/60">{hd.label} height</span>
+                  <span className="tabular-nums text-white">{track[hd.key].toFixed(1)} m</span>
                 </div>
                 <input
                   type="range"
@@ -304,9 +304,9 @@ export default function EnergyLab({ onReading, challenge = null }: Props) {
                 />
               </label>
             ))}
-            {challenge && <div className="mt-1 text-xs text-faint">Test track: hill 1 is {challenge.h1} m, the last hill is {challenge.h2} m.</div>}
+            {challenge && <div className="mt-1 text-xs text-white/50">Test track: hill 1 is {challenge.h1} m, the last hill is {challenge.h2} m.</div>}
           </div>
-          <p className="text-center text-xs text-faint">
+          <p className="text-center text-xs text-white/40">
             Drag the round handles or use the sliders. Hauling the cart up to {track.h0.toFixed(1)} m takes W = mgh = {kJ(liftWork)} kJ of work. A{" "}
             {motor / 1000} kW motor does it in {(liftWork / motor).toFixed(1)} s, because P = W/t.
           </p>
@@ -320,23 +320,23 @@ export default function EnergyLab({ onReading, challenge = null }: Props) {
           </div>
           <Choice options={CLASSES.map((x) => ({ id: String(x.id), label: x.label }))} value={String(cls)} onChange={(v) => setCls(Number(v) as LeverClass)} />
           <Choice options={LOADS.map((x) => ({ id: String(x.w), label: x.label }))} value={String(load)} onChange={(v) => setLoad(Number(v))} />
-          <div className="rounded-2xl panel px-4 py-3">
+          <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
             <label className="mb-1 block">
               <div className="flex justify-between text-sm">
-                <span className="text-muted">{CLASSES[cls - 1].posLabel}</span>
-                <span className="tabular-nums text-cream">{pos.toFixed(1)} m from the left end</span>
+                <span className="text-white/60">{CLASSES[cls - 1].posLabel}</span>
+                <span className="tabular-nums text-white">{pos.toFixed(1)} m from the left end</span>
               </div>
               <input type="range" className="range mt-1 w-full" min={LEVER_POS.min} max={LEVER_POS.max} step={LEVER_POS.step} value={pos} onChange={(ev) => setPos(Number(ev.target.value))} />
             </label>
             <label className="block">
               <div className="flex justify-between text-sm">
-                <span className="text-muted">Effort</span>
-                <span className="tabular-nums text-cream">{effort} N</span>
+                <span className="text-white/60">Effort</span>
+                <span className="tabular-nums text-white">{effort} N</span>
               </div>
               <input type="range" className="range mt-1 w-full" min={0} max={2000} step={10} value={effort} onChange={(ev) => setEffort(Number(ev.target.value))} />
             </label>
           </div>
-          <p className="text-center text-xs text-faint">
+          <p className="text-center text-xs text-white/40">
             {CLASSES[cls - 1].label}: {CLASSES[cls - 1].example}. The bar is {BEAM} m long and its own weight is ignored.
           </p>
         </>
@@ -350,10 +350,10 @@ function Bar({ label, value, max, colour }: { label: string; value: number; max:
   return (
     <div className="mb-1.5">
       <div className="flex justify-between text-xs">
-        <span className="text-muted">{label}</span>
-        <span className="tabular-nums text-cream">{kJ(Math.max(0, value))} kJ</span>
+        <span className="text-white/60">{label}</span>
+        <span className="tabular-nums text-white">{kJ(Math.max(0, value))} kJ</span>
       </div>
-      <div className="mt-0.5 h-2.5 w-full overflow-hidden rounded-full bg-cream/10">
+      <div className="mt-0.5 h-2.5 w-full overflow-hidden rounded-full bg-white/10">
         <div className={`h-full rounded-full ${colour}`} style={{ width: `${f * 100}%` }} />
       </div>
     </div>
@@ -362,11 +362,11 @@ function Bar({ label, value, max, colour }: { label: string; value: number; max:
 
 function Readout({ label, value, unit }: { label: string; value: string; unit: string }) {
   return (
-    <div className="rounded-2xl panel px-1 py-2">
-      <div className="text-[11px] uppercase tracking-wider text-faint">{label}</div>
+    <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-1 py-2">
+      <div className="text-[11px] uppercase tracking-wider text-white/50">{label}</div>
       <div className="font-display text-lg tabular-nums">
         {value}
-        {unit && <span className="ml-0.5 text-xs text-faint">{unit}</span>}
+        {unit && <span className="ml-0.5 text-xs text-white/50">{unit}</span>}
       </div>
     </div>
   );
@@ -379,7 +379,7 @@ function Choice<T extends string>({ options, value, onChange }: { options: { id:
         <button
           key={o.id}
           onClick={() => onChange(o.id)}
-          className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${value === o.id ? "chip-on" : "border-line text-muted"}`}
+          className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${value === o.id ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/70"}`}
         >
           {o.label}
         </button>
@@ -407,9 +407,9 @@ function drawCoaster(ctx: CanvasRenderingContext2D, w: number, h: number, t: Tra
   sky.addColorStop(1, "#1b1640");
   ctx.fillStyle = sky;
   ctx.fillRect(0, 0, w, h);
-  ctx.fillStyle = "#1d1a16";
+  ctx.fillStyle = "#151827";
   ctx.fillRect(0, v.ground, w, h - v.ground);
-  ctx.fillStyle = "#2e2924";
+  ctx.fillStyle = "#2a2f45";
   ctx.fillRect(0, v.ground, w, 2);
 
   // Energy line: the highest the cart could ever reach at each point (start height, minus friction losses).
@@ -424,7 +424,7 @@ function drawCoaster(ctx: CanvasRenderingContext2D, w: number, h: number, t: Tra
   ctx.font = "11px system-ui, sans-serif";
 
   // Supports.
-  ctx.strokeStyle = "rgba(240,233,221,0.12)";
+  ctx.strokeStyle = "rgba(255,255,255,0.12)";
   ctx.lineWidth = 1;
   for (let x = 1; x < TRACK_END; x += 2) {
     ctx.beginPath();
@@ -468,7 +468,7 @@ function drawCoaster(ctx: CanvasRenderingContext2D, w: number, h: number, t: Tra
     ctx.beginPath();
     ctx.arc(px, py, 5, 0, Math.PI * 2);
     ctx.fill();
-    ctx.fillStyle = "rgba(240,233,221,0.85)";
+    ctx.fillStyle = "rgba(255,255,255,0.85)";
     ctx.textAlign = hd.i === 0 ? "left" : "center";
     ctx.fillText(`${k[hd.i].toFixed(1)} m`, hd.i === 0 ? px - 4 : px, py - 15);
     ctx.textAlign = "left";
@@ -534,9 +534,9 @@ function drawLever(
     return { x: pivot.x + d * Math.cos(angle) + up * Math.sin(angle), y: pivot.y + d * Math.sin(angle) - up * Math.cos(angle) };
   };
 
-  ctx.fillStyle = "#1d1a16";
+  ctx.fillStyle = "#151827";
   ctx.fillRect(0, ground, w, h - ground);
-  ctx.fillStyle = "#2e2924";
+  ctx.fillStyle = "#2a2f45";
   ctx.fillRect(0, ground, w, 2);
 
   // Fulcrum.

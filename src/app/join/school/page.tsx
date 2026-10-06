@@ -13,15 +13,15 @@ const STEPS = [
 export default function SchoolPage() {
   return (
     <div className="max-w-3xl pt-4">
-      <span className="rounded-full bg-heather-300/15 px-3 py-1 text-xs text-heather-200">Pilot</span>
+      <span className="rounded-full bg-violet-300/15 px-3 py-1 text-xs text-violet-200">Pilot</span>
       <h1 className="font-display mt-4 text-4xl font-bold">Prayog for schools</h1>
-      <p className="mt-2 text-muted">During the pilot, schools join by invitation. Here is how it works.</p>
+      <p className="mt-2 text-white/60">During the pilot, schools join by invitation. Here is how it works.</p>
       <ol className="mt-6 grid gap-3 sm:grid-cols-2">
         {STEPS.map((s, i) => (
           <li key={s.title} className="glass rounded-3xl p-5">
-            <div className="font-display text-sm text-heather-300">0{i + 1}</div>
+            <div className="font-display text-sm text-violet-300">0{i + 1}</div>
             <div className="font-display mt-3 text-xl font-semibold">{s.title}</div>
-            <p className="mt-1 text-sm text-muted">{s.text}</p>
+            <p className="mt-1 text-sm text-white/60">{s.text}</p>
           </li>
         ))}
       </ol>

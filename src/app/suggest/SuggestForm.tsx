@@ -11,7 +11,7 @@ const ROLE_LABEL: Record<SuggestionRole, string> = { student: "🎒 Student", pa
 const CLASSES = [7, 8, 9, 10] as const;
 
 const chip = (on: boolean) =>
-  `rounded-full px-3.5 py-2 text-sm transition ${on ? "bg-saffron-400/20 text-saffron-100 ring-1 ring-saffron-300/50" : "bg-cream/5 text-muted hover:bg-cream/10"}`;
+  `rounded-full px-3.5 py-2 text-sm transition ${on ? "bg-cyan-400/20 text-cyan-100 ring-1 ring-cyan-300/50" : "bg-white/5 text-white/70 hover:bg-white/10"}`;
 
 /** The suggestion box: anyone can send an idea; it goes to the team's weekly review. */
 export default function SuggestForm() {
@@ -62,14 +62,14 @@ export default function SuggestForm() {
       <section className="glass rounded-3xl p-6 text-center">
         <div className="text-5xl">{done === "sent" ? "🚀" : "📮"}</div>
         <h1 className="font-display mt-3 text-2xl font-bold">Thanks, idea received!</h1>
-        <p className="mt-2 text-muted">
+        <p className="mt-2 text-white/60">
           {done === "sent"
             ? "The Prayog team reads every idea in a weekly review, and the best ones get built into the app."
             : "It's saved on this device and sends itself as soon as it can, so you don't need to do anything."}
         </p>
         <div className="mt-5 flex justify-center gap-2">
           <button
-            className="rounded-full bg-cream/10 px-4 py-2 text-sm hover:bg-cream/15"
+            className="rounded-full bg-white/10 px-4 py-2 text-sm hover:bg-white/15"
             onClick={() => {
               setDone(null);
               setText("");
@@ -78,7 +78,7 @@ export default function SuggestForm() {
           >
             Send another
           </button>
-          <Link href="/learn" className="rounded-full bg-saffron-400/90 px-4 py-2 text-sm font-semibold text-ink">
+          <Link href="/learn" className="rounded-full bg-cyan-400/90 px-4 py-2 text-sm font-semibold text-black">
             Back to learning
           </Link>
         </div>
@@ -88,15 +88,15 @@ export default function SuggestForm() {
 
   return (
     <form onSubmit={submit} className="glass rounded-3xl p-6">
-      <div className="text-sm text-saffron-300">Help build Prayog</div>
+      <div className="text-sm text-cyan-300">Help build Prayog</div>
       <h1 className="font-display mt-2 text-3xl font-bold">Suggest an idea</h1>
-      <p className="mt-2 text-muted">
+      <p className="mt-2 text-white/60">
         A chapter you want, a simulation you&apos;d love to play, or something that&apos;s broken. We read every idea
         each week and build the best ones.
       </p>
 
       <fieldset className="mt-6">
-        <legend className="text-sm font-medium text-cream/85">I am a</legend>
+        <legend className="text-sm font-medium text-white/80">I am a</legend>
         <div className="mt-2 flex flex-wrap gap-2">
           {ROLES.map((r) => (
             <button type="button" key={r} className={chip(who === r)} onClick={() => setRole(r)} aria-pressed={who === r}>
@@ -107,7 +107,7 @@ export default function SuggestForm() {
       </fieldset>
 
       <fieldset className="mt-5">
-        <legend className="text-sm font-medium text-cream/85">My idea is about</legend>
+        <legend className="text-sm font-medium text-white/80">My idea is about</legend>
         <div className="mt-2 grid gap-2 sm:grid-cols-2">
           {AREAS.map((a) => (
             <button
@@ -124,8 +124,8 @@ export default function SuggestForm() {
       </fieldset>
 
       <fieldset className="mt-5">
-        <legend className="text-sm font-medium text-cream/85">
-          Class <span className="text-faint">(optional)</span>
+        <legend className="text-sm font-medium text-white/80">
+          Class <span className="text-white/40">(optional)</span>
         </legend>
         <div className="mt-2 flex flex-wrap gap-2">
           {CLASSES.map((c) => (
@@ -137,15 +137,15 @@ export default function SuggestForm() {
       </fieldset>
 
       <label className="mt-5 block">
-        <span className="text-sm font-medium text-cream/85">Your idea</span>
+        <span className="text-sm font-medium text-white/80">Your idea</span>
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value.slice(0, MAX_LENGTH))}
           rows={5}
           placeholder="I wish I could race two cars down a ramp and see which one wins…"
-          className="mt-2 w-full rounded-2xl bg-cream/5 p-3 text-cream placeholder:text-faint focus:outline-none focus:ring-2 focus:ring-saffron-400/60"
+          className="mt-2 w-full rounded-2xl bg-white/5 p-3 text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-cyan-400/60"
         />
-        <span className="mt-1 flex justify-between text-xs text-faint">
+        <span className="mt-1 flex justify-between text-xs text-white/40">
           <span>Please don&apos;t write your name, phone, email or school. We remove them anyway.</span>
           <span>
             {length}/{MAX_LENGTH}
@@ -165,12 +165,12 @@ export default function SuggestForm() {
         className="absolute -left-[9999px] h-0 w-0 opacity-0"
       />
 
-      {error && <p className="mt-3 text-sm text-ochre-200">{error}</p>}
+      {error && <p className="mt-3 text-sm text-amber-200">{error}</p>}
 
       <button
         type="submit"
         disabled={busy}
-        className="btn-primary mt-5 w-full disabled:opacity-60"
+        className="mt-5 w-full rounded-full bg-gradient-to-r from-cyan-400 to-violet-400 px-5 py-3 font-semibold text-black disabled:opacity-60"
       >
         {busy ? "Sending…" : "Send my idea"}
       </button>

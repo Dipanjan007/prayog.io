@@ -119,9 +119,9 @@ export default function SkyClock({ onReading, target = null }: Props) {
   return (
     <div className="flex flex-col gap-3 select-none">
       {!target && (
-        <div className="grid grid-cols-2 gap-1 rounded-2xl bg-ink/20 p-1 text-sm">
+        <div className="grid grid-cols-2 gap-1 rounded-2xl bg-black/20 p-1 text-sm">
           {(["orbit", "shadow"] as const).map((m) => (
-            <button key={m} onClick={() => setMode(m)} className={`rounded-xl py-2 ${activeMode === m ? "bg-cream/10 text-cream" : "text-faint"}`}>
+            <button key={m} onClick={() => setMode(m)} className={`rounded-xl py-2 ${activeMode === m ? "bg-white/10 text-white" : "text-white/50"}`}>
               {m === "orbit" ? "Sun, Earth and Moon" : "Shadow stick"}
             </button>
           ))}
@@ -130,7 +130,7 @@ export default function SkyClock({ onReading, target = null }: Props) {
 
       <canvas
         ref={canvasRef}
-        className="h-64 w-full rounded-2xl border border-line bg-well sm:h-80"
+        className="h-64 w-full rounded-2xl border border-white/10 bg-[#0a0d1c] sm:h-80"
         role="img"
         aria-label={
           activeMode === "orbit"
@@ -148,10 +148,10 @@ export default function SkyClock({ onReading, target = null }: Props) {
             <Stat label="Moon lit" value={`${Math.round(phase.lit * 100)}%`} />
             <Stat label="Lunar months" value={`${phase.lunarMonths} done`} />
           </div>
-          <label className="block rounded-2xl panel px-4 py-3">
+          <label className="block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
             <div className="flex justify-between text-sm">
-              <span className="text-muted">Day</span>
-              <span className="tabular-nums text-cream">
+              <span className="text-white/60">Day</span>
+              <span className="tabular-nums text-white">
                 Day {wholeDay}, {clock(angles.hour)}
               </span>
             </div>
@@ -168,17 +168,17 @@ export default function SkyClock({ onReading, target = null }: Props) {
               }}
             />
             <div className="mt-2 grid grid-cols-4 gap-2">
-              <button className="rounded-xl border border-line px-2 py-1.5 text-sm text-muted" onClick={() => nudge(-1)}>
+              <button className="rounded-xl border border-white/10 px-2 py-1.5 text-sm text-white/70" onClick={() => nudge(-1)}>
                 −1 day
               </button>
-              <button className="rounded-xl border border-line px-2 py-1.5 text-sm text-muted" onClick={() => nudge(0.25)}>
+              <button className="rounded-xl border border-white/10 px-2 py-1.5 text-sm text-white/70" onClick={() => nudge(0.25)}>
                 +6 h
               </button>
-              <button className="rounded-xl border border-line px-2 py-1.5 text-sm text-muted" onClick={() => nudge(1)}>
+              <button className="rounded-xl border border-white/10 px-2 py-1.5 text-sm text-white/70" onClick={() => nudge(1)}>
                 +1 day
               </button>
               <button
-                className={`rounded-xl border px-2 py-1.5 text-sm ${playing ? "chip-on" : "border-line text-muted"}`}
+                className={`rounded-xl border px-2 py-1.5 text-sm ${playing ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/70"}`}
                 onClick={() => {
                   if (!playing && day >= MAX_DAY) setDay(0);
                   setPlaying(!playing);
@@ -189,7 +189,7 @@ export default function SkyClock({ onReading, target = null }: Props) {
             </div>
           </label>
           {!target && <YearBar day={day} />}
-          <p className="text-center text-xs text-faint">
+          <p className="text-center text-xs text-white/40">
             Day 0 is an Amavasya at midnight. India is on the {indiaDay ? "day" : "night"} side right now.
           </p>
         </>
@@ -200,10 +200,10 @@ export default function SkyClock({ onReading, target = null }: Props) {
             <Stat label="Shadow" value={shadow ? (shadow.length > 20 ? "> 20 m" : `${shadow.length.toFixed(2)} m`) : "None"} />
             <Stat label="Points" value={shadow ? (shadow.length < 0.03 ? "Almost none" : compass(shadow.az)) : "–"} />
           </div>
-          <label className="block rounded-2xl panel px-4 py-3">
+          <label className="block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
             <div className="flex justify-between text-sm">
-              <span className="text-muted">Time of day</span>
-              <span className="tabular-nums text-cream">{clock(hour)}</span>
+              <span className="text-white/60">Time of day</span>
+              <span className="tabular-nums text-white">{clock(hour)}</span>
             </div>
             <input type="range" className="range mt-2 w-full" min={5} max={19} step={0.25} value={hour} onChange={(e) => setHour(Number(e.target.value))} />
           </label>
@@ -212,13 +212,13 @@ export default function SkyClock({ onReading, target = null }: Props) {
               <button
                 key={m}
                 onClick={() => setMonth(i)}
-                className={`rounded-xl border px-1 py-1.5 text-xs ${month === i ? "chip-on" : "border-line text-muted"}`}
+                className={`rounded-xl border px-1 py-1.5 text-xs ${month === i ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/70"}`}
               >
                 {m}
               </button>
             ))}
           </div>
-          <p className="text-center text-xs text-faint">
+          <p className="text-center text-xs text-white/40">
             21 {MONTHS[month]} at 23° N, local Sun time. Sunrise {clock(times.rise)}, sunset {clock(times.set)}. The stick is 1 m tall.
           </p>
         </>
@@ -232,8 +232,8 @@ const tithiText = (paksha: string, tithi: number) => (tithi === 15 ? (paksha ===
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl panel px-1 py-2">
-      <div className="text-[11px] uppercase tracking-wider text-faint">{label}</div>
+    <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-1 py-2">
+      <div className="text-[11px] uppercase tracking-wider text-white/50">{label}</div>
       <div className="font-display text-base tabular-nums sm:text-lg">{value}</div>
     </div>
   );
@@ -245,21 +245,21 @@ function YearBar({ day }: { day: number }) {
   for (let k = 1; k * SYNODIC_DAYS <= YEAR_DAYS; k++) ticks.push(k * SYNODIC_DAYS);
   const pct = (d: number) => `${Math.min(100, (d / YEAR_DAYS) * 100)}%`;
   return (
-    <div className="rounded-2xl panel px-4 py-3 text-xs text-muted">
+    <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-xs text-white/60">
       <div className="flex justify-between">
         <span>Earth&apos;s trip round the Sun</span>
-        <span className="tabular-nums text-cream">{Math.min(100, Math.round((day / YEAR_DAYS) * 100))}%</span>
+        <span className="tabular-nums text-white">{Math.min(100, Math.round((day / YEAR_DAYS) * 100))}%</span>
       </div>
-      <div className="relative mt-2 h-3 rounded-full bg-cream/10">
-        <div className="absolute inset-y-0 left-0 rounded-full bg-ochre-300/70" style={{ width: pct(day) }} />
+      <div className="relative mt-2 h-3 rounded-full bg-white/10">
+        <div className="absolute inset-y-0 left-0 rounded-full bg-amber-300/70" style={{ width: pct(day) }} />
         {ticks.map((t, i) => (
-          <div key={t} className={`absolute -inset-y-0.5 w-0.5 ${i === 11 ? "bg-saffron-300" : "bg-cream/40"}`} style={{ left: pct(t) }} />
+          <div key={t} className={`absolute -inset-y-0.5 w-0.5 ${i === 11 ? "bg-cyan-300" : "bg-white/40"}`} style={{ left: pct(t) }} />
         ))}
       </div>
       <div className="mt-1.5 flex justify-between gap-2">
         <span>Ticks: each Amavasya</span>
         <span className="text-right">
-          <span className="text-saffron-300">12th Amavasya: day {Math.round(LUNAR_YEAR_DAYS)}</span>. Full trip: day 365.
+          <span className="text-cyan-300">12th Amavasya: day {Math.round(LUNAR_YEAR_DAYS)}</span>. Full trip: day 365.
         </span>
       </div>
     </div>
@@ -273,7 +273,7 @@ function drawStars(ctx: CanvasRenderingContext2D, w: number, h: number) {
     s = (s * 16807) % 2147483647;
     return s / 2147483647;
   };
-  ctx.fillStyle = "rgba(240,233,221,0.25)";
+  ctx.fillStyle = "rgba(255,255,255,0.25)";
   for (let i = 0; i < 60; i++) {
     ctx.beginPath();
     ctx.arc(rnd() * w, rnd() * h, rnd() * 0.9 + 0.3, 0, Math.PI * 2);
@@ -298,7 +298,7 @@ function litBall(ctx: CanvasRenderingContext2D, x: number, y: number, r: number,
 /** The Moon as seen from Earth, drawn row by row from litSpan, so the shape matches the phase angle. */
 function moonDisc(ctx: CanvasRenderingContext2D, x: number, y: number, r: number, elong: number) {
   ctx.fillStyle = "#1e2333";
-  ctx.strokeStyle = "rgba(240,233,221,0.25)";
+  ctx.strokeStyle = "rgba(255,255,255,0.25)";
   ctx.lineWidth = 1;
   ctx.beginPath();
   ctx.arc(x, y, r, 0, Math.PI * 2);
@@ -339,7 +339,7 @@ function drawOrbit(ctx: CanvasRenderingContext2D, w: number, h: number, day: num
 
   ctx.font = "11px system-ui, sans-serif";
   ctx.setLineDash([3, 4]);
-  ctx.strokeStyle = "rgba(240,233,221,0.15)";
+  ctx.strokeStyle = "rgba(255,255,255,0.15)";
   ctx.lineWidth = 1;
   ctx.beginPath();
   ctx.arc(cx, cy, R, 0, Math.PI * 2);
@@ -357,7 +357,7 @@ function drawOrbit(ctx: CanvasRenderingContext2D, w: number, h: number, day: num
 
   // Earth and the Moon's orbit.
   const E = P(cx, cy, earthRad, R);
-  ctx.strokeStyle = "rgba(240,233,221,0.18)";
+  ctx.strokeStyle = "rgba(255,255,255,0.18)";
   ctx.beginPath();
   ctx.arc(E.x, E.y, rm, 0, Math.PI * 2);
   ctx.stroke();
@@ -374,7 +374,7 @@ function drawOrbit(ctx: CanvasRenderingContext2D, w: number, h: number, day: num
   litBall(ctx, E.x, E.y, 10, sunFromEarthRad, "#1e3a5f", "#38bdf8");
   const I = P(E.x, E.y, indiaRad, 10);
   ctx.fillStyle = "#fb923c";
-  ctx.strokeStyle = "#13110f";
+  ctx.strokeStyle = "#0a0d1c";
   ctx.lineWidth = 1.5;
   ctx.beginPath();
   ctx.arc(I.x, I.y, 3.2, 0, Math.PI * 2);
@@ -397,19 +397,19 @@ function drawOrbit(ctx: CanvasRenderingContext2D, w: number, h: number, day: num
   const mAway = P(M.x, M.y, moonRad, offset("Moon", moonRad, 8));
   label("Moon", mAway.x, mAway.y + 4, "rgba(244,241,222,0.8)");
 
-  ctx.fillStyle = "rgba(240,233,221,0.4)";
+  ctx.fillStyle = "rgba(255,255,255,0.4)";
   ctx.fillText("Not to scale", 8, h - 8);
   ctx.fillStyle = "#fb923c";
   ctx.beginPath();
   ctx.arc(11, 14, 3.2, 0, Math.PI * 2);
   ctx.fill();
-  ctx.fillStyle = "rgba(240,233,221,0.6)";
+  ctx.fillStyle = "rgba(255,255,255,0.6)";
   ctx.fillText("India", 18, 18);
 
   // Inset: the Moon as seen from India.
-  ctx.fillStyle = "rgba(240,233,221,0.04)";
+  ctx.fillStyle = "rgba(255,255,255,0.04)";
   ctx.fillRect(ow, 0, insetW, h);
-  ctx.strokeStyle = "rgba(240,233,221,0.08)";
+  ctx.strokeStyle = "rgba(255,255,255,0.08)";
   ctx.beginPath();
   ctx.moveTo(ow + 0.5, 0);
   ctx.lineTo(ow + 0.5, h);
@@ -420,17 +420,17 @@ function drawOrbit(ctx: CanvasRenderingContext2D, w: number, h: number, day: num
   const name = phase.name.replace(/ \(.*\)/, "");
   if (targetElong === null) {
     const top = h / 2 - mr - 34;
-    ctx.fillStyle = "rgba(240,233,221,0.55)";
+    ctx.fillStyle = "rgba(255,255,255,0.55)";
     ctx.fillText("Moon from India", ix, top + 10);
     moonDisc(ctx, ix, top + 24 + mr, mr, phase.elong);
     ctx.fillStyle = "#e2e8f0";
     ctx.fillText(name, ix, top + 2 * mr + 44);
-    ctx.fillStyle = "rgba(240,233,221,0.55)";
+    ctx.fillStyle = "rgba(255,255,255,0.55)";
     ctx.fillText(tithiText(phase.paksha, phase.tithi), ix, top + 2 * mr + 60);
   } else {
     const gap = (h - 2 * (2 * mr + 22)) / 3;
     let y = gap;
-    ctx.fillStyle = "rgba(240,233,221,0.6)";
+    ctx.fillStyle = "rgba(255,255,255,0.6)";
     ctx.fillText("Your Moon", ix, y + 10);
     moonDisc(ctx, ix, y + 20 + mr, mr, phase.elong);
     y += 2 * mr + 22 + gap;
@@ -459,7 +459,7 @@ function drawShadow(ctx: CanvasRenderingContext2D, w: number, h: number, month: 
   ctx.beginPath();
   ctx.arc(cx, cy, rim, 0, Math.PI * 2);
   ctx.fill();
-  ctx.strokeStyle = "rgba(240,233,221,0.2)";
+  ctx.strokeStyle = "rgba(255,255,255,0.2)";
   ctx.lineWidth = 1;
   ctx.stroke();
   ctx.setLineDash([2, 4]);
@@ -469,7 +469,7 @@ function drawShadow(ctx: CanvasRenderingContext2D, w: number, h: number, month: 
     ctx.stroke();
   }
   ctx.setLineDash([]);
-  ctx.fillStyle = "rgba(240,233,221,0.35)";
+  ctx.fillStyle = "rgba(255,255,255,0.35)";
   ctx.font = "10px system-ui, sans-serif";
   for (const m of [1, 2]) {
     const p = at(135, m * perM);
@@ -482,7 +482,7 @@ function drawShadow(ctx: CanvasRenderingContext2D, w: number, h: number, month: 
   ctx.textBaseline = "middle";
   for (const [t, az] of [["N", 0], ["E", 90], ["S", 180], ["W", 270]] as const) {
     const p = at(az, rim + 12);
-    ctx.fillStyle = t === "N" ? "#67e8f9" : "rgba(240,233,221,0.6)";
+    ctx.fillStyle = t === "N" ? "#67e8f9" : "rgba(255,255,255,0.6)";
     ctx.fillText(t, p.x, p.y);
   }
   ctx.font = "10px system-ui, sans-serif";
@@ -546,7 +546,7 @@ function drawShadow(ctx: CanvasRenderingContext2D, w: number, h: number, month: 
   }
   // The stick, seen from above.
   ctx.fillStyle = "#fde68a";
-  ctx.strokeStyle = "#13110f";
+  ctx.strokeStyle = "#0a0d1c";
   ctx.lineWidth = 1.5;
   ctx.beginPath();
   ctx.arc(cx, cy, 4.5, 0, Math.PI * 2);
@@ -555,7 +555,7 @@ function drawShadow(ctx: CanvasRenderingContext2D, w: number, h: number, month: 
 
   ctx.textAlign = "left";
   ctx.textBaseline = "alphabetic";
-  ctx.fillStyle = "rgba(240,233,221,0.45)";
+  ctx.fillStyle = "rgba(255,255,255,0.45)";
   ctx.fillText("Seen from above", 8, 16);
   ctx.fillStyle = "rgba(103,232,249,0.7)";
   ctx.fillText("● shadow tip each hour", 8, h - 8);
@@ -568,7 +568,7 @@ function drawShadow(ctx: CanvasRenderingContext2D, w: number, h: number, month: 
     const tw = ctx.measureText(msg).width;
     ctx.fillStyle = "rgba(10,13,28,0.85)";
     ctx.fillRect(cx - tw / 2 - 8, cy + 22, tw + 16, 22);
-    ctx.fillStyle = "rgba(240,233,221,0.8)";
+    ctx.fillStyle = "rgba(255,255,255,0.8)";
     ctx.fillText(msg, cx, cy + 37);
     ctx.textAlign = "left";
   }

@@ -35,20 +35,20 @@ export default function ChildForm({
   return (
     <>
       <label className="mt-5 grid gap-1 text-sm">
-        <span className="text-muted">Nickname (not your real name)</span>
+        <span className="text-white/60">Nickname (not your real name)</span>
         <input className="field" value={nickname} maxLength={16} onChange={(e) => setNickname(e.target.value)} placeholder="e.g. StormRider" />
-        {nickname && !nicknameOk && <span className="text-xs text-brick-300">3 to 16 letters, numbers or spaces.</span>}
+        {nickname && !nicknameOk && <span className="text-xs text-rose-300">3 to 16 letters, numbers or spaces.</span>}
       </label>
       {!hideClass && (
         <>
-          <div className="mt-4 text-sm text-muted">Class</div>
+          <div className="mt-4 text-sm text-white/60">Class</div>
           <div className="mt-1 flex gap-2">
             {CLASSES.map((c) => (
               <button
                 key={c}
                 type="button"
                 onClick={() => setClassNum(c)}
-                className={`flex-1 rounded-xl border py-2 ${classNum === c ? "chip-on" : "border-line"}`}
+                className={`flex-1 rounded-xl border py-2 ${classNum === c ? "border-cyan-300 bg-cyan-300/15" : "border-white/10"}`}
               >
                 {c}
               </button>
@@ -56,14 +56,14 @@ export default function ChildForm({
           </div>
         </>
       )}
-      <div className="mt-4 text-sm text-muted">Avatar</div>
+      <div className="mt-4 text-sm text-white/60">Avatar</div>
       <div className="mt-1 grid grid-cols-6 gap-2">
         {AVATARS.map((a) => (
           <button
             key={a}
             type="button"
             onClick={() => setAvatar(a)}
-            className={`rounded-xl border py-2 text-2xl ${avatar === a ? "border-heather-300 bg-heather-300/15" : "border-line"}`}
+            className={`rounded-xl border py-2 text-2xl ${avatar === a ? "border-violet-300 bg-violet-300/15" : "border-white/10"}`}
             aria-label={`Avatar ${a}`}
           >
             {a}
@@ -73,7 +73,7 @@ export default function ChildForm({
       <label className="mt-5 flex items-start gap-3 text-sm">
         <input
           type="checkbox"
-          className="mt-1 h-4 w-4 accent-saffron-400"
+          className="mt-1 h-4 w-4 accent-cyan-400"
           checked={showOnLeaderboard}
           onChange={(e) => setShowOnLeaderboard(e.target.checked)}
         />

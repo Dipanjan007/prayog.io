@@ -228,9 +228,9 @@ export default function ShadowLab({ onReading, level = null }: Props) {
   return (
     <div className="flex flex-col gap-3 select-none">
       {!lv && (
-        <div className="grid grid-cols-3 gap-1 rounded-2xl bg-ink/20 p-1 text-sm">
+        <div className="grid grid-cols-3 gap-1 rounded-2xl bg-black/20 p-1 text-sm">
           {(Object.keys(MODE_LABEL) as ShadowMode[]).map((m) => (
-            <button key={m} onClick={() => setMode(m)} className={`rounded-xl py-2 ${mode === m ? "bg-cream/10 text-cream" : "text-faint"}`}>
+            <button key={m} onClick={() => setMode(m)} className={`rounded-xl py-2 ${mode === m ? "bg-white/10 text-white" : "text-white/45"}`}>
               {MODE_LABEL[m]}
             </button>
           ))}
@@ -249,7 +249,7 @@ export default function ShadowLab({ onReading, level = null }: Props) {
 
       <canvas
         ref={canvasRef}
-        className="h-64 w-full rounded-2xl border border-line bg-well sm:h-80"
+        className="h-64 w-full rounded-2xl border border-white/10 bg-[#0a0d1c] sm:h-80"
         style={{ touchAction: activeMode === "pinhole" || (activeMode === "mirror" && view === "periscope") ? "auto" : "pan-y" }}
         role="img"
         aria-label={ariaLabel}
@@ -266,7 +266,7 @@ export default function ShadowLab({ onReading, level = null }: Props) {
             <Readout label="Full shadow" value={edges.hasUmbra && material !== "glass" ? "Yes" : material === "glass" ? "Hardly any" : "No"} />
             <Readout label="Light through" value={`${Math.round(OBJECT_MATERIALS[material].transmit * 100)}%`} />
           </div>
-          <p className="text-center text-xs text-faint">Drag the lamp or the object along the bench.</p>
+          <p className="text-center text-xs text-white/45">Drag the lamp or the object along the bench.</p>
           <Slider label="Lamp distance from the wall" value={SCREEN_X - lampX} min={SCREEN_X - Math.min(objX - MIN_GAP, LAMP_RANGE.max)} max={SCREEN_X - LAMP_RANGE.min} step={1} unit=" cm" onChange={(v) => setLampX(SCREEN_X - v)} />
           <Slider label="Object distance from the wall" value={SCREEN_X - objX} min={MIN_GAP} max={SCREEN_X - lampX - MIN_GAP} step={1} unit=" cm" onChange={(v) => setObjX(SCREEN_X - v)} />
           <Choice options={(Object.keys(LAMPS) as LampId[]).map((id) => ({ id, label: LAMPS[id].label }))} value={lamp} onChange={setLamp} />
@@ -276,7 +276,7 @@ export default function ShadowLab({ onReading, level = null }: Props) {
             onChange={setMaterial}
           />
           <Choice options={(Object.keys(SHAPES) as ShapeId[]).map((id) => ({ id, label: SHAPES[id].label }))} value={shape} onChange={setShape} />
-          <p className="text-center text-xs text-faint">
+          <p className="text-center text-xs text-white/45">
             {OBJECT_MATERIALS[material].label} is {OBJECT_MATERIALS[material].kind.toLowerCase()}.{" "}
             {material === "glass"
               ? "Almost all light passes through it."
@@ -307,24 +307,24 @@ export default function ShadowLab({ onReading, level = null }: Props) {
             <Readout label="Angle of reflection ∠r" value={`${torch.r.toFixed(0)}°`} />
           </div>
           <Slider label="Angle of incidence" value={incidence} min={0} max={80} step={1} unit="°" onChange={setIncidence} />
-          <div className="rounded-2xl panel p-3">
-            <div className="text-xs text-faint">Hold a card up to a plane mirror</div>
+          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-3">
+            <div className="text-xs text-white/45">Hold a card up to a plane mirror</div>
             <div className="mt-2 grid grid-cols-2 gap-2 text-center">
               <div>
-                <div className="rounded-lg bg-cream/90 px-1 py-2 font-bold tracking-wide text-ink">{word}</div>
-                <div className="mt-1 text-[11px] text-faint">Your card</div>
+                <div className="rounded-lg bg-white/90 px-1 py-2 font-bold tracking-wide text-black">{word}</div>
+                <div className="mt-1 text-[11px] text-white/45">Your card</div>
               </div>
               <div>
-                <div className="rounded-lg border border-saffron-300/40 bg-saffron-300/10 px-1 py-2 font-bold tracking-wide text-saffron-100" style={{ transform: "scaleX(-1)" }}>
+                <div className="rounded-lg border border-cyan-300/40 bg-cyan-300/10 px-1 py-2 font-bold tracking-wide text-cyan-100" style={{ transform: "scaleX(-1)" }}>
                   {word}
                 </div>
-                <div className="mt-1 text-[11px] text-faint">Its image in the mirror</div>
+                <div className="mt-1 text-[11px] text-white/45">Its image in the mirror</div>
               </div>
             </div>
             <div className="mt-2">
               <Choice options={WORDS.map((x) => ({ id: x, label: x }))} value={word} onChange={setWord} />
             </div>
-            <p className="mt-2 text-xs text-faint">
+            <p className="mt-2 text-xs text-white/45">
               Left and right swap in the image. This is lateral inversion. That is why AMBULANCE is painted the other way round on the front of an ambulance.
             </p>
           </div>
@@ -333,7 +333,7 @@ export default function ShadowLab({ onReading, level = null }: Props) {
 
       {activeMode === "mirror" && view === "periscope" && (
         <>
-          <p className={`rounded-2xl border px-3 py-2 text-center text-sm ${peri.solved ? "border-sage-300/40 bg-sage-300/10 text-sage-200" : "border-line bg-cream/[0.03] text-muted"}`}>
+          <p className={`rounded-2xl border px-3 py-2 text-center text-sm ${peri.solved ? "border-lime-300/40 bg-lime-300/10 text-lime-200" : "border-white/10 bg-white/[0.03] text-white/60"}`}>
             {peri.solved ? "You can see the match over the wall!" : "Tilt both mirrors so light from the match reaches your eye."}
           </p>
           <Angles bounces={peri.rays[1].bounces} names={["Top mirror", "Bottom mirror"]} />
@@ -344,14 +344,14 @@ export default function ShadowLab({ onReading, level = null }: Props) {
 
       {activeMode === "maze" && lv && (
         <>
-          <div className={`rounded-2xl border px-3 py-2 text-center text-sm ${maze?.hit ? "border-sage-300/40 bg-sage-300/10 text-sage-200" : "border-line bg-cream/[0.03] text-muted"}`} aria-live="polite">
+          <div className={`rounded-2xl border px-3 py-2 text-center text-sm ${maze?.hit ? "border-lime-300/40 bg-lime-300/10 text-lime-200" : "border-white/10 bg-white/[0.03] text-white/60"}`} aria-live="polite">
             {maze?.hit ? "Target hit!" : `Level ${(level ?? 0) + 1}: ${lv.name}. Turn the mirrors to guide the laser to the target.`}
           </div>
           {lv.mirrors.length > 1 && (
             <Choice options={lv.mirrors.map((_, k) => ({ id: String(k), label: `Mirror ${k + 1}` }))} value={String(picked)} onChange={(v) => setPicked(Number(v))} />
           )}
           <div className="flex items-center gap-2">
-            <button className="rounded-xl border border-line px-3 py-2 text-sm text-muted" aria-label="Turn mirror 1 degree back" onClick={() => setAngles((a) => a.map((v, k) => (k === picked ? (v + 179) % 180 : v)))}>
+            <button className="rounded-xl border border-white/10 px-3 py-2 text-sm text-white/60" aria-label="Turn mirror 1 degree back" onClick={() => setAngles((a) => a.map((v, k) => (k === picked ? (v + 179) % 180 : v)))}>
               −1°
             </button>
             <div className="flex-1">
@@ -365,12 +365,12 @@ export default function ShadowLab({ onReading, level = null }: Props) {
                 onChange={(v) => setAngles((a) => a.map((x, k) => (k === picked ? v : x)))}
               />
             </div>
-            <button className="rounded-xl border border-line px-3 py-2 text-sm text-muted" aria-label="Turn mirror 1 degree on" onClick={() => setAngles((a) => a.map((v, k) => (k === picked ? (v + 1) % 180 : v)))}>
+            <button className="rounded-xl border border-white/10 px-3 py-2 text-sm text-white/60" aria-label="Turn mirror 1 degree on" onClick={() => setAngles((a) => a.map((v, k) => (k === picked ? (v + 1) % 180 : v)))}>
               +1°
             </button>
           </div>
           <Angles bounces={maze?.bounces ?? []} names={lv.mirrors.map((_, k) => `M${k + 1}`)} />
-          <p className="text-center text-xs text-faint">Tap a mirror and drag to turn it. The dashed line is the normal.</p>
+          <p className="text-center text-xs text-white/45">Tap a mirror and drag to turn it. The dashed line is the normal.</p>
         </>
       )}
     </div>
@@ -388,7 +388,7 @@ function Choice<T extends string>({ options, value, onChange }: { options: { id:
         <button
           key={o.id}
           onClick={() => onChange(o.id)}
-          className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${value === o.id ? "chip-on" : "border-line text-muted"}`}
+          className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${value === o.id ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/60"}`}
         >
           {o.label}
         </button>
@@ -399,11 +399,11 @@ function Choice<T extends string>({ options, value, onChange }: { options: { id:
 
 /** The angles at each mirror the beam reached, in order. */
 function Angles({ bounces, names }: { bounces: Bounce[]; names: string[] }) {
-  if (!bounces.length) return <p className="text-center text-xs text-faint">The beam has not reached a mirror yet.</p>;
+  if (!bounces.length) return <p className="text-center text-xs text-white/45">The beam has not reached a mirror yet.</p>;
   return (
     <div className="flex flex-wrap justify-center gap-2 text-xs">
       {bounces.map((b, k) => (
-        <span key={k} className="rounded-full panel px-3 py-1 tabular-nums text-muted">
+        <span key={k} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 tabular-nums text-white/60">
           {names[b.mirror] ?? `Mirror ${b.mirror + 1}`}: ∠i = {b.i.toFixed(0)}°, ∠r = {b.r.toFixed(0)}°
         </span>
       ))}
@@ -413,8 +413,8 @@ function Angles({ bounces, names }: { bounces: Bounce[]; names: string[] }) {
 
 function Readout({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl panel px-1 py-2">
-      <div className="text-[11px] uppercase tracking-wider text-faint">{label}</div>
+    <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-1 py-2">
+      <div className="text-[11px] uppercase tracking-wider text-white/45">{label}</div>
       <div className="font-display text-lg tabular-nums">{value}</div>
     </div>
   );
@@ -422,10 +422,10 @@ function Readout({ label, value }: { label: string; value: string }) {
 
 function Slider({ label, value, min, max, step, unit, onChange }: { label: string; value: number; min: number; max: number; step: number; unit: string; onChange: (v: number) => void }) {
   return (
-    <label className="block rounded-2xl panel px-4 py-3">
+    <label className="block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
       <div className="flex justify-between text-sm">
-        <span className="text-muted">{label}</span>
-        <span className="tabular-nums text-cream">
+        <span className="text-white/60">{label}</span>
+        <span className="tabular-nums text-white">
           {value}
           {unit}
         </span>
@@ -440,7 +440,7 @@ function Slider({ label, value, min, max, step, unit, onChange }: { label: strin
 /* ------------------------------------------------------------------ */
 
 /** Write text, nudged so it never spills out of the canvas. */
-function label(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, w: number, align: CanvasTextAlign = "center", color = "rgba(240,233,221,0.7)") {
+function label(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, w: number, align: CanvasTextAlign = "center", color = "rgba(255,255,255,0.7)") {
   const tw = ctx.measureText(text).width;
   let left = align === "center" ? x - tw / 2 : align === "right" ? x - tw : x;
   left = Math.max(4, Math.min(w - 4 - tw, left));
@@ -567,23 +567,23 @@ function drawShadow(
   const lh = Math.max(4, a * L.ky);
   ctx.fillRect(X(s.lampX) - 3, Y(0) - lh, 6, 2 * lh);
   ctx.shadowBlur = 0;
-  ctx.fillStyle = "rgba(240,233,221,0.35)";
+  ctx.fillStyle = "rgba(255,255,255,0.35)";
   ctx.fillRect(X(s.lampX) - 1, Y(0) + lh, 2, bot - Y(0) - lh);
   label(ctx, "lamp", X(s.lampX), Y(0) - lh - 6, L.sideRight + 6, "center", "#fde047");
 
   // Object: a non-luminous object, seen side-on.
   ctx.fillStyle = MATERIAL_COLOR[s.material];
-  ctx.strokeStyle = "rgba(240,233,221,0.5)";
+  ctx.strokeStyle = "rgba(255,255,255,0.5)";
   ctx.lineWidth = 1;
   ctx.fillRect(X(s.objX) - 2, Y(hh), 4, Y(-hh) - Y(hh));
   ctx.strokeRect(X(s.objX) - 2, Y(hh), 4, Y(-hh) - Y(hh));
-  ctx.fillStyle = "rgba(240,233,221,0.35)";
+  ctx.fillStyle = "rgba(255,255,255,0.35)";
   ctx.fillRect(X(s.objX) - 1, Y(-hh), 2, bot - Y(-hh));
   label(ctx, "object", X(s.objX), Y(-hh) + 14, L.sideRight + 6);
 
-  ctx.fillStyle = "rgba(240,233,221,0.18)";
+  ctx.fillStyle = "rgba(255,255,255,0.18)";
   ctx.fillRect(X(0), bot, X(SCREEN_X) - X(0), 1);
-  label(ctx, "Side view", 10, 14, w, "left", "rgba(240,233,221,0.5)");
+  label(ctx, "Side view", 10, 14, w, "left", "rgba(255,255,255,0.5)");
 
   // "On the wall": the shadow as you would see it, worked out ray by ray.
   off.width = GRID;
@@ -600,7 +600,7 @@ function drawShadow(
   octx.putImageData(img, 0, 0);
   ctx.imageSmoothingEnabled = true;
   ctx.drawImage(off, L.insetX, L.insetY, L.S, L.S);
-  ctx.strokeStyle = "rgba(240,233,221,0.3)";
+  ctx.strokeStyle = "rgba(255,255,255,0.3)";
   ctx.strokeRect(L.insetX, L.insetY, L.S, L.S);
   // The object's real size, for comparison.
   const k = L.S / (2 * WALL_HALF);
@@ -613,7 +613,7 @@ function drawShadow(
   ctx.closePath();
   ctx.stroke();
   ctx.setLineDash([]);
-  label(ctx, "On the wall", cx, L.insetY - 6, w, "center", "rgba(240,233,221,0.6)");
+  label(ctx, "On the wall", cx, L.insetY - 6, w, "center", "rgba(255,255,255,0.6)");
   ctx.font = "10px system-ui, sans-serif";
   label(ctx, "dashed: object size", cx, L.insetY + L.S + 12, w, "center", "rgba(34,211,238,0.85)");
   ctx.font = "11px system-ui, sans-serif";
@@ -679,7 +679,7 @@ function drawPinhole(ctx: CanvasRenderingContext2D, off: HTMLCanvasElement, w: n
   label(ctx, "candle", X(-d), Y(-half) + 14, right);
 
   // Box with the hole at the front and tracing paper at the back.
-  ctx.strokeStyle = "rgba(240,233,221,0.55)";
+  ctx.strokeStyle = "rgba(255,255,255,0.55)";
   ctx.lineWidth = 2;
   const boxH = 12;
   const gap = Math.max(1.5, (D / 2) * ky);
@@ -701,7 +701,7 @@ function drawPinhole(ctx: CanvasRenderingContext2D, off: HTMLCanvasElement, w: n
   ctx.setLineDash([]);
   label(ctx, "hole", X(0), Y(boxH) - 6, right);
   label(ctx, "screen", X(b), Y(-boxH) + 13, right + 8);
-  label(ctx, "Side view", 10, 14, w, "left", "rgba(240,233,221,0.5)");
+  label(ctx, "Side view", 10, 14, w, "left", "rgba(255,255,255,0.5)");
 
   // What appears on the tracing paper: the candle, upside down, blurred by the hole.
   ctx.fillStyle = "#07080f";
@@ -729,10 +729,10 @@ function drawPinhole(ctx: CanvasRenderingContext2D, off: HTMLCanvasElement, w: n
   ctx.globalAlpha = 1 / N;
   for (const p of N === 1 ? [{ x: 0, y: 0 }] : discSamples(r, N)) ctx.drawImage(off, insetX + p.x, insetY + p.y);
   ctx.restore();
-  ctx.strokeStyle = "rgba(240,233,221,0.3)";
+  ctx.strokeStyle = "rgba(255,255,255,0.3)";
   ctx.lineWidth = 1;
   ctx.strokeRect(insetX, insetY, S, S);
-  label(ctx, "On the screen", insetX + S / 2, insetY - 6, w, "center", "rgba(240,233,221,0.6)");
+  label(ctx, "On the screen", insetX + S / 2, insetY - 6, w, "center", "rgba(255,255,255,0.6)");
   ctx.font = "10px system-ui, sans-serif";
   label(ctx, "upside down", insetX + S / 2, insetY + S + 12, w, "center", "rgba(253,186,116,0.9)");
   ctx.font = "11px system-ui, sans-serif";
@@ -763,9 +763,9 @@ function drawTorch(ctx: CanvasRenderingContext2D, w: number, h: number, t: Retur
   const P = (p: Vec) => ({ x: ox + p.x * k, y: oy - p.y * k });
   // Mirror with its silvered back.
   drawMirror(ctx, P, TORCH_MIRROR, true);
-  label(ctx, "plane mirror", P({ x: 30, y: 0 }).x, oy + 14, w, "right", "rgba(240,233,221,0.55)");
+  label(ctx, "plane mirror", P({ x: 30, y: 0 }).x, oy + 14, w, "right", "rgba(255,255,255,0.55)");
   // Normal.
-  ctx.strokeStyle = "rgba(240,233,221,0.45)";
+  ctx.strokeStyle = "rgba(255,255,255,0.45)";
   ctx.setLineDash([4, 4]);
   ctx.beginPath();
   ctx.moveTo(ox, oy);
@@ -814,8 +814,8 @@ function drawTorch(ctx: CanvasRenderingContext2D, w: number, h: number, t: Retur
   ctx.fillStyle = "#fde047";
   ctx.fillRect(-2, -6, 4, 12);
   ctx.restore();
-  if (t.i > 55) label(ctx, "torch (drag me)", f.x + 10, f.y - 14, w, "center", "rgba(240,233,221,0.6)");
-  else label(ctx, "torch (drag me)", f.x - 6, f.y + 24, w, "right", "rgba(240,233,221,0.6)");
+  if (t.i > 55) label(ctx, "torch (drag me)", f.x + 10, f.y - 14, w, "center", "rgba(255,255,255,0.6)");
+  else label(ctx, "torch (drag me)", f.x - 6, f.y + 24, w, "right", "rgba(255,255,255,0.6)");
 }
 
 function drawMirror(ctx: CanvasRenderingContext2D, P: (p: Vec) => Vec, m: PlaneMirror, hatch: boolean, color = "#e2e8f0", width = 3) {
@@ -876,7 +876,7 @@ function drawNormals(ctx: CanvasRenderingContext2D, P: (p: Vec) => Vec, bounces:
     const l = Math.hypot(ex, ey);
     const n = { x: -ey / l, y: ex / l };
     const p = P(b.p);
-    ctx.strokeStyle = "rgba(240,233,221,0.5)";
+    ctx.strokeStyle = "rgba(255,255,255,0.5)";
     ctx.setLineDash([3, 3]);
     ctx.lineWidth = 1;
     ctx.beginPath();
@@ -915,7 +915,7 @@ function drawPeriscope(ctx: CanvasRenderingContext2D, w: number, h: number, peri
   label(ctx, "cricket match", sc.x - 6, sc.y + 5 * k + 4, w);
   const ey = P(Pe.eye.c);
   drawEye(ctx, ey.x, ey.y, k, peri.solved);
-  label(ctx, peri.solved ? "I can see it!" : "your eye", ey.x, ey.y + 4 * k + 6, w, "center", peri.solved ? "#bef264" : "rgba(240,233,221,0.7)");
+  label(ctx, peri.solved ? "I can see it!" : "your eye", ey.x, ey.y + 4 * k + 6, w, "center", peri.solved ? "#bef264" : "rgba(255,255,255,0.7)");
   label(ctx, "periscope", P({ x: -10, y: 28 }).x, P({ x: 0, y: 28 }).y - 6, w);
 }
 
@@ -952,7 +952,7 @@ function drawEye(ctx: CanvasRenderingContext2D, x: number, y: number, k: number,
   ctx.beginPath();
   ctx.arc(x + rx * 0.35, y, ry * 0.8, 0, Math.PI * 2);
   ctx.fill();
-  ctx.fillStyle = "#13110f";
+  ctx.fillStyle = "#0a0d1c";
   ctx.beginPath();
   ctx.arc(x + rx * 0.35, y, ry * 0.38, 0, Math.PI * 2);
   ctx.fill();
@@ -972,7 +972,7 @@ function mazeLayout(w: number, h: number) {
 function drawMaze(ctx: CanvasRenderingContext2D, w: number, h: number, lv: (typeof MAZE_LEVELS)[number], maze: ReturnType<typeof mazeBeam>, picked: number) {
   const { k, P } = mazeLayout(w, h);
   const tl = P({ x: -MAZE_HALF.x, y: MAZE_HALF.y });
-  ctx.strokeStyle = "rgba(240,233,221,0.15)";
+  ctx.strokeStyle = "rgba(255,255,255,0.15)";
   ctx.lineWidth = 1;
   ctx.strokeRect(tl.x, tl.y, 2 * MAZE_HALF.x * k, 2 * MAZE_HALF.y * k);
   drawWalls(ctx, P, lv.walls, "#64748b", 5);
@@ -980,7 +980,7 @@ function drawMaze(ctx: CanvasRenderingContext2D, w: number, h: number, lv: (type
   const t = P(lv.target);
   for (const [rr, c] of [
     [TARGET_R, maze.hit ? "#a3e635" : "#f43f5e"],
-    [TARGET_R * 0.6, "#13110f"],
+    [TARGET_R * 0.6, "#0a0d1c"],
     [TARGET_R * 0.3, maze.hit ? "#a3e635" : "#f43f5e"],
   ] as const) {
     ctx.fillStyle = c;
@@ -1015,13 +1015,13 @@ function drawMaze(ctx: CanvasRenderingContext2D, w: number, h: number, lv: (type
       ctx.stroke();
     }
     drawMirror(ctx, P, m, false, i === picked ? "#67e8f9" : "#e2e8f0", 3.5);
-    ctx.fillStyle = "rgba(240,233,221,0.8)";
+    ctx.fillStyle = "rgba(255,255,255,0.8)";
     ctx.beginPath();
     ctx.arc(c.x, c.y, 2, 0, Math.PI * 2);
     ctx.fill();
     if (lv.mirrors.length > 1) {
       ctx.font = "10px system-ui, sans-serif";
-      label(ctx, `M${i + 1}`, c.x + 8 * k, c.y + 4, w, "left", "rgba(240,233,221,0.6)");
+      label(ctx, `M${i + 1}`, c.x + 8 * k, c.y + 4, w, "left", "rgba(255,255,255,0.6)");
       ctx.font = "11px system-ui, sans-serif";
     }
   });
@@ -1037,8 +1037,8 @@ function drawMaze(ctx: CanvasRenderingContext2D, w: number, h: number, lv: (type
   ctx.fillRect(3, -2, 3, 4);
   ctx.restore();
   ctx.font = "10px system-ui, sans-serif";
-  label(ctx, "laser", L.x, L.y + 18, w, "center", "rgba(240,233,221,0.6)");
-  label(ctx, "target", t.x, t.y - TARGET_R * k - 5, w, "center", "rgba(240,233,221,0.6)");
+  label(ctx, "laser", L.x, L.y + 18, w, "center", "rgba(255,255,255,0.6)");
+  label(ctx, "target", t.x, t.y - TARGET_R * k - 5, w, "center", "rgba(255,255,255,0.6)");
   ctx.font = "11px system-ui, sans-serif";
 }
 

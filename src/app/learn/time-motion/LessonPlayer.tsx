@@ -97,22 +97,22 @@ export default function LessonPlayer() {
       simNote="The pendulum is ideal: a point bob on a thread that does not stretch, with no air drag, so it never slows down. Its period is worked out exactly, including the small extra time for big swings. g = 9.8 m/s². The animation can run 5 times faster, but the stopwatch always shows real seconds. Racers are not drawn to scale."
       taskExtras={{
         "task:mass": (
-          <div className="mt-2 text-xs text-faint">
+          <div className="mt-2 text-xs text-white/45">
             Masses timed: {runs.length ? [...new Set(runs.map((r) => `${r.massG} g`))].join(", ") : "none yet"}
           </div>
         ),
-        "task:length": <div className="mt-2 text-xs text-faint">Lengths timed: {lengths.length ? lengths.map((l) => `${l} cm`).join(", ") : "none yet"}</div>,
+        "task:length": <div className="mt-2 text-xs text-white/45">Lengths timed: {lengths.length ? lengths.map((l) => `${l} cm`).join(", ") : "none yet"}</div>,
         "task:uniform": (
-          <div className="mt-2 text-xs text-faint">
+          <div className="mt-2 text-xs text-white/45">
             Raced so far: {[raced.includes("cycle") && "cycle", raced.includes("auto") && "auto-rickshaw"].filter(Boolean).join(" and ") || "neither yet"}
           </div>
         ),
       }}
       challengeBody={
-        <div className="text-sm text-muted">
+        <div className="text-sm text-white/60">
           {target ? (
-            <div className="rounded-xl panel p-3" aria-live="polite">
-              <div className="text-cream">
+            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3" aria-live="polite">
+              <div className="text-white">
                 Clock {round! + 1} of {CLOCK_ROUNDS.length}: {target.who}
               </div>
               <div className="mt-1 italic">{target.hint}</div>

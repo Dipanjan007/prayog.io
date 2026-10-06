@@ -96,21 +96,21 @@ export default function ProblemPlayer({ setId, problemId }: { setId: string; pro
 
   return (
     <div className="pt-2">
-      <nav className="text-sm text-faint" aria-label="Breadcrumb">
-        <Link href="/olympiad" className="hover:text-cream">
+      <nav className="text-sm text-white/45" aria-label="Breadcrumb">
+        <Link href="/olympiad" className="hover:text-white">
           Olympiad
         </Link>
         {" › "}
-        <Link href={`/olympiad/${set.id}`} className="hover:text-cream">
+        <Link href={`/olympiad/${set.id}`} className="hover:text-white">
           {set.title}
         </Link>
       </nav>
       <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
-        <span className="rounded-full border border-line px-2.5 py-0.5 text-[11px] uppercase tracking-wider" style={{ color: set.colour }}>
+        <span className="rounded-full border border-white/10 px-2.5 py-0.5 text-[11px] uppercase tracking-wider" style={{ color: set.colour }}>
           {LEVEL_LABEL[p.level]}
         </span>
         {best?.solved && (
-          <span className="text-xs text-faint">
+          <span className="text-xs text-white/45">
             Best: <Stars n={best.stars} /> · {best.xp} XP
           </span>
         )}
@@ -122,22 +122,22 @@ export default function ProblemPlayer({ setId, problemId }: { setId: string; pro
       <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
         {/* The problem */}
         <section className="glass min-w-0 rounded-3xl p-4 sm:p-5">
-          <div className="space-y-2 text-cream/85">
+          <div className="space-y-2 text-white/80">
             {p.story.map((para, i) => (
               <p key={i}>{para}</p>
             ))}
           </div>
-          <h2 className="mt-4 text-[11px] uppercase tracking-wider text-saffron-200/80">Given</h2>
-          <ul className="mt-1 space-y-1 text-sm text-cream/85">
+          <h2 className="mt-4 text-[11px] uppercase tracking-wider text-cyan-200/80">Given</h2>
+          <ul className="mt-1 space-y-1 text-sm text-white/80">
             {p.given.map((g) => (
               <li key={g}>• {g}</li>
             ))}
           </ul>
-          <div className="mt-4 rounded-2xl border border-saffron-300/30 bg-saffron-300/10 p-3">
-            <h2 className="text-[11px] uppercase tracking-wider text-saffron-200/80">Find</h2>
+          <div className="mt-4 rounded-2xl border border-cyan-300/30 bg-cyan-300/10 p-3">
+            <h2 className="text-[11px] uppercase tracking-wider text-cyan-200/80">Find</h2>
             <p className="mt-1 font-semibold">{p.ask}</p>
           </div>
-          <p className="mt-3 text-xs text-faint">✏️ Work it out with pencil and paper first. A calculator is fine. Answers within ±{TOLERANCE * 100}% count.</p>
+          <p className="mt-3 text-xs text-white/45">✏️ Work it out with pencil and paper first. A calculator is fine. Answers within ±{TOLERANCE * 100}% count.</p>
         </section>
 
         {/* Sim + answer */}
@@ -152,10 +152,10 @@ export default function ProblemPlayer({ setId, problemId }: { setId: string; pro
             }}
           >
             <div className="flex items-center justify-between gap-2">
-              <label htmlFor="oly-answer" className="text-sm text-muted">
+              <label htmlFor="oly-answer" className="text-sm text-white/60">
                 Your answer
               </label>
-              <span className="text-xs text-faint">
+              <span className="text-xs text-white/45">
                 Worth now: <Stars n={worth} />
               </span>
             </div>
@@ -172,12 +172,12 @@ export default function ProblemPlayer({ setId, problemId }: { setId: string; pro
                 onChange={(e) => setInput(e.target.value)}
                 aria-describedby="oly-unit"
               />
-              <span id="oly-unit" className="shrink-0 text-muted">
+              <span id="oly-unit" className="shrink-0 text-white/60">
                 {p.unit}
               </span>
             </div>
             {error && (
-              <p className="mt-2 text-sm text-brick-300" role="alert">
+              <p className="mt-2 text-sm text-rose-300" role="alert">
                 {error}
               </p>
             )}
@@ -187,7 +187,7 @@ export default function ProblemPlayer({ setId, problemId }: { setId: string; pro
 
             {shown && (
               <div
-                className={`mt-3 rounded-2xl border p-3 text-sm ${shown.correct ? "border-sage-300/40 bg-sage-300/10" : "border-brick-300/40 bg-brick-300/10"}`}
+                className={`mt-3 rounded-2xl border p-3 text-sm ${shown.correct ? "border-lime-300/40 bg-lime-300/10" : "border-rose-300/40 bg-rose-300/10"}`}
                 role="status"
                 data-testid="verdict"
               >
@@ -207,13 +207,13 @@ export default function ProblemPlayer({ setId, problemId }: { setId: string; pro
                     </>
                   )}
                 </div>
-                <p className="mt-1 text-cream/85">The sim: {shown.outcome.text}</p>
+                <p className="mt-1 text-white/80">The sim: {shown.outcome.text}</p>
                 {shown.correct && Math.abs(shown.value - p.answer) > 1e-9 * Math.abs(p.answer) && (
-                  <p className="mt-1 text-xs text-faint">
+                  <p className="mt-1 text-xs text-white/45">
                     Within 2%, so the sim ran the exact value, {p.symbol} {fmt(p.answer, 4)} {unit}.
                   </p>
                 )}
-                {!shown.correct && <p className="mt-1 text-xs text-faint">Check your free-body diagram and your units, then try again.</p>}
+                {!shown.correct && <p className="mt-1 text-xs text-white/45">Check your free-body diagram and your units, then try again.</p>}
               </div>
             )}
           </form>
@@ -227,7 +227,7 @@ export default function ProblemPlayer({ setId, problemId }: { setId: string; pro
                   type="button"
                   disabled={hints > i || hints < i}
                   onClick={() => setHints(i + 1)}
-                  className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${hints > i ? "chip-on" : "border-line text-muted"} disabled:cursor-not-allowed`}
+                  className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${hints > i ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/60"} disabled:cursor-not-allowed`}
                 >
                   💡 Hint {i + 1}
                   {!solvedNow && hints <= i ? " (−1 ★)" : ""}
@@ -237,29 +237,29 @@ export default function ProblemPlayer({ setId, problemId }: { setId: string; pro
                 type="button"
                 onClick={openSolution}
                 disabled={solutionOpen}
-                className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${solutionOpen ? "chip-on" : "border-line text-muted"}`}
+                className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${solutionOpen ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/60"}`}
               >
                 📘 Worked solution
               </button>
             </div>
             {confirmSolution && (
-              <div className="mt-3 rounded-2xl border border-ochre-300/40 bg-ochre-300/10 p-3 text-sm">
+              <div className="mt-3 rounded-2xl border border-amber-300/40 bg-amber-300/10 p-3 text-sm">
                 <p>If you open the solution before solving, this problem gives no stars. You can still enter the answer afterwards to see it in the sim.</p>
                 <div className="mt-2 flex gap-2">
-                  <button type="button" className="rounded-xl border border-line-strong px-3 py-1.5" onClick={openSolution}>
+                  <button type="button" className="rounded-xl border border-white/20 px-3 py-1.5" onClick={openSolution}>
                     Show it anyway
                   </button>
-                  <button type="button" className="rounded-xl px-3 py-1.5 text-muted" onClick={() => setConfirmSolution(false)}>
+                  <button type="button" className="rounded-xl px-3 py-1.5 text-white/60" onClick={() => setConfirmSolution(false)}>
                     Keep trying
                   </button>
                 </div>
               </div>
             )}
             {hints > 0 && (
-              <ol className="mt-3 space-y-2 text-sm text-cream/85">
+              <ol className="mt-3 space-y-2 text-sm text-white/80">
                 {p.hints.slice(0, hints).map((h, i) => (
-                  <li key={i} className="rounded-2xl bg-cream/[0.04] p-3">
-                    <span className="text-saffron-200">Hint {i + 1}.</span> {h}
+                  <li key={i} className="rounded-2xl bg-white/[0.04] p-3">
+                    <span className="text-cyan-200">Hint {i + 1}.</span> {h}
                   </li>
                 ))}
               </ol>
@@ -270,17 +270,17 @@ export default function ProblemPlayer({ setId, problemId }: { setId: string; pro
                 <ol className="mt-2 space-y-3">
                   {p.solution.map((st, i) => (
                     <li key={i} className="flex gap-3">
-                      <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-saffron-300/15 text-xs text-saffron-200">{i + 1}</span>
+                      <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-cyan-300/15 text-xs text-cyan-200">{i + 1}</span>
                       <div className="min-w-0">
-                        <p className="text-sm text-cream/85">{st.text}</p>
-                        {st.math && <p className="mt-1 rounded-xl bg-ink/30 px-3 py-2 font-mono text-[13px] break-words text-saffron-100">{st.math}</p>}
+                        <p className="text-sm text-white/80">{st.text}</p>
+                        {st.math && <p className="mt-1 rounded-xl bg-black/30 px-3 py-2 font-mono text-[13px] break-words text-cyan-100">{st.math}</p>}
                       </div>
                     </li>
                   ))}
                 </ol>
                 <p className="mt-3 text-sm">
                   Answer:{" "}
-                  <span className="font-semibold text-sage-300">
+                  <span className="font-semibold text-lime-300">
                     {p.symbol} {fmt(p.answer, 3)} {unit}
                   </span>
                 </p>
@@ -288,7 +288,7 @@ export default function ProblemPlayer({ setId, problemId }: { setId: string; pro
             )}
           </div>
 
-          <p className="text-xs text-faint">About the sim: {p.simNote}</p>
+          <p className="text-xs text-white/45">About the sim: {p.simNote}</p>
 
           <div className="flex flex-wrap gap-2">
             {next ? (

@@ -218,7 +218,7 @@ export default function MotionTrack({ onReading, showStopZone = true }: Props) {
     <div className="flex flex-col gap-3 select-none">
       <canvas
         ref={trackRef}
-        className="h-40 w-full rounded-2xl border border-line bg-well sm:h-48"
+        className="h-40 w-full rounded-2xl border border-white/10 bg-[#0a0d1c] sm:h-48"
         role="img"
         aria-label={`Sports car at ${display.x.toFixed(0)} metres, moving at ${display.v.toFixed(1)} metres per second`}
       />
@@ -229,44 +229,44 @@ export default function MotionTrack({ onReading, showStopZone = true }: Props) {
         <Readout label="Accel." value={display.a.toFixed(0)} unit="m/s²" />
       </div>
       <div className="grid grid-cols-2 gap-2">
-        <canvas ref={dRef} className="h-32 w-full rounded-2xl border border-line bg-cream/[0.02] sm:h-40" aria-label="Distance–time graph" role="img" />
-        <canvas ref={vRef} className="h-32 w-full rounded-2xl border border-line bg-cream/[0.02] sm:h-40" aria-label="Speed–time graph" role="img" />
+        <canvas ref={dRef} className="h-32 w-full rounded-2xl border border-white/10 bg-white/[0.02] sm:h-40" aria-label="Distance–time graph" role="img" />
+        <canvas ref={vRef} className="h-32 w-full rounded-2xl border border-white/10 bg-white/[0.02] sm:h-40" aria-label="Speed–time graph" role="img" />
       </div>
       <div className="grid grid-cols-[1fr_auto_1fr] gap-2">
         <button
           {...pedalProps("brake")}
           className={`touch-none rounded-2xl border py-4 font-semibold transition ${
-            pedal === "brake" ? "border-brick-300 bg-brick-400/30" : "border-brick-300/30 bg-brick-400/10"
+            pedal === "brake" ? "border-rose-300 bg-rose-400/30" : "border-rose-300/30 bg-rose-400/10"
           }`}
         >
           ◀ Brake
         </button>
-        <button onClick={reset} className="rounded-2xl border border-line px-4 text-sm text-muted hover:bg-cream/10">
+        <button onClick={reset} className="rounded-2xl border border-white/10 px-4 text-sm text-white/70 hover:bg-white/10">
           Reset
         </button>
         <button
           {...pedalProps("gas")}
           className={`touch-none rounded-2xl border py-4 font-semibold transition ${
-            pedal === "gas" ? "border-sage-300 bg-sage-400/30" : "border-sage-300/30 bg-sage-400/10"
+            pedal === "gas" ? "border-lime-300 bg-lime-400/30" : "border-lime-300/30 bg-lime-400/10"
           }`}
         >
           Accelerate ▶
         </button>
       </div>
-      <p className="text-center text-xs text-faint">Hold a pedal, let go to cruise. Keyboard: → accelerate, ← brake.</p>
+      <p className="text-center text-xs text-white/40">Hold a pedal, let go to cruise. Keyboard: → accelerate, ← brake.</p>
     </div>
   );
 }
 
 function Readout({ label, value, unit, sub }: { label: string; value: string; unit: string; sub?: string }) {
   return (
-    <div className="rounded-2xl panel px-1 py-2">
-      <div className="text-[11px] uppercase tracking-wider text-faint">{label}</div>
+    <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-1 py-2">
+      <div className="text-[11px] uppercase tracking-wider text-white/50">{label}</div>
       <div className="font-display text-lg tabular-nums">
         {value}
-        <span className="ml-0.5 text-xs text-faint">{unit}</span>
+        <span className="ml-0.5 text-xs text-white/50">{unit}</span>
       </div>
-      {sub && <div className="text-[11px] text-faint">{sub}</div>}
+      {sub && <div className="text-[11px] text-white/40">{sub}</div>}
     </div>
   );
 }
@@ -297,9 +297,9 @@ function drawTrack({ ctx, w, h }: Canvas, s: { x: number; v: number }, showStopZ
   ctx.fill();
 
   // Road.
-  ctx.fillStyle = "#1d1a16";
+  ctx.fillStyle = "#151827";
   ctx.fillRect(0, roadTop, w, h - roadTop);
-  ctx.fillStyle = "#2e2924";
+  ctx.fillStyle = "#2a2f45";
   ctx.fillRect(0, roadTop, w, 3);
 
   // Stop zone.
@@ -318,10 +318,10 @@ function drawTrack({ ctx, w, h }: Canvas, s: { x: number; v: number }, showStopZ
   const first = Math.floor((s.x - carScreenX / pxPerM) / 5) * 5;
   for (let m = first; m < s.x + w / pxPerM; m += 5) {
     const X = toX(m);
-    ctx.fillStyle = "rgba(240,233,221,0.25)";
+    ctx.fillStyle = "rgba(255,255,255,0.25)";
     ctx.fillRect(X, roadTop + (h - roadTop) / 2 - 1, 2.5 * pxPerM, 2);
     if (m % 10 === 0 && m >= 0) {
-      ctx.fillStyle = m === 0 ? "#f472b6" : "rgba(240,233,221,0.5)";
+      ctx.fillStyle = m === 0 ? "#f472b6" : "rgba(255,255,255,0.5)";
       ctx.fillRect(X, roadTop - 6, 1.5, 6);
       ctx.fillText(m === 0 ? "START" : `${m} m`, X + 3, roadTop - 8);
     }
@@ -407,10 +407,10 @@ function drawGraph({ ctx, w, h }: Canvas, samples: Sample[], key: "x" | "v", lab
   const X = (t: number) => pad.l + ((t - tStart) / tSpan) * (w - pad.l - pad.r);
   const Y = (y: number) => h - pad.b - (y / maxY) * (h - pad.t - pad.b);
 
-  ctx.strokeStyle = "rgba(240,233,221,0.12)";
+  ctx.strokeStyle = "rgba(255,255,255,0.12)";
   ctx.lineWidth = 1;
   ctx.font = "10px system-ui, sans-serif";
-  ctx.fillStyle = "rgba(240,233,221,0.45)";
+  ctx.fillStyle = "rgba(255,255,255,0.45)";
   for (let i = 0; i <= 2; i++) {
     const yv = (maxY / 1.1) * (i / 2);
     ctx.beginPath();

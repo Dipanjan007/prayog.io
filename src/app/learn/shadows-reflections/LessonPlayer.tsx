@@ -65,14 +65,14 @@ export default function LessonPlayer() {
       simNote="The side view squeezes distances along the bench so everything fits; heights are drawn to scale with each other. The shadow on the wall is worked out ray by ray from a round lamp. How much light glass, butter paper and cardboard let through are typical values, not measurements. In the pinhole camera the hole is drawn wider than it really is so you can see it."
       taskExtras={{
         "task:materials": (
-          <div className="mt-2 text-xs text-faint">Tried: {tried.length ? tried.map((m) => OBJECT_MATERIALS[m].label).join(", ") : "nothing yet"}</div>
+          <div className="mt-2 text-xs text-white/45">Tried: {tried.length ? tried.map((m) => OBJECT_MATERIALS[m].label).join(", ") : "nothing yet"}</div>
         ),
       }}
       challengeBody={
-        <div className="text-sm text-muted">
+        <div className="text-sm text-white/60">
           {level !== null ? (
-            <div className="rounded-xl panel p-3" aria-live="polite">
-              <div className="text-cream">
+            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3" aria-live="polite">
+              <div className="text-white">
                 Level {level + 1} of {MAZE_LEVELS.length}: {MAZE_LEVELS[level].name}
               </div>
               <div className="mt-1">Turn the mirrors in the picture.</div>

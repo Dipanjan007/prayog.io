@@ -200,13 +200,13 @@ export default function TimeLab({ onReading, target = null }: Props) {
   return (
     <div className="flex flex-col gap-3 select-none">
       {target === null && (
-        <div className="grid grid-cols-2 gap-1 rounded-2xl bg-ink/20 p-1 text-sm">
+        <div className="grid grid-cols-2 gap-1 rounded-2xl bg-black/20 p-1 text-sm">
           {(["pendulum", "race"] as const).map((m) => (
             <button key={m} onClick={() => {
                 setMode(m);
                 resetSwing();
                 setRacing(false);
-              }} className={`rounded-xl py-2 ${activeMode === m ? "bg-cream/10 text-cream" : "text-faint"}`}>
+              }} className={`rounded-xl py-2 ${activeMode === m ? "bg-white/10 text-white" : "text-white/45"}`}>
               {m === "pendulum" ? "Pendulum timer" : "Race track"}
             </button>
           ))}
@@ -215,7 +215,7 @@ export default function TimeLab({ onReading, target = null }: Props) {
 
       <canvas
         ref={canvasRef}
-        className="h-64 w-full rounded-2xl border border-line bg-well sm:h-80"
+        className="h-64 w-full rounded-2xl border border-white/10 bg-[#0a0d1c] sm:h-80"
         role="img"
         aria-label={
           activeMode === "pendulum"
@@ -236,7 +236,7 @@ export default function TimeLab({ onReading, target = null }: Props) {
           <Slider label="Release angle" value={angle} unit="°" min={ANGLE_DEG.min} max={ANGLE_DEG.max} step={1} onChange={(v) => (setAngle(v), resetSwing(v))} />
           <div className="flex gap-2">
             <button
-              className={`flex-1 rounded-xl border px-3 py-2 text-sm ${swinging ? "border-brick-300/60 text-brick-200" : "chip-on"}`}
+              className={`flex-1 rounded-xl border px-3 py-2 text-sm ${swinging ? "border-rose-300/60 text-rose-200" : "border-cyan-300 bg-cyan-300/15"}`}
               onClick={() => (swinging ? resetSwing() : (resetSwing(), setSwinging(true)))}
             >
               {swinging ? "Stop and reset" : `Release and time ${COUNT} oscillations`}
@@ -244,9 +244,9 @@ export default function TimeLab({ onReading, target = null }: Props) {
             <SpeedToggle fast={fast} setFast={setFast} />
           </div>
           {recent.length > 0 && (
-            <div className="overflow-hidden rounded-2xl panel text-xs">
+            <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] text-xs">
               <table className="w-full text-center tabular-nums">
-                <thead className="text-[11px] uppercase tracking-wider text-faint">
+                <thead className="text-[11px] uppercase tracking-wider text-white/45">
                   <tr>
                     <th className="py-1.5 font-normal">Length</th>
                     <th className="font-normal">Mass</th>
@@ -255,21 +255,21 @@ export default function TimeLab({ onReading, target = null }: Props) {
                     <th className="font-normal">Period</th>
                   </tr>
                 </thead>
-                <tbody className="text-cream/85">
+                <tbody className="text-white/80">
                   {recent.map((r) => (
-                    <tr key={r.id} className="border-t border-line">
+                    <tr key={r.id} className="border-t border-white/10">
                       <td className="py-1">{r.lengthCm} cm</td>
                       <td>{r.massG} g</td>
                       <td>{r.angle}°</td>
                       <td>{r.total.toFixed(2)} s</td>
-                      <td className="font-semibold text-saffron-200">{r.period.toFixed(2)} s</td>
+                      <td className="font-semibold text-cyan-200">{r.period.toFixed(2)} s</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
           )}
-          <p className="text-center text-xs text-faint">Time period = time for {COUNT} oscillations ÷ {COUNT}</p>
+          <p className="text-center text-xs text-white/45">Time period = time for {COUNT} oscillations ÷ {COUNT}</p>
         </>
       ) : (
         <>
@@ -279,21 +279,21 @@ export default function TimeLab({ onReading, target = null }: Props) {
                 key={r.id}
                 onClick={() => toggleLane(r.id)}
                 aria-pressed={lanes.includes(r.id)}
-                className={`rounded-xl border px-2 py-2 text-sm whitespace-nowrap ${lanes.includes(r.id) ? "chip-on" : "border-line text-muted"}`}
+                className={`rounded-xl border px-2 py-2 text-sm whitespace-nowrap ${lanes.includes(r.id) ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/60"}`}
               >
                 {r.emoji} {r.name}
               </button>
             ))}
           </div>
           <div className="flex gap-2">
-            <button className="flex-1 rounded-xl border chip-on px-3 py-2 text-sm disabled:opacity-50" disabled={racing} onClick={startRace}>
+            <button className="flex-1 rounded-xl border border-cyan-300 bg-cyan-300/15 px-3 py-2 text-sm disabled:opacity-50" disabled={racing} onClick={startRace}>
               {racing ? `Racing… ${raceClock.toFixed(1)} s` : "Start the race"}
             </button>
             <SpeedToggle fast={fast} setFast={setFast} />
           </div>
           {results.length > 0 && (
-            <div className="flex flex-col gap-2 rounded-2xl panel p-3 text-sm">
-              <div className="text-xs text-faint">Results: work out each speed. Speed = distance ÷ time.</div>
+            <div className="flex flex-col gap-2 rounded-2xl border border-white/10 bg-white/[0.03] p-3 text-sm">
+              <div className="text-xs text-white/45">Results: work out each speed. Speed = distance ÷ time.</div>
               {[...results]
                 .sort((a, b) => finishTime(a) - finishTime(b))
                 .map((id) => {
@@ -303,10 +303,10 @@ export default function TimeLab({ onReading, target = null }: Props) {
                   return (
                     <div key={id} className="flex flex-wrap items-center gap-x-3 gap-y-1">
                       <span className="min-w-0 flex-1">
-                        {r.emoji} {r.name}: <span className="tabular-nums text-cream">100 m in {shown.toFixed(1)} s</span>
+                        {r.emoji} {r.name}: <span className="tabular-nums text-white">100 m in {shown.toFixed(1)} s</span>
                       </span>
                       {found ? (
-                        <span className="tabular-nums text-sage-300">
+                        <span className="tabular-nums text-lime-300">
                           ✓ {(TRACK_M / shown).toFixed(1)} m/s ({toKmh(TRACK_M / shown).toFixed(0)} km/h)
                         </span>
                       ) : (
@@ -314,16 +314,16 @@ export default function TimeLab({ onReading, target = null }: Props) {
                           <input
                             inputMode="decimal"
                             aria-label={`Speed of the ${r.name.toLowerCase()} in metres per second`}
-                            className="w-16 rounded-lg border border-line-strong bg-ink/30 px-2 py-1 text-right tabular-nums"
+                            className="w-16 rounded-lg border border-white/20 bg-black/30 px-2 py-1 text-right tabular-nums"
                             value={answers[id] ?? ""}
                             onChange={(e) => setAnswers((a) => ({ ...a, [id]: e.target.value }))}
                             onKeyDown={(e) => e.key === "Enter" && checkSpeed(id)}
                           />
-                          <span className="text-muted">m/s</span>
-                          <button className="rounded-lg border border-line-strong px-2 py-1 text-xs" onClick={() => checkSpeed(id)}>
+                          <span className="text-white/60">m/s</span>
+                          <button className="rounded-lg border border-white/20 px-2 py-1 text-xs" onClick={() => checkSpeed(id)}>
                             Check
                           </button>
-                          {checked[id] === false && <span className="text-xs text-brick-300">Try again</span>}
+                          {checked[id] === false && <span className="text-xs text-rose-300">Try again</span>}
                         </span>
                       )}
                     </div>
@@ -331,7 +331,7 @@ export default function TimeLab({ onReading, target = null }: Props) {
                 })}
             </div>
           )}
-          <p className="text-center text-xs text-faint">Each dot shows where a racer was after every 1 s. Pick racers, then start.</p>
+          <p className="text-center text-xs text-white/45">Each dot shows where a racer was after every 1 s. Pick racers, then start.</p>
         </>
       )}
     </div>
@@ -340,8 +340,8 @@ export default function TimeLab({ onReading, target = null }: Props) {
 
 function Readout({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl panel px-1 py-2">
-      <div className="text-[11px] uppercase tracking-wider text-faint">{label}</div>
+    <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-1 py-2">
+      <div className="text-[11px] uppercase tracking-wider text-white/45">{label}</div>
       <div className="font-display text-lg tabular-nums">{value}</div>
     </div>
   );
@@ -349,10 +349,10 @@ function Readout({ label, value }: { label: string; value: string }) {
 
 function Slider({ label, value, unit, min, max, step, onChange }: { label: string; value: number; unit: string; min: number; max: number; step: number; onChange: (v: number) => void }) {
   return (
-    <label className="block rounded-2xl panel px-4 py-3">
+    <label className="block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
       <div className="flex justify-between text-sm">
-        <span className="text-muted">{label}</span>
-        <span className="tabular-nums text-cream">
+        <span className="text-white/60">{label}</span>
+        <span className="tabular-nums text-white">
           {value} {unit}
         </span>
       </div>
@@ -364,7 +364,7 @@ function Slider({ label, value, unit, min, max, step, onChange }: { label: strin
 function SpeedToggle({ fast, setFast }: { fast: boolean; setFast: (f: boolean) => void }) {
   return (
     <button
-      className={`shrink-0 rounded-xl border px-3 py-2 text-sm ${fast ? "chip-on" : "border-line text-muted"}`}
+      className={`shrink-0 rounded-xl border px-3 py-2 text-sm ${fast ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/60"}`}
       onClick={() => setFast(!fast)}
       aria-pressed={fast}
       title="Play the animation 5 times faster. The stopwatch still shows real seconds."
@@ -389,7 +389,7 @@ function drawPendulum(
   const th0 = (p.angle * Math.PI) / 180;
 
   // Stand.
-  ctx.strokeStyle = "rgba(240,233,221,0.55)";
+  ctx.strokeStyle = "rgba(255,255,255,0.55)";
   ctx.lineWidth = 4;
   ctx.beginPath();
   ctx.moveTo(px - 46, py);
@@ -399,7 +399,7 @@ function drawPendulum(
   // Rest line and the swing range.
   ctx.setLineDash([3, 4]);
   ctx.lineWidth = 1;
-  ctx.strokeStyle = "rgba(240,233,221,0.15)";
+  ctx.strokeStyle = "rgba(255,255,255,0.15)";
   ctx.beginPath();
   ctx.moveTo(px, py);
   ctx.lineTo(px, py + L + r);
@@ -413,7 +413,7 @@ function drawPendulum(
   // Thread and bob. θ > 0 is to the right.
   const bx = px + L * Math.sin(p.theta);
   const by = py + L * Math.cos(p.theta);
-  ctx.strokeStyle = "rgba(240,233,221,0.8)";
+  ctx.strokeStyle = "rgba(255,255,255,0.8)";
   ctx.lineWidth = 1.2;
   ctx.beginPath();
   ctx.moveTo(px, py);
@@ -426,14 +426,14 @@ function drawPendulum(
   ctx.beginPath();
   ctx.arc(bx, by, r, 0, Math.PI * 2);
   ctx.fill();
-  ctx.fillStyle = "#13110f";
+  ctx.fillStyle = "#0a0d1c";
   ctx.beginPath();
   ctx.arc(px, py, 3, 0, Math.PI * 2);
   ctx.fill();
 
   // Labels.
   ctx.font = "12px system-ui, sans-serif";
-  ctx.fillStyle = "rgba(240,233,221,0.6)";
+  ctx.fillStyle = "rgba(255,255,255,0.6)";
   ctx.textAlign = "right";
   ctx.fillText(`${p.lengthCm} cm`, px - 8, py + Math.max(14, L / 2));
   ctx.textAlign = "left";
@@ -443,10 +443,10 @@ function drawPendulum(
   ctx.fillStyle = "#a5f3fc";
   ctx.fillText(`⏱ ${p.t.toFixed(2)} s`, 10, 22);
   ctx.textAlign = "right";
-  ctx.fillStyle = "rgba(240,233,221,0.85)";
+  ctx.fillStyle = "rgba(255,255,255,0.85)";
   ctx.fillText(`${p.osc} / ${COUNT}`, w - 10, 22);
   ctx.font = "11px system-ui, sans-serif";
-  ctx.fillStyle = "rgba(240,233,221,0.5)";
+  ctx.fillStyle = "rgba(255,255,255,0.5)";
   ctx.fillText("oscillations", w - 10, 37);
   if (p.target !== null) {
     ctx.textAlign = "left";
@@ -473,19 +473,19 @@ function drawRace(ctx: CanvasRenderingContext2D, w: number, h: number, lanes: Ra
   ctx.font = "10px system-ui, sans-serif";
   ctx.textAlign = "center";
   for (let m = 0; m <= TRACK_M; m += 10) {
-    ctx.strokeStyle = m === 0 || m === TRACK_M ? "rgba(240,233,221,0.6)" : "rgba(240,233,221,0.1)";
+    ctx.strokeStyle = m === 0 || m === TRACK_M ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.1)";
     ctx.lineWidth = m === 0 || m === TRACK_M ? 2 : 1;
     ctx.beginPath();
     ctx.moveTo(X(m), top - 4);
     ctx.lineTo(X(m), bottom);
     ctx.stroke();
     if (m % 20 === 0) {
-      ctx.fillStyle = "rgba(240,233,221,0.5)";
+      ctx.fillStyle = "rgba(255,255,255,0.5)";
       ctx.fillText(m === TRACK_M ? "100 m" : `${m}`, Math.min(X(m), w - 16), bottom + 14);
     }
   }
   ctx.textAlign = "right";
-  ctx.fillStyle = "rgba(240,233,221,0.6)";
+  ctx.fillStyle = "rgba(255,255,255,0.6)";
   ctx.fillText("FINISH", right, top - 8);
 
   lanes.forEach((id, i) => {
@@ -493,7 +493,7 @@ function drawRace(ctx: CanvasRenderingContext2D, w: number, h: number, lanes: Ra
     const y0 = top + i * laneH;
     const cy = y0 + laneH / 2;
     if (i > 0) {
-      ctx.strokeStyle = "rgba(240,233,221,0.12)";
+      ctx.strokeStyle = "rgba(255,255,255,0.12)";
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(left, y0);

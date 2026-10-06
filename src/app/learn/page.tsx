@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BOOKS, CLASSES, STRANDS } from "@/content/curriculum";
-import { StrandIcon } from "@/components/Ink";
 
 export const metadata: Metadata = { title: "Learn" };
 
@@ -10,32 +9,29 @@ export default function LearnPage() {
   const live = STRANDS.reduce((n, s) => n + s.chapters.filter((c) => c.href).length, 0);
 
   return (
-    <div className="pt-4 sm:pt-8">
-      <div className="eyebrow">Classes 7 to 10</div>
-      <h1 className="font-display mt-2 text-4xl sm:text-5xl">Your physics map</h1>
-      <p className="mt-3 max-w-2xl text-lg leading-relaxed text-muted">
+    <div className="pt-4">
+      <h1 className="font-display text-4xl font-bold">Your physics map</h1>
+      <p className="mt-2 max-w-2xl text-white/60">
         Seven strands that grow from Class 7 to Class 10, following the NCERT books. {live} of {total} chapters are
-        playable now; the rest are on the way.
+        playable now{live < total ? "; the rest are on the way" : ""}.
       </p>
 
       {/* Header row: classes */}
-      <div className="sticky top-14 z-10 mt-10 hidden grid-cols-[11rem_repeat(4,minmax(0,1fr))] gap-3 border-b border-line bg-base/95 px-4 py-3 text-sm md:grid">
+      <div className="mt-8 hidden grid-cols-[10rem_repeat(4,minmax(0,1fr))] gap-3 text-sm text-white/50 md:grid">
         <div />
         {CLASSES.map((c) => (
           <div key={c}>
-            <span className="font-display text-base text-cream">Class {c}</span> <span className="text-faint">· {BOOKS[c]}</span>
+            Class {c} <span className="text-white/30">· {BOOKS[c]}</span>
           </div>
         ))}
       </div>
 
-      <div className="mt-6 flex flex-col gap-4 md:mt-4 md:gap-3">
+      <div className="mt-3 flex flex-col gap-3">
         {STRANDS.map((strand) => (
-          <section key={strand.id} className="glass grid gap-3 rounded-3xl p-4 md:grid-cols-[11rem_repeat(4,minmax(0,1fr))] md:p-3">
-            <div className="flex items-center gap-3 md:flex-col md:items-start md:gap-2 md:px-2 md:py-1">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-line bg-well" style={{ color: strand.colour }}>
-                <StrandIcon id={strand.id} className="h-6 w-6" />
-              </span>
-              <h2 className="font-display text-xl">{strand.name}</h2>
+          <section key={strand.id} className="glass grid gap-3 rounded-3xl p-4 md:grid-cols-[10rem_repeat(4,minmax(0,1fr))] md:p-3">
+            <div className="flex items-center gap-2 md:px-2">
+              <span className="h-3 w-3 rounded-full" style={{ background: strand.colour, boxShadow: `0 0 12px ${strand.colour}` }} />
+              <h2 className="font-display font-semibold">{strand.name}</h2>
             </div>
             {CLASSES.map((c) => {
               const chapters = strand.chapters.filter((ch) => ch.classNum === c);
@@ -46,21 +42,21 @@ export default function LearnPage() {
                       <Link
                         key={ch.title}
                         href={ch.href}
-                        className="group relative overflow-hidden rounded-2xl border border-line bg-raised p-3.5 pl-4 transition-colors hover:border-line-strong hover:bg-[#332d27]"
+                        className="group rounded-2xl border p-3 transition hover:-translate-y-0.5"
+                        style={{ borderColor: strand.colour, background: "rgba(56,189,248,0.08)" }}
                       >
-                        <span className="absolute inset-y-3 left-0 w-[3px] rounded-r-full" style={{ background: strand.colour }} aria-hidden />
-                        <div className="eyebrow md:hidden">Class {c}</div>
-                        <div className="text-[0.95rem] font-semibold leading-snug">{ch.title}</div>
-                        <div className="mt-1 text-sm leading-snug text-muted">{ch.sim}</div>
-                        <div className="mt-2.5 inline-flex items-center gap-1 text-sm font-semibold text-saffron-300">
-                          Play now <span className="transition-transform group-hover:translate-x-0.5" aria-hidden>→</span>
+                        <div className="text-[11px] uppercase tracking-wider text-white/50 md:hidden">Class {c}</div>
+                        <div className="text-sm font-semibold">{ch.title}</div>
+                        <div className="mt-1 text-xs text-white/60">🎮 {ch.sim}</div>
+                        <div className="mt-2 text-xs font-semibold" style={{ color: strand.colour }}>
+                          Play now →
                         </div>
                       </Link>
                     ) : (
-                      <div key={ch.title} className="rounded-2xl border border-dashed border-line p-3.5">
-                        <div className="eyebrow md:hidden">Class {c}</div>
-                        <div className="text-[0.95rem] leading-snug text-muted">{ch.title}</div>
-                        <div className="mt-1 text-sm leading-snug text-faint">{ch.sim} · coming soon</div>
+                      <div key={ch.title} className="rounded-2xl border border-white/5 bg-white/[0.02] p-3">
+                        <div className="text-[11px] uppercase tracking-wider text-white/40 md:hidden">Class {c}</div>
+                        <div className="text-sm text-white/70">{ch.title}</div>
+                        <div className="mt-1 text-xs text-white/40">{ch.sim} · coming soon</div>
                       </div>
                     ),
                   )}

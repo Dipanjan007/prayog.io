@@ -15,7 +15,7 @@ export default function Quiz({ questions, onFinish }: { questions: QuizQuestion[
         <div className="font-display text-4xl">
           {score}/{questions.length}
         </div>
-        <p className="mt-1 text-muted">
+        <p className="mt-1 text-white/60">
           {score === questions.length ? "Perfect score!" : "Nice work. Try again to beat your best."}
         </p>
         <button
@@ -38,23 +38,23 @@ export default function Quiz({ questions, onFinish }: { questions: QuizQuestion[
 
   return (
     <div>
-      <div className="mb-3 flex items-center justify-between text-xs text-faint">
+      <div className="mb-3 flex items-center justify-between text-xs text-white/50">
         <span>
           Question {index + 1} of {questions.length}
         </span>
-        <span className="tabular-nums">Score {score}</span>
+        <span>Score {score}</span>
       </div>
       <p className="font-medium">{q.q}</p>
       <div className="mt-3 grid gap-2">
         {q.options.map((opt, i) => {
           const isRight = i === q.answer;
           const style = !answered
-            ? "border-line hover:border-line-strong hover:bg-cream/[0.03]"
+            ? "border-white/10 hover:border-white/40"
             : isRight
-              ? "border-sage-300 bg-sage-300/15"
+              ? "border-lime-300 bg-lime-300/15"
               : i === picked
-                ? "border-brick-400 bg-brick-400/10"
-                : "border-line opacity-50";
+                ? "border-rose-400 bg-rose-400/10"
+                : "border-white/5 opacity-50";
           return (
             <button
               key={opt}
@@ -63,7 +63,7 @@ export default function Quiz({ questions, onFinish }: { questions: QuizQuestion[
                 setPicked(i);
                 if (isRight) setScore((s) => s + 1);
               }}
-              className={`rounded-xl border px-4 py-3 text-left text-[0.95rem] transition-colors ${style}`}
+              className={`rounded-xl border px-4 py-3 text-left text-sm transition ${style}`}
             >
               {opt}
             </button>
@@ -72,14 +72,12 @@ export default function Quiz({ questions, onFinish }: { questions: QuizQuestion[
       </div>
       {answered && (
         <div className="animate-pop mt-3 flex items-center justify-between gap-3">
-          <p className="text-sm leading-relaxed text-muted">
-            <span className={`font-semibold ${picked === q.answer ? "text-sage-300" : "text-ochre-300"}`}>
-              {picked === q.answer ? "Right. " : "Not quite. "}
-            </span>
+          <p className="text-sm text-white/70">
+            {picked === q.answer ? "✅ " : "💡 "}
             {q.why}
           </p>
           <button
-            className="btn-primary shrink-0 !px-5 text-sm"
+            className="btn-primary shrink-0 !px-4 !py-2 text-sm"
             onClick={() => {
               if (index + 1 < questions.length) {
                 setIndex(index + 1);

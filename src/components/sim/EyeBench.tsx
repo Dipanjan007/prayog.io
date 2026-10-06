@@ -83,9 +83,9 @@ export default function EyeBench({ onReading, patient = null }: Props) {
   return (
     <div className="flex flex-col gap-3 select-none">
       {!patient && (
-        <div className="grid grid-cols-2 gap-1 rounded-2xl bg-ink/20 p-1 text-sm">
+        <div className="grid grid-cols-2 gap-1 rounded-2xl bg-black/20 p-1 text-sm">
           {(["eye", "prism"] as const).map((m) => (
-            <button key={m} onClick={() => setMode(m)} className={`rounded-xl py-2 ${activeMode === m ? "bg-cream/10 text-cream" : "text-faint"}`}>
+            <button key={m} onClick={() => setMode(m)} className={`rounded-xl py-2 ${activeMode === m ? "bg-white/10 text-white" : "text-white/50"}`}>
               {m === "eye" ? "Human eye" : "Glass prism"}
             </button>
           ))}
@@ -94,7 +94,7 @@ export default function EyeBench({ onReading, patient = null }: Props) {
 
       <canvas
         ref={canvasRef}
-        className="h-56 w-full rounded-2xl border border-line bg-well sm:h-72"
+        className="h-56 w-full rounded-2xl border border-white/10 bg-[#0a0d1c] sm:h-72"
         role="img"
         aria-label={
           activeMode === "eye"
@@ -105,15 +105,15 @@ export default function EyeBench({ onReading, patient = null }: Props) {
 
       {activeMode === "eye" ? (
         <>
-          <div className="flex items-center gap-3 rounded-2xl panel p-3">
-            <div className="text-xs text-faint">What the eye sees</div>
+          <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-3">
+            <div className="text-xs text-white/50">What the eye sees</div>
             <div
-              className="flex-1 rounded-xl bg-cream/90 px-3 py-2 text-center font-semibold text-ink transition-[filter]"
+              className="flex-1 rounded-xl bg-white/90 px-3 py-2 text-center font-semibold text-slate-900 transition-[filter]"
               style={{ filter: `blur(${blur}px)` }}
             >
               {t.emoji} {t.text}
             </div>
-            <div className={`text-sm font-semibold ${sharp ? "text-sage-300" : "text-brick-300"}`}>{sharp ? "Sharp" : "Blurred"}</div>
+            <div className={`text-sm font-semibold ${sharp ? "text-lime-300" : "text-rose-300"}`}>{sharp ? "Sharp" : "Blurred"}</div>
           </div>
           {!patient && (
             <>
@@ -125,41 +125,41 @@ export default function EyeBench({ onReading, patient = null }: Props) {
               <Choice options={TARGETS.map((x) => ({ id: x.id, label: `${x.emoji} ${x.label}` }))} value={target} onChange={setTarget} />
             </>
           )}
-          <label className="block rounded-2xl panel px-4 py-3">
+          <label className="block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
             <div className="flex justify-between text-sm">
-              <span className="text-muted">Spectacle lens power</span>
-              <span className="tabular-nums text-cream">
+              <span className="text-white/60">Spectacle lens power</span>
+              <span className="tabular-nums text-white">
                 {glasses > 0 ? "+" : glasses < 0 ? "−" : ""}
                 {Math.abs(glasses).toFixed(1)} D {glasses > 0 ? "(convex)" : glasses < 0 ? "(concave)" : "(no glasses)"}
               </span>
             </div>
             <input type="range" className="range mt-2 w-full" min={-3} max={3} step={0.5} value={glasses} onChange={(e) => setGlasses(Number(e.target.value))} />
           </label>
-          <p className="text-center text-xs text-faint">
+          <p className="text-center text-xs text-white/40">
             {patient ? "A mystery patient" : `${cond.label}: ${cond.note}`}. The eye lens adjusts by itself (accommodation) as far as it can.
           </p>
         </>
       ) : (
         <>
           <div className="grid grid-cols-2 gap-2 text-center">
-            <div className="rounded-2xl panel px-1 py-2">
-              <div className="text-[11px] uppercase tracking-wider text-faint">Angle of incidence</div>
+            <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-1 py-2">
+              <div className="text-[11px] uppercase tracking-wider text-white/50">Angle of incidence</div>
               <div className="font-display text-lg tabular-nums">{incidence}°</div>
             </div>
-            <div className="rounded-2xl panel px-1 py-2">
-              <div className="text-[11px] uppercase tracking-wider text-faint">Red to violet spread</div>
+            <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-1 py-2">
+              <div className="text-[11px] uppercase tracking-wider text-white/50">Red to violet spread</div>
               <div className="font-display text-lg tabular-nums">{prism.spread.toFixed(1)}°</div>
             </div>
           </div>
-          <label className="block rounded-2xl panel px-4 py-3">
+          <label className="block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
             <div className="flex justify-between text-sm">
-              <span className="text-muted">Angle of incidence</span>
-              <span className="tabular-nums text-cream">{incidence}°</span>
+              <span className="text-white/60">Angle of incidence</span>
+              <span className="tabular-nums text-white">{incidence}°</span>
             </div>
             <input type="range" className="range mt-2 w-full" min={INCIDENCE.min} max={INCIDENCE.max} step={1} value={incidence} onChange={(e) => setIncidence(Number(e.target.value))} />
           </label>
           <button
-            className={`rounded-xl border px-3 py-2 text-sm ${recombined ? "chip-on" : "border-line text-muted"}`}
+            className={`rounded-xl border px-3 py-2 text-sm ${recombined ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/70"}`}
             onClick={() => setRecombined(!recombined)}
           >
             {recombined ? "Remove the second prism" : "Add a second prism, upside down (Newton's experiment)"}
@@ -177,7 +177,7 @@ function Choice<T extends string>({ options, value, onChange }: { options: { id:
         <button
           key={o.id}
           onClick={() => onChange(o.id)}
-          className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${value === o.id ? "chip-on" : "border-line text-muted"}`}
+          className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${value === o.id ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/70"}`}
         >
           {o.label}
         </button>
@@ -195,8 +195,8 @@ function drawEye(ctx: CanvasRenderingContext2D, w: number, h: number, d: number,
   const Y = (cm: number) => oy - cm * k;
 
   // Eyeball, cornea, retina.
-  ctx.strokeStyle = "rgba(240,233,221,0.5)";
-  ctx.fillStyle = "rgba(240,233,221,0.04)";
+  ctx.strokeStyle = "rgba(255,255,255,0.5)";
+  ctx.fillStyle = "rgba(255,255,255,0.04)";
   ctx.lineWidth = 2;
   ctx.beginPath();
   ctx.arc(X(1.25), oy, 1.3 * k, 0, Math.PI * 2);
@@ -221,7 +221,7 @@ function drawEye(ctx: CanvasRenderingContext2D, w: number, h: number, d: number,
   ctx.ellipse(X(0), oy, 0.12 * k + (eyePower - 40) * 0.03 * k, 0.55 * k, 0, 0, Math.PI * 2);
   ctx.fill();
   ctx.stroke();
-  ctx.fillStyle = "rgba(240,233,221,0.6)";
+  ctx.fillStyle = "rgba(255,255,255,0.6)";
   ctx.fillText("eye lens", X(-0.35), Y(0.85));
 
   // Spectacles.
@@ -266,7 +266,7 @@ function drawEye(ctx: CanvasRenderingContext2D, w: number, h: number, d: number,
     ctx.beginPath();
     ctx.arc(X(meet), oy, 3, 0, Math.PI * 2);
     ctx.fill();
-    ctx.fillStyle = "rgba(240,233,221,0.7)";
+    ctx.fillStyle = "rgba(255,255,255,0.7)";
     ctx.textAlign = "center";
     ctx.fillText("focus in front of retina", X(1.25), Y(-0.95));
     ctx.textAlign = "left";
@@ -280,7 +280,7 @@ function drawEye(ctx: CanvasRenderingContext2D, w: number, h: number, d: number,
       ctx.stroke();
     }
     ctx.setLineDash([]);
-    ctx.fillStyle = "rgba(240,233,221,0.7)";
+    ctx.fillStyle = "rgba(255,255,255,0.7)";
     ctx.textAlign = "center";
     ctx.fillText("focus behind retina", X(1.25), Y(-0.95));
     ctx.textAlign = "left";
@@ -324,7 +324,7 @@ function drawPrism(ctx: CanvasRenderingContext2D, w: number, h: number, scene: R
   ctx.globalCompositeOperation = "source-over";
   if (!scene.second) {
     ctx.font = "11px system-ui, sans-serif";
-    ctx.fillStyle = "rgba(240,233,221,0.6)";
+    ctx.fillStyle = "rgba(255,255,255,0.6)";
     ctx.fillText("V I B G Y O R", w - 90, h - 10);
   }
 }

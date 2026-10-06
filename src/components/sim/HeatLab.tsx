@@ -209,27 +209,27 @@ export default function HeatLab({ onReading }: { onReading?: (r: HeatReading) =>
 
   return (
     <div className="flex flex-col gap-3 select-none">
-      <div className="grid grid-cols-3 gap-1 rounded-2xl bg-ink/20 p-1 text-sm">
+      <div className="grid grid-cols-3 gap-1 rounded-2xl bg-black/20 p-1 text-sm">
         {(["rod", "pot", "coast"] as const).map((m) => (
-          <button key={m} onClick={() => setMode(m)} className={`rounded-xl py-2 ${mode === m ? "bg-cream/10 text-cream" : "text-faint"}`}>
+          <button key={m} onClick={() => setMode(m)} className={`rounded-xl py-2 ${mode === m ? "bg-white/10 text-white" : "text-white/45"}`}>
             {m === "rod" ? "Heated rod" : m === "pot" ? "Pot of water" : "Seaside"}
           </button>
         ))}
       </div>
 
-      <canvas ref={canvasRef} className="h-56 w-full rounded-2xl border border-line bg-well sm:h-72" role="img" aria-label={label} />
+      <canvas ref={canvasRef} className="h-56 w-full rounded-2xl border border-white/10 bg-[#0a0d1c] sm:h-72" role="img" aria-label={label} />
 
       {mode === "rod" && (
         <>
           <Choice options={(Object.keys(MATERIALS) as RodMaterial[]).map((id) => ({ id, label: MATERIALS[id].label }))} value={material} onChange={pickMaterial} />
           <div className="grid grid-cols-2 gap-2">
             <button
-              className={`rounded-xl border px-3 py-2 text-sm ${heating ? "chip-on" : "border-line text-muted"}`}
+              className={`rounded-xl border px-3 py-2 text-sm ${heating ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/60"}`}
               onClick={() => setHeating(!heating)}
             >
               {heating ? "Put out the flame" : "Light the flame"}
             </button>
-            <button className="rounded-xl border border-line px-3 py-2 text-sm text-muted" onClick={resetRod}>
+            <button className="rounded-xl border border-white/10 px-3 py-2 text-sm text-white/60" onClick={resetRod}>
               Cool rod, new wax
             </button>
           </div>
@@ -238,7 +238,7 @@ export default function HeatLab({ onReading }: { onReading?: (r: HeatReading) =>
             value={String(speed)}
             onChange={(v) => setSpeed(Number(v) as (typeof SPEEDS)[number])}
           />
-          <p className="text-center text-xs text-faint">
+          <p className="text-center text-xs text-white/45">
             {MATERIALS[material].kind === "good" ? "Metals are good conductors of heat." : "Glass and wood are poor conductors of heat."} Wax melts at about {ROD.waxMelt} °C.
           </p>
         </>
@@ -248,12 +248,12 @@ export default function HeatLab({ onReading }: { onReading?: (r: HeatReading) =>
         <>
           <div className="grid grid-cols-2 gap-2">
             <button
-              className={`rounded-xl border px-3 py-2 text-sm ${flame ? "chip-on" : "border-line text-muted"}`}
+              className={`rounded-xl border px-3 py-2 text-sm ${flame ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/60"}`}
               onClick={() => setFlame(!flame)}
             >
               {flame ? "Turn off the flame" : "Light the flame"}
             </button>
-            <button className="rounded-xl border border-line px-3 py-2 text-sm text-muted" onClick={addDye}>
+            <button className="rounded-xl border border-white/10 px-3 py-2 text-sm text-white/60" onClick={addDye}>
               {dye ? "Drop another crystal" : "Drop a crystal"}
             </button>
           </div>
@@ -265,10 +265,10 @@ export default function HeatLab({ onReading }: { onReading?: (r: HeatReading) =>
             value={flamePos}
             onChange={(v) => setFlamePos(v as FlamePos)}
           />
-          <button className="rounded-xl border border-line px-3 py-2 text-sm text-muted" onClick={freshWater}>
+          <button className="rounded-xl border border-white/10 px-3 py-2 text-sm text-white/60" onClick={freshWater}>
             Fresh cold water
           </button>
-          <p className="text-center text-xs text-faint">The crystal is potassium permanganate. It colours the water purple, so you can see where the water goes.</p>
+          <p className="text-center text-xs text-white/45">The crystal is potassium permanganate. It colours the water purple, so you can see where the water goes.</p>
         </>
       )}
 
@@ -281,24 +281,24 @@ export default function HeatLab({ onReading }: { onReading?: (r: HeatReading) =>
               { k: "Black tin", v: tins.black },
               { k: "White tin", v: tins.white },
             ].map((s) => (
-              <div key={s.k} className="rounded-2xl panel px-1 py-2">
-                <div className="text-[11px] uppercase tracking-wider text-faint">{s.k}</div>
+              <div key={s.k} className="rounded-2xl border border-white/10 bg-white/[0.03] px-1 py-2">
+                <div className="text-[11px] uppercase tracking-wider text-white/45">{s.k}</div>
                 <div className="font-display text-lg tabular-nums">{s.v.toFixed(0)} °C</div>
               </div>
             ))}
           </div>
-          <label className="block rounded-2xl panel px-4 py-3">
+          <label className="block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
             <div className="flex justify-between text-sm">
-              <span className="text-muted">Time of day</span>
-              <span className="tabular-nums text-cream">{clockLabel(hour)}</span>
+              <span className="text-white/60">Time of day</span>
+              <span className="tabular-nums text-white">{clockLabel(hour)}</span>
             </div>
             <input type="range" className="range mt-2 w-full" min={0} max={23.5} step={0.5} value={hour} onChange={(e) => setHour(Number(e.target.value))} />
           </label>
           <div className="grid grid-cols-2 gap-2">
-            <button className={`rounded-xl border px-3 py-2 text-sm ${sunlight(hour) > 0 ? "chip-on" : "border-line text-muted"}`} onClick={() => setHour(12)}>
+            <button className={`rounded-xl border px-3 py-2 text-sm ${sunlight(hour) > 0 ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/60"}`} onClick={() => setHour(12)}>
               ☀️ Day (noon)
             </button>
-            <button className={`rounded-xl border px-3 py-2 text-sm ${sunlight(hour) === 0 ? "chip-on" : "border-line text-muted"}`} onClick={() => setHour(0)}>
+            <button className={`rounded-xl border px-3 py-2 text-sm ${sunlight(hour) === 0 ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/60"}`} onClick={() => setHour(0)}>
               🌙 Night (midnight)
             </button>
           </div>
@@ -315,7 +315,7 @@ function Choice<T extends string>({ options, value, onChange }: { options: { id:
         <button
           key={o.id}
           onClick={() => onChange(o.id)}
-          className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${value === o.id ? "chip-on" : "border-line text-muted"}`}
+          className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${value === o.id ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/60"}`}
         >
           {o.label}
         </button>
@@ -372,18 +372,18 @@ function drawRod(ctx: CanvasRenderingContext2D, w: number, h: number, T: Float64
   const base = MATERIALS[m].color;
 
   // Clamp stand at the far end.
-  ctx.fillStyle = "rgba(240,233,221,0.15)";
+  ctx.fillStyle = "rgba(255,255,255,0.15)";
   ctx.fillRect(x1 + 4, cy - thick, 6, h * 0.78 - cy + thick);
   ctx.fillRect(x1 - 6, cy - thick / 2 - 4, 16, 4);
 
   // Burner and flame under the left end.
-  ctx.fillStyle = "rgba(240,233,221,0.18)";
+  ctx.fillStyle = "rgba(255,255,255,0.18)";
   ctx.fillRect(x0 - 16, h * 0.78, 32, 8);
   if (heating) drawFlame(ctx, x0 + 4, h * 0.78, (h * 0.78 - cy) * 0.8, now, 0.22);
 
   // The rod as rows of particles: each wobbles more and glows hotter as it warms up.
   // The wobble is hugely exaggerated so you can see it.
-  ctx.fillStyle = "rgba(240,233,221,0.06)";
+  ctx.fillStyle = "rgba(255,255,255,0.06)";
   ctx.fillRect(x0, cy - thick / 2, len, thick);
   const cols = Math.max(18, Math.round(len / 11));
   const rows = 3;
@@ -405,7 +405,7 @@ function drawRod(ctx: CanvasRenderingContext2D, w: number, h: number, T: Float64
 
   // Wax drops hang under the rod; melted ones fall into the tray.
   const trayY = h * 0.78;
-  ctx.fillStyle = "rgba(240,233,221,0.12)";
+  ctx.fillStyle = "rgba(255,255,255,0.12)";
   ctx.fillRect(x0 + 30, trayY + 2, len - 30, 4);
   ROD.drops.forEach((x, i) => {
     const px = X(x);
@@ -420,16 +420,16 @@ function drawRod(ctx: CanvasRenderingContext2D, w: number, h: number, T: Float64
     if (fellAt[i] && y >= trayY - 3) ctx.ellipse(px, trayY - 1, 7, 3, 0, 0, Math.PI * 2);
     else ctx.ellipse(px, y, 5, 6, 0, 0, Math.PI * 2);
     ctx.fill();
-    text(ctx, `${tempAt(T, x).toFixed(0)}°`, px, cy - thick / 2 - 8, "rgba(240,233,221,0.75)", "center");
+    text(ctx, `${tempAt(T, x).toFixed(0)}°`, px, cy - thick / 2 - 8, "rgba(255,255,255,0.75)", "center");
   });
 
   // Headings.
   const mins = Math.floor(time / 60);
   const secs = Math.floor(time % 60);
-  text(ctx, `Time ${mins} min ${String(secs).padStart(2, "0")} s`, 10, 18, "rgba(240,233,221,0.8)");
+  text(ctx, `Time ${mins} min ${String(secs).padStart(2, "0")} s`, 10, 18, "rgba(255,255,255,0.8)");
   text(ctx, `${MATERIALS[m].label} rod, 20 cm`, w - 10, 18, "rgba(165,243,252,0.9)", "right");
   const fallen = fellAt.filter((t) => t > 0).length;
-  text(ctx, `Wax drops fallen: ${fallen} of ${ROD.drops.length}`, w - 10, h - 10, "rgba(240,233,221,0.7)", "right");
+  text(ctx, `Wax drops fallen: ${fallen} of ${ROD.drops.length}`, w - 10, h - 10, "rgba(255,255,255,0.7)", "right");
   if (heating) text(ctx, "flame", x0 + 2, h - 10, "rgba(251,146,60,0.9)", "center");
 }
 
@@ -497,8 +497,8 @@ function drawPot(ctx: CanvasRenderingContext2D, w: number, h: number, p: PotStat
 
   // Flow arrows once the currents are going.
   if (p.strength > 0.08) {
-    ctx.strokeStyle = "rgba(240,233,221,0.45)";
-    ctx.fillStyle = "rgba(240,233,221,0.45)";
+    ctx.strokeStyle = "rgba(255,255,255,0.45)";
+    ctx.fillStyle = "rgba(255,255,255,0.45)";
     ctx.lineWidth = 1.5;
     const pts = pos === "middle" ? [[0.5, 0.35], [0.5, 0.65], [0.25, 0.92], [0.75, 0.92], [0.06, 0.5], [0.94, 0.5]] : [[0.88, 0.35], [0.88, 0.65], [0.5, 0.92], [0.08, 0.5], [0.5, 0.08]];
     for (const [x, y] of pts) {
@@ -522,11 +522,11 @@ function drawPot(ctx: CanvasRenderingContext2D, w: number, h: number, p: PotStat
 
   // Burner and flame.
   const fx = left + flameX(pos) * potW;
-  ctx.fillStyle = "rgba(240,233,221,0.18)";
+  ctx.fillStyle = "rgba(255,255,255,0.18)";
   ctx.fillRect(fx - 18, h - 14, 36, 6);
   if (flame) drawFlame(ctx, fx, h - 14, Math.min(28, h - 16 - bottom), now);
 
-  text(ctx, `Water ${p.water.toFixed(0)} °C`, 10, 18, "rgba(240,233,221,0.8)");
+  text(ctx, `Water ${p.water.toFixed(0)} °C`, 10, 18, "rgba(255,255,255,0.8)");
   if (p.strength > 0.08) {
     const hotX = pos === "middle" ? left + potW / 2 : left + potW * 0.88;
     text(ctx, "hot water rises", Math.min(w - 50, hotX), top - 6, "rgba(253,186,116,0.95)", "center");
@@ -556,7 +556,7 @@ function drawCoast(ctx: CanvasRenderingContext2D, w: number, h: number, hour: nu
     ctx.arc(sx, sy, 11, 0, Math.PI * 2);
     ctx.fill();
   } else {
-    ctx.fillStyle = "rgba(240,233,221,0.7)";
+    ctx.fillStyle = "rgba(255,255,255,0.7)";
     for (let i = 0; i < 18; i++) ctx.fillRect((i * 97.3) % w, ((i * 41.7) % (ground * 0.5)) + 4, 1.5, 1.5);
     ctx.fillStyle = "#e2e8f0";
     ctx.beginPath();
@@ -599,12 +599,12 @@ function drawCoast(ctx: CanvasRenderingContext2D, w: number, h: number, hour: nu
   const tx = w * 0.7;
   ctx.fillStyle = "#0b0b0b";
   ctx.fillRect(tx, ground - 20, tinW, 20);
-  ctx.strokeStyle = "rgba(240,233,221,0.5)";
+  ctx.strokeStyle = "rgba(255,255,255,0.5)";
   ctx.lineWidth = 1;
   ctx.strokeRect(tx, ground - 20, tinW, 20);
   ctx.fillStyle = "#f8fafc";
   ctx.fillRect(tx + tinW + 10, ground - 20, tinW, 20);
-  text(ctx, "tins", tx + tinW + 5, ground + 14, "rgba(240,233,221,0.8)", "center");
+  text(ctx, "tins", tx + tinW + 5, ground + 14, "rgba(255,255,255,0.8)", "center");
 
   // The convection loop: near the ground the breeze blows from cool to warm, warm air rises,
   // and the air returns high up. Air parcels move around it.
@@ -629,12 +629,12 @@ function drawCoast(ctx: CanvasRenderingContext2D, w: number, h: number, hour: nu
   };
   if (b.kind !== "calm") {
     ctx.setLineDash([4, 6]);
-    ctx.strokeStyle = "rgba(240,233,221,0.25)";
+    ctx.strokeStyle = "rgba(255,255,255,0.25)";
     ctx.lineWidth = 1;
     ctx.strokeRect(lx0, ly0, lx1 - lx0, ly1 - ly0);
     ctx.setLineDash([]);
   }
-  ctx.fillStyle = "rgba(240,233,221,0.85)";
+  ctx.fillStyle = "rgba(255,255,255,0.85)";
   for (let i = 0; i < air.length; i++) {
     const q = at(air[i]);
     const jx = b.kind === "calm" ? Math.sin(now / 300 + i) * 2 : 0;

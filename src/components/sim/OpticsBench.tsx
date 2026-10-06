@@ -43,14 +43,14 @@ const HALF_HEIGHT = 15; // cm, of lenses and mirrors
 const SHARP_WITHIN = 0.5; // cm
 
 const C = {
-  axis: "rgba(240,233,221,0.25)",
-  label: "rgba(240,233,221,0.6)",
+  axis: "rgba(255,255,255,0.25)",
+  label: "rgba(255,255,255,0.6)",
   glass: "rgba(125,211,252,0.14)",
   glassEdge: "rgba(125,211,252,0.6)",
   object: "#fbbf24",
   image: "#f472b6",
   rays: ["#fde047", "#22d3ee", "#a78bfa"],
-  normal: "rgba(240,233,221,0.45)",
+  normal: "rgba(255,255,255,0.45)",
 };
 
 export default function OpticsBench({ onReading, modes = ["block", "lens", "mirror"], screen = null, mirrors = ["plane", "concave", "convex"] }: Props) {
@@ -144,9 +144,9 @@ export default function OpticsBench({ onReading, modes = ["block", "lens", "mirr
   return (
     <div className="flex flex-col gap-3 select-none">
       {modes.length > 1 && (
-        <div className="grid gap-1 rounded-2xl bg-ink/20 p-1 text-sm" style={{ gridTemplateColumns: `repeat(${modes.length}, 1fr)` }}>
+        <div className="grid gap-1 rounded-2xl bg-black/20 p-1 text-sm" style={{ gridTemplateColumns: `repeat(${modes.length}, 1fr)` }}>
           {modes.map((m) => (
-            <button key={m} onClick={() => setMode(m)} className={`rounded-xl py-2 ${activeMode === m ? "bg-cream/10 text-cream" : "text-faint"}`}>
+            <button key={m} onClick={() => setMode(m)} className={`rounded-xl py-2 ${activeMode === m ? "bg-white/10 text-white" : "text-white/50"}`}>
               {MODE_LABEL[m]}
             </button>
           ))}
@@ -155,7 +155,7 @@ export default function OpticsBench({ onReading, modes = ["block", "lens", "mirr
 
       <canvas
         ref={canvasRef}
-        className="h-64 w-full rounded-2xl border border-line bg-well sm:h-80"
+        className="h-64 w-full rounded-2xl border border-white/10 bg-[#0a0d1c] sm:h-80"
         style={{ touchAction: "pan-y" }}
         role="img"
         aria-label={
@@ -197,9 +197,9 @@ export default function OpticsBench({ onReading, modes = ["block", "lens", "mirr
 
       {activeMode === "lens" && (
         <>
-          <div className="rounded-2xl panel px-4 py-2 text-sm">
-            <div className="font-semibold text-blush-200">{lensImg.nature}</div>
-            <div className="tabular-nums text-muted">
+          <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-2 text-sm">
+            <div className="font-semibold text-pink-200">{lensImg.nature}</div>
+            <div className="tabular-nums text-white/60">
               u = −{lensU} cm · f = {fmt(lf)} cm · {imageLine(lensImg)} · P = {fmt(power(lf))} D
             </div>
           </div>
@@ -220,9 +220,9 @@ export default function OpticsBench({ onReading, modes = ["block", "lens", "mirr
 
       {activeMode === "mirror" && (
         <>
-          <div className="rounded-2xl panel px-4 py-2 text-sm">
-            <div className="font-semibold text-blush-200">{mirrorImg.nature}</div>
-            <div className="tabular-nums text-muted">
+          <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-2 text-sm">
+            <div className="font-semibold text-pink-200">{mirrorImg.nature}</div>
+            <div className="tabular-nums text-white/60">
               u = −{mirrorU} cm · {mirrorKind === "plane" ? "plane mirror" : `f = ${fmt(mf)} cm`} · {imageLine(mirrorImg)}
             </div>
           </div>
@@ -241,7 +241,7 @@ export default function OpticsBench({ onReading, modes = ["block", "lens", "mirr
           </div>
         </>
       )}
-      {activeMode !== "block" && <p className="text-center text-xs text-faint">Drag across the picture to move the object.</p>}
+      {activeMode !== "block" && <p className="text-center text-xs text-white/40">Drag across the picture to move the object.</p>}
     </div>
   );
 }
@@ -250,8 +250,8 @@ const fmt = (x: number) => (Number.isFinite(x) ? (Math.round(x * 10) / 10).toStr
 
 function Readout({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl panel px-1 py-2">
-      <div className="text-[11px] uppercase tracking-wider text-faint">{label}</div>
+    <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-1 py-2">
+      <div className="text-[11px] uppercase tracking-wider text-white/50">{label}</div>
       <div className="font-display text-lg tabular-nums">{value}</div>
     </div>
   );
@@ -259,10 +259,10 @@ function Readout({ label, value }: { label: string; value: string }) {
 
 function Slider(props: { label: string; value: number; min: number; max: number; step: number; unit: string; onChange: (v: number) => void }) {
   return (
-    <label className="block rounded-2xl panel px-4 py-3">
+    <label className="block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
       <div className="flex justify-between text-sm">
-        <span className="text-muted">{props.label}</span>
-        <span className="tabular-nums text-cream">
+        <span className="text-white/60">{props.label}</span>
+        <span className="tabular-nums text-white">
           {props.value}
           {props.unit}
         </span>
@@ -287,7 +287,7 @@ function Choice<T extends string>({ options, value, onChange }: { options: { id:
         <button
           key={o.id}
           onClick={() => onChange(o.id)}
-          className={`flex-1 rounded-xl border px-3 py-2 text-sm ${value === o.id ? "chip-on" : "border-line text-muted"}`}
+          className={`flex-1 rounded-xl border px-3 py-2 text-sm ${value === o.id ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/70"}`}
         >
           {o.label}
         </button>
@@ -490,7 +490,7 @@ function drawLens(ctx: CanvasRenderingContext2D, w: number, h: number, u: number
 
   if (screen !== null) {
     const s0 = px(v, { x: screen, y: 13 });
-    ctx.fillStyle = sharp ? "rgba(163,230,53,0.35)" : "rgba(240,233,221,0.12)";
+    ctx.fillStyle = sharp ? "rgba(163,230,53,0.35)" : "rgba(255,255,255,0.12)";
     ctx.fillRect(s0.x - 3, s0.y, 6, 26 * v.k);
     label(ctx, v, { x: screen, y: 13 }, sharp ? "Sharp!" : "Screen", sharp ? "#a3e635" : C.label, -6);
   }

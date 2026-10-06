@@ -164,13 +164,13 @@ export default function AirTrack({ onReading, target = null }: Props) {
   return (
     <div className="flex flex-col gap-3 select-none">
       {!target && (
-        <div className="grid grid-cols-2 gap-1 rounded-2xl bg-ink/20 p-1 text-sm">
+        <div className="grid grid-cols-2 gap-1 rounded-2xl bg-black/20 p-1 text-sm">
           {(["collide", "recoil"] as const).map((m) => (
             <button
               key={m}
               disabled={running}
               onClick={() => setMode(m)}
-              className={`rounded-xl py-2 ${activeMode === m ? "bg-cream/10 text-cream" : "text-faint"}`}
+              className={`rounded-xl py-2 ${activeMode === m ? "bg-white/10 text-white" : "text-white/50"}`}
             >
               {m === "collide" ? "Collision lab" : "Recoil (spring)"}
             </button>
@@ -180,7 +180,7 @@ export default function AirTrack({ onReading, target = null }: Props) {
 
       <canvas
         ref={canvasRef}
-        className="h-56 w-full rounded-2xl border border-line bg-well sm:h-64"
+        className="h-56 w-full rounded-2xl border border-white/10 bg-[#0a0d1c] sm:h-64"
         role="img"
         aria-label={
           activeMode === "collide"
@@ -203,12 +203,12 @@ export default function AirTrack({ onReading, target = null }: Props) {
           onClick={go}
           disabled={running}
           className={`rounded-2xl border py-3 font-semibold transition ${
-            running ? "border-line text-faint" : "border-sage-300/40 bg-sage-400/15 hover:bg-sage-400/25"
+            running ? "border-white/10 text-white/40" : "border-lime-300/40 bg-lime-400/15 hover:bg-lime-400/25"
           }`}
         >
           {pushing ? "Pushing…" : running ? "Running…" : activeMode === "recoil" ? "Release the spring" : "Push cart A ▶"}
         </button>
-        <button onClick={reset} className="rounded-2xl border border-line px-4 text-sm text-muted hover:bg-cream/10">
+        <button onClick={reset} className="rounded-2xl border border-white/10 px-4 text-sm text-white/70 hover:bg-white/10">
           Reset
         </button>
       </div>
@@ -247,7 +247,7 @@ export default function AirTrack({ onReading, target = null }: Props) {
         digits={1}
       />
       <Slider label="Push lasts for" value={pushTime} unit="s" r={SLIDERS.time} disabled={running} onChange={setPushTime} digits={2} />
-      <p className="text-center text-xs text-faint">
+      <p className="text-center text-xs text-white/40">
         Impulse F × t = {(F * pushTime).toFixed(2)} N s.
         {!air && ` Friction on A can be up to ${fMax.toFixed(1)} N (μ = 0.2).`}
         {activeMode === "recoil" && " The spring pushes A left and B right with the same force."}
@@ -258,11 +258,11 @@ export default function AirTrack({ onReading, target = null }: Props) {
 
 function Readout({ label, value, unit }: { label: string; value: string; unit: string }) {
   return (
-    <div className="rounded-2xl panel px-1 py-2">
-      <div className="text-[10px] uppercase tracking-wider text-faint sm:text-[11px]">{label}</div>
+    <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-1 py-2">
+      <div className="text-[10px] uppercase tracking-wider text-white/50 sm:text-[11px]">{label}</div>
       <div className="font-display text-base tabular-nums sm:text-lg">
         {value}
-        <span className="ml-0.5 text-[10px] text-faint sm:text-xs">{unit}</span>
+        <span className="ml-0.5 text-[10px] text-white/50 sm:text-xs">{unit}</span>
       </div>
     </div>
   );
@@ -286,10 +286,10 @@ function Slider({
   digits: number;
 }) {
   return (
-    <label className={`block rounded-2xl panel px-4 py-3 ${disabled ? "opacity-50" : ""}`}>
+    <label className={`block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 ${disabled ? "opacity-50" : ""}`}>
       <div className="flex justify-between text-sm">
-        <span className="text-muted">{label}</span>
-        <span className="tabular-nums text-cream">
+        <span className="text-white/60">{label}</span>
+        <span className="tabular-nums text-white">
           {value.toFixed(digits)} {unit}
         </span>
       </div>
@@ -312,7 +312,7 @@ function Toggle({ on, disabled, onClick, children }: { on: boolean; disabled?: b
     <button
       disabled={disabled}
       onClick={onClick}
-      className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${on ? "chip-on" : "border-line text-muted"}`}
+      className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${on ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/70"}`}
     >
       {children}
     </button>
@@ -337,7 +337,7 @@ function Choice<T extends string>({
           key={o.id}
           disabled={disabled}
           onClick={() => onChange(o.id)}
-          className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${value === o.id ? "chip-on" : "border-line text-muted"}`}
+          className={`flex-1 rounded-xl border px-3 py-2 text-sm whitespace-nowrap ${value === o.id ? "border-cyan-300 bg-cyan-300/15" : "border-white/10 text-white/70"}`}
         >
           {o.label}
         </button>
@@ -349,7 +349,7 @@ function Choice<T extends string>({
 function MomentumBars({ bars, mode }: { bars: { before: [number, number]; after: [number, number]; title: string } | null; mode: Mode }) {
   if (!bars)
     return (
-      <div className="rounded-2xl panel px-3 py-3 text-center text-xs text-faint">
+      <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-3 py-3 text-center text-xs text-white/45">
         Momentum bars (p = m × v) appear here {mode === "recoil" ? "when the spring lets go" : "when the carts collide"}.
       </div>
     );
@@ -359,12 +359,12 @@ function MomentumBars({ bars, mode }: { bars: { before: [number, number]; after:
   ];
   const max = Math.max(0.05, ...sets.flatMap((s) => [Math.abs(s.p[0]), Math.abs(s.p[1]), Math.abs(s.p[0] + s.p[1])]));
   return (
-    <div className="rounded-2xl panel p-3">
-      <div className="mb-2 text-xs text-faint">Momentum in kg m/s, {bars.title}. Right is positive.</div>
+    <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-3">
+      <div className="mb-2 text-xs text-white/50">Momentum in kg m/s, {bars.title}. Right is positive.</div>
       <div className="grid grid-cols-2 gap-3">
         {sets.map((s) => (
           <div key={s.name}>
-            <div className="mb-1 text-xs font-semibold text-muted">{s.name}</div>
+            <div className="mb-1 text-xs font-semibold text-white/70">{s.name}</div>
             <Bar label="A" value={s.p[0]} max={max} colour={COL_A} />
             <Bar label="B" value={s.p[1]} max={max} colour={COL_B} />
             <Bar label="Total" value={s.p[0] + s.p[1]} max={max} colour="#fde047" />
@@ -380,16 +380,16 @@ function Bar({ label, value, max, colour }: { label: string; value: number; max:
   const v = Math.abs(value) < 0.005 ? 0 : value;
   return (
     <div className="mb-1 grid grid-cols-[2.4rem_1fr] items-center gap-1 text-[11px]">
-      <span className="text-faint">{label}</span>
+      <span className="text-white/55">{label}</span>
       <div>
-        <div className="relative h-2.5 rounded bg-cream/5">
-          <div className="absolute top-0 left-1/2 h-full w-px bg-cream/30" />
+        <div className="relative h-2.5 rounded bg-white/5">
+          <div className="absolute top-0 left-1/2 h-full w-px bg-white/30" />
           <div
             className="absolute top-0 h-full rounded"
             style={{ background: colour, width: `${frac}%`, left: v >= 0 ? "50%" : `${50 - frac}%` }}
           />
         </div>
-        <div className="tabular-nums text-muted">{v.toFixed(2)}</div>
+        <div className="tabular-nums text-white/70">{v.toFixed(2)}</div>
       </div>
     </div>
   );
@@ -432,20 +432,20 @@ function draw(ctx: CanvasRenderingContext2D, w: number, h: number, world: World,
   // Rail with air holes, and end buffers.
   ctx.fillStyle = "#1e2440";
   ctx.fillRect(X(0), railY, TRACK * k, 10);
-  ctx.fillStyle = s.air ? "rgba(125,211,252,0.6)" : "rgba(240,233,221,0.15)";
+  ctx.fillStyle = s.air ? "rgba(125,211,252,0.6)" : "rgba(255,255,255,0.15)";
   for (let m = 0.05; m < TRACK; m += 0.1) ctx.fillRect(X(m) - 1, railY + 2, 2, 2);
   ctx.fillStyle = "#475569";
   ctx.fillRect(X(0) - 4, railY - 22, 4, 32);
   ctx.fillRect(X(TRACK), railY - 22, 4, 32);
   // Metre marks.
-  ctx.fillStyle = "rgba(240,233,221,0.4)";
+  ctx.fillStyle = "rgba(255,255,255,0.4)";
   for (let m = 0; m <= TRACK; m += 0.5) {
     ctx.fillRect(X(m), railY + 10, 1, m % 1 === 0 ? 6 : 3);
     if (m % 1 === 0) label(ctx, `${m} m`, X(m), railY + 27, w);
   }
 
   // Top line: time and air state.
-  ctx.fillStyle = "rgba(240,233,221,0.6)";
+  ctx.fillStyle = "rgba(255,255,255,0.6)";
   ctx.textAlign = "left";
   ctx.fillText(`t = ${world.t.toFixed(2)} s`, 6, 15);
   ctx.textAlign = "right";
@@ -487,7 +487,7 @@ function draw(ctx: CanvasRenderingContext2D, w: number, h: number, world: World,
     ctx.globalAlpha = 0.85;
     ctx.fillRect(left, railY - 3 - hgt, cw, hgt);
     ctx.globalAlpha = 1;
-    ctx.fillStyle = "#13110f";
+    ctx.fillStyle = "#0a0d1c";
     ctx.font = "600 11px system-ui, sans-serif";
     ctx.textAlign = "center";
     ctx.fillText(name, left + cw / 2, railY - 3 - hgt / 2 + 4);

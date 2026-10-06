@@ -130,7 +130,7 @@ export default function CircuitBoard({ onReading, preset }: Props) {
 
   return (
     <div className="flex flex-col gap-3 select-none">
-      <div className="relative overflow-hidden rounded-2xl border border-line bg-well">
+      <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0a0d1c]">
         <svg viewBox="0 0 400 260" className="block w-full" role="img" aria-label={describe(slots, state)}>
           <defs>
             <radialGradient id="glow">
@@ -167,48 +167,48 @@ export default function CircuitBoard({ onReading, preset }: Props) {
             />
           ))}
         </svg>
-        <div className="pointer-events-none border-t border-line px-3 py-2 text-xs sm:absolute sm:left-3 sm:top-3 sm:rounded-full sm:border-0 sm:bg-ink/40 sm:py-1 sm:backdrop-blur">
+        <div className="pointer-events-none border-t border-white/10 px-3 py-2 text-xs sm:absolute sm:left-3 sm:top-3 sm:rounded-full sm:border-0 sm:bg-black/40 sm:py-1 sm:backdrop-blur">
           {state.shortCircuit ? (
-            <span className="text-brick-300">⚠️ Short circuit! No bulb, so the cell drains fast and heats up.</span>
+            <span className="text-rose-300">⚠️ Short circuit! No bulb, so the cell drains fast and heats up.</span>
           ) : state.closed ? (
-            <span className="text-ochre-200">Circuit closed: current flows</span>
+            <span className="text-amber-200">Circuit closed: current flows</span>
           ) : (
-            <span className="text-muted">Open circuit: {state.reason}</span>
+            <span className="text-white/60">Open circuit: {state.reason}</span>
           )}
         </div>
         {popped && (
-          <div className="animate-pop pointer-events-none absolute inset-x-0 bottom-3 mx-auto w-fit rounded-full bg-brick-500/90 px-4 py-1.5 text-sm font-semibold">
+          <div className="animate-pop pointer-events-none absolute inset-x-0 bottom-3 mx-auto w-fit rounded-full bg-rose-500/90 px-4 py-1.5 text-sm font-semibold">
             Pop! Too many cells: the bulb&apos;s filament broke (fused).
           </div>
         )}
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
-        <span className="text-sm text-faint">{selected === null ? "Tap a slot to change it" : `Slot ${selected + 1}:`}</span>
+        <span className="text-sm text-white/50">{selected === null ? "Tap a slot to change it" : `Slot ${selected + 1}:`}</span>
         {selected !== null &&
           CHOICES.map((c) => (
             <button
               key={c.label}
               onClick={() => place(selected, c.part)}
-              className="rounded-full border border-line px-3 py-1.5 text-sm hover:border-line-strong"
+              className="rounded-full border border-white/10 px-3 py-1.5 text-sm hover:border-white/40"
             >
               {c.icon} {c.label}
             </button>
           ))}
         {sel?.kind === "switch" && selected !== null && (
-          <button onClick={() => toggleSwitch(selected)} className="rounded-full bg-cream px-3 py-1.5 text-sm text-ink">
+          <button onClick={() => toggleSwitch(selected)} className="rounded-full bg-white px-3 py-1.5 text-sm text-black">
             Turn {sel.on ? "off" : "on"}
           </button>
         )}
-        <label className="ml-auto flex items-center gap-2 text-sm text-muted">
-          <input type="checkbox" className="h-4 w-4 accent-saffron-400" checked={symbols} onChange={(e) => setSymbols(e.target.checked)} />
+        <label className="ml-auto flex items-center gap-2 text-sm text-white/60">
+          <input type="checkbox" className="h-4 w-4 accent-cyan-400" checked={symbols} onChange={(e) => setSymbols(e.target.checked)} />
           Circuit symbols
         </label>
       </div>
 
       {selected !== null && (
         <div>
-          <div className="mb-1 text-xs uppercase tracking-wider text-faint">Test a material in this slot</div>
+          <div className="mb-1 text-xs uppercase tracking-wider text-white/40">Test a material in this slot</div>
           <div className="flex flex-wrap gap-2">
             {(Object.keys(MATERIALS) as MaterialId[]).map((id) => {
               const result = tested[id];
@@ -217,7 +217,7 @@ export default function CircuitBoard({ onReading, preset }: Props) {
                   key={id}
                   onClick={() => place(selected, { kind: "material", id })}
                   className={`rounded-full border px-3 py-1.5 text-sm ${
-                    result === undefined ? "border-line" : result ? "border-sage-300/50 bg-sage-300/10" : "border-brick-300/50 bg-brick-300/10"
+                    result === undefined ? "border-white/10" : result ? "border-lime-300/50 bg-lime-300/10" : "border-rose-300/50 bg-rose-300/10"
                   }`}
                 >
                   {MATERIALS[id].emoji} {MATERIALS[id].label}
@@ -257,15 +257,15 @@ function Slot(props: {
       aria-label={`Slot ${props.index + 1}`}
     >
       {/* Cover the wire under the slot. */}
-      <rect x="-42" y="-26" width="84" height="52" rx="12" fill="#13110f" />
+      <rect x="-42" y="-26" width="84" height="52" rx="12" fill="#0a0d1c" />
       <rect
         x="-42"
         y="-26"
         width="84"
         height="52"
         rx="12"
-        fill={selected ? "rgba(34,211,238,0.12)" : "rgba(240,233,221,0.03)"}
-        stroke={selected ? "#22d3ee" : part.kind === "empty" ? "rgba(240,233,221,0.25)" : "rgba(240,233,221,0.08)"}
+        fill={selected ? "rgba(34,211,238,0.12)" : "rgba(255,255,255,0.03)"}
+        stroke={selected ? "#22d3ee" : part.kind === "empty" ? "rgba(255,255,255,0.25)" : "rgba(255,255,255,0.08)"}
         strokeDasharray={part.kind === "empty" ? "5 4" : undefined}
       />
       <g transform={pos.vertical ? "rotate(-90)" : undefined}>
@@ -280,7 +280,7 @@ function PartArt({ part, brightness, symbols, onToggle }: { part: Part; brightne
   switch (part.kind) {
     case "empty":
       return (
-        <text textAnchor="middle" y="5" fontSize="12" fill="rgba(240,233,221,0.45)">
+        <text textAnchor="middle" y="5" fontSize="12" fill="rgba(255,255,255,0.45)">
           + add
         </text>
       );
@@ -323,7 +323,7 @@ function PartArt({ part, brightness, symbols, onToggle }: { part: Part; brightne
           {lead(-42, -10)}
           {lead(10, 42)}
           {on && <circle r={18 + 22 * brightness} fill="url(#glow)" opacity={brightness} />}
-          <circle cy="-6" r="13" fill={on ? `rgba(254,240,138,${0.35 + 0.65 * brightness})` : "rgba(240,233,221,0.12)"} stroke="rgba(240,233,221,0.6)" />
+          <circle cy="-6" r="13" fill={on ? `rgba(254,240,138,${0.35 + 0.65 * brightness})` : "rgba(255,255,255,0.12)"} stroke="rgba(255,255,255,0.6)" />
           {part.fused ? (
             <path d="M-6 -4 L-1 -9 M1 -3 L6 -8" stroke="#94a3b8" strokeWidth="1.5" />
           ) : (
@@ -362,7 +362,7 @@ function PartArt({ part, brightness, symbols, onToggle }: { part: Part; brightne
           <circle cx="-24" r="4" fill="#ef4444" />
           <circle cx="24" r="4" fill="#ef4444" />
           <text y="6" textAnchor="middle" fontSize="18">{m.emoji}</text>
-          <text y="22" textAnchor="middle" fontSize="8" fill="rgba(240,233,221,0.6)">{m.label.split(" (")[0]}</text>
+          <text y="22" textAnchor="middle" fontSize="8" fill="rgba(255,255,255,0.6)">{m.label.split(" (")[0]}</text>
         </g>
       );
     }

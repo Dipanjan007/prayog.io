@@ -55,25 +55,18 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
   return (
     <>
       <div className="mb-6">
-        <Link href="/learn" className="-ml-1 inline-flex min-h-11 items-center gap-1.5 rounded-lg px-1 text-sm text-faint hover:text-cream">
-          <span aria-hidden>←</span> Class {lesson.classNum} · {lesson.book} · {lesson.chapter}
+        <Link href="/learn" className="text-sm text-white/50 hover:text-white">
+          ← Class {lesson.classNum} · {lesson.book} · {lesson.chapter}
         </Link>
-        <div className="mt-1 flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
-          <h1 className="font-display text-[2rem] leading-tight sm:text-[2.6rem]">{lesson.title}</h1>
+        <div className="mt-2 flex flex-wrap items-end justify-between gap-3">
+          <h1 className="font-display text-3xl font-bold sm:text-4xl">{lesson.title}</h1>
           <div className="w-full max-w-xs">
-            <div className="flex justify-between text-xs text-faint">
+            <div className="flex justify-between text-xs text-white/50">
               <span>Lesson progress</span>
-              <span className="tabular-nums">{percent}%</span>
+              <span>{percent}%</span>
             </div>
-            <div
-              className="mt-2 h-1 overflow-hidden rounded-full bg-cream/10"
-              role="progressbar"
-              aria-valuenow={percent}
-              aria-valuemin={0}
-              aria-valuemax={100}
-              aria-label="Lesson progress"
-            >
-              <div className="h-full rounded-full bg-saffron-400 transition-[width] duration-500" style={{ width: `${percent}%` }} />
+            <div className="mt-1 h-2 overflow-hidden rounded-full bg-white/10">
+              <div className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-violet-400 transition-all" style={{ width: `${percent}%` }} />
             </div>
           </div>
         </div>
@@ -83,18 +76,20 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
         <div className="lg:sticky lg:top-20 lg:self-start">
-          <div className="mb-4 border-l-2 border-saffron-400 py-0.5 pl-4" aria-live="polite">
-            <div className="eyebrow text-saffron-300">Your mission</div>
-            <div className="font-display mt-0.5 text-lg leading-snug">{mission.title}</div>
-            <div className="text-[0.95rem] text-muted">{mission.text}</div>
+          <div className="mb-3 flex items-start gap-3 rounded-2xl border border-cyan-300/30 bg-cyan-300/[0.07] px-4 py-3" aria-live="polite">
+            <span className="mt-0.5 text-lg">🎯</span>
+            <div>
+              <div className="text-sm font-semibold text-cyan-100">{mission.title}</div>
+              <div className="text-sm text-white/70">{mission.text}</div>
+            </div>
           </div>
           {sim}
-          {simNote && <p className="mt-3 text-xs leading-relaxed text-faint">{simNote}</p>}
+          {simNote && <p className="mt-2 text-xs text-white/40">{simNote}</p>}
         </div>
 
         <ol className="flex flex-col gap-3">
           <Step n={++n} title={lesson.hook.title} done={done.has("hook")} open={isOpen("hook")}>
-            <p className="text-cream/85">{lesson.hook.text}</p>
+            <p className="text-white/75">{lesson.hook.text}</p>
             {!done.has("hook") && (
               <button className="btn-primary mt-4" onClick={() => reward("hook", XP.hook, "Curious mind")}>
                 Let&apos;s find out
@@ -112,8 +107,8 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
                     key={o}
                     disabled={done.has("predict")}
                     onClick={() => setPrediction(i)}
-                    className={`rounded-xl border px-4 py-3 text-left text-[0.95rem] transition-colors ${
-                      chosen ? "chip-on" : "border-line hover:border-line-strong hover:bg-cream/[0.03]"
+                    className={`rounded-xl border px-4 py-3 text-left text-sm transition ${
+                      chosen ? "border-violet-300 bg-violet-300/15" : "border-white/10 hover:border-white/40"
                     } disabled:cursor-default`}
                   >
                     {o}
@@ -130,20 +125,20 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
                 Lock it in
               </button>
             ) : (
-              <p className="mt-3 text-sm text-faint">Locked in. Now test it in the simulation.</p>
+              <p className="mt-3 text-sm text-white/50">Locked in. Now test it in the simulation.</p>
             )}
           </Step>
 
           {lesson.tasks.map((t) => (
             <Step key={t.id} n={++n} title={t.title} done={done.has(t.id)} open={isOpen(t.id)} badge="Mission">
-              <p className="text-cream/85">{done.has(t.id) ? t.found : t.text}</p>
+              <p className="text-white/75">{done.has(t.id) ? t.found : t.text}</p>
               {!done.has(t.id) && taskExtras?.[t.id]}
             </Step>
           ))}
 
           <Step n={++n} title="What you discovered" done={done.has("ideas")} open={tasksDone && isOpen("ideas")}>
             {predictedRight !== undefined && (
-              <p className={`mb-3 rounded-xl px-3 py-2 text-sm ${predictedRight ? "bg-sage-300/10 text-sage-200" : "bg-ochre-300/10 text-ochre-100"}`}>
+              <p className={`mb-3 rounded-xl px-3 py-2 text-sm ${predictedRight ? "bg-lime-300/10 text-lime-200" : "bg-amber-300/10 text-amber-100"}`}>
                 {predictedRight
                   ? `Your prediction was right: ${lesson.predict.options[lesson.predict.answer].toLowerCase()}.`
                   : `Surprise! The answer is: ${lesson.predict.options[lesson.predict.answer].toLowerCase()}. Scientists change their minds when experiments show them something new.`}
@@ -151,10 +146,10 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
             )}
             <div className="grid gap-2">
               {lesson.ideas.map((idea) => (
-                <div key={idea.title} className="rounded-xl panel p-3">
+                <div key={idea.title} className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
                   <div className="font-semibold">{idea.title}</div>
-                  <p className="mt-1 text-sm text-muted">{idea.text}</p>
-                  {idea.formula && <div className="mt-2 rounded-lg border border-line bg-well px-3 py-2 font-mono text-sm text-saffron-200">{idea.formula}</div>}
+                  <p className="mt-1 text-sm text-white/70">{idea.text}</p>
+                  {idea.formula && <div className="mt-2 rounded-lg bg-black/30 px-3 py-2 font-mono text-sm text-cyan-200">{idea.formula}</div>}
                 </div>
               ))}
             </div>
@@ -174,7 +169,7 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
           </Step>
 
           <Step n={++n} title={lesson.challenge.title} done={done.has("challenge")} open={done.has("ideas")} badge="Challenge">
-            <p className="text-cream/85">{lesson.challenge.text}</p>
+            <p className="text-white/75">{lesson.challenge.text}</p>
             <div className="mt-3 flex items-center gap-4">
               <div className="text-3xl tracking-widest" aria-label={`${lp?.challengeStars ?? 0} of 3 stars`}>
                 {[0, 1, 2].map((i) => (
@@ -198,9 +193,9 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
                 checkAllDone();
               }}
             />
-            <div className="mt-4 flex items-center justify-between gap-2 rounded-xl border border-dashed border-heather-300/30 px-3 py-2 text-sm">
-              <span className="text-muted">Olympiad-level problems (NSO, NSEJS style)</span>
-              <span className="shrink-0 rounded-full bg-heather-300/15 px-2 py-0.5 text-xs text-heather-200">Pro · coming soon</span>
+            <div className="mt-4 flex items-center justify-between gap-2 rounded-xl border border-dashed border-violet-300/30 px-3 py-2 text-sm">
+              <span className="text-white/60">Olympiad-level problems (NSO, NSEJS style)</span>
+              <span className="shrink-0 rounded-full bg-violet-300/15 px-2 py-0.5 text-xs text-violet-200">Pro · coming soon</span>
             </div>
           </Step>
         </ol>
@@ -214,35 +209,36 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
 function LabIntro({ lesson, startOpen }: { lesson: LessonDef; startOpen: boolean }) {
   const { intro } = lesson;
   return (
-    <details open={startOpen} className="group mb-8 border-y border-line">
-      <summary className="flex cursor-pointer list-none items-center gap-3 rounded-lg py-2 [&::-webkit-details-marker]:hidden">
-        <span className="font-display text-lg">About this lab</span>
-        <span className="ml-auto text-sm text-faint">
-          About {intro.minutes} min <span className="ml-1 inline-block transition-transform group-open:rotate-180" aria-hidden>▾</span>
+    <details open={startOpen} className="glass group mb-6 rounded-2xl px-4 py-3">
+      <summary className="flex cursor-pointer list-none items-center gap-3 [&::-webkit-details-marker]:hidden">
+        <span className="text-lg">🧭</span>
+        <span className="font-display font-semibold">About this lab</span>
+        <span className="ml-auto text-xs text-white/50">
+          About {intro.minutes} min <span className="inline-block transition group-open:rotate-180">▾</span>
         </span>
       </summary>
-      <div className="grid gap-5 pb-5 pt-2 text-[0.95rem] leading-relaxed sm:grid-cols-3 sm:gap-8">
+      <div className="mt-3 grid gap-4 text-sm sm:grid-cols-3">
         <div>
-          <h2 className="eyebrow">Objective</h2>
-          <p className="mt-1 text-cream/85">{intro.objective}</p>
-          <p className="mt-2 text-xs text-faint">
+          <h2 className="text-[11px] uppercase tracking-wider text-cyan-200/80">Objective</h2>
+          <p className="mt-1 text-white/80">{intro.objective}</p>
+          <p className="mt-2 text-xs text-white/50">
             NCERT Class {lesson.classNum} {lesson.book}: {lesson.chapter}
           </p>
         </div>
         <div>
-          <h2 className="eyebrow">You will learn</h2>
-          <ul className="mt-1 space-y-1 text-cream/85">
+          <h2 className="text-[11px] uppercase tracking-wider text-cyan-200/80">You will learn</h2>
+          <ul className="mt-1 space-y-1 text-white/80">
             {intro.learn.map((l) => (
               <li key={l} className="flex gap-2">
-                <span className="text-sage-300">✓</span>
+                <span className="text-lime-300">✓</span>
                 <span>{l}</span>
               </li>
             ))}
           </ul>
         </div>
         <div>
-          <h2 className="eyebrow">Where you will see it</h2>
-          <p className="mt-1 text-cream/85">{intro.realLife}</p>
+          <h2 className="text-[11px] uppercase tracking-wider text-cyan-200/80">Where you will see it</h2>
+          <p className="mt-1 text-white/80">{intro.realLife}</p>
         </div>
       </div>
     </details>
@@ -251,25 +247,20 @@ function LabIntro({ lesson, startOpen }: { lesson: LessonDef; startOpen: boolean
 
 function Step({ n, title, done, open, badge, children }: { n: number; title: string; done: boolean; open: boolean; badge?: string; children: ReactNode }) {
   return (
-    <li className={`rounded-2xl transition-colors ${open ? "glass p-5" : "border border-dashed border-line px-5 py-3 opacity-60"}`}>
+    <li className={`glass rounded-2xl p-4 transition ${open ? "" : "opacity-40"}`}>
       <div className="flex items-center gap-3">
         <span
-          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-semibold tabular-nums ${
-            done ? "bg-sage-300 text-ink" : open ? "border border-saffron-300 text-saffron-200" : "border border-line text-faint"
+          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-semibold ${
+            done ? "bg-lime-300 text-black" : open ? "bg-white text-black" : "bg-white/10 text-white/60"
           }`}
         >
           {done ? "✓" : n}
         </span>
-        <h2 className={`font-display ${open ? "text-xl" : "text-base text-muted"}`}>{title}</h2>
-        {open && badge && <span className="eyebrow ml-auto">{badge}</span>}
-        {!open && (
-          <svg viewBox="0 0 16 16" className="ml-auto h-4 w-4 text-faint" fill="none" stroke="currentColor" strokeWidth="1.4" aria-label="Locked">
-            <rect x="3.5" y="7" width="9" height="6.5" rx="1.5" />
-            <path d="M5.5 7V5.2a2.5 2.5 0 0 1 5 0V7" strokeLinecap="round" />
-          </svg>
-        )}
+        <h2 className="font-display text-lg font-semibold">{title}</h2>
+        {open && badge && <span className="ml-auto rounded-full bg-white/10 px-2 py-0.5 text-[11px] uppercase tracking-wider text-white/60">{badge}</span>}
+        {!open && <span className="ml-auto text-xs text-white/40">🔒</span>}
       </div>
-      {open && <div className="mt-3 leading-relaxed">{children}</div>}
+      {open && <div className="mt-3">{children}</div>}
     </li>
   );
 }

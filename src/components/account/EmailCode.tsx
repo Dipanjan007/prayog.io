@@ -59,11 +59,11 @@ export default function EmailCode({
     return (
       <>
         <label className="mt-4 grid gap-1 text-sm">
-          <span className="text-muted">Your email</span>
+          <span className="text-white/60">Your email</span>
           <input className="field" type="email" value={email} onChange={(e) => onEmail(e.target.value)} autoComplete="email" />
         </label>
         {children}
-        {error && <p className="mt-3 text-sm text-brick-300">{error}</p>}
+        {error && <p className="mt-3 text-sm text-rose-300">{error}</p>}
         <button className="btn-primary mt-6 w-full" disabled={!emailOk || !ready || busy} onClick={send}>
           {busy ? "Sending…" : sendLabel}
         </button>
@@ -73,10 +73,10 @@ export default function EmailCode({
 
   return (
     <>
-      <p className="mt-4 text-sm text-muted">
+      <p className="mt-4 text-sm text-white/70">
         We sent a 6-digit code to <strong>{email.trim()}</strong>. It works for 10 minutes.
       </p>
-      {hint && <p className="mt-2 text-xs text-ochre-200">{hint}</p>}
+      {hint && <p className="mt-2 text-xs text-amber-200">{hint}</p>}
       <input
         className="field mt-3 text-center font-mono text-2xl tracking-[0.5em]"
         inputMode="numeric"
@@ -86,11 +86,11 @@ export default function EmailCode({
         onChange={(e) => setCode(e.target.value.replace(/\D/g, ""))}
         aria-label="6-digit code"
       />
-      {error && <p className="mt-3 text-sm text-brick-300">{error}</p>}
+      {error && <p className="mt-3 text-sm text-rose-300">{error}</p>}
       <button className="btn-primary mt-4 w-full" disabled={code.length !== 6 || busy} onClick={verify}>
         {busy ? "Checking…" : "Continue"}
       </button>
-      <button className="mt-3 w-full text-sm text-faint underline" disabled={busy} onClick={() => setSent(false)}>
+      <button className="mt-3 w-full text-sm text-white/50 underline" disabled={busy} onClick={() => setSent(false)}>
         Use a different email or send again
       </button>
     </>

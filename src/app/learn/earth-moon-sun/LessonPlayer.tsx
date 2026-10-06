@@ -89,25 +89,25 @@ export default function LessonPlayer() {
       sim={<EarthSunLab key={round ?? "free"} onReading={onReading} initialMode={round === null || round === 0 ? "seasons" : "eclipse"} initialTilt={round !== null && round > 0} />}
       simNote="Not to scale: the real Sun is 109 times wider than the Earth and about 390 times farther away than the Moon. In the eclipse views the sizes of the Earth, the Moon and their shadows keep their real ratios, but distances are squeezed. The Moon's orbit is drawn as a circle near its closest point, and the line where it crosses the Earth's orbit is held fixed, so this model's eclipse seasons are late January and late July. Day lengths use the real tilt and count from the first to the last glimpse of the Sun."
       taskExtras={{
-        "task:spin": <div className="mt-2 text-xs text-faint">Sun seen in the: {sides.length ? sides.join(" and ") : "nowhere yet"}</div>,
-        "task:year": <div className="mt-2 text-xs text-faint">Visited: {months.length ? months.map((m) => MONTHS[m]).join(", ") : "none yet"}</div>,
-        "task:cities": <div className="mt-2 text-xs text-faint">Checked in June: {cities.length ? cities.map((c) => CITIES[c].name).join(", ") : "none yet"}</div>,
-        "task:eclipse": <div className="mt-2 text-xs text-faint">Eclipses made: {kinds.length ? kinds.join(" and ") : "none yet"}</div>,
+        "task:spin": <div className="mt-2 text-xs text-white/45">Sun seen in the: {sides.length ? sides.join(" and ") : "nowhere yet"}</div>,
+        "task:year": <div className="mt-2 text-xs text-white/45">Visited: {months.length ? months.map((m) => MONTHS[m]).join(", ") : "none yet"}</div>,
+        "task:cities": <div className="mt-2 text-xs text-white/45">Checked in June: {cities.length ? cities.map((c) => CITIES[c].name).join(", ") : "none yet"}</div>,
+        "task:eclipse": <div className="mt-2 text-xs text-white/45">Eclipses made: {kinds.length ? kinds.join(" and ") : "none yet"}</div>,
       }}
       challengeBody={
-        <div className="text-sm text-muted" aria-live="polite">
+        <div className="text-sm text-white/60" aria-live="polite">
           {job ? (
-            <div className="rounded-xl panel p-3">
-              <div className="text-cream">
+            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+              <div className="text-white">
                 Job {round! + 1} of {SKY_JOBS.length}: {job.title}
               </div>
               <div className="mt-1">{job.ask}</div>
-              <div className="mt-1 text-xs text-faint">Hint: {job.hint}</div>
-              {feedback && <div className="mt-1 text-xs text-sage-200">{feedback}</div>}
+              <div className="mt-1 text-xs text-white/45">Hint: {job.hint}</div>
+              {feedback && <div className="mt-1 text-xs text-lime-200">{feedback}</div>}
             </div>
           ) : (
             <>
-              {feedback && <div className="mb-1 text-xs text-sage-200">{feedback}</div>}
+              {feedback && <div className="mb-1 text-xs text-lime-200">{feedback}</div>}
               <button className="btn-ghost !px-3 !py-1.5 text-sm" onClick={start}>
                 {best ? "Plan the sky again" : "Start the jobs"}
               </button>

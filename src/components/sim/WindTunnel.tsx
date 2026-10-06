@@ -46,28 +46,28 @@ function windLabel(kmh: number) {
   return "Very severe cyclone";
 }
 
-/** Diverging map: blue (low pressure) → warm dark → orange (high pressure). */
+/** Diverging map: blue (low pressure) → dark → red/orange (high pressure). */
 function pressureColour(v: number, out: Uint8ClampedArray, o: number) {
   const t = Math.max(-1, Math.min(1, v));
   if (t >= 0) {
-    out[o] = 20 + t * 215;
-    out[o + 1] = 18 + t * 107;
-    out[o + 2] = 16 + t * 44;
+    out[o] = 18 + t * 237;
+    out[o + 1] = 22 + t * 90;
+    out[o + 2] = 44 - t * 10;
   } else {
     const a = -t;
-    out[o] = 20 + a * 60;
-    out[o + 1] = 18 + a * 152;
-    out[o + 2] = 16 + a * 199;
+    out[o] = 18 - a * 6;
+    out[o + 1] = 22 + a * 190;
+    out[o + 2] = 44 + a * 211;
   }
 }
 
-/** Sequential map for air speed: still air is dark, fast air glows pale blue. */
+/** Sequential map for air speed: still air is dark, fast air glows cyan. */
 const SPEED_STOPS: [number, number, number, number][] = [
-  [0, 20, 18, 16],
-  [0.3, 56, 48, 78],
-  [0.55, 58, 102, 140],
-  [0.8, 110, 192, 214],
-  [1, 245, 240, 228],
+  [0, 10, 12, 30],
+  [0.3, 70, 30, 130],
+  [0.55, 40, 80, 170],
+  [0.8, 34, 211, 238],
+  [1, 240, 253, 255],
 ];
 function speedColour(v: number, out: Uint8ClampedArray, o: number) {
   const t = Math.max(0, Math.min(1, v));
@@ -288,7 +288,7 @@ export default function WindTunnel({
       tctx.fillRect(0, 0, width, height);
       tctx.globalCompositeOperation = "source-over";
       tctx.lineWidth = st.view === "smoke" ? 1.4 : 1;
-      tctx.strokeStyle = st.view === "smoke" ? "rgba(200,240,255,0.55)" : "rgba(240,233,221,0.35)";
+      tctx.strokeStyle = st.view === "smoke" ? "rgba(200,240,255,0.55)" : "rgba(255,255,255,0.35)";
       tctx.beginPath();
       const adv = st.running ? stepsPerFrame * 2.5 : 0;
       for (let i = 0; i < count; i++) {
@@ -394,7 +394,7 @@ export default function WindTunnel({
     <div className="flex flex-col gap-3">
       <div
         ref={wrapRef}
-        className="relative w-full overflow-hidden rounded-2xl border border-line bg-well touch-none"
+        className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-[#0a0d1c] touch-none"
         style={{ aspectRatio: aspect }}
         onPointerDown={(e) => {
           if (shape !== "custom") return;
@@ -414,21 +414,21 @@ export default function WindTunnel({
           role="img"
           aria-label={`Wind tunnel: ${current.label} in a ${speed} km/h wind. Drag ${readout.drag}, lift ${readout.lift}.`}
         />
-        <div className="pointer-events-none absolute left-3 top-3 flex items-center gap-2 rounded-full bg-ink/40 px-3 py-1 text-xs font-medium backdrop-blur">
-          <span className="text-cream/85">{speed} km/h</span>
-          <span className="text-faint">{windLabel(speed)}</span>
-          <span className="text-faint">→</span>
+        <div className="pointer-events-none absolute left-3 top-3 flex items-center gap-2 rounded-full bg-black/40 px-3 py-1 text-xs font-medium backdrop-blur">
+          <span className="text-white/90">{speed} km/h</span>
+          <span className="text-white/50">{windLabel(speed)}</span>
+          <span className="text-white/40">→</span>
         </div>
         {shape === "custom" && !hasPainting && (
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-sm text-muted">
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-sm text-white/70">
             Draw a shape with your finger or mouse
           </div>
         )}
         {view === "pressure" && (
-          <div className="pointer-events-none absolute bottom-3 right-3 flex items-center gap-2 rounded-full bg-ink/40 px-3 py-1 text-[11px] backdrop-blur">
-            <span className="text-[#8cc6e6]">Low</span>
-            <span className="h-2 w-16 rounded-full bg-gradient-to-r from-[#50aad7] via-[#141210] to-[#eb7d3c]" />
-            <span className="text-[#f0a070]">High pressure</span>
+          <div className="pointer-events-none absolute bottom-3 right-3 flex items-center gap-2 rounded-full bg-black/40 px-3 py-1 text-[11px] backdrop-blur">
+            <span className="text-cyan-300">Low</span>
+            <span className="h-2 w-16 rounded-full bg-gradient-to-r from-cyan-400 via-[#121630] to-orange-500" />
+            <span className="text-orange-300">High pressure</span>
           </div>
         )}
       </div>
@@ -441,13 +441,13 @@ export default function WindTunnel({
           colour="#22d3ee"
           hint={readout.lift < 0 ? "pushes it down" : "pushes it up"}
         />
-        <div className="col-span-2 flex items-center gap-1 rounded-2xl panel p-1">
+        <div className="col-span-2 flex items-center gap-1 rounded-2xl border border-white/10 bg-white/[0.03] p-1">
           {(["pressure", "speed", "smoke"] as ViewMode[]).map((v) => (
             <button
               key={v}
               onClick={() => setView(v)}
               className={`flex-1 rounded-xl px-2 py-2 text-sm capitalize transition ${
-                view === v ? "bg-cream text-ink" : "text-muted hover:bg-cream/10"
+                view === v ? "bg-white text-black" : "text-white/70 hover:bg-white/10"
               }`}
             >
               {v === "pressure" ? "Pressure" : v === "speed" ? "Air speed" : "Smoke"}
@@ -466,7 +466,7 @@ export default function WindTunnel({
               setAngle((a) => Math.min(hi, Math.max(lo, a)));
             }}
             className={`rounded-full border px-3 py-1.5 text-sm transition ${
-              shape === s.id ? "chip-on text-saffron-100" : "border-line text-muted hover:border-line-strong"
+              shape === s.id ? "border-cyan-300 bg-cyan-300/15 text-cyan-100" : "border-white/10 text-white/70 hover:border-white/30"
             }`}
           >
             {s.label}
@@ -520,7 +520,7 @@ export default function WindTunnel({
         >
           Restart air
         </button>
-        <span className="ml-auto text-xs text-faint">
+        <span className="ml-auto text-xs text-white/40">
           {readout.settled ? "Readings steady" : "Air settling…"}
         </span>
       </div>
@@ -530,24 +530,24 @@ export default function WindTunnel({
 
 function chip(active: boolean) {
   return `rounded-full border px-3 py-1.5 text-sm transition ${
-    active ? "border-cream bg-cream text-ink" : "border-line text-cream/85 hover:border-line-strong"
+    active ? "border-white bg-white text-black" : "border-white/10 text-white/80 hover:border-white/30"
   }`;
 }
 
 function Meter({ label, value, colour, hint }: { label: string; value: number; colour: string; hint: string }) {
   const pct = Math.min(Math.abs(value) / 300, 1) * 100;
   return (
-    <div className="rounded-2xl panel p-3">
+    <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-3">
       <div className="flex items-baseline justify-between">
-        <span className="text-xs uppercase tracking-wider text-faint">{label}</span>
+        <span className="text-xs uppercase tracking-wider text-white/50">{label}</span>
         <span className="font-display text-xl tabular-nums" style={{ color: colour }}>
           {value}
         </span>
       </div>
-      <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-cream/10">
+      <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
         <div className="h-full rounded-full transition-[width]" style={{ width: `${pct}%`, background: colour }} />
       </div>
-      <div className="mt-1 text-[11px] text-faint">{hint}</div>
+      <div className="mt-1 text-[11px] text-white/40">{hint}</div>
     </div>
   );
 }
@@ -562,10 +562,10 @@ function Slider(props: {
   onChange: (v: number) => void;
 }) {
   return (
-    <label className="block rounded-2xl panel px-4 py-3">
+    <label className="block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
       <div className="flex justify-between text-sm">
-        <span className="text-muted">{props.label}</span>
-        <span className="tabular-nums text-cream">
+        <span className="text-white/60">{props.label}</span>
+        <span className="tabular-nums text-white">
           {props.value}
           {props.unit}
         </span>

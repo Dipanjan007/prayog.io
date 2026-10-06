@@ -24,7 +24,7 @@ export default function OlyTrack({ scene, idle, runKey, onDone }: Props) {
   return (
     <canvas
       ref={ref}
-      className="h-60 w-full rounded-2xl border border-line bg-well sm:h-80"
+      className="h-60 w-full rounded-2xl border border-white/10 bg-[#0a0d1c] sm:h-80"
       role="img"
       aria-label={
         scene.kind === "bank"

@@ -81,24 +81,24 @@ export default function LessonPlayer() {
           <HeatLab onReading={onReading} />
           {R && (
             <div className="mt-3" ref={panelRef}>
-              <div className="rounded-xl panel p-3" aria-live="polite">
-                <div className="text-xs text-faint">
+              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3" aria-live="polite">
+                <div className="text-xs text-white/45">
                   Heat detective: question {round! + 1} of {CHALLENGE_ROUNDS.length}
                 </div>
-                <div className="mt-1 text-cream">{R.q}</div>
+                <div className="mt-1 text-white">{R.q}</div>
                 <div className="mt-2 grid gap-1.5">
                   {R.options.map((o, i) => (
                     <button
                       key={o}
                       disabled={!!feedback}
                       onClick={() => answer(i)}
-                      className="rounded-lg border border-line px-3 py-1.5 text-left text-sm text-cream/85 hover:border-line-strong disabled:opacity-60"
+                      className="rounded-lg border border-white/10 px-3 py-1.5 text-left text-sm text-white/80 hover:border-white/20 disabled:opacity-60"
                     >
                       {o}
                     </button>
                   ))}
                 </div>
-                {feedback && <div className={`mt-2 text-sm ${feedback.ok ? "text-sage-300" : "text-ochre-200"}`}>{feedback.text}</div>}
+                {feedback && <div className={`mt-2 text-sm ${feedback.ok ? "text-lime-300" : "text-amber-200"}`}>{feedback.text}</div>}
               </div>
             </div>
           )}
@@ -106,10 +106,10 @@ export default function LessonPlayer() {
       }
       simNote="The rod is 20 cm long and 6 mm thick. Heat spreads along it by the heat equation, using real values for each material, and the rod loses heat to the air. Time runs 10 or 100 times faster than real life. The particle wobble is hugely exaggerated so you can see it. The pot shows a simple picture of the convection currents, not a full water simulation. The seaside temperatures are typical values for a sunny day, not a forecast."
       taskExtras={{
-        "task:breeze": <div className="mt-2 text-xs text-faint">Breezes seen: {breezes.length ? breezes.map((b) => `${b} breeze`).join(" and ") : "none yet"}</div>,
+        "task:breeze": <div className="mt-2 text-xs text-white/45">Breezes seen: {breezes.length ? breezes.map((b) => `${b} breeze`).join(" and ") : "none yet"}</div>,
       }}
       challengeBody={
-        <div className="text-sm text-muted">
+        <div className="text-sm text-white/60">
           {R ? (
             <div>Answer the question under the lab. Use the lab to check first.</div>
           ) : (

@@ -7,7 +7,6 @@ import { useProfile } from "@/lib/profile";
 
 const LINKS = [
   { href: "/learn", label: "Learn" },
-  { href: "/lab", label: "Lab" },
   { href: "/olympiad", label: "Olympiad" },
   { href: "/me", label: "Me" },
 ];

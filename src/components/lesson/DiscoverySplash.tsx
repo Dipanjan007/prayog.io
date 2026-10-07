@@ -5,7 +5,7 @@ import type { LessonDef } from "@/content/lessons/types";
 
 /** How long the lab "loads" before it can be entered, and when it opens by itself. */
 const LOAD_MS = 1000;
-const AUTO_ENTER_MS = 5000;
+const AUTO_ENTER_MS = 10000;
 
 /**
  * Shown for a moment as a lab opens: the scientist behind it, a fact and their
@@ -42,7 +42,6 @@ export default function DiscoverySplash({ lesson }: { lesson: LessonDef }) {
       aria-modal="true"
       aria-label={`Meet ${d.scientist}`}
       className="fixed inset-0 z-50 flex items-center justify-center bg-[#070a14]/90 px-4 backdrop-blur-md"
-      onClick={() => ready && setOpen(false)}
     >
       <div className="glass w-full max-w-lg rounded-3xl p-6">
         <div className="text-[11px] uppercase tracking-wider text-violet-200/80">Meet the discoverer</div>

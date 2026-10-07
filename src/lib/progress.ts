@@ -75,6 +75,18 @@ export const BADGES: BadgeInfo[] = [
   { id: "laser-ace", name: "Laser Ace", how: "Guide the laser to the target in all three mirror levels", emoji: "🎯" },
   { id: "orbit-explorer", name: "Orbit Explorer", how: "Finish every step of the Earth, Moon and Sun lesson", emoji: "🌍" },
   { id: "eclipse-hunter", name: "Eclipse Hunter", how: "Finish all three Sky planner jobs, including a total solar and a total lunar eclipse", emoji: "🌑" },
+  { id: "gravity-guru", name: "Gravity Guru", how: "Finish every step of the gravity lesson", emoji: "🍎" },
+  { id: "planet-detective", name: "Planet Detective", how: "Name all three mystery worlds from the scale reading", emoji: "🪐" },
+  { id: "spin-doctor", name: "Spin Doctor", how: "Finish every step of the circular motion lesson", emoji: "🌀" },
+  { id: "orbit-ace", name: "Orbit Ace", how: "Take the bend and put both satellites into circular orbits", emoji: "🛰️" },
+  { id: "black-hole-explorer", name: "Black Hole Explorer", how: "Finish every step of the black holes lesson", emoji: "🕳️" },
+  { id: "horizon-hunter", name: "Horizon Hunter", how: "Find the black hole size of all three mystery objects", emoji: "🔭" },
+  { id: "clock-bender", name: "Clock Bender", how: "Finish every step of the light clock lesson", emoji: "⏳" },
+  { id: "twin-tracker", name: "Twin Tracker", how: "Get 3 stars in the twin time machine", emoji: "👯" },
+  { id: "speed-limit-keeper", name: "Speed Limit Keeper", how: "Finish every step of the nothing beats light lesson", emoji: "🚦" },
+  { id: "rocket-squeezer", name: "Rocket Squeezer", how: "Get 3 stars in the rocket squeeze", emoji: "🚀" },
+  { id: "frozen-energy", name: "Frozen Energy", how: "Finish every step of the E = mc² lesson", emoji: "⚛️" },
+  { id: "star-forger", name: "Star Forger", how: "Solve all three mass to energy rounds", emoji: "☀️" },
   { id: "sharp-mind", name: "Sharp Mind", how: "Score full marks in a Master quiz", emoji: "🎯" },
 ];
 

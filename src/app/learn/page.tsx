@@ -12,8 +12,8 @@ export default function LearnPage() {
     <div className="pt-4">
       <h1 className="font-display text-4xl font-bold">Your physics map</h1>
       <p className="mt-2 max-w-2xl text-white/60">
-        Seven strands that grow from Class 7 to Class 10, following the NCERT books. {live} of {total} chapters are
-        playable now{live < total ? "; the rest are on the way" : ""}.
+        {STRANDS.length} strands that grow from Class 7 to Class 10, following the NCERT books, plus extra labs marked
+        Beyond the book for curious minds. {live} of {total} labs are playable now{live < total ? "; the rest are on the way" : ""}.
       </p>
 
       {/* Header row: classes */}
@@ -46,6 +46,11 @@ export default function LearnPage() {
                         style={{ borderColor: strand.colour, background: "rgba(56,189,248,0.08)" }}
                       >
                         <div className="text-[11px] uppercase tracking-wider text-white/50 md:hidden">Class {c}</div>
+                        {ch.extra && (
+                          <div className="mb-1 inline-block rounded-full border border-white/15 px-2 py-0.5 text-[10px] uppercase tracking-wider text-white/60">
+                            Beyond the book
+                          </div>
+                        )}
                         <div className="text-sm font-semibold">{ch.title}</div>
                         <div className="mt-1 text-xs text-white/60">🎮 {ch.sim}</div>
                         <div className="mt-2 text-xs font-semibold" style={{ color: strand.colour }}>

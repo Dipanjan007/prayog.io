@@ -21,6 +21,8 @@ export interface Chapter {
   href?: string;
   /** The simulation the lesson is built around. */
   sim: string;
+  /** Beyond the current NCERT book: an extra lab for curious students. */
+  extra?: boolean;
 }
 
 export interface Strand {
@@ -101,6 +103,26 @@ export const STRANDS: Strand[] = [
       { classNum: 7, title: "Earth, Moon, and the Sun", href: "/learn/earth-moon-sun", sim: "Seasons, day length and eclipses" },
       { classNum: 8, title: "Keeping Time with the Skies", href: "/learn/sky-clock", sim: "Moon phases and a shadow stick" },
       { classNum: 9, title: "Sound Waves: Characteristics and Applications", href: "/learn/sound", sim: "Sound waves, echoes and SONAR" },
+    ],
+  },
+  {
+    id: "gravity",
+    name: "Gravity and space",
+    colour: "var(--c-violet)",
+    chapters: [
+      { classNum: 9, title: "Gravitation: Mass, Weight and Gravity", href: "/learn/gravity", sim: "Drop balls on the Moon and Jupiter, fire Newton's cannon", extra: true },
+      { classNum: 9, title: "Circular Motion: Centripetal and Centrifugal Force", href: "/learn/circular-motion", sim: "Whirl a ball, ride the spinning Earth", extra: true },
+      { classNum: 10, title: "Gravity and Black Holes", href: "/learn/black-holes", sim: "Squeeze the Earth and the Sun into black holes", extra: true },
+    ],
+  },
+  {
+    id: "relativity",
+    name: "Einstein's relativity",
+    colour: "var(--c-pink)",
+    chapters: [
+      { classNum: 10, title: "Relativity: Moving Clocks Run Slow", href: "/learn/time-dilation", sim: "Light clock on a speeding train", extra: true },
+      { classNum: 10, title: "Relativity: Shrinking Lengths and the Cosmic Speed Limit", href: "/learn/length-contraction", sim: "Shrink a rocket, try to beat light", extra: true },
+      { classNum: 10, title: "Relativity: E = mc² and Curved Space-time", href: "/learn/mass-energy", sim: "Turn mass into energy, bend starlight", extra: true },
     ],
   },
 ];

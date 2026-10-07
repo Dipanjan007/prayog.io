@@ -1,6 +1,6 @@
 // Prayog offline cache: pages are network-first (fall back to the last copy),
 // and built assets are cache-first since their file names change per build.
-const CACHE = "prayog-v7";
+const CACHE = "prayog-v8";
 const PRECACHE = [
   "/",
   "/learn",
@@ -22,6 +22,12 @@ const PRECACHE = [
   "/learn/heat-transfer",
   "/learn/shadows-reflections",
   "/learn/earth-moon-sun",
+  "/learn/gravity",
+  "/learn/circular-motion",
+  "/learn/black-holes",
+  "/learn/time-dilation",
+  "/learn/length-contraction",
+  "/learn/mass-energy",
   "/olympiad",
   "/me",
 ];

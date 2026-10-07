@@ -85,6 +85,13 @@ export const lesson: LessonDef = {
         "In December the noon Sun is low in the south, so the shadow is long and points north. In June the noon Sun is almost overhead at 23° N, so there is almost no shadow at all. The length of the noon shadow tells the season.",
     },
   ],
+  discovery: {
+    scientist: "Sawai Jai Singh II",
+    years: "1688–1743",
+    fact: "The ruler of Amber built the Jantar Mantar observatories in Delhi and Jaipur. The giant sundial in Jaipur, the Samrat Yantra, is about 27 metres tall and tells the local time to within about 2 seconds.",
+    formula: "12 × 29.5 days ≈ 354 days",
+    formulaNote: "Twelve Moon cycles of about 29.5 days make a lunar year, about 11 days shorter than a solar year. That is why many festivals shift dates each year.",
+  },
   ideas: [
     {
       title: "Day and night",

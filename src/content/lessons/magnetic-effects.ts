@@ -83,6 +83,13 @@ export const lesson: LessonDef = {
         "A magnet pushes on a current-carrying conductor. The push is at right angles to both the current and the field. Reversing either the current or the field reverses the push. Reverse both and the rod moves the same way as before.",
     },
   ],
+  discovery: {
+    scientist: "Hans Christian Ørsted",
+    years: "1777–1851",
+    fact: "In April 1820, during a lecture in Copenhagen, Ørsted noticed a compass needle swing whenever he switched on the current in a nearby wire. It was the first proof that electricity makes magnetism.",
+    formula: "F = B × I × L",
+    formulaNote: "The force on a current-carrying wire in a magnetic field: stronger field B, bigger current I and longer wire L give a bigger push. This is how motors turn.",
+  },
   ideas: [
     {
       title: "Magnetic field and field lines",

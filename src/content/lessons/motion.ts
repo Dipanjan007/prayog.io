@@ -63,6 +63,13 @@ export const lesson: LessonDef = {
         "While braking, the speed–time graph slopes down to zero. The area under it, a triangle of ½ × speed × time, equals the distance travelled while stopping.",
     },
   ],
+  discovery: {
+    scientist: "Nicole Oresme",
+    years: "about 1320–1382",
+    fact: "Around 1350, the French scholar Oresme drew some of the first graphs, with time along one side and speed up the other. He used them to show that the area under the graph gives the distance travelled.",
+    formula: "s = ut + ½at²",
+    formulaNote: "Distance travelled with steady acceleration. It is the area under the speed–time graph.",
+  },
   ideas: [
     {
       title: "Speed",

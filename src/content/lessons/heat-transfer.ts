@@ -103,6 +103,13 @@ export const lesson: LessonDef = {
         "The Sun's heat reaches us by radiation, even across empty space. Dark surfaces absorb more of it and get hotter. Light surfaces reflect more and stay cooler. That is why we wear light-coloured clothes in summer.",
     },
   ],
+  discovery: {
+    scientist: "Joseph Fourier",
+    years: "1768–1830",
+    fact: "Fourier worked out the maths of how heat flows through solids. In 1824 he was also the first to suggest that the air around Earth traps heat and keeps the planet warm, the greenhouse effect.",
+    formula: "Heat flow per second = k × A × ΔT ÷ L",
+    formulaNote: "Fourier's law: heat flows faster through a good conductor (big k), a wider rod (A), a bigger temperature difference (ΔT) and a shorter rod (L).",
+  },
   ideas: [
     {
       title: "Conduction",

@@ -80,6 +80,13 @@ export const lesson: LessonDef = {
         "Twice the current gives four times the heat, because H = I²Rt. The current is squared. That is why the high-resistance heater coil glows while the low-resistance copper cable stays cool.",
     },
   ],
+  discovery: {
+    scientist: "Georg Simon Ohm",
+    years: "1789–1854",
+    fact: "When Ohm published his law in 1827, many German scientists dismissed it and he left his school teaching job. Fourteen years later Britain's Royal Society gave him its top prize, the Copley Medal.",
+    formula: "V = I × R",
+    formulaNote: "Ohm's law: the voltage across a wire equals the current through it times its resistance.",
+  },
   ideas: [
     {
       title: "Ohm's law",

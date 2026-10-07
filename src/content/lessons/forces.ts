@@ -91,6 +91,13 @@ export const lesson: LessonDef = {
         "The magnet pulled the pins, and the rubbed comb pulled the paper, across a gap of air. These are non-contact forces: magnetic force and electrostatic force. The pull got stronger as the gap got smaller. A plain comb has no charge, so it pulled nothing.",
     },
   ],
+  discovery: {
+    scientist: "Isaac Newton",
+    years: "1643–1727",
+    fact: "When plague closed Cambridge University in 1665, 22-year-old Newton went home to his family farm. In about 18 months there he began working out his ideas on motion, gravity and light, published in his 1687 book Principia.",
+    formula: "F = m × a",
+    formulaNote: "Newton's second law: the force needed equals mass times acceleration. Push a heavier crate and it speeds up less for the same push.",
+  },
   ideas: [
     {
       title: "A force is a push or a pull",

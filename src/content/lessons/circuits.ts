@@ -70,6 +70,13 @@ export const lesson: LessonDef = {
         "Materials that let current pass, like metals and pencil lead (graphite), are conductors. Materials that don't, like rubber, plastic, wood and glass, are insulators.",
     },
   ],
+  discovery: {
+    scientist: "Alessandro Volta",
+    years: "1745–1827",
+    fact: "In 1800 Volta built the first battery by stacking discs of zinc and copper with cloth soaked in salt water between them. The unit of voltage, the volt, is named after him.",
+    formula: "V total = V₁ + V₂",
+    formulaNote: "Cells joined one after another (in series) add their voltages, which is why a torch uses two cells.",
+  },
   ideas: [
     {
       title: "Closed and open circuits",

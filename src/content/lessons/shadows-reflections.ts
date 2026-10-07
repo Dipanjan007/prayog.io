@@ -73,6 +73,13 @@ export const lesson: LessonDef = {
         "Both mirrors must face each other at 45°. Each mirror turns the light through 90°, because the angle of reflection equals the angle of incidence (45° and 45°). This is how a periscope works in a submarine.",
     },
   ],
+  discovery: {
+    scientist: "Ibn al-Haytham",
+    years: "about 965–1040",
+    fact: "Working in Cairo, Ibn al-Haytham used a dark room with a tiny hole, a camera obscura, to show that light travels in straight lines and that we see because light enters our eyes, not because our eyes send out rays.",
+    formula: "∠i = ∠r",
+    formulaNote: "Law of reflection: light leaves a mirror at the same angle at which it arrives.",
+  },
   ideas: [
     {
       title: "Light travels in a straight line",

@@ -84,6 +84,13 @@ export const lesson: LessonDef = {
         "The cycle's dots are equally spaced. It covers the same distance every second, so it is in uniform linear motion. The auto-rickshaw's dots are close at the start, far apart in the middle and bunched up at the speed breaker. Its speed keeps changing, so it is in non-uniform linear motion.",
     },
   ],
+  discovery: {
+    scientist: "Galileo Galilei",
+    years: "1564–1642",
+    fact: "The story goes that as a 19-year-old in Pisa Cathedral, Galileo timed a swinging lamp against his own pulse. Wide swings and small swings took the same time, the idea behind pendulum clocks.",
+    formula: "T = 2π √(L ÷ g)",
+    formulaNote: "A pendulum's time period depends only on its length L (and gravity g), not on its mass or how wide it swings.",
+  },
   ideas: [
     {
       title: "Clocks, old and new",

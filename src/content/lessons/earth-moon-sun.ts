@@ -92,6 +92,13 @@ export const lesson: LessonDef = {
         "The Moon's orbit is tilted by about 5° to the Earth's orbit. Most months the new Moon passes above or below the Sun, and the full Moon passes above or below the Earth's shadow. An eclipse can only happen when Amavasya or Purnima falls near a node, where the two orbits cross. That happens only in two short eclipse seasons each year.",
     },
   ],
+  discovery: {
+    scientist: "Aryabhata",
+    years: "476–550 CE",
+    fact: "In 499 CE, aged just 23, Aryabhata wrote that the Earth spins on its axis and that eclipses are shadows of the Earth and the Moon. India's first satellite, launched in 1975, is named after him.",
+    formula: "360° ÷ 24 h = 15° per hour",
+    formulaNote: "The Earth turns 15 degrees every hour, which is why the Sun seems to move across the sky.",
+  },
   ideas: [
     {
       title: "Rotation: day and night",

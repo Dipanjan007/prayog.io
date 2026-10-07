@@ -27,6 +27,16 @@ export interface LessonDef {
   predict: { question: string; options: string[]; answer: number };
   tasks: { id: string; title: string; text: string; found: string }[];
   ideas: { title: string; text: string; formula?: string }[];
+  /** The person behind the big idea: a fact students remember, and the formula they gave us. */
+  discovery: {
+    scientist: string;
+    /** Lifespan or date, e.g. "1643–1727". */
+    years: string;
+    fact: string;
+    formula: string;
+    /** One line saying what the formula means. */
+    formulaNote: string;
+  };
   challenge: { title: string; text: string };
   quiz: QuizQuestion[];
 }

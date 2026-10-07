@@ -22,6 +22,14 @@ import { lesson as blackHoles } from "./black-holes";
 import { lesson as timeDilation } from "./time-dilation";
 import { lesson as lengthContraction } from "./length-contraction";
 import { lesson as massEnergy } from "./mass-energy";
+import { lesson as pressureLab } from "./pressure-lab";
+import { lesson as floatSink } from "./float-sink";
+import { lesson as cellsCompass } from "./cells-compass";
+import { lesson as pathsCircles } from "./paths-circles";
+import { lesson as simpleMachines } from "./simple-machines";
+import { lesson as soundUses } from "./sound-uses";
+import { lesson as houseWiring } from "./house-wiring";
+import { lesson as skyColours } from "./sky-colours";
 import type { LessonDef } from "./types";
 
 /** Every playable lesson, in class order. */
@@ -44,6 +52,14 @@ export const LESSONS: LessonDef[] = [
   humanEye,
   electricity,
   magneticEffects,
+  pressureLab,
+  floatSink,
+  cellsCompass,
+  pathsCircles,
+  simpleMachines,
+  soundUses,
+  houseWiring,
+  skyColours,
   gravity,
   circularMotion,
   blackHoles,

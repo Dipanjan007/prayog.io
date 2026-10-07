@@ -23,6 +23,8 @@ export interface Chapter {
   sim: string;
   /** Beyond the current NCERT books: an Outliers lab for curious students, shown on its own tab. */
   extra?: boolean;
+  /** Extra NCERT labs for this chapter that fill gaps the main lesson leaves. */
+  labs?: { href: string; title: string; sim: string }[];
 }
 
 export interface Strand {
@@ -39,7 +41,7 @@ export const STRANDS: Strand[] = [
     colour: "var(--c-cyan)",
     chapters: [
       { classNum: 7, title: "Measurement of Time and Motion", href: "/learn/time-motion", sim: "Pendulum timer and race track" },
-      { classNum: 9, title: "Describing Motion Around Us", href: "/learn/motion", sim: "Drive a sports car, watch its graphs draw live" },
+      { classNum: 9, title: "Describing Motion Around Us", href: "/learn/motion", sim: "Drive a sports car, watch its graphs draw live", labs: [{ href: "/learn/paths-circles", title: "Distance, displacement and going round", sim: "Walk a Kolkata map, throw a ball up and roll a marble round a ring" }] },
     ],
   },
   {
@@ -47,7 +49,7 @@ export const STRANDS: Strand[] = [
     name: "Force",
     colour: "var(--c-violet)",
     chapters: [
-      { classNum: 8, title: "Exploring Forces", href: "/learn/forces", sim: "Push a crate, spring balance and magnets" },
+      { classNum: 8, title: "Exploring Forces", href: "/learn/forces", sim: "Push a crate, spring balance and magnets", labs: [{ href: "/learn/float-sink", title: "Float or sink?", sim: "Spring balance in water, an egg in salt water, floating ring magnets" }] },
       { classNum: 9, title: "How Forces Affect Motion", href: "/learn/forces-motion", sim: "Air track collisions and recoil" },
     ],
   },
@@ -61,6 +63,7 @@ export const STRANDS: Strand[] = [
         title: "Pressure, Winds, Storms, and Cyclones",
         href: "/learn/pressure-winds",
         sim: "Wind tunnel with a sports car",
+        labs: [{ href: "/learn/pressure-lab", title: "Press, pour and pump", sim: "Squash sand with a brick, spurt water jets, pull a sucker off a wall" }],
       },
     ],
   },
@@ -70,7 +73,7 @@ export const STRANDS: Strand[] = [
     colour: "var(--c-orange)",
     chapters: [
       { classNum: 7, title: "Heat Transfer in Nature", href: "/learn/heat-transfer", sim: "Heated rod, convection pot and sea breeze" },
-      { classNum: 9, title: "Work, Energy, and Simple Machines", href: "/learn/work-energy", sim: "Roller coaster energy bars, lever builder" },
+      { classNum: 9, title: "Work, Energy, and Simple Machines", href: "/learn/work-energy", sim: "Roller coaster energy bars, lever builder", labs: [{ href: "/learn/simple-machines", title: "Pulleys, ramps and the work meter", sim: "Work meter, pulley systems, a ramp and a power race" }] },
     ],
   },
   {
@@ -79,9 +82,9 @@ export const STRANDS: Strand[] = [
     colour: "var(--c-lime)",
     chapters: [
       { classNum: 7, title: "Electricity: Circuits and their Components", href: "/learn/circuits", sim: "Torch builder and conductor tester" },
-      { classNum: 8, title: "Electricity: Magnetic and Heating Effects", href: "/learn/magnetic-heating", sim: "Electromagnet crane and fuse" },
+      { classNum: 8, title: "Electricity: Magnetic and Heating Effects", href: "/learn/magnetic-heating", sim: "Electromagnet crane and fuse", labs: [{ href: "/learn/cells-compass", title: "Lemon batteries and nervous compasses", sim: "Swing compasses round a wire, light an LED with lemon cells" }] },
       { classNum: 10, title: "Electricity", href: "/learn/electricity", sim: "Ohm's law circuit lab" },
-      { classNum: 10, title: "Magnetic Effects of Electric Current", href: "/learn/magnetic-effects", sim: "Field lines, compasses and the force on a wire" },
+      { classNum: 10, title: "Magnetic Effects of Electric Current", href: "/learn/magnetic-effects", sim: "Field lines, compasses and the force on a wire", labs: [{ href: "/learn/house-wiring", title: "Wire a safe home", sim: "Plug in appliances, trip the MCB, earth a faulty iron, read the bill" }] },
     ],
   },
   {
@@ -92,7 +95,7 @@ export const STRANDS: Strand[] = [
       { classNum: 7, title: "Light: Shadows and Reflections", href: "/learn/shadows-reflections", sim: "Shadow stage, pinhole camera and laser mirrors" },
       { classNum: 8, title: "Light: Mirrors and Lenses", href: "/learn/mirrors-lenses", sim: "Plane, concave and convex mirrors and lenses" },
       { classNum: 10, title: "Light: Reflection and Refraction", href: "/learn/light-refraction", sim: "Glass block, lens and mirror bench with live ray diagrams" },
-      { classNum: 10, title: "The Human Eye and the Colourful World", sim: "Eye model and prism", href: "/learn/human-eye" },
+      { classNum: 10, title: "The Human Eye and the Colourful World", sim: "Eye model and prism", href: "/learn/human-eye", labs: [{ href: "/learn/sky-colours", title: "Why the sky is blue", sim: "Scatter light, paint a sunset, make stars twinkle, catch a rainbow" }] },
     ],
   },
   {
@@ -102,7 +105,7 @@ export const STRANDS: Strand[] = [
     chapters: [
       { classNum: 7, title: "Earth, Moon, and the Sun", href: "/learn/earth-moon-sun", sim: "Seasons, day length and eclipses" },
       { classNum: 8, title: "Keeping Time with the Skies", href: "/learn/sky-clock", sim: "Moon phases and a shadow stick" },
-      { classNum: 9, title: "Sound Waves: Characteristics and Applications", href: "/learn/sound", sim: "Sound waves, echoes and SONAR" },
+      { classNum: 9, title: "Sound Waves: Characteristics and Applications", href: "/learn/sound", sim: "Sound waves, echoes and SONAR", labs: [{ href: "/learn/sound-uses", title: "Silent bells and singing halls", sim: "Silence a bell jar, tune a hall echo, find a crack with ultrasound" }] },
     ],
   },
   {

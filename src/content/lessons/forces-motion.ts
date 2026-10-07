@@ -77,6 +77,13 @@ export const lesson: LessonDef = {
         "The spring pushed both carts with the same force, in opposite directions. They got equal and opposite momentum, so the total stayed zero. The lighter cart moved faster. This is Newton's third law, and it is why a gun recoils and a balloon rocket flies.",
     },
   ],
+  discovery: {
+    scientist: "Christiaan Huygens, John Wallis and Christopher Wren",
+    years: "1668",
+    fact: "In 1668 London's Royal Society asked scientists for the rules of colliding objects. Huygens, Wallis and Wren each sent in answers, and together they showed that the total momentum stays the same in a collision.",
+    formula: "m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂",
+    formulaNote: "Conservation of momentum: total momentum before a collision equals total momentum after it.",
+  },
   ideas: [
     {
       title: "First law: inertia",

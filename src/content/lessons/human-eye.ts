@@ -81,6 +81,13 @@ export const lesson: LessonDef = {
         "The second prism bends each colour back by the same amount, so they join into white light again. Isaac Newton did this to show the colours were already in the white light, not made by the glass.",
     },
   ],
+  discovery: {
+    scientist: "Johannes Kepler",
+    years: "1571–1630",
+    fact: "Smallpox damaged Kepler's eyesight when he was a child, yet in 1604 he became the first to explain that the eye's lens throws an upside-down image onto the retina at the back of the eye.",
+    formula: "1/v − 1/u = 1/f",
+    formulaNote: "The lens formula links the object distance u, the image distance v and the focal length f. The eye changes f to keep v fixed on the retina.",
+  },
   ideas: [
     {
       title: "Power of accommodation",

@@ -16,6 +16,12 @@ import { lesson as timeMotion } from "./time-motion";
 import { lesson as heatTransfer } from "./heat-transfer";
 import { lesson as shadows } from "./shadows-reflections";
 import { lesson as earthMoonSun } from "./earth-moon-sun";
+import { lesson as gravity } from "./gravity";
+import { lesson as circularMotion } from "./circular-motion";
+import { lesson as blackHoles } from "./black-holes";
+import { lesson as timeDilation } from "./time-dilation";
+import { lesson as lengthContraction } from "./length-contraction";
+import { lesson as massEnergy } from "./mass-energy";
 import type { LessonDef } from "./types";
 
 /** Every playable lesson, in class order. */
@@ -38,4 +44,10 @@ export const LESSONS: LessonDef[] = [
   humanEye,
   electricity,
   magneticEffects,
+  gravity,
+  circularMotion,
+  blackHoles,
+  timeDilation,
+  lengthContraction,
+  massEnergy,
 ];

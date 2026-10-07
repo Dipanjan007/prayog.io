@@ -76,6 +76,13 @@ export const lesson: LessonDef = {
         "A convex mirror always gives a virtual, erect, diminished image behind it, and shows a wide field of view. Things look smaller, so they seem further away: that is why the car mirror warns you.",
     },
   ],
+  discovery: {
+    scientist: "Willebrord Snell (and Ibn Sahl)",
+    years: "1621 (and about 984)",
+    fact: "The Dutch scientist Snell found the law of refraction in 1621 but never published it. Centuries earlier, around 984, Ibn Sahl in Baghdad had already written it down while designing burning lenses.",
+    formula: "n = sin i ÷ sin r",
+    formulaNote: "Snell's law: the refractive index n of glass or water links the angle of the ray going in (i) to the angle inside (r).",
+  },
   ideas: [
     {
       title: "Laws of refraction",

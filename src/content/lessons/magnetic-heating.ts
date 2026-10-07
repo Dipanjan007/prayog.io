@@ -76,6 +76,13 @@ export const lesson: LessonDef = {
         "The fuse wire melts and breaks the circuit, so the current stops. Copper has so little resistance that it is almost a short circuit, and a big current rushes through. A fuse or an MCB stops such a big current before wires overheat and start a fire.",
     },
   ],
+  discovery: {
+    scientist: "James Prescott Joule",
+    years: "1818–1889",
+    fact: "Joule, a brewer's son from Manchester, measured heat so carefully that, the story goes, he took a thermometer on his honeymoon to check whether the water at the bottom of a waterfall was warmer than at the top.",
+    formula: "H = I² × R × t",
+    formulaNote: "Joule's law of heating: the heat made in a wire grows with the square of the current, so doubling the current gives four times the heat. That is why a fuse wire melts.",
+  },
   ideas: [
     {
       title: "Magnetic effect of current",

@@ -83,6 +83,13 @@ export const lesson: LessonDef = {
         "The ship sends ultrasound down and times the echo from the seabed. The sound goes down and back up, so depth = v × t ÷ 2, with v about 1500 m/s in sea water.",
     },
   ],
+  discovery: {
+    scientist: "Lazzaro Spallanzani",
+    years: "1729–1799",
+    fact: "In the 1790s Spallanzani found that blindfolded bats still flew safely through a dark room, but bats with plugged ears crashed. Bats find their way by echoes, the same idea as SONAR.",
+    formula: "v = f × λ",
+    formulaNote: "The speed of a wave equals its frequency times its wavelength.",
+  },
   ideas: [
     {
       title: "Sound is a longitudinal wave",

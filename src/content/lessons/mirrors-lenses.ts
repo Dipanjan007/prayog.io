@@ -74,6 +74,13 @@ export const lesson: LessonDef = {
         "A convex lens, thicker in the middle, makes close things look bigger: a magnifying glass. A concave lens, thinner in the middle, always makes things look smaller.",
     },
   ],
+  discovery: {
+    scientist: "Antonie van Leeuwenhoek",
+    years: "1632–1723",
+    fact: "A cloth merchant from Delft, Leeuwenhoek ground hundreds of tiny lenses by hand. In 1676, looking through one, he became the first person to see bacteria.",
+    formula: "P = 1 ÷ f",
+    formulaNote: "The power of a lens, in dioptres, is 1 divided by its focal length in metres. A stronger lens has a shorter focal length.",
+  },
   ideas: [
     {
       title: "Plane mirror",

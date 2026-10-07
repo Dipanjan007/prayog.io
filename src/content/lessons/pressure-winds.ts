@@ -70,6 +70,13 @@ export const lesson: LessonDef = {
         "The upside-down wing makes air rush faster underneath it, so the pressure there drops. Higher pressure on top pushes the car onto the road for better grip, but notice the drag went up too.",
     },
   ],
+  discovery: {
+    scientist: "Daniel Bernoulli",
+    years: "1700–1782",
+    fact: "Bernoulli trained as a doctor. His 1738 book Hydrodynamica showed that faster-moving fluid has lower pressure, and his trick of putting a thin tube into a flowing pipe was later used to measure blood pressure for about 170 years.",
+    formula: "P + ½ρv² = constant",
+    formulaNote: "Bernoulli's principle: where air (density ρ) moves faster (bigger v), its pressure P drops. That is how wings lift planes and push racing cars down.",
+  },
   ideas: [
     {
       title: "Air exerts pressure",

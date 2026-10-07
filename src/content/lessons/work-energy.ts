@@ -78,6 +78,13 @@ export const lesson: LessonDef = {
         "In Class 2 (wheelbarrow) the load is between the fulcrum and the effort, so the effort is always smaller than the load. In Class 3 (tongs, your forearm) the effort is in the middle, so the effort is always bigger, but the load end moves further and faster.",
     },
   ],
+  discovery: {
+    scientist: "Archimedes",
+    years: "about 287–212 BCE",
+    fact: "The Greek inventor worked out the law of the lever and is said to have boasted, \"Give me a place to stand and I will move the Earth.\"",
+    formula: "Load × load arm = Effort × effort arm",
+    formulaNote: "The law of the lever: a long effort arm lets a small push lift a heavy load.",
+  },
   ideas: [
     {
       title: "Work and power",

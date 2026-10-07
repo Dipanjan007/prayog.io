@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { useState, type ReactNode } from "react";
 import Quiz from "@/components/Quiz";
+import DiscoverySplash from "./DiscoverySplash";
 import { ToastStack } from "@/components/Toasts";
 import { stepOrder, XP, type LessonDef } from "@/content/lessons/types";
 import { completeStep, improveBest } from "@/lib/progress";
-import type { LessonApi } from "@/lib/useLesson";
+import { restartLesson, type LessonApi } from "@/lib/useLesson";
 
 interface Props {
   lesson: LessonDef;
@@ -25,7 +26,7 @@ interface Props {
  * the Hook → Predict → Missions → Discover → Challenge → Quiz steps on the other.
  */
 export default function LessonShell({ lesson, api, sim, simNote, taskExtras, challengeBody }: Props) {
-  const { done, lp, reward, push, badge, checkAllDone, toasts } = api;
+  const { done, lp, reward, push, badge, checkAllDone, toasts, replay, hasProgress } = api;
   const [prediction, setPrediction] = useState<number | null>(null);
   const order = stepOrder(lesson);
   const currentIndex = order.findIndex((s) => !done.has(s));
@@ -53,20 +54,26 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
   let n = 0;
   return (
     <>
+      <DiscoverySplash lesson={lesson} canRestart={hasProgress && !replay} onRestart={() => restartLesson(lesson.id)} />
       <div className="mb-6">
-        <Link href="/learn" className="text-sm text-white/50 hover:text-white">
+        <Link href={lesson.book === "Outliers" ? "/outliers" : "/learn"} className="text-sm text-white/50 hover:text-white">
           ← Class {lesson.classNum} · {lesson.book} · {lesson.chapter}
         </Link>
         <div className="mt-2 flex flex-wrap items-end justify-between gap-3">
           <h1 className="font-display text-3xl font-bold sm:text-4xl">{lesson.title}</h1>
           <div className="w-full max-w-xs">
             <div className="flex justify-between text-xs text-white/50">
-              <span>Lesson progress</span>
+              <span>{replay ? "Replaying from the start" : "Lesson progress"}</span>
               <span>{percent}%</span>
             </div>
             <div className="mt-1 h-2 overflow-hidden rounded-full bg-white/10">
               <div className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-violet-400 transition-all" style={{ width: `${percent}%` }} />
             </div>
+            {(hasProgress || replay) && (
+              <button className="mt-2 text-xs text-white/60 hover:text-white" onClick={() => restartLesson(lesson.id)}>
+                ↺ Start this lab from the beginning
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -143,6 +150,15 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
                   : `Surprise! The answer is: ${lesson.predict.options[lesson.predict.answer].toLowerCase()}. Scientists change their minds when experiments show them something new.`}
               </p>
             )}
+            <div className="mb-2 rounded-xl border border-violet-300/30 bg-violet-300/[0.07] p-3">
+              <div className="text-[11px] uppercase tracking-wider text-violet-200/80">Meet the discoverer</div>
+              <div className="mt-1 font-semibold">
+                {lesson.discovery.scientist} <span className="font-normal text-white/50">· {lesson.discovery.years}</span>
+              </div>
+              <p className="mt-1 text-sm text-white/70">{lesson.discovery.fact}</p>
+              <div className="mt-2 rounded-lg bg-black/30 px-3 py-2 font-mono text-sm text-cyan-200">{lesson.discovery.formula}</div>
+              <p className="mt-1 text-xs text-white/60">{lesson.discovery.formulaNote}</p>
+            </div>
             <div className="grid gap-2">
               {lesson.ideas.map((idea) => (
                 <div key={idea.title} className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
@@ -223,7 +239,8 @@ function LabIntro({ lesson, startOpen }: { lesson: LessonDef; startOpen: boolean
           <h2 className="text-[11px] uppercase tracking-wider text-cyan-200/80">Objective</h2>
           <p className="mt-1 text-white/80">{intro.objective}</p>
           <p className="mt-2 text-xs text-white/50">
-            NCERT Class {lesson.classNum} {lesson.book}: {lesson.chapter}
+            {lesson.book === "Outliers" ? `Outliers lab, Class ${lesson.classNum} level` : `NCERT Class ${lesson.classNum} ${lesson.book}`}:{" "}
+            {lesson.chapter}
           </p>
         </div>
         <div>

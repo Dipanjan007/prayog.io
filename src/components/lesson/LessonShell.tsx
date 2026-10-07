@@ -7,7 +7,7 @@ import DiscoverySplash from "./DiscoverySplash";
 import { ToastStack } from "@/components/Toasts";
 import { stepOrder, XP, type LessonDef } from "@/content/lessons/types";
 import { completeStep, improveBest } from "@/lib/progress";
-import type { LessonApi } from "@/lib/useLesson";
+import { restartLesson, type LessonApi } from "@/lib/useLesson";
 
 interface Props {
   lesson: LessonDef;
@@ -26,7 +26,7 @@ interface Props {
  * the Hook → Predict → Missions → Discover → Challenge → Quiz steps on the other.
  */
 export default function LessonShell({ lesson, api, sim, simNote, taskExtras, challengeBody }: Props) {
-  const { done, lp, reward, push, badge, checkAllDone, toasts } = api;
+  const { done, lp, reward, push, badge, checkAllDone, toasts, replay, hasProgress } = api;
   const [prediction, setPrediction] = useState<number | null>(null);
   const order = stepOrder(lesson);
   const currentIndex = order.findIndex((s) => !done.has(s));
@@ -54,7 +54,7 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
   let n = 0;
   return (
     <>
-      <DiscoverySplash lesson={lesson} />
+      <DiscoverySplash lesson={lesson} canRestart={hasProgress && !replay} onRestart={() => restartLesson(lesson.id)} />
       <div className="mb-6">
         <Link href={lesson.book === "Outliers" ? "/outliers" : "/learn"} className="text-sm text-white/50 hover:text-white">
           ← Class {lesson.classNum} · {lesson.book} · {lesson.chapter}
@@ -63,12 +63,17 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
           <h1 className="font-display text-3xl font-bold sm:text-4xl">{lesson.title}</h1>
           <div className="w-full max-w-xs">
             <div className="flex justify-between text-xs text-white/50">
-              <span>Lesson progress</span>
+              <span>{replay ? "Replaying from the start" : "Lesson progress"}</span>
               <span>{percent}%</span>
             </div>
             <div className="mt-1 h-2 overflow-hidden rounded-full bg-white/10">
               <div className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-violet-400 transition-all" style={{ width: `${percent}%` }} />
             </div>
+            {(hasProgress || replay) && (
+              <button className="mt-2 text-xs text-white/60 hover:text-white" onClick={() => restartLesson(lesson.id)}>
+                ↺ Start this lab from the beginning
+              </button>
+            )}
           </div>
         </div>
       </div>

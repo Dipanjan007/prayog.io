@@ -3,37 +3,41 @@
 import { useEffect, useState } from "react";
 import type { LessonDef } from "@/content/lessons/types";
 
-/** How long the lab "loads" before it can be entered, and when it opens by itself. */
-const LOAD_MS = 1000;
-const AUTO_ENTER_MS = 10000;
+/** Reading pace for the bar: about 3 words a second, between 6 and 15 seconds. */
+function readingMs(text: string) {
+  const words = text.trim().split(/\s+/).length;
+  return Math.min(15000, Math.max(6000, Math.round((words / 3) * 1000)));
+}
 
 /**
- * Shown for a moment as a lab opens: the scientist behind it, a fact and their
- * formula, so the wait teaches something.
+ * Shown as a lab opens: the scientist behind it, a fact and their formula.
+ * The bar fills at reading pace, and the splash stays until the student taps
+ * "Enter the lab" (or starts the lab again from the beginning).
  */
-export default function DiscoverySplash({ lesson }: { lesson: LessonDef }) {
+export default function DiscoverySplash({
+  lesson,
+  canRestart,
+  onRestart,
+}: {
+  lesson: LessonDef;
+  /** Show "Start from the beginning" when the student has done part of the lab before. */
+  canRestart: boolean;
+  onRestart: () => void;
+}) {
+  const d = lesson.discovery;
+  const readMs = readingMs(`${d.fact} ${d.formulaNote}`);
   const [open, setOpen] = useState(true);
   const [ready, setReady] = useState(false);
   const [filled, setFilled] = useState(false);
-  const d = lesson.discovery;
 
   useEffect(() => {
     const fill = requestAnimationFrame(() => setFilled(true));
-    const load = setTimeout(() => setReady(true), LOAD_MS);
-    const auto = setTimeout(() => setOpen(false), AUTO_ENTER_MS);
+    const read = setTimeout(() => setReady(true), readMs);
     return () => {
       cancelAnimationFrame(fill);
-      clearTimeout(load);
-      clearTimeout(auto);
+      clearTimeout(read);
     };
-  }, []);
-
-  useEffect(() => {
-    if (!ready) return;
-    const onKey = (e: KeyboardEvent) => (e.key === "Escape" || e.key === "Enter") && setOpen(false);
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [ready]);
+  }, [readMs]);
 
   if (!open) return null;
   return (
@@ -41,7 +45,7 @@ export default function DiscoverySplash({ lesson }: { lesson: LessonDef }) {
       role="dialog"
       aria-modal="true"
       aria-label={`Meet ${d.scientist}`}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-[#070a14]/90 px-4 backdrop-blur-md"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-[#070a14]/90 px-4 py-6 backdrop-blur-md"
     >
       <div className="glass w-full max-w-lg rounded-3xl p-6">
         <div className="text-[11px] uppercase tracking-wider text-violet-200/80">Meet the discoverer</div>
@@ -52,12 +56,17 @@ export default function DiscoverySplash({ lesson }: { lesson: LessonDef }) {
         <p className="mt-2 text-sm text-white/60">{d.formulaNote}</p>
         <div className="mt-5 h-1.5 overflow-hidden rounded-full bg-white/10">
           <div
-            className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-violet-400 ease-linear"
-            style={{ width: filled ? "100%" : "0%", transition: `width ${LOAD_MS}ms linear` }}
+            className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-violet-400"
+            style={{ width: filled ? "100%" : "0%", transition: `width ${readMs}ms linear` }}
           />
         </div>
-        <div className="mt-4 flex items-center justify-between gap-3">
-          <span className="text-xs text-white/50">{ready ? "Lab ready" : `Loading ${lesson.title}…`}</span>
+        <div className="mt-2 text-xs text-white/50">{ready ? "Lab ready" : `Read the fact while ${lesson.title} gets ready…`}</div>
+        <div className="mt-4 flex flex-wrap items-center justify-end gap-2">
+          {canRestart && (
+            <button className="btn-ghost !px-4 !py-2 text-sm" disabled={!ready} onClick={onRestart}>
+              ↺ Start from the beginning
+            </button>
+          )}
           <button className="btn-primary !px-4 !py-2 text-sm" disabled={!ready} onClick={() => setOpen(false)}>
             Enter the lab →
           </button>

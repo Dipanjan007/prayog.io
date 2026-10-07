@@ -1,5 +1,5 @@
 /**
- * Beyond the book · Class 10 · "Relativity: Shrinking Lengths and the Cosmic Speed Limit".
+ * Outliers · Class 10 · "Relativity: Shrinking Lengths and the Cosmic Speed Limit".
  * Special relativity: length contraction and the relativistic addition of velocities.
  */
 import type { LessonDef } from "./types";
@@ -20,7 +20,7 @@ export const lesson: LessonDef = {
   id: LESSON_ID,
   completionBadge: "speed-limit-keeper",
   classNum: 10,
-  book: "Beyond the book",
+  book: "Outliers",
   chapter: "Relativity: Shrinking Lengths and the Cosmic Speed Limit",
   title: "Nothing beats light",
   intro: {

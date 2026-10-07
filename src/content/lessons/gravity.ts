@@ -1,5 +1,5 @@
 /**
- * Class 9 · Beyond the book · "Gravitation: Mass, Weight and Gravity".
+ * Class 9 · Outliers · "Gravitation: Mass, Weight and Gravity".
  * Goes past the NCERT chapter into orbits, escape speed and the road to black holes.
  */
 import type { WorldId } from "@/lib/sim/gravity";
@@ -15,7 +15,7 @@ export const lesson: LessonDef = {
   id: LESSON_ID,
   completionBadge: "gravity-guru",
   classNum: 9,
-  book: "Beyond the book",
+  book: "Outliers",
   chapter: "Gravitation: Mass, Weight and Gravity",
   title: "Why things fall",
   intro: {

@@ -1,5 +1,5 @@
 /**
- * Beyond the book · Class 10 · "Relativity: Moving Clocks Run Slow".
+ * Outliers · Class 10 · "Relativity: Moving Clocks Run Slow".
  * Special relativity: the constant speed of light, the light clock and time dilation.
  */
 import type { LessonDef } from "./types";
@@ -24,7 +24,7 @@ export const lesson: LessonDef = {
   id: LESSON_ID,
   completionBadge: "clock-bender",
   classNum: 10,
-  book: "Beyond the book",
+  book: "Outliers",
   chapter: "Relativity: Moving Clocks Run Slow",
   title: "The light clock",
   intro: {

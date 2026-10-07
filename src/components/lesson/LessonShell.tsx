@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, type ReactNode } from "react";
 import Quiz from "@/components/Quiz";
+import DiscoverySplash from "./DiscoverySplash";
 import { ToastStack } from "@/components/Toasts";
 import { stepOrder, XP, type LessonDef } from "@/content/lessons/types";
 import { completeStep, improveBest } from "@/lib/progress";
@@ -53,8 +54,9 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
   let n = 0;
   return (
     <>
+      <DiscoverySplash lesson={lesson} />
       <div className="mb-6">
-        <Link href="/learn" className="text-sm text-white/50 hover:text-white">
+        <Link href={lesson.book === "Outliers" ? "/outliers" : "/learn"} className="text-sm text-white/50 hover:text-white">
           ← Class {lesson.classNum} · {lesson.book} · {lesson.chapter}
         </Link>
         <div className="mt-2 flex flex-wrap items-end justify-between gap-3">
@@ -232,7 +234,8 @@ function LabIntro({ lesson, startOpen }: { lesson: LessonDef; startOpen: boolean
           <h2 className="text-[11px] uppercase tracking-wider text-cyan-200/80">Objective</h2>
           <p className="mt-1 text-white/80">{intro.objective}</p>
           <p className="mt-2 text-xs text-white/50">
-            NCERT Class {lesson.classNum} {lesson.book}: {lesson.chapter}
+            {lesson.book === "Outliers" ? `Outliers lab, Class ${lesson.classNum} level` : `NCERT Class ${lesson.classNum} ${lesson.book}`}:{" "}
+            {lesson.chapter}
           </p>
         </div>
         <div>

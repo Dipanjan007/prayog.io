@@ -1,5 +1,5 @@
 /**
- * Class 9 · Beyond the book · "Circular Motion: Centripetal and Centrifugal Force".
+ * Class 9 · Outliers · "Circular Motion: Centripetal and Centrifugal Force".
  * Goes beyond the current NCERT chapter on motion and gravitation.
  */
 import type { SpinRound } from "@/lib/sim/circular";
@@ -23,7 +23,7 @@ export const lesson: LessonDef = {
   id: LESSON_ID,
   completionBadge: "spin-doctor",
   classNum: 9,
-  book: "Beyond the book",
+  book: "Outliers",
   chapter: "Circular Motion: Centripetal and Centrifugal Force",
   title: "Spin, swing and the spinning Earth",
   intro: {

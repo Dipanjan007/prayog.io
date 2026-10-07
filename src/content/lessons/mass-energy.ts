@@ -1,5 +1,5 @@
 /**
- * Beyond the book · Class 10 · "Relativity: E = mc² and Curved Space-time".
+ * Outliers · Class 10 · "Relativity: E = mc² and Curved Space-time".
  * Physics lives in src/lib/sim/massenergy.ts; numbers here are checked by its tests.
  */
 import type { LessonDef } from "./types";
@@ -39,7 +39,7 @@ export const lesson: LessonDef = {
   id: LESSON_ID,
   completionBadge: "frozen-energy",
   classNum: 10,
-  book: "Beyond the book",
+  book: "Outliers",
   chapter: "Relativity: E = mc² and Curved Space-time",
   title: "E = mc²: mass is frozen energy",
   intro: {

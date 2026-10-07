@@ -21,7 +21,7 @@ export interface Chapter {
   href?: string;
   /** The simulation the lesson is built around. */
   sim: string;
-  /** Beyond the current NCERT book: an extra lab for curious students. */
+  /** Beyond the current NCERT books: an Outliers lab for curious students, shown on its own tab. */
   extra?: boolean;
 }
 
@@ -110,9 +110,9 @@ export const STRANDS: Strand[] = [
     name: "Gravity and space",
     colour: "var(--c-violet)",
     chapters: [
-      { classNum: 9, title: "Gravitation: Mass, Weight and Gravity", href: "/learn/gravity", sim: "Drop balls on the Moon and Jupiter, fire Newton's cannon", extra: true },
-      { classNum: 9, title: "Circular Motion: Centripetal and Centrifugal Force", href: "/learn/circular-motion", sim: "Whirl a ball, ride the spinning Earth", extra: true },
-      { classNum: 10, title: "Gravity and Black Holes", href: "/learn/black-holes", sim: "Squeeze the Earth and the Sun into black holes", extra: true },
+      { classNum: 9, title: "Gravitation: Mass, Weight and Gravity", href: "/outliers/gravity", sim: "Drop balls on the Moon and Jupiter, fire Newton's cannon", extra: true },
+      { classNum: 9, title: "Circular Motion: Centripetal and Centrifugal Force", href: "/outliers/circular-motion", sim: "Whirl a ball, ride the spinning Earth", extra: true },
+      { classNum: 10, title: "Gravity and Black Holes", href: "/outliers/black-holes", sim: "Squeeze the Earth and the Sun into black holes", extra: true },
     ],
   },
   {
@@ -120,11 +120,21 @@ export const STRANDS: Strand[] = [
     name: "Einstein's relativity",
     colour: "var(--c-pink)",
     chapters: [
-      { classNum: 10, title: "Relativity: Moving Clocks Run Slow", href: "/learn/time-dilation", sim: "Light clock on a speeding train", extra: true },
-      { classNum: 10, title: "Relativity: Shrinking Lengths and the Cosmic Speed Limit", href: "/learn/length-contraction", sim: "Shrink a rocket, try to beat light", extra: true },
-      { classNum: 10, title: "Relativity: E = mc² and Curved Space-time", href: "/learn/mass-energy", sim: "Turn mass into energy, bend starlight", extra: true },
+      { classNum: 10, title: "Relativity: Moving Clocks Run Slow", href: "/outliers/time-dilation", sim: "Light clock on a speeding train", extra: true },
+      { classNum: 10, title: "Relativity: Shrinking Lengths and the Cosmic Speed Limit", href: "/outliers/length-contraction", sim: "Shrink a rocket, try to beat light", extra: true },
+      { classNum: 10, title: "Relativity: E = mc² and Curved Space-time", href: "/outliers/mass-energy", sim: "Turn mass into energy, bend starlight", extra: true },
     ],
   },
 ];
+
+/** The NCERT strands shown on the Learn map. */
+export const NCERT_STRANDS: Strand[] = STRANDS.map((s) => ({ ...s, chapters: s.chapters.filter((c) => !c.extra) })).filter(
+  (s) => s.chapters.length > 0,
+);
+
+/** The Outliers tab: labs beyond the NCERT books. */
+export const OUTLIER_STRANDS: Strand[] = STRANDS.map((s) => ({ ...s, chapters: s.chapters.filter((c) => c.extra) })).filter(
+  (s) => s.chapters.length > 0,
+);
 
 export const CLASSES: ClassNum[] = [7, 8, 9, 10];

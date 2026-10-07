@@ -1,5 +1,5 @@
 /**
- * Class 10 · Beyond the book · "Gravity and Black Holes".
+ * Class 10 · Outliers · "Gravity and Black Holes".
  * Goes past the NCERT gravitation chapter: g = GM/R², escape speed, the Schwarzschild radius,
  * what dead stars become, and how black holes bend light.
  */
@@ -22,7 +22,7 @@ export const lesson: LessonDef = {
   id: LESSON_ID,
   completionBadge: "black-hole-explorer",
   classNum: 10,
-  book: "Beyond the book",
+  book: "Outliers",
   chapter: "Gravity and Black Holes",
   title: "How mass makes a black hole",
   intro: {

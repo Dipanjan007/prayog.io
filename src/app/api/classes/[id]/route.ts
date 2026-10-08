@@ -1,4 +1,5 @@
 import { db } from "@/server/db";
+import { audit } from "@/server/audit";
 import { fail, isUuid, noDb, ok } from "@/server/http";
 import { currentAccount } from "@/server/session";
 import { deleteClass } from "@/server/accounts";
@@ -15,6 +16,7 @@ export async function DELETE(_req: Request, ctx: RouteContext<"/api/classes/[id]
     const [k] = await tx`select id from classes where id = ${id} and teacher_id = ${account.id} for update`;
     if (!k) return false;
     await deleteClass(tx, id);
+    await audit("class_deleted", { account: account.id, subject: id }, tx);
     return true;
   });
   return found ? ok({ deleted: id }) : fail("Class not found.", 404);

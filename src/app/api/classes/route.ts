@@ -1,4 +1,5 @@
 import { db } from "@/server/db";
+import { audit } from "@/server/audit";
 import { joinCode } from "@/server/crypto";
 import { body, fail, isClassNum, noDb, ok, str } from "@/server/http";
 import { currentAccount } from "@/server/session";
@@ -36,6 +37,7 @@ export async function GET() {
     join children c on c.id = m.child_id
     left join progress p on p.child_id = c.id
     order by lower(c.nickname)`;
+  if (members.length) await audit("class_progress_viewed", { account: account.id, detail: { students: members.length } }, sql);
   return ok({
     classes: classes.map((k) => ({
       id: k.id,
@@ -69,7 +71,10 @@ export async function POST(req: Request) {
     const rows = await sql<{ id: string }[]>`insert into classes (teacher_id, name, class_num, join_code)
       values (${account.id}, ${name}, ${input.classNum as number}, ${code})
       on conflict (join_code) do nothing returning id`;
-    if (rows.length) return ok({ id: rows[0].id, joinCode: code }, 201);
+    if (rows.length) {
+      await audit("class_created", { account: account.id, subject: rows[0].id }, sql);
+      return ok({ id: rows[0].id, joinCode: code }, 201);
+    }
   }
   return fail("Couldn't make a join code. Please try again.", 500);
 }

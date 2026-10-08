@@ -1,4 +1,5 @@
 import { db } from "@/server/db";
+import { audit } from "@/server/audit";
 import { checkSecret, hashSecret } from "@/server/crypto";
 import { body, fail, noDb, ok, str } from "@/server/http";
 import { currentChild, startChildSession, type Child } from "@/server/session";
@@ -42,6 +43,7 @@ export async function POST(req: Request) {
   const here = await currentChild();
   if (here?.parent_id) {
     await sql`insert into class_members (class_id, child_id) values (${klass.id}, ${here.id}) on conflict do nothing`;
+    await audit("class_joined", { child: here.id, subject: klass.id }, sql);
     return ok({ child: childView(here), joined: true });
   }
 
@@ -73,10 +75,12 @@ export async function POST(req: Request) {
           when failed_attempts + 1 = ${MAX_TRIES * 2} then now() + interval '1 hour'
           else now() + interval '1 day' end
         where id = ${existing.id}`;
+      await audit("child_sign_in_failed", { subject: existing.id }, sql);
       return fail("Those pictures don't match. Try again.", 401);
     }
     await sql`update children set failed_attempts = 0, locked_until = null where id = ${existing.id}`;
-    await startChildSession(existing.id);
+    await startChildSession(existing.id, existing.parent_id === null);
+    await audit("child_sign_in", { child: existing.id }, sql);
     return ok({ child: childView(existing) });
   }
 
@@ -94,9 +98,11 @@ export async function POST(req: Request) {
     await tx`insert into consents (child_id, given_by, method, version) values (${c.id}, ${klass.teacher_id}, 'school', ${CONSENT_VERSION})`;
     await tx`insert into class_members (class_id, child_id) values (${klass.id}, ${c.id})`;
     if (progress) await saveProgress(tx, c.id, progress);
+    await audit("child_created", { child: c.id, subject: klass.id }, tx);
+    await audit("consent_given", { account: klass.teacher_id, subject: c.id, detail: { method: "school", version: CONSENT_VERSION } }, tx);
     return c;
   });
   if (!child) return fail("This class is full.", 409);
-  await startChildSession(child.id);
+  await startChildSession(child.id, true);
   return ok({ child: childView(child), joined: true }, 201);
 }

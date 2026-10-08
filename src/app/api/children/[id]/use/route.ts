@@ -1,4 +1,5 @@
 import { db } from "@/server/db";
+import { audit } from "@/server/audit";
 import { fail, isUuid, noDb, ok } from "@/server/http";
 import { currentAccount, startChildSession } from "@/server/session";
 
@@ -13,5 +14,6 @@ export async function POST(_req: Request, ctx: RouteContext<"/api/children/[id]/
   const [child] = await db()`select id from children where id = ${id} and parent_id = ${account.id}`;
   if (!child) return fail("Child not found.", 404);
   await startChildSession(id);
+  await audit("child_device_linked", { account: account.id, subject: id });
   return ok({ using: id });
 }

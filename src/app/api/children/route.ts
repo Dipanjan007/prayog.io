@@ -1,4 +1,5 @@
 import { db } from "@/server/db";
+import { audit } from "@/server/audit";
 import { body, fail, isClassNum, noDb, ok, str } from "@/server/http";
 import { currentAccount, startChildSession, type Child } from "@/server/session";
 import { childView } from "@/server/views";
@@ -34,6 +35,8 @@ export async function POST(req: Request) {
     await tx`insert into consents (child_id, given_by, method, version)
       values (${c.id}, ${account.id}, 'parent_email_otp', ${CONSENT_VERSION})`;
     if (progress) await saveProgress(tx, c.id, progress);
+    await audit("child_created", { account: account.id, subject: c.id }, tx);
+    await audit("consent_given", { account: account.id, subject: c.id, detail: { method: "parent_email_otp", version: CONSENT_VERSION } }, tx);
     return c;
   });
   if (!child) return fail(`A family account can have up to ${MAX_CHILDREN} children.`);

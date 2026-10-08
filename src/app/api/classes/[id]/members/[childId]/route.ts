@@ -1,4 +1,5 @@
 import { db } from "@/server/db";
+import { audit } from "@/server/audit";
 import { fail, isUuid, noDb, ok } from "@/server/http";
 import { currentAccount } from "@/server/session";
 
@@ -20,6 +21,7 @@ export async function DELETE(_req: Request, ctx: RouteContext<"/api/classes/[id]
     if (!rows.length) return false;
     await tx`delete from children c where c.id = ${childId} and c.parent_id is null
       and not exists (select 1 from class_members o where o.child_id = c.id)`;
+    await audit("member_removed", { account: account.id, subject: childId, detail: { class: id } }, tx);
     return true;
   });
   return removed ? ok({ removed: childId }) : fail("Student not found.", 404);
@@ -37,5 +39,7 @@ export async function PATCH(_req: Request, ctx: RouteContext<"/api/classes/[id]/
     from class_members m join classes k on k.id = m.class_id
     where c.id = ${childId} and m.child_id = c.id and m.class_id = ${id} and k.teacher_id = ${account.id}
     returning c.id`;
-  return rows.length ? ok({ unlocked: childId }) : fail("Student not found.", 404);
+  if (!rows.length) return fail("Student not found.", 404);
+  await audit("member_unlocked", { account: account.id, subject: childId });
+  return ok({ unlocked: childId });
 }

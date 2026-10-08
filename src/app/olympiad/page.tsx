@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { FreeNote } from "@/components/access/FreeNote";
 import { SetCards } from "@/components/olympiad/SetProgress";
 import { XP_PER_STAR } from "@/lib/olympiad/score";
 
@@ -16,6 +17,7 @@ export default function OlympiadHub() {
       <p className="mt-2 max-w-2xl text-white/60">
         Harder, multi-step problems for strong Class 9 and 10 students. Every problem is a small sim puzzle: your answer drives the sim, so you see straight away if the ball lands in the basket.
       </p>
+      <FreeNote />
 
       <div className="glass mt-4 grid gap-4 rounded-2xl px-4 py-3 text-sm sm:grid-cols-2">
         <div>

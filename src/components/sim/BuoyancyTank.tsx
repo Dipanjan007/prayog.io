@@ -27,6 +27,7 @@ import {
   type LiquidId,
   type ObjectId,
 } from "@/lib/sim/buoyancy";
+import { fitCanvas } from "./canvas";
 
 export type TankMode = "tank" | "repel";
 
@@ -173,16 +174,10 @@ export default function BuoyancyTank({ onReading, boat = null }: Props) {
       const dt = Math.min((now - last) / 1000, 0.05);
       last = now;
       const L = live.current;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const w = c.clientWidth;
       const h = c.clientHeight;
       if (!w || !h) return;
-      if (c.width !== Math.round(w * dpr) || c.height !== Math.round(h * dpr)) {
-        c.width = Math.round(w * dpr);
-        c.height = Math.round(h * dpr);
-      }
-      const ctx = c.getContext("2d")!;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const ctx = fitCanvas(c, w, h);
       ctx.clearRect(0, 0, w, h);
       const ease = 1 - Math.exp(-dt * 9);
       if (L.mode === "tank") {

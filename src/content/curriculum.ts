@@ -141,3 +141,16 @@ export const OUTLIER_STRANDS: Strand[] = STRANDS.map((s) => ({ ...s, chapters: s
 );
 
 export const CLASSES: ClassNum[] = [7, 8, 9, 10];
+
+const ncert = NCERT_STRANDS.flatMap((s) => s.chapters);
+
+/** How much is playable, for the hub pages and the plans. */
+export const CATALOGUE = {
+  /** NCERT chapters with a playable lesson. */
+  lessons: ncert.filter((c) => c.href).length,
+  /** NCERT chapters still to build. */
+  planned: ncert.filter((c) => !c.href).length,
+  /** Second labs under NCERT chapters. */
+  labs: ncert.reduce((n, c) => n + (c.labs?.length ?? 0), 0),
+  outliers: OUTLIER_STRANDS.reduce((n, s) => n + s.chapters.filter((c) => c.href).length, 0),
+};

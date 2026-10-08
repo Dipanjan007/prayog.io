@@ -65,7 +65,7 @@ export const lesson: LessonDef = {
   hook: {
     title: "1.4 km walked, 1 km moved",
     text:
-      "Your walk to school winds through the lanes of Kolkata for 1.4 km, but a crow flying straight from your home to the school gate covers only 1 km. A sprinter runs a full 400 m lap and ends up exactly where she started. Has she moved at all? Let us measure motion two different ways.",
+      "Your walk to school winds through the lanes of Kolkata for 1.4 km, but a crow flying straight from your home to the school gate covers only 1 km. A sprinter runs a full 400 m lap and ends up exactly where she started. Has she moved at all? Let's measure motion two different ways.",
   },
   predict: {
     question: "A marble is rolling round inside a ring. You lift a small part of the ring just as the marble reaches it. Which way does the marble go?",

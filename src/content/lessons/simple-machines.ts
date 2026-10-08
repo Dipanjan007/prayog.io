@@ -69,7 +69,7 @@ export const lesson: LessonDef = {
   hook: {
     title: "Loading day",
     text:
-      "Outside a shop in your lane, two people push a heavy motorbike up a long plank into a tempo. Next door, a mason lifts a whole bag of cement to the roof by pulling a rope through a few pulleys. Neither is a superhero. Do machines give us free work, or is there a catch? Let us measure it.",
+      "Outside a shop in your lane, two people push a heavy motorbike up a long plank into a tempo. Next door, a mason lifts a whole bag of cement to the roof by pulling a rope through a few pulleys. Neither is a superhero. Do machines give us free work, or is there a catch? Let's measure it.",
   },
   predict: {
     question: "You pull a cart onto a truck using a long, gentle ramp instead of a short, steep one. There is no friction. How does the work you do compare?",

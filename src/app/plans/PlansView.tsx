@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { FAMILY_PRICE, type Period } from "@/lib/access";
+import { FAMILY_PRICE, OPENS, plural, rupees, type Period } from "@/lib/access";
 import { api, ApiError, refreshMe, useMe } from "@/lib/account";
 import { useTier } from "@/lib/useTier";
 
@@ -37,7 +37,6 @@ function loadCheckout(): Promise<void> {
   });
 }
 
-const rupees = (paise: number) => `₹${(paise / 100).toLocaleString("en-IN")}`;
 const date = (iso: string) => new Date(iso).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
 
 export default function PlansView({ counts, contact }: { counts: Counts; contact: string | null }) {
@@ -201,9 +200,14 @@ export default function PlansView({ counts, contact }: { counts: Counts; contact
           <div className="text-sm text-cyan-300">Free</div>
           <div className="font-display mt-1 text-3xl font-bold">₹0</div>
           <ul className="mt-4 flex-1 space-y-2 text-sm text-white/70">
-            <li>✓ Try now, no sign-up: 4 Class 7 and 8 lessons, 1 Olympiad set and 1 Outliers lab</li>
-            <li>✓ With a free account: all {counts.lessons} NCERT lessons and {counts.labs} second labs, 2 Olympiad sets and 2 Outliers labs</li>
-            <li>✓ XP saved across devices, and your class leaderboard</li>
+            <li>
+              ✓ No sign-up: {plural(OPENS.visitor.lessons, "lesson")}, {plural(OPENS.visitor.sets, "Olympiad set")} and {plural(OPENS.visitor.outliers, "Outliers lab")}
+            </li>
+            <li>
+              ✓ Free account: all {counts.lessons} NCERT lessons and {counts.labs} second labs, {plural(OPENS.free.sets, "Olympiad set")} and{" "}
+              {plural(OPENS.free.outliers, "Outliers lab")}
+            </li>
+            <li>✓ XP saved on every device, and your class leaderboard</li>
           </ul>
           <div className="mt-5">
             {tier === "visitor" ? (
@@ -217,7 +221,7 @@ export default function PlansView({ counts, contact }: { counts: Counts; contact
         </section>
 
         <section className="glass flex flex-col rounded-3xl p-6 ring-1 ring-cyan-300/40" data-testid="plan-family">
-          <div className="text-sm text-cyan-300">Family · most popular</div>
+          <div className="text-sm text-cyan-300">Family</div>
           <div className="font-display mt-1 text-3xl font-bold">
             {rupees(FAMILY_PRICE.year)}
             <span className="text-base font-normal text-white/50"> a year</span>

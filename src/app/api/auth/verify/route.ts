@@ -1,7 +1,6 @@
-import { timingSafeEqual } from "node:crypto";
 import { db } from "@/server/db";
 import { audit } from "@/server/audit";
-import { sha256 } from "@/server/crypto";
+import { sameText, sha256 } from "@/server/crypto";
 import { body, fail, noDb, ok, str } from "@/server/http";
 import { teacherAllowed } from "@/server/accounts";
 import { startAdultSession, type Account } from "@/server/session";
@@ -27,8 +26,7 @@ export async function POST(req: Request) {
     where email = ${email} and expires_at > now() order by created_at desc limit 1`;
   if (!row || row.attempts >= MAX_ATTEMPTS) return fail("That code has expired. Ask for a new one.");
 
-  const given = Buffer.from(sha256(`${email}:${code}`));
-  if (!timingSafeEqual(given, Buffer.from(row.code_hash))) {
+  if (!sameText(sha256(`${email}:${code}`), row.code_hash)) {
     await sql`update login_codes set attempts = attempts + 1 where id = ${row.id}`;
     await audit("sign_in_failed", {}, sql);
     return fail("That code isn't right. Check the latest email.");

@@ -39,7 +39,7 @@ export const lesson: LessonDef = {
   hook: {
     title: "The late crack of the bat",
     text:
-      "Sit at the far end of a big cricket stadium. You see the batter hit a six, and only a moment later you hear the crack. Shout across a valley at a hill station and your voice comes back to you. Navy ships find the depth of the sea using sound. What is sound, and how fast does it really go? Let us make it visible.",
+      "Sit at the far end of a big cricket stadium. You see the batter hit a six, and only a moment later you hear the crack. Shout across a valley at a hill station and your voice comes back to you. Navy ships find the depth of the sea using sound. What is sound, and how fast does it really go? Let's make it visible.",
   },
   predict: {
     question: "You raise the pitch of a sound in air. What happens to its wavelength?",

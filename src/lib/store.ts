@@ -3,8 +3,8 @@
 import { useSyncExternalStore } from "react";
 
 /**
- * A tiny localStorage-backed store. Everything stays on this device: there is
- * no server yet, and nothing here is sent anywhere.
+ * A tiny localStorage-backed store, so labs work offline and without an
+ * account. Signed-in progress is copied to the server by SyncProgress.
  */
 export function createLocalStore<T>(key: string, initial: T) {
   let cache: T | undefined;

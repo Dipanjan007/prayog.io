@@ -24,6 +24,13 @@ export function joinCode() {
   return out;
 }
 
+/** Compare two strings without leaking, through timing, how much of them matched. */
+export function sameText(given: string, want: string) {
+  const a = Buffer.from(given);
+  const b = Buffer.from(want);
+  return a.length === b.length && timingSafeEqual(a, b);
+}
+
 export async function hashSecret(secret: string) {
   const salt = randomBytes(16);
   const key = await scryptAsync(secret, salt, 32);

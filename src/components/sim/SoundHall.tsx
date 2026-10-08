@@ -28,6 +28,7 @@ import {
   type HallSpec,
   type SteelBlock,
 } from "@/lib/sim/acoustics";
+import { fitCanvas } from "./canvas";
 
 export type HallMode = "bell" | "hall" | "ultra" | "hearing";
 
@@ -267,13 +268,7 @@ export default function SoundHall({ onReading, challenge = null }: Props) {
       const w = c.clientWidth;
       const h = c.clientHeight;
       if (!w || !h) return;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      if (c.width !== Math.round(w * dpr) || c.height !== Math.round(h * dpr)) {
-        c.width = Math.round(w * dpr);
-        c.height = Math.round(h * dpr);
-      }
-      const ctx = c.getContext("2d")!;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const ctx = fitCanvas(c, w, h);
       ctx.clearRect(0, 0, w, h);
       const t = now / 1000;
 

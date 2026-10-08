@@ -18,6 +18,7 @@ import {
   type RacerId,
   type Swing,
 } from "@/lib/sim/timemotion";
+import { fitCanvas } from "./canvas";
 
 export type TimeMode = "pendulum" | "race";
 
@@ -105,13 +106,7 @@ export default function TimeLab({ onReading, target = null }: Props) {
   const draw = useCallback(() => {
     const c = canvasRef.current;
     if (!c || !size.w) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    if (c.width !== Math.round(size.w * dpr) || c.height !== Math.round(size.h * dpr)) {
-      c.width = Math.round(size.w * dpr);
-      c.height = Math.round(size.h * dpr);
-    }
-    const ctx = c.getContext("2d")!;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const ctx = fitCanvas(c, size.w, size.h);
     ctx.clearRect(0, 0, size.w, size.h);
     if (activeMode === "pendulum") {
       drawPendulum(ctx, size.w, size.h, { lengthCm, massG, angle, theta: swing.current.theta, ...clockRef.current, target });

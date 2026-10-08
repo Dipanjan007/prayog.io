@@ -4,10 +4,10 @@ import Link from "next/link";
 export const metadata: Metadata = { title: "For schools" };
 
 const STEPS = [
-  { title: "Teacher signs up", text: "The school licenses Prayog and acts as the data fiduciary, so students don't need separate parent sign-ups." },
-  { title: "Create a class", text: "Each class gets a short join code. Students join with a nickname only." },
-  { title: "Weekly class challenges", text: "Set a lab challenge for the week. The class-only leaderboard ranks effort, not exam marks." },
-  { title: "See who needs help", text: "A dashboard shows which chapters each student has mastered, without tracking anything else." },
+  { title: "Teacher signs up", text: "The school takes on the consent and data duties, so parents don't each need to sign up." },
+  { title: "Create a class", text: "Each class gets a short join code. Students join with a nickname and a picture password, no email." },
+  { title: "Weekly leaderboard", text: "A class-only leaderboard ranks this week's XP, so effort counts, not exam marks." },
+  { title: "See who needs help", text: "Your dashboard shows each student's XP and the chapters they have finished." },
 ];
 
 export default function SchoolPage() {

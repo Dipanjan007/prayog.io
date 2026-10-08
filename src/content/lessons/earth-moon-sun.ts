@@ -48,7 +48,7 @@ export const lesson: LessonDef = {
   hook: {
     title: "Why is a June evening so long?",
     text:
-      "In June in Delhi the Sun rises before 5:30 in the morning and sets after 7 in the evening. There is time for a long cricket match after school. In December you wake up in the dark. A cousin in Chennai hardly notices any change. And on 22 July 2009, the sky over Varanasi and Patna went dark again just after sunrise, as the Moon covered the Sun. Birds flew back to their nests. All of this comes from three balls in space: the Earth, the Moon and the Sun.",
+      "In June the Sun rises over Delhi before 5:30 am and sets after 7 pm, so there is time for a long cricket match after school. In December you wake up in the dark, while a cousin in Chennai hardly notices a change. And on 22 July 2009, the sky over Varanasi and Patna went dark just after sunrise as the Moon covered the Sun. All of this comes from three balls in space: the Earth, the Moon and the Sun.",
   },
   predict: {
     question: "On 21 June, which city has the longest day?",

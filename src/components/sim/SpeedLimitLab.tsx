@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { additionGap, contractedLength, einsteinAdd, einsteinAddSI, galileoAdd, gamma, kmhToMs } from "@/lib/sim/relativity";
+import { fitCanvas } from "./canvas";
 
 export type SpeedMode = "shrink" | "add";
 export type SpeedUnits = "space" | "everyday";
@@ -103,13 +104,7 @@ export default function SpeedLimitLab({ onReading, mystery = null }: Props) {
       const w = c.clientWidth;
       const h = c.clientHeight;
       if (!w || !h) return;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      if (c.width !== Math.round(w * dpr) || c.height !== Math.round(h * dpr)) {
-        c.width = Math.round(w * dpr);
-        c.height = Math.round(h * dpr);
-      }
-      const ctx = c.getContext("2d")!;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const ctx = fitCanvas(c, w, h);
       ctx.clearRect(0, 0, w, h);
       ctx.font = FONT;
       if (P.activeMode === "shrink") {

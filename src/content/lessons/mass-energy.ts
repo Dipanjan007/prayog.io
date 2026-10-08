@@ -58,7 +58,7 @@ export const lesson: LessonDef = {
   hook: {
     title: "The energy in a grain of rice",
     text:
-      "Every second, the Sun pours out more energy than humans have used in all of history. At Kudankulam in Tamil Nadu, a few kilograms of uranium a day keep a whole city's lights on. Where does all this energy come from? In 1905 Albert Einstein found the answer hiding in a short formula: mass itself is a kind of frozen energy. Let us unfreeze some.",
+      "Every second, the Sun pours out more energy than humans have used in all of history. At Kudankulam in Tamil Nadu, a few kilograms of uranium a day keep a whole city's lights on. Where does all this energy come from? In 1905 Albert Einstein found the answer hiding in a short formula: mass itself is a kind of frozen energy. Let's unfreeze some.",
   },
   predict: {
     question:

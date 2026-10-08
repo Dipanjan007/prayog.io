@@ -19,6 +19,7 @@ import {
   type LoadId,
   type WireId,
 } from "@/lib/sim/electromagnet";
+import { fitCanvas } from "./canvas";
 
 export type LabMode = "crane" | "heat";
 
@@ -155,13 +156,7 @@ export default function CraneLab({ onReading, order = null }: Props) {
       } else a.fuseTimer = 0;
 
       if (a.w) {
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        if (c.width !== Math.round(a.w * dpr) || c.height !== Math.round(a.h * dpr)) {
-          c.width = Math.round(a.w * dpr);
-          c.height = Math.round(a.h * dpr);
-        }
-        const ctx = c.getContext("2d")!;
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const ctx = fitCanvas(c, a.w, a.h);
         ctx.clearRect(0, 0, a.w, a.h);
         if (L.activeMode === "crane") drawCrane(ctx, a.w, a.h, L.crane, L.em.holdGrams, a, dt, L.order);
         else drawHeat(ctx, a.w, a.h, L.wire, L.crane.cells, L.rating, L.heatOn, L.closed, L.heatCurrent, a.temp, L.fuseBlown, a.fuseTimer);

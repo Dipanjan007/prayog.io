@@ -45,7 +45,7 @@ export const lesson: LessonDef = {
   hook: {
     title: "The camel and the stiletto",
     text:
-      "A 600 kg camel walks across the Thar desert without sinking. A person in thin high heels sinks into the same sand at every step. A kitchen knife slices a tomato only when it is sharp. The force is not the whole story. Let us find out what else matters.",
+      "A 600 kg camel walks across the Thar desert without sinking. A person in thin high heels sinks into the same sand at every step. A kitchen knife slices a tomato only when it is sharp. The force is not the whole story. Let's find out what else matters.",
   },
   predict: {
     question: "A brick rests on sand, first on its big flat face and then standing on its small end. Where does it sink deeper?",

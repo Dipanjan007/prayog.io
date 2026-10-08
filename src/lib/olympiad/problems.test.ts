@@ -2,10 +2,15 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { OLY_PROBLEMS, OLY_SETS, problemsInSet } from "@/content/olympiad";
 import { planOutcome, simFamily } from "./scene";
+import { HAND_OPTICS } from "./hand-optics";
+import { HAND_ELECTRICITY } from "./hand-electricity";
+import { HAND_FLUIDS } from "./hand-fluids";
+import { HAND_HEAT } from "./hand-heat";
+import { HAND_ORBITS } from "./hand-orbits";
 import { fmt, isCorrect, parseAnswer, simValue, starsFor, xpFor } from "./score";
 
 /** Hand-worked answers (see each problem's solution). The code must agree to 0.5%. */
-const HAND: Record<string, number> = {
+const BASE_HAND: Record<string, number> = {
   "hooghly-ferry": 36.87,
   "boundary-fielder": 26.6,
   "holi-tram": 14.89,
@@ -20,19 +25,26 @@ const HAND: Record<string, number> = {
   "crossing-crash": 8.083,
 };
 
+const HAND: Record<string, number> = { ...BASE_HAND, ...HAND_OPTICS, ...HAND_ELECTRICITY, ...HAND_FLUIDS, ...HAND_HEAT, ...HAND_ORBITS };
+
 test("there are at least 12 problems in at least 4 sets, each set with all three levels", () => {
   assert.ok(OLY_PROBLEMS.length >= 12);
   assert.ok(OLY_SETS.length >= 4);
   for (const s of OLY_SETS) {
+    if (problemsInSet(s.id).length === 0) continue; // a set still being built
     const levels = problemsInSet(s.id).map((p) => p.level);
     assert.deepEqual(levels, ["warm-up", "standard", "olympiad"], s.id);
   }
   assert.equal(new Set(OLY_PROBLEMS.map((p) => p.id)).size, OLY_PROBLEMS.length, "ids are unique");
 });
 
-test("all four sims are used", () => {
+test("every set with problems uses its own sim", () => {
   const fams = new Set(OLY_PROBLEMS.map((p) => simFamily(p.scene(p.answer))));
-  assert.deepEqual([...fams].sort(), ["collision", "incline", "projectile", "track"]);
+  for (const f of ["collision", "incline", "projectile", "track"]) assert.ok(fams.has(f as never), f);
+  for (const s of OLY_SETS) {
+    if (["projectiles", "newton", "circular-energy", "momentum"].includes(s.id)) continue;
+    for (const p of problemsInSet(s.id)) assert.equal(simFamily(p.scene(p.answer)), s.id, p.id);
+  }
 });
 
 for (const p of OLY_PROBLEMS) {

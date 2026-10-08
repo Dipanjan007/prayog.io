@@ -1,9 +1,12 @@
 import { db } from "@/server/db";
+import { audit, clientIp } from "@/server/audit";
 import { sha256, sixDigitCode } from "@/server/crypto";
 import { sendLoginCode } from "@/server/email";
 import { body, fail, noDb, ok, str } from "@/server/http";
 
 const MAX_CODES_PER_15_MIN = 3;
+// Stops one machine spraying codes at many addresses.
+const MAX_CODES_PER_IP_HOUR = 20;
 
 /** Email a 6-digit sign-in code. Used for both sign-up and sign-in. */
 export async function POST(req: Request) {
@@ -16,12 +19,19 @@ export async function POST(req: Request) {
   const [{ n }] = await sql<{ n: number }[]>`select count(*)::int as n from login_codes
     where email = ${email} and created_at > now() - interval '15 minutes'`;
   if (n >= MAX_CODES_PER_15_MIN) return fail("Too many codes asked for. Please wait 15 minutes.", 429);
+  const ip = await clientIp();
+  if (ip) {
+    const [{ m }] = await sql<{ m: number }[]>`select count(*)::int as m from audit_log
+      where ip = ${ip} and action = 'code_requested' and at > now() - interval '1 hour'`;
+    if (m >= MAX_CODES_PER_IP_HOUR) return fail("Too many codes asked for from this network. Please wait an hour.", 429);
+  }
 
   const code = sixDigitCode();
   await sql`delete from login_codes where expires_at < now()`;
   await sql`insert into login_codes (email, code_hash, expires_at)
     values (${email}, ${sha256(`${email}:${code}`)}, now() + interval '10 minutes')`;
 
+  await audit("code_requested", {}, sql);
   if (!(await sendLoginCode(email, code))) return fail("Email isn't set up on the server yet.", 503);
   const devCode = process.env.NODE_ENV !== "production" && !process.env.RESEND_API_KEY ? code : undefined;
   return ok({ sent: true, devCode });

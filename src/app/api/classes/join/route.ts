@@ -1,4 +1,5 @@
 import { db } from "@/server/db";
+import { audit } from "@/server/audit";
 import { checkSecret, hashSecret } from "@/server/crypto";
 import { body, fail, noDb, ok, str } from "@/server/http";
 import { currentChild, startChildSession, type Child } from "@/server/session";
@@ -42,6 +43,7 @@ export async function POST(req: Request) {
   const here = await currentChild();
   if (here?.parent_id) {
     await sql`insert into class_members (class_id, child_id) values (${klass.id}, ${here.id}) on conflict do nothing`;
+    await audit("class_joined", { child: here.id, subject: klass.id }, sql);
     return ok({ child: childView(here), joined: true });
   }
 
@@ -59,17 +61,26 @@ export async function POST(req: Request) {
   if (returning) {
     if (!existing || !existing.picture_hash) return fail("No one in this class has that nickname.", 404);
     if (existing.locked_until && existing.locked_until > new Date()) {
-      return fail("Too many wrong tries. Wait 15 minutes or ask your teacher.", 429);
+      return fail("Too many wrong tries. Ask your teacher to unlock you, or try again later.", 429);
     }
     if (!(await checkSecret(picture, existing.picture_hash))) {
+      // Every 5th wrong try locks sign-in, for longer each time: 15 minutes,
+      // then 1 hour, then a day. A classmate can't work through the few
+      // hundred picture combinations; the teacher can unlock a real student.
       await sql`update children set
         failed_attempts = failed_attempts + 1,
-        locked_until = case when failed_attempts + 1 >= ${MAX_TRIES} then now() + interval '15 minutes' else locked_until end
+        locked_until = case
+          when (failed_attempts + 1) % ${MAX_TRIES} <> 0 then locked_until
+          when failed_attempts + 1 = ${MAX_TRIES} then now() + interval '15 minutes'
+          when failed_attempts + 1 = ${MAX_TRIES * 2} then now() + interval '1 hour'
+          else now() + interval '1 day' end
         where id = ${existing.id}`;
+      await audit("child_sign_in_failed", { subject: existing.id }, sql);
       return fail("Those pictures don't match. Try again.", 401);
     }
     await sql`update children set failed_attempts = 0, locked_until = null where id = ${existing.id}`;
-    await startChildSession(existing.id);
+    await startChildSession(existing.id, existing.parent_id === null);
+    await audit("child_sign_in", { child: existing.id }, sql);
     return ok({ child: childView(existing) });
   }
 
@@ -87,9 +98,11 @@ export async function POST(req: Request) {
     await tx`insert into consents (child_id, given_by, method, version) values (${c.id}, ${klass.teacher_id}, 'school', ${CONSENT_VERSION})`;
     await tx`insert into class_members (class_id, child_id) values (${klass.id}, ${c.id})`;
     if (progress) await saveProgress(tx, c.id, progress);
+    await audit("child_created", { child: c.id, subject: klass.id }, tx);
+    await audit("consent_given", { account: klass.teacher_id, subject: c.id, detail: { method: "school", version: CONSENT_VERSION } }, tx);
     return c;
   });
   if (!child) return fail("This class is full.", 409);
-  await startChildSession(child.id);
+  await startChildSession(child.id, true);
   return ok({ child: childView(child), joined: true }, 201);
 }

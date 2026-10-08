@@ -3,7 +3,7 @@
 export const AVATARS = ["🦊", "🐯", "🦉", "🐬", "🐼", "🦄", "🐙", "🚀", "🤖", "🌟", "⚡", "🌈"];
 
 /** Bump when the consent text changes, so parents are asked again. */
-export const CONSENT_VERSION = "2026-10-05";
+export const CONSENT_VERSION = "2026-10-08";
 
 /**
  * Picture password for children who sign in with a class code: three

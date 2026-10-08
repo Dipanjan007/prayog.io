@@ -17,6 +17,7 @@ interface Student {
   xp: number;
   weekXp: number;
   lessons: Progress["lessons"];
+  locked: boolean;
 }
 
 interface Klass {
@@ -234,7 +235,17 @@ function Dashboard({ name, school }: { name: string; school: string }) {
                           </td>
                         );
                       })}
-                      <td className="py-2 text-right">
+                      <td className="space-x-3 py-2 text-right">
+                        {s.locked && (
+                          <button
+                            className="text-xs text-amber-200 underline hover:text-amber-100"
+                            disabled={busy}
+                            title="Locked after too many wrong picture passwords"
+                            onClick={() => run(() => api(`/api/classes/${k.id}/members/${s.id}`, "PATCH"))}
+                          >
+                            Unlock
+                          </button>
+                        )}
                         <button
                           className="text-xs text-white/40 underline hover:text-rose-300"
                           disabled={busy}

@@ -8,6 +8,9 @@ export const ADULT_COOKIE = "prayog_session";
 export const CHILD_COOKIE = "prayog_child";
 const ADULT_DAYS = 30;
 const CHILD_DAYS = 365;
+// School-enrolled children often share lab computers, so their device
+// sign-in lasts a month rather than a year.
+const SCHOOL_CHILD_DAYS = 30;
 
 export interface Account {
   id: string;
@@ -41,7 +44,8 @@ async function start(cookie: string, days: number, owner: { accountId?: string; 
 }
 
 export const startAdultSession = (accountId: string) => start(ADULT_COOKIE, ADULT_DAYS, { accountId });
-export const startChildSession = (childId: string) => start(CHILD_COOKIE, CHILD_DAYS, { childId });
+export const startChildSession = (childId: string, viaSchool = false) =>
+  start(CHILD_COOKIE, viaSchool ? SCHOOL_CHILD_DAYS : CHILD_DAYS, { childId });
 
 async function tokenHash(cookie: string) {
   const token = (await cookies()).get(cookie)?.value;

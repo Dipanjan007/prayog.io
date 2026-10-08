@@ -1,5 +1,6 @@
 import { timingSafeEqual } from "node:crypto";
 import { db } from "@/server/db";
+import { audit } from "@/server/audit";
 import { sha256 } from "@/server/crypto";
 import { body, fail, noDb, ok, str } from "@/server/http";
 import { teacherAllowed } from "@/server/accounts";
@@ -29,6 +30,7 @@ export async function POST(req: Request) {
   const given = Buffer.from(sha256(`${email}:${code}`));
   if (!timingSafeEqual(given, Buffer.from(row.code_hash))) {
     await sql`update login_codes set attempts = attempts + 1 where id = ${row.id}`;
+    await audit("sign_in_failed", {}, sql);
     return fail("That code isn't right. Check the latest email.");
   }
 
@@ -56,9 +58,14 @@ export async function POST(req: Request) {
     [account] = await sql<Account[]>`insert into accounts (role, name, email, school_name)
       values (${role}, ${name}, ${email}, ${role === "teacher" ? school : null})
       returning id, role, name, email, school_name`;
+    await audit("sign_up", { account: account.id, detail: { role } }, sql);
+    if (role === "parent") await audit("consent_given", { account: account.id, detail: { method: "parent_email_otp" } }, sql);
   }
 
   await sql`delete from login_codes where email = ${email}`;
+  // Signing in counts as activity, and cancels any pending inactivity deletion.
+  await sql`update accounts set last_active_at = now(), deletion_warned_at = null where id = ${account.id}`;
+  await audit("sign_in", { account: account.id }, sql);
   await startAdultSession(account.id);
   return ok({ account });
 }

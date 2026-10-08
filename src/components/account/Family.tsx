@@ -9,13 +9,15 @@ import AccountActions from "./AccountActions";
 import ChildForm, { type ChildValues } from "./ChildForm";
 
 /**
- * A signed-in parent's children: pick who uses this device, add a child, or
- * delete one. Progress a guest made on this device moves into the new child.
+ * A signed-in parent's children: pick who uses this device, add a child,
+ * correct one's details, or delete one. Progress a guest made on this
+ * device moves into the new child.
  */
 export default function Family() {
   const me = useMe();
   const router = useRouter();
   const [adding, setAdding] = useState(false);
+  const [editing, setEditing] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const children = me?.children ?? [];
@@ -53,6 +55,15 @@ export default function Family() {
       router.push("/learn");
     });
 
+  const save = (id: string, v: ChildValues) =>
+    run(async () => {
+      await api(`/api/children/${id}`, "PATCH", v);
+      const here = profileStore.get();
+      if (here.child?.id === id) profileStore.set({ ...here, child: { id, ...v } });
+      await refreshMe();
+      setEditing(null);
+    });
+
   const remove = (id: string, nickname: string) => {
     if (!window.confirm(`Delete ${nickname}'s profile and all their progress? This can't be undone.`)) return;
     run(async () => {
@@ -64,6 +75,25 @@ export default function Family() {
       await refreshMe();
     });
   };
+
+  const editingChild = children.find((c) => c.id === editing);
+  if (editingChild) {
+    return (
+      <section className="glass rounded-3xl p-6">
+        <div className="text-sm text-violet-300">Correct a profile</div>
+        <h1 className="font-display mt-2 text-3xl font-bold">Edit {editingChild.nickname}</h1>
+        <ChildForm
+          key={editingChild.id}
+          initial={editingChild}
+          onSubmit={(v) => save(editingChild.id, v)}
+          submitLabel="Save"
+          busy={busy}
+          onBack={() => setEditing(null)}
+        />
+        {error && <p className="mt-3 text-sm text-rose-300">{error}</p>}
+      </section>
+    );
+  }
 
   if (showForm) {
     return (
@@ -89,6 +119,9 @@ export default function Family() {
               <div className="font-semibold">{c.nickname}</div>
               <div className="text-xs text-white/50">Class {c.classNum}</div>
             </div>
+            <button className="text-xs text-white/40 underline hover:text-white/70" disabled={busy} onClick={() => setEditing(c.id)}>
+              Edit
+            </button>
             <button className="text-xs text-white/40 underline hover:text-rose-300" disabled={busy} onClick={() => remove(c.id, c.nickname)}>
               Delete
             </button>

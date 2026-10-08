@@ -18,6 +18,7 @@ export default function ChildForm({
   submitLabel,
   busy,
   hideClass,
+  initial,
 }: {
   onSubmit: (v: ChildValues) => void;
   onBack?: () => void;
@@ -25,11 +26,13 @@ export default function ChildForm({
   busy?: boolean;
   /** Class comes from the school class instead. */
   hideClass?: boolean;
+  /** Current values, when correcting an existing profile. */
+  initial?: ChildValues;
 }) {
-  const [nickname, setNickname] = useState("");
-  const [classNum, setClassNum] = useState<ClassNum>(8);
-  const [avatar, setAvatar] = useState(AVATARS[0]);
-  const [showOnLeaderboard, setShowOnLeaderboard] = useState(false);
+  const [nickname, setNickname] = useState(initial?.nickname ?? "");
+  const [classNum, setClassNum] = useState<ClassNum>(initial?.classNum ?? 8);
+  const [avatar, setAvatar] = useState(initial?.avatar ?? AVATARS[0]);
+  const [showOnLeaderboard, setShowOnLeaderboard] = useState(initial?.showOnLeaderboard ?? false);
   const nicknameOk = NICKNAME_RULE.test(nickname.trim());
 
   return (

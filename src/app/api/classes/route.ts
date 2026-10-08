@@ -1,4 +1,5 @@
 import { db } from "@/server/db";
+import { audit } from "@/server/audit";
 import { joinCode } from "@/server/crypto";
 import { body, fail, isClassNum, noDb, ok, str } from "@/server/http";
 import { currentAccount } from "@/server/session";
@@ -15,6 +16,7 @@ interface MemberRow {
   xp: number | null;
   week_xp: number | null;
   lessons: Progress["lessons"] | null;
+  locked: boolean;
 }
 
 /** A teacher's classes, each with its students' progress per lesson. */
@@ -28,12 +30,14 @@ export async function GET() {
     select id, name, class_num, join_code from classes where teacher_id = ${account.id} order by created_at`;
   const members = await sql<MemberRow[]>`
     select m.class_id, c.id as child_id, c.nickname, c.avatar, p.xp,
-      ${sql.unsafe(WEEK_XP)} as week_xp, p.data->'lessons' as lessons
+      ${sql.unsafe(WEEK_XP)} as week_xp, p.data->'lessons' as lessons,
+      coalesce(c.locked_until > now(), false) as locked
     from class_members m
     join classes k on k.id = m.class_id and k.teacher_id = ${account.id}
     join children c on c.id = m.child_id
     left join progress p on p.child_id = c.id
     order by lower(c.nickname)`;
+  if (members.length) await audit("class_progress_viewed", { account: account.id, detail: { students: members.length } }, sql);
   return ok({
     classes: classes.map((k) => ({
       id: k.id,
@@ -42,7 +46,7 @@ export async function GET() {
       joinCode: k.join_code,
       students: members
         .filter((m) => m.class_id === k.id)
-        .map((m) => ({ id: m.child_id, nickname: m.nickname, avatar: m.avatar, xp: m.xp ?? 0, weekXp: m.week_xp ?? 0, lessons: m.lessons ?? {} })),
+        .map((m) => ({ id: m.child_id, nickname: m.nickname, avatar: m.avatar, xp: m.xp ?? 0, weekXp: m.week_xp ?? 0, lessons: m.lessons ?? {}, locked: m.locked })),
     })),
   });
 }
@@ -67,7 +71,10 @@ export async function POST(req: Request) {
     const rows = await sql<{ id: string }[]>`insert into classes (teacher_id, name, class_num, join_code)
       values (${account.id}, ${name}, ${input.classNum as number}, ${code})
       on conflict (join_code) do nothing returning id`;
-    if (rows.length) return ok({ id: rows[0].id, joinCode: code }, 201);
+    if (rows.length) {
+      await audit("class_created", { account: account.id, subject: rows[0].id }, sql);
+      return ok({ id: rows[0].id, joinCode: code }, 201);
+    }
   }
   return fail("Couldn't make a join code. Please try again.", 500);
 }

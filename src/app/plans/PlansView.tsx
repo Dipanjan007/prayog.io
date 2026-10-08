@@ -172,8 +172,9 @@ export default function PlansView({ counts, contact }: { counts: Counts; contact
             <li>✓ Everything in Free</li>
             <li>✓ All {counts.sets} Olympiad sets, for NSEJS and IJSO</li>
             <li>✓ All {counts.outliers} Outliers labs: black holes, relativity and more</li>
+            <li>✓ A weekly report by email: lessons finished, where your child is stuck, and what to ask them</li>
             <li>✓ Every child on your account</li>
-            <li className="text-white/50">Coming next: a weekly report on where your child is stuck, and board-style chapter tests</li>
+            <li className="text-white/50">Coming next: board-style chapter tests</li>
             <li>✓ No auto-renew. Pay again only if you want to</li>
           </ul>
           <div className="mt-5">{familyAction()}</div>

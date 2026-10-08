@@ -74,7 +74,7 @@ export default function PrivacyPage() {
       <ul className={LIST}>
         <li>Vercel runs the website, from Mumbai.</li>
         <li>Supabase stores the database, in Mumbai.</li>
-        <li>Resend sends sign-in codes and account emails. Those emails pass through its servers in the USA.</li>
+        <li>Resend sends sign-in codes, account emails and, if you have the Family plan, the weekly report. Those emails pass through its servers in the USA.</li>
         <li>
           Razorpay takes Family plan payments, in India. We keep only the plan, the amount and the dates; Razorpay keeps
           the card or UPI details and never gets your child&apos;s details.

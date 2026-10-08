@@ -21,7 +21,7 @@ export async function DELETE() {
   return ok({ deleted: true });
 }
 
-/** Correct the grown-up's own details: their name, and a teacher's school. */
+/** Correct the grown-up's own details (their name, a teacher's school) and the weekly email choice. */
 export async function PATCH(req: Request) {
   const off = noDb();
   if (off) return off;
@@ -30,6 +30,10 @@ export async function PATCH(req: Request) {
   const input = await body(req);
   const name = input.name === undefined ? account.name : str(input.name, 80);
   const school = input.schoolName === undefined || account.role !== "teacher" ? account.school_name : str(input.schoolName, 120);
+  if (input.reportEmails !== undefined) {
+    if (typeof input.reportEmails !== "boolean") return fail("Pick on or off.");
+    await db()`update accounts set report_emails = ${input.reportEmails} where id = ${account.id}`;
+  }
   if (name.length < 2) return fail("Please add your name.");
   if (account.role === "teacher" && (school ?? "").length < 2) return fail("Please add your school's name.");
   const [updated] = await db()`update accounts set name = ${name}, school_name = ${school}

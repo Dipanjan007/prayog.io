@@ -14,7 +14,7 @@ export async function GET() {
   const account = await currentAccount();
   if (!account) return fail("Please sign in.", 401);
   const sql = db();
-  const [me] = await sql`select id, role, name, email, school_name, created_at, last_active_at from accounts where id = ${account.id}`;
+  const [me] = await sql`select id, role, name, email, school_name, created_at, last_active_at, report_emails from accounts where id = ${account.id}`;
 
   const children =
     account.role === "parent"
@@ -23,7 +23,9 @@ export async function GET() {
             coalesce((select json_agg(json_build_object('method', s.method, 'version', s.version, 'given_at', s.given_at))
               from consents s where s.child_id = c.id), '[]') as consents,
             coalesce((select json_agg(json_build_object('class', k.name, 'joined_at', m.joined_at))
-              from class_members m join classes k on k.id = m.class_id where m.child_id = c.id), '[]') as classes
+              from class_members m join classes k on k.id = m.class_id where m.child_id = c.id), '[]') as classes,
+            coalesce((select json_agg(json_build_object('week_start', w.week_start, 'xp', w.xp, 'progress', w.data) order by w.week_start)
+              from progress_weeks w where w.child_id = c.id), '[]') as weekly_report_copies
           from children c left join progress p on p.child_id = c.id
           where c.parent_id = ${account.id} order by c.created_at`
       : undefined;

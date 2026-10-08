@@ -23,6 +23,16 @@ export async function sendInactivityWarning(email: string, days: number): Promis
   );
 }
 
+export function sendWeeklyReport(to: string, name: string, body: string) {
+  const site = process.env.SITE_URL || "https://prayog-nine.vercel.app";
+  return send(
+    to,
+    "This week on Prayog",
+    `Hi ${name},\n\nHere is what happened on Prayog this week.\n\n${body}\n\n` +
+      `See the full report: ${site}/report\n\nTo stop these emails, turn them off on that page.`,
+  );
+}
+
 async function send(to: string, subject: string, text: string): Promise<boolean> {
   const key = process.env.RESEND_API_KEY;
   if (!key) {

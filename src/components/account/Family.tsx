@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { api, ApiError, refreshMe, useMe } from "@/lib/account";
@@ -132,9 +133,14 @@ export default function Family() {
         ))}
       </ul>
       {error && <p className="mt-3 text-sm text-rose-300">{error}</p>}
-      <button className="btn-ghost mt-4" onClick={() => setAdding(true)}>
-        ＋ Add a child
-      </button>
+      <div className="mt-4 flex flex-wrap gap-2">
+        <button className="btn-ghost" onClick={() => setAdding(true)}>
+          ＋ Add a child
+        </button>
+        <Link href="/report" className="btn-ghost">
+          📊 This week&apos;s report
+        </Link>
+      </div>
       <AccountActions role="parent" />
     </section>
   );

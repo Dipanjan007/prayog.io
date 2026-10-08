@@ -56,7 +56,7 @@ export const lesson: LessonDef = {
   hook: {
     title: "The colours of the sky",
     text:
-      "Sit on Marine Drive in Mumbai at noon and the sky is bright blue. Wait till 7 pm and the same Sun turns orange-red. When Rakesh Sharma went to space in 1984, the sky around him was black, even with the Sun shining. The light is the same white sunlight every time. So what is the air doing to it? Let us shine some light and find out.",
+      "Sit on Marine Drive in Mumbai at noon and the sky is bright blue. Wait till 7 pm and the same Sun turns orange-red. When Rakesh Sharma went to space in 1984, the sky around him was black, even with the Sun shining. The light is the same white sunlight every time. So what is the air doing to it? Let's shine some light and find out.",
   },
   predict: {
     question: "You shine a white torch through water with a few drops of milk in it. Looking at the beam from the side, what colour does it look?",

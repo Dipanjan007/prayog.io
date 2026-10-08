@@ -2,26 +2,22 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FreeNote } from "@/components/access/FreeNote";
 import { LockableLink } from "@/components/access/LockableLink";
-import { BOOKS, CLASSES, NCERT_STRANDS as STRANDS } from "@/content/curriculum";
+import { BOOKS, CATALOGUE, CLASSES, NCERT_STRANDS as STRANDS } from "@/content/curriculum";
 
 export const metadata: Metadata = { title: "Learn" };
 
 export default function LearnPage() {
-  const total = STRANDS.reduce((n, s) => n + s.chapters.length, 0);
-  const live = STRANDS.reduce((n, s) => n + s.chapters.filter((c) => c.href).length, 0);
-  const labs = STRANDS.reduce((n, s) => n + s.chapters.reduce((m, c) => m + (c.labs?.length ?? 0), 0), 0);
-
   return (
     <div className="pt-4">
       <h1 className="font-display text-4xl font-bold">Your physics map</h1>
       <p className="mt-2 max-w-2xl text-white/60">
-        Seven strands that grow from Class 7 to Class 10, following the NCERT books. {live} of {total} chapters are
-        playable now{live < total ? "; the rest are on the way" : ""}
-        {labs ? `, with ${labs} second labs for the topics a chapter packs in` : ""}. Want more? Try the{" "}
+        Every NCERT Physics chapter from Class 7 to 10, grouped by topic: {CATALOGUE.lessons} playable chapters
+        {CATALOGUE.planned ? ` (${CATALOGUE.planned} more coming)` : ""} and {CATALOGUE.labs} second labs. Curious about black
+        holes and Einstein? Try the{" "}
         <Link href="/outliers" className="text-cyan-300 hover:underline">
           Outliers
         </Link>
-        : gravity, black holes and Einstein.
+        .
       </p>
       <FreeNote />
 

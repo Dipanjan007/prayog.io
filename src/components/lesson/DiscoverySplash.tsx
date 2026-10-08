@@ -60,7 +60,7 @@ export default function DiscoverySplash({
             style={{ width: filled ? "100%" : "0%", transition: `width ${readMs}ms linear` }}
           />
         </div>
-        <div className="mt-2 text-xs text-white/50">{ready ? "Lab ready" : `Read the fact while ${lesson.title} gets ready…`}</div>
+        <div className="mt-2 text-xs text-white/50">{ready ? "Lab ready" : "Read this while the lab gets ready…"}</div>
         <div className="mt-4 flex flex-wrap items-center justify-end gap-2">
           {canRestart && (
             <button className="btn-ghost !px-4 !py-2 text-sm" disabled={!ready} onClick={onRestart}>

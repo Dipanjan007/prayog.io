@@ -1,14 +1,12 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { bestTier, contentKey, FREE_OPEN, needs, VISITOR_OPEN } from "./access";
+import { bestTier, contentKey, needs, OPENS, plural, rupees } from "./access";
 
-test("free lists have the promised sizes", () => {
-  const count = (list: string[], prefix: string) => list.filter((k) => k.startsWith(prefix)).length;
-  assert.equal(count(VISITOR_OPEN, "/learn/"), 4);
-  assert.equal(count(VISITOR_OPEN, "/olympiad/"), 1);
-  assert.equal(count(VISITOR_OPEN, "/outliers/"), 1);
-  assert.equal(count(FREE_OPEN, "/olympiad/"), 2);
-  assert.equal(count(FREE_OPEN, "/outliers/"), 2);
+test("free lists have the promised sizes, and the copy reads naturally", () => {
+  assert.deepEqual(OPENS, { visitor: { lessons: 4, sets: 1, outliers: 1 }, free: { sets: 2, outliers: 2 } });
+  assert.equal(plural(1, "Olympiad set"), "1 Olympiad set");
+  assert.equal(plural(2, "Outliers lab"), "2 Outliers labs");
+  assert.equal(rupees(99900), "₹999");
 });
 
 test("hub pages and other routes are always open", () => {

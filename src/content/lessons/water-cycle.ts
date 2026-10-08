@@ -63,7 +63,7 @@ export const lesson: LessonDef = {
   hook: {
     title: "Where does the rain come from?",
     text:
-      "Every June the monsoon winds blow in from the Arabian Sea. Mumbai gets drenched, the hills of Mahabaleshwar disappear into clouds, and the waterfalls come alive. Yet Pune, just behind the hills, stays much drier. Meanwhile at home, the clothes on the line refuse to dry, and a cold steel tumbler is covered in drops. Is that water leaking through the steel? Where did all that rain water come from, and where does it go? Let us follow a drop of water.",
+      "Every June the monsoon blows in from the Arabian Sea. Mumbai gets drenched and the hills of Mahabaleshwar vanish into cloud, yet Pune, just behind the hills, stays much drier. At home the washing won't dry, and a cold steel tumbler is covered in drops. Is water leaking through the steel? Where does all that rain come from, and where does it go? Let's follow a drop of water.",
   },
   predict: {
     question: "A moist wind blows from the sea towards a line of tall hills, like the Western Ghats. Where does the most rain fall?",

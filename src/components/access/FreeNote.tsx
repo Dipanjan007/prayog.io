@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { OPENS, plural } from "@/lib/access";
 import { useTier } from "@/lib/useTier";
 
 /** One line under a hub's title saying what's open and how to get more. */
@@ -11,23 +12,19 @@ export function FreeNote() {
     <p className="mt-3 max-w-2xl rounded-2xl bg-white/[0.04] px-4 py-2 text-sm text-white/65" data-testid="free-note">
       {tier === "visitor" ? (
         <>
-          4 lessons, 1 Olympiad set and 1 Outliers lab are open to try.{" "}
+          Try {plural(OPENS.visitor.lessons, "lesson")}, {plural(OPENS.visitor.sets, "Olympiad set")} and {plural(OPENS.visitor.outliers, "Outliers lab")} without signing up.{" "}
           <Link href="/join" className="text-cyan-300 hover:underline">
-            Sign up free
+            A free account
           </Link>{" "}
-          to open every NCERT lesson, 2 sets and 2 Outliers labs, or{" "}
-          <Link href="/plans" className="text-cyan-300 hover:underline">
-            see plans
-          </Link>{" "}
-          for the full Olympiad track.
+          opens every NCERT lesson.
         </>
       ) : (
         <>
-          Your free account opens every NCERT lesson, 2 Olympiad sets and 2 Outliers labs.{" "}
+          Your free account opens every NCERT lesson, {plural(OPENS.free.sets, "Olympiad set")} and {plural(OPENS.free.outliers, "Outliers lab")}.{" "}
           <Link href="/plans" className="text-cyan-300 hover:underline">
             The Family plan
           </Link>{" "}
-          adds the full Olympiad track and every Outliers lab.
+          opens the rest.
         </>
       )}
     </p>

@@ -35,7 +35,7 @@ export interface BadgeInfo {
 }
 
 export const BADGES: BadgeInfo[] = [
-  { id: "first-gust", name: "First Gust", how: "Finish your first wind tunnel task", emoji: "💨" },
+  { id: "first-gust", name: "First Gust", how: "Finish your first mission in any lab", emoji: "💨" },
   { id: "storm-chaser", name: "Storm Chaser", how: "Lift a roof in a cyclone-speed wind", emoji: "🌀" },
   { id: "shape-shifter", name: "Shape Shifter", how: "Draw your own shape in the wind tunnel", emoji: "✏️" },
   { id: "downforce", name: "Downforce", how: "Push a sports car onto the road with its rear wing", emoji: "🏎️" },

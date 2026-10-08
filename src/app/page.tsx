@@ -1,5 +1,6 @@
 import Link from "next/link";
 import HeroTunnel from "@/components/HeroTunnel";
+import { CATALOGUE } from "@/content/curriculum";
 
 const LOOP = [
   { n: "01", title: "Predict", text: "Make a guess before you touch anything.", colour: "text-violet-300" },
@@ -28,8 +29,8 @@ export default function Home() {
             <span className="text-gradient">Play with it.</span>
           </h1>
           <p className="mt-5 max-w-md text-lg text-white/65">
-            Wind tunnels, circuits and light benches that react to every move you make. Earn XP, collect badges and
-            climb your class leaderboard.
+            Wind tunnels, circuits and light benches that react to every move you make. Earn XP and badges, and climb
+            your class leaderboard.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/learn/pressure-winds" className="btn-primary">
@@ -74,10 +75,10 @@ export default function Home() {
       <section className="grid gap-3 md:grid-cols-3">
         <div className="glass rounded-3xl p-6 md:col-span-2">
           <div className="text-sm text-cyan-300">For students</div>
-          <h3 className="font-display mt-2 text-2xl font-semibold">Basics to advanced, one strand at a time</h3>
+          <h3 className="font-display mt-2 text-2xl font-semibold">Every chapter, Class 7 to 10</h3>
           <p className="mt-2 text-white/60">
-            Motion, force, pressure, energy, electricity, light and waves grow from Class 7 to Class 10. Master one level
-            and the next unlocks early.
+            {CATALOGUE.lessons} NCERT Physics chapters, each built around a lab you can play, plus {CATALOGUE.labs} second labs for
+            the extra topics a chapter squeezes in.
           </p>
           <Link href="/learn" className="mt-5 inline-block text-cyan-200 hover:underline">
             See the map →
@@ -97,7 +98,7 @@ export default function Home() {
           <div>
             <div className="text-sm text-violet-300">For schools</div>
             <h3 className="font-display mt-2 text-2xl font-semibold">Class challenges and a teacher dashboard</h3>
-            <p className="mt-2 text-white/60">Teachers will create a class, share a code, and see who needs help.</p>
+            <p className="mt-2 text-white/60">Teachers create a class, share a code, and see who needs help.</p>
           </div>
           <Link href="/join/school" className="btn-ghost mt-4 md:mt-0">
             Schools: learn more

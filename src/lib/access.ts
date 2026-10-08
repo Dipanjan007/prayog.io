@@ -28,6 +28,17 @@ export const VISITOR_OPEN = [
 /** Beyond every NCERT lesson, a free account adds a second Olympiad set and a second Outliers lab. */
 export const FREE_OPEN = [...VISITOR_OPEN, "/olympiad/newton", "/outliers/black-holes"];
 
+const countOf = (list: string[], hub: string) => list.filter((k) => k.startsWith(`/${hub}/`)).length;
+
+/** What each tier opens beyond the one below it, for the copy that explains the plans. */
+export const OPENS = {
+  visitor: { lessons: countOf(VISITOR_OPEN, "learn"), sets: countOf(VISITOR_OPEN, "olympiad"), outliers: countOf(VISITOR_OPEN, "outliers") },
+  free: { sets: countOf(FREE_OPEN, "olympiad"), outliers: countOf(FREE_OPEN, "outliers") },
+};
+
+/** "1 Olympiad set", "2 Olympiad sets". */
+export const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? "" : "s"}`;
+
 const freeWithAccount = (key: string) => key.startsWith("/learn/") || FREE_OPEN.includes(key);
 
 // A second lab opens with the chapter it belongs to.
@@ -58,5 +69,8 @@ export const bestTier = (a: Tier, b: Tier) => (RANK[b] > RANK[a] ? b : a);
 
 /** Prices in paise, GST included. */
 export const FAMILY_PRICE = { month: 14900, year: 99900 } as const;
+
+/** "₹999", from paise. */
+export const rupees = (paise: number) => `₹${(paise / 100).toLocaleString("en-IN")}`;
 export type Period = keyof typeof FAMILY_PRICE;
 export const isPeriod = (v: unknown): v is Period => v === "month" || v === "year";

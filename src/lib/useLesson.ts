@@ -5,7 +5,6 @@ import { useToasts } from "@/components/Toasts";
 import { stepOrder, XP, type LessonDef } from "@/content/lessons/types";
 import { BADGES, awardBadge, completeStep, improveBest, progressStore, useProgress, type LessonProgress } from "./progress";
 
-/** Shared lesson actions: XP, badges, toasts and the "is this step done" checks. */
 const REPLAY_KEY = "prayog.replay";
 
 /**

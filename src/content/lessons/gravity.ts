@@ -35,7 +35,7 @@ export const lesson: LessonDef = {
   hook: {
     title: "The ball that never comes down",
     text:
-      "Throw a cricket ball sideways and it curves down to the ground. Throw it harder and it lands further away. Now imagine a cannon on a giant mountain that fires so fast the ground curves away as quickly as the ball falls. The ball keeps falling, but never lands. That is an orbit, and it is how ISRO's satellites stay up. Fire even faster and the ball leaves Earth for good. What pulls the ball down, and why is it weaker on the Moon? Let us find out.",
+      "Throw a cricket ball sideways and it curves down to the ground. Throw it harder and it lands further away. Now imagine a cannon on a giant mountain, firing so fast that the ground curves away as quickly as the ball falls. The ball keeps falling but never lands. That is an orbit, and it is how ISRO's satellites stay up. Fire even faster and the ball leaves Earth for good. What pulls the ball down, and why is that pull weaker on the Moon? Let's find out.",
   },
   predict: {
     question: "On the Moon there is no air. An astronaut drops a cricket ball and a feather from the same height at the same moment. What happens?",

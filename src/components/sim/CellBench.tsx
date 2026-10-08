@@ -22,6 +22,7 @@ import {
   type PairId,
   type Vec,
 } from "@/lib/sim/cells";
+import { fitCanvas } from "./canvas";
 
 export type BenchMode = "compass" | "fruit";
 export type Setup = "wire" | "coil";
@@ -194,13 +195,7 @@ export default function CellBench({ onReading, gadget = null }: Props) {
         n.th += n.om * dt;
       });
       if (a.w) {
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        if (c.width !== Math.round(a.w * dpr) || c.height !== Math.round(a.h * dpr)) {
-          c.width = Math.round(a.w * dpr);
-          c.height = Math.round(a.h * dpr);
-        }
-        const ctx = c.getContext("2d")!;
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const ctx = fitCanvas(c, a.w, a.h);
         ctx.clearRect(0, 0, a.w, a.h);
         if (L.activeMode === "compass") drawCompassTable(ctx, a.w, a.h, L, a.needles.map((n) => n.th), a.phase);
         else drawFruitBench(ctx, a.w, a.h, L, a.phase);

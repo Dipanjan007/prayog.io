@@ -32,7 +32,7 @@ export const lesson: LessonDef = {
   hook: {
     title: "The crane that switches its grip",
     text:
-      "At a kabadiwala's yard or the ship-breaking yard at Alang in Gujarat, a crane lowers a big round disc onto a heap of scrap. Iron leaps up and sticks to it. Over the truck the driver flips a switch and the whole load crashes down. That disc is an electromagnet. The same electricity that makes it a magnet also warms your room heater and presses clothes in your iron. Let us build both.",
+      "At a kabadiwala's yard or the ship-breaking yard at Alang in Gujarat, a crane lowers a big round disc onto a heap of scrap. Iron leaps up and sticks to it. Over the truck the driver flips a switch and the whole load crashes down. That disc is an electromagnet. The same electricity that makes it a magnet also warms your room heater and presses clothes in your iron. Let's build both.",
   },
   predict: {
     question: "The crane's electromagnet swings over a heap of iron scrap, aluminium cans and plastic bottles. What does it pick up?",

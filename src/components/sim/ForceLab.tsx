@@ -25,6 +25,7 @@ import {
   type SourceId,
   type SurfaceId,
 } from "@/lib/sim/forces";
+import { fitCanvas } from "./canvas";
 
 export type ForceMode = "push" | "spring" | "field";
 export type Place = "earth" | "moon";
@@ -191,16 +192,10 @@ export default function ForceLab({ onReading, challenge = null }: Props) {
         }
       }
 
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const w = c.clientWidth;
       const h = c.clientHeight;
       if (!w || !h) return;
-      if (c.width !== Math.round(w * dpr) || c.height !== Math.round(h * dpr)) {
-        c.width = Math.round(w * dpr);
-        c.height = Math.round(h * dpr);
-      }
-      const ctx = c.getContext("2d")!;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const ctx = fitCanvas(c, w, h);
       ctx.clearRect(0, 0, w, h);
       if (L.mode === "push") {
         const applied = L.pushing ? L.push : 0;

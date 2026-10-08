@@ -39,7 +39,7 @@ export const lesson: LessonDef = {
   hook: {
     title: "Faster than light?",
     text:
-      "A rocket races away from Earth at 0.9 times the speed of light. It fires a probe forwards at 0.9c. Simple maths says the probe now moves at 1.8c, almost twice as fast as light! But no experiment has ever found anything with mass going faster than light. Something in our everyday maths must break. Let us find out what, and why fast rockets get shorter too.",
+      "A rocket races away from Earth at 0.9 times the speed of light. It fires a probe forwards at 0.9c. Simple maths says the probe now moves at 1.8c, almost twice as fast as light! But no experiment has ever found anything with mass going faster than light. Something in our everyday maths must break. Let's find out what, and why fast rockets get shorter too.",
   },
   predict: {
     question: "A rocket that is 100 m long when parked zooms past you at 0.8c. What length do you measure?",

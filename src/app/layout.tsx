@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Link from "next/link";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
@@ -31,13 +32,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <footer className="mx-auto w-full max-w-6xl px-4 pb-8 text-xs text-white/40 sm:px-6">
           Prayog follows the NCERT syllabus. No ads and no tracking.{" "}
-          <a href="/privacy" className="underline hover:text-white/70">
+          <Link href="/privacy" className="underline hover:text-white/70">
             Privacy
-          </a>
+          </Link>
           {" · "}
-          <a href="/plans" className="underline hover:text-white/70">
+          <Link href="/plans" className="underline hover:text-white/70">
             Plans
-          </a>
+          </Link>
           {" · "}
           <SuggestLink className="underline hover:text-white/70">Suggest an idea</SuggestLink>
         </footer>

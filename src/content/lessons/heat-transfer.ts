@@ -54,7 +54,7 @@ export const lesson: LessonDef = {
   hook: {
     title: "The hot spoon mystery",
     text:
-      "Dadi is stirring halwa in a kadhai. She leaves a steel spoon in it and goes to answer the door. When she comes back, the spoon handle is too hot to touch. The wooden spoon next to it is still cool. The kadhai itself has a plastic handle. How did the heat climb all the way up the steel spoon? And why does the breeze at Marine Drive change direction at night? Let us follow the heat.",
+      "Dadi is stirring halwa in a kadhai. She leaves a steel spoon in it to answer the door, and when she comes back its handle is too hot to touch. The wooden spoon beside it is still cool. How did the heat climb all the way up the steel? And why does the breeze at Marine Drive change direction at night? Let's follow the heat.",
   },
   predict: {
     question: "Wax drops are stuck along a copper rod and a wooden rod. One end of each rod is heated. What happens?",

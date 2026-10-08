@@ -44,7 +44,7 @@ export const lesson: LessonDef = {
   hook: {
     title: "A clock that runs on lemons",
     text:
-      "At a school science fair, Aarav pushes a zinc-coated nail and a copper coin into a lemon, then joins two lemons with wires. A small wall clock starts ticking. No shop battery at all! Next to him, Meera holds a wire from a torch cell over a compass, and the needle jumps the moment she closes the switch. Fruit makes electricity, and electricity makes a magnet. Let us try both.",
+      "At a school science fair, Aarav pushes a zinc-coated nail and a copper coin into a lemon, then joins two lemons with wires. A small wall clock starts ticking. No shop battery at all! Next to him, Meera holds a wire from a torch cell over a compass, and the needle jumps the moment she closes the switch. Fruit makes electricity, and electricity makes a magnet. Let's try both.",
   },
   predict: {
     question: "You push two strips of the same metal, copper and copper, into a lemon. What does the voltmeter read?",

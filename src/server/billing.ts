@@ -1,6 +1,7 @@
 import "server-only";
-import { createHmac, timingSafeEqual } from "node:crypto";
+import { createHmac } from "node:crypto";
 import { FAMILY_PRICE, type Period } from "@/lib/access";
+import { sameText } from "./crypto";
 import { db } from "./db";
 
 /** Payments switch on once both Razorpay keys are set in Vercel. */
@@ -28,9 +29,7 @@ export async function createOrder(accountId: string, period: Period) {
 
 /** Razorpay signs `order_id|payment_id` with the key secret. */
 export function signatureOk(orderId: string, paymentId: string, signature: string) {
-  const want = Buffer.from(createHmac("sha256", process.env.RAZORPAY_KEY_SECRET!).update(`${orderId}|${paymentId}`).digest("hex"));
-  const given = Buffer.from(signature);
-  return given.length === want.length && timingSafeEqual(given, want);
+  return sameText(signature, createHmac("sha256", process.env.RAZORPAY_KEY_SECRET!).update(`${orderId}|${paymentId}`).digest("hex"));
 }
 
 /**
@@ -61,7 +60,5 @@ export async function markPaid(orderId: string, paymentId: string, accountId?: s
 export function webhookOk(raw: string, signature: string) {
   const secret = process.env.RAZORPAY_WEBHOOK_SECRET;
   if (!secret) return false;
-  const want = Buffer.from(createHmac("sha256", secret).update(raw).digest("hex"));
-  const given = Buffer.from(signature);
-  return given.length === want.length && timingSafeEqual(given, want);
+  return sameText(signature, createHmac("sha256", secret).update(raw).digest("hex"));
 }

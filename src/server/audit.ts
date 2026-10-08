@@ -31,7 +31,8 @@ export type AuditAction =
   | "inactivity_warned"
   | "inactive_deleted"
   | "payment_started"
-  | "payment_completed";
+  | "payment_completed"
+  | "waitlist_joined";
 
 interface Entry {
   account?: string | null;

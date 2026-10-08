@@ -32,6 +32,9 @@ export async function deleteAccount(accountId: string) {
     const classes = await tx<{ id: string }[]>`select id from classes where teacher_id = ${accountId}`;
     for (const c of classes) await deleteClass(tx, c.id);
     // Children cascade from the parent account; so do sessions and consents.
+    // A waitlist entry made before signing up has no account link, so match the email too.
+    const [{ t }] = await tx<{ t: string | null }[]>`select to_regclass('public.waitlist')::text as t`;
+    if (t) await tx`delete from waitlist where email = (select email from accounts where id = ${accountId})`;
     await tx`delete from accounts where id = ${accountId}`;
   });
 }

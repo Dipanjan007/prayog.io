@@ -76,6 +76,10 @@ export default function PrivacyPage() {
         <li>Supabase stores the database, in Mumbai.</li>
         <li>Resend sends sign-in codes, account emails and, if you have the Family plan, the weekly report. Those emails pass through its servers in the USA.</li>
         <li>
+          Until payments open, a parent can leave their email on the Family plan waitlist. We email it once when
+          payments open and delete it within a year.
+        </li>
+        <li>
           Razorpay takes Family plan payments, in India. We keep only the plan, the amount and the dates; Razorpay keeps
           the card or UPI details and never gets your child&apos;s details.
         </li>

@@ -47,6 +47,22 @@ export default function PlansView({ counts, contact }: { counts: Counts; contact
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [paid, setPaid] = useState(false);
+  const [email, setEmail] = useState("");
+  const [adult, setAdult] = useState(false);
+  const [joined, setJoined] = useState(false);
+
+  async function joinWaitlist() {
+    setError("");
+    setBusy(true);
+    try {
+      await api("/api/waitlist", "POST", { email, adult, period });
+      setJoined(true);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Something went wrong. Please try again.");
+    } finally {
+      setBusy(false);
+    }
+  }
 
   async function pay() {
     setError("");
@@ -90,6 +106,58 @@ export default function PlansView({ counts, contact }: { counts: Counts; contact
       return <p className="text-sm text-white/60">{me?.account ? "Teachers and their classes get every lab free." : "Your school already opens every lab for you."}</p>;
     if (me?.child && !me.account)
       return <p className="text-sm text-white/60">Ask a parent to sign in on their phone and upgrade from this page. Your progress stays the same.</p>;
+    const toggle = (
+      <div className="flex gap-1 rounded-full bg-white/5 p-1 text-sm" role="radiogroup" aria-label="How long">
+        {(["month", "year"] as const).map((p) => (
+          <button
+            key={p}
+            type="button"
+            role="radio"
+            aria-checked={period === p}
+            onClick={() => setPeriod(p)}
+            className={`flex-1 rounded-full px-3 py-1.5 transition ${period === p ? "bg-white/15 text-white" : "text-white/60 hover:text-white"}`}
+          >
+            {p === "month" ? `${rupees(FAMILY_PRICE.month)} a month` : `${rupees(FAMILY_PRICE.year)} a year`}
+          </button>
+        ))}
+      </div>
+    );
+    if (me?.server && !me.payments) {
+      if (joined) return <p className="text-sm text-lime-300" data-testid="waitlist-done">🎉 You&apos;re on the waitlist. We&apos;ll email you once when the Family plan opens.</p>;
+      return (
+        <form
+          className="flex flex-col gap-3"
+          onSubmit={(e) => {
+            e.preventDefault();
+            joinWaitlist();
+          }}
+        >
+          <p className="text-sm text-white/60">Payments open soon. Join the waitlist and we&apos;ll email you once when they do.</p>
+          {toggle}
+          {!parent && (
+            <>
+              <input
+                type="email"
+                required
+                className="field"
+                placeholder="Parent's email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                aria-label="Parent's email"
+              />
+              <label className="flex items-start gap-2 text-xs text-white/60">
+                <input type="checkbox" checked={adult} onChange={(e) => setAdult(e.target.checked)} className="mt-0.5" />
+                I&apos;m a parent or guardian, and I&apos;m happy to get one email from Prayog when payments open.
+              </label>
+            </>
+          )}
+          <button type="submit" className="btn-primary" disabled={busy || (!parent && !adult)} data-testid="pay">
+            {busy ? "Joining…" : "Join the waitlist"}
+          </button>
+          {error && <p className="text-sm text-rose-300">{error}</p>}
+        </form>
+      );
+    }
     if (!parent)
       return (
         <div className="flex flex-wrap gap-2">
@@ -104,20 +172,7 @@ export default function PlansView({ counts, contact }: { counts: Counts; contact
     return (
       <div className="flex flex-col gap-3">
         {me?.familyUntil && <p className="text-sm text-lime-300">Your Family plan runs until {date(me.familyUntil)}. Paying now adds to the end.</p>}
-        <div className="flex gap-1 rounded-full bg-white/5 p-1 text-sm" role="radiogroup" aria-label="How long">
-          {(["month", "year"] as const).map((p) => (
-            <button
-              key={p}
-              type="button"
-              role="radio"
-              aria-checked={period === p}
-              onClick={() => setPeriod(p)}
-              className={`flex-1 rounded-full px-3 py-1.5 transition ${period === p ? "bg-white/15 text-white" : "text-white/60 hover:text-white"}`}
-            >
-              {p === "month" ? `${rupees(FAMILY_PRICE.month)} a month` : `${rupees(FAMILY_PRICE.year)} a year`}
-            </button>
-          ))}
-        </div>
+        {toggle}
         {me?.payments ? (
           <button type="button" className="btn-primary" onClick={pay} disabled={busy} data-testid="pay">
             {busy ? "Opening payment…" : `Pay ${rupees(FAMILY_PRICE[period])} with UPI or card`}

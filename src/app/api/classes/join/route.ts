@@ -59,12 +59,19 @@ export async function POST(req: Request) {
   if (returning) {
     if (!existing || !existing.picture_hash) return fail("No one in this class has that nickname.", 404);
     if (existing.locked_until && existing.locked_until > new Date()) {
-      return fail("Too many wrong tries. Wait 15 minutes or ask your teacher.", 429);
+      return fail("Too many wrong tries. Ask your teacher to unlock you, or try again later.", 429);
     }
     if (!(await checkSecret(picture, existing.picture_hash))) {
+      // Every 5th wrong try locks sign-in, for longer each time: 15 minutes,
+      // then 1 hour, then a day. A classmate can't work through the few
+      // hundred picture combinations; the teacher can unlock a real student.
       await sql`update children set
         failed_attempts = failed_attempts + 1,
-        locked_until = case when failed_attempts + 1 >= ${MAX_TRIES} then now() + interval '15 minutes' else locked_until end
+        locked_until = case
+          when (failed_attempts + 1) % ${MAX_TRIES} <> 0 then locked_until
+          when failed_attempts + 1 = ${MAX_TRIES} then now() + interval '15 minutes'
+          when failed_attempts + 1 = ${MAX_TRIES * 2} then now() + interval '1 hour'
+          else now() + interval '1 day' end
         where id = ${existing.id}`;
       return fail("Those pictures don't match. Try again.", 401);
     }

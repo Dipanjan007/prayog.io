@@ -15,6 +15,7 @@ interface MemberRow {
   xp: number | null;
   week_xp: number | null;
   lessons: Progress["lessons"] | null;
+  locked: boolean;
 }
 
 /** A teacher's classes, each with its students' progress per lesson. */
@@ -28,7 +29,8 @@ export async function GET() {
     select id, name, class_num, join_code from classes where teacher_id = ${account.id} order by created_at`;
   const members = await sql<MemberRow[]>`
     select m.class_id, c.id as child_id, c.nickname, c.avatar, p.xp,
-      ${sql.unsafe(WEEK_XP)} as week_xp, p.data->'lessons' as lessons
+      ${sql.unsafe(WEEK_XP)} as week_xp, p.data->'lessons' as lessons,
+      coalesce(c.locked_until > now(), false) as locked
     from class_members m
     join classes k on k.id = m.class_id and k.teacher_id = ${account.id}
     join children c on c.id = m.child_id
@@ -42,7 +44,7 @@ export async function GET() {
       joinCode: k.join_code,
       students: members
         .filter((m) => m.class_id === k.id)
-        .map((m) => ({ id: m.child_id, nickname: m.nickname, avatar: m.avatar, xp: m.xp ?? 0, weekXp: m.week_xp ?? 0, lessons: m.lessons ?? {} })),
+        .map((m) => ({ id: m.child_id, nickname: m.nickname, avatar: m.avatar, xp: m.xp ?? 0, weekXp: m.week_xp ?? 0, lessons: m.lessons ?? {}, locked: m.locked })),
     })),
   });
 }

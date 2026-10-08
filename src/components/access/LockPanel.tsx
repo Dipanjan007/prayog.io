@@ -12,7 +12,7 @@ export function LockPanel({ need, title, onClose }: { need: "register" | "upgrad
         <>
           <h2 className="font-display mt-1 text-2xl font-bold">Sign up free to open this lab</h2>
           <p className="mt-2 text-sm text-white/65">
-            A free account opens 6 NCERT lessons, 2 Olympiad sets and 2 Outliers labs, and keeps your XP safe on every device. A parent signs up in a
+            A free account opens every NCERT lesson for Classes 7 to 10, plus 2 Olympiad sets and 2 Outliers labs, and keeps your XP safe on every device. A parent signs up in a
             minute with their email.
           </p>
           <div className="mt-5 flex flex-wrap justify-center gap-2">
@@ -26,10 +26,10 @@ export function LockPanel({ need, title, onClose }: { need: "register" | "upgrad
         </>
       ) : (
         <>
-          <h2 className="font-display mt-1 text-2xl font-bold">This lab is in the Family plan</h2>
+          <h2 className="font-display mt-1 text-2xl font-bold">This is in the Family plan</h2>
           <p className="mt-2 text-sm text-white/65">
-            Every lesson, second lab, Olympiad set and Outliers lab for Classes 7 to 10, for ₹149 a month or ₹999 a year. Schools get it through
-            their teacher.
+            The full Olympiad track and every Outliers lab, for ₹149 a month or ₹999 a year. NCERT lessons stay free. Schools get it through their
+            teacher.
           </p>
           <div className="mt-5 flex flex-wrap justify-center gap-2">
             <Link href="/plans" className="btn-primary" onClick={onClose}>

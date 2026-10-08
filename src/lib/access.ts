@@ -1,7 +1,9 @@
 /**
- * Who can open which lab. Visitors get a taste, a free account gets a bit
- * more, and the Family plan (or a school) opens everything. Paying never
- * buys a game advantage: XP, stars and the leaderboard work the same.
+ * Who can open which lab. Visitors get a taste. A free account opens every
+ * NCERT lesson, because the syllabus itself is free everywhere and children
+ * only build the habit if tonight's chapter is open. The Family plan (or a
+ * school) adds the full Olympiad track and Outliers. Paying never buys a
+ * game advantage: XP, stars and the leaderboard work the same.
  *
  * This is checked in the browser, so it is a nudge, not a lock: lessons
  * are static pages that also work offline.
@@ -23,8 +25,10 @@ export const VISITOR_OPEN = [
   "/outliers/gravity",
 ];
 
-/** A free account adds a Class 9 and a Class 10 lesson, a second Olympiad set and a second Outliers lab. */
-export const FREE_OPEN = [...VISITOR_OPEN, "/learn/motion", "/learn/light-refraction", "/olympiad/newton", "/outliers/black-holes"];
+/** Beyond every NCERT lesson, a free account adds a second Olympiad set and a second Outliers lab. */
+export const FREE_OPEN = [...VISITOR_OPEN, "/olympiad/newton", "/outliers/black-holes"];
+
+const freeWithAccount = (key: string) => key.startsWith("/learn/") || FREE_OPEN.includes(key);
 
 // A second lab opens with the chapter it belongs to.
 const LAB_CHAPTER = new Map(
@@ -44,8 +48,8 @@ export function needs(tier: Tier, path: string): "register" | "upgrade" | null {
   const key = contentKey(path);
   if (!key || tier === "family" || tier === "school") return null;
   if (VISITOR_OPEN.includes(key)) return null;
-  if (tier === "free") return FREE_OPEN.includes(key) ? null : "upgrade";
-  return FREE_OPEN.includes(key) ? "register" : "upgrade";
+  if (tier === "free") return freeWithAccount(key) ? null : "upgrade";
+  return freeWithAccount(key) ? "register" : "upgrade";
 }
 
 const RANK: Record<Tier, number> = { visitor: 0, free: 1, family: 2, school: 2 };

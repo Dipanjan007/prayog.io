@@ -7,7 +7,6 @@ test("free lists have the promised sizes", () => {
   assert.equal(count(VISITOR_OPEN, "/learn/"), 4);
   assert.equal(count(VISITOR_OPEN, "/olympiad/"), 1);
   assert.equal(count(VISITOR_OPEN, "/outliers/"), 1);
-  assert.equal(count(FREE_OPEN, "/learn/"), 6);
   assert.equal(count(FREE_OPEN, "/olympiad/"), 2);
   assert.equal(count(FREE_OPEN, "/outliers/"), 2);
 });
@@ -26,7 +25,12 @@ test("problems and second labs follow their set or chapter", () => {
 test("each tier sees the right prompt", () => {
   assert.equal(needs("visitor", "/learn/earth-moon-sun"), null);
   assert.equal(needs("visitor", "/learn/motion"), "register");
-  assert.equal(needs("visitor", "/learn/sound"), "upgrade");
+  assert.equal(needs("visitor", "/learn/sound"), "register");
+  assert.equal(needs("visitor", "/olympiad/optics"), "upgrade");
+  assert.equal(needs("visitor", "/outliers/mass-energy"), "upgrade");
+  assert.equal(needs("free", "/learn/sound"), null);
+  assert.equal(needs("free", "/learn/eye-defects"), null);
+  assert.equal(needs("free", "/outliers/mass-energy"), "upgrade");
   assert.equal(needs("free", "/learn/motion"), null);
   assert.equal(needs("free", "/olympiad/optics/x"), "upgrade");
   assert.equal(needs("family", "/outliers/mass-energy"), null);

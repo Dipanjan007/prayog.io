@@ -147,7 +147,7 @@ export default function PlansView({ counts, contact }: { counts: Counts; contact
           <div className="font-display mt-1 text-3xl font-bold">₹0</div>
           <ul className="mt-4 flex-1 space-y-2 text-sm text-white/70">
             <li>✓ Try now, no sign-up: 4 Class 7 and 8 lessons, 1 Olympiad set and 1 Outliers lab</li>
-            <li>✓ With a free account: 6 lessons, 2 Olympiad sets and 2 Outliers labs</li>
+            <li>✓ With a free account: all {counts.lessons} NCERT lessons and {counts.labs} second labs, 2 Olympiad sets and 2 Outliers labs</li>
             <li>✓ XP saved across devices, and your class leaderboard</li>
           </ul>
           <div className="mt-5">
@@ -169,10 +169,11 @@ export default function PlansView({ counts, contact }: { counts: Counts; contact
           </div>
           <div className="text-sm text-white/50">or {rupees(FAMILY_PRICE.month)} a month. GST included.</div>
           <ul className="mt-4 flex-1 space-y-2 text-sm text-white/70">
-            <li>✓ All {counts.lessons} NCERT lessons for Classes 7 to 10, plus {counts.labs} second labs</li>
+            <li>✓ Everything in Free</li>
             <li>✓ All {counts.sets} Olympiad sets, for NSEJS and IJSO</li>
             <li>✓ All {counts.outliers} Outliers labs: black holes, relativity and more</li>
             <li>✓ Every child on your account</li>
+            <li className="text-white/50">Coming next: a weekly report on where your child is stuck, and board-style chapter tests</li>
             <li>✓ No auto-renew. Pay again only if you want to</li>
           </ul>
           <div className="mt-5">{familyAction()}</div>

@@ -15,19 +15,19 @@ export function FreeNote() {
           <Link href="/join" className="text-cyan-300 hover:underline">
             Sign up free
           </Link>{" "}
-          to open 6 lessons, 2 sets and 2 Outliers labs, or{" "}
+          to open every NCERT lesson, 2 sets and 2 Outliers labs, or{" "}
           <Link href="/plans" className="text-cyan-300 hover:underline">
             see plans
           </Link>{" "}
-          for everything.
+          for the full Olympiad track.
         </>
       ) : (
         <>
-          Your free account opens 6 lessons, 2 Olympiad sets and 2 Outliers labs.{" "}
+          Your free account opens every NCERT lesson, 2 Olympiad sets and 2 Outliers labs.{" "}
           <Link href="/plans" className="text-cyan-300 hover:underline">
             The Family plan
           </Link>{" "}
-          opens everything.
+          adds the full Olympiad track and every Outliers lab.
         </>
       )}
     </p>

@@ -39,8 +39,15 @@ export async function GET() {
           from classes k where k.teacher_id = ${account.id} order by k.created_at`
       : undefined;
 
+  // Payments: no card or UPI details, Razorpay holds those. Empty before migration 005.
+  const payments =
+    account.role === "parent"
+      ? await sql`select plan, period, amount_paise, status, starts_at, ends_at, created_at from subscriptions
+          where account_id = ${account.id} order by created_at`.catch(() => [])
+      : undefined;
+
   await audit("data_exported", { account: account.id });
-  const file = { exported_at: new Date().toISOString(), account: me, children, classes };
+  const file = { exported_at: new Date().toISOString(), account: me, children, classes, payments };
   return new NextResponse(JSON.stringify(file, null, 2), {
     headers: {
       "Content-Type": "application/json; charset=utf-8",

@@ -6,6 +6,7 @@ import ServiceWorker from "@/components/ServiceWorker";
 import SyncProgress from "@/components/SyncProgress";
 import SendSuggestions from "@/components/SendSuggestions";
 import SuggestLink from "@/components/SuggestLink";
+import AccessGate from "@/components/access/AccessGate";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({ variable: "--font-space-grotesk", subsets: ["latin"] });
@@ -25,11 +26,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col font-sans">
         <NavBar />
-        <main className="mx-auto w-full max-w-6xl flex-1 px-4 pb-24 pt-4 sm:px-6">{children}</main>
+        <main className="mx-auto w-full max-w-6xl flex-1 px-4 pb-24 pt-4 sm:px-6">
+          <AccessGate>{children}</AccessGate>
+        </main>
         <footer className="mx-auto w-full max-w-6xl px-4 pb-8 text-xs text-white/40 sm:px-6">
           Prayog follows the NCERT syllabus. No ads and no tracking.{" "}
           <a href="/privacy" className="underline hover:text-white/70">
             Privacy
+          </a>
+          {" · "}
+          <a href="/plans" className="underline hover:text-white/70">
+            Plans
           </a>
           {" · "}
           <SuggestLink className="underline hover:text-white/70">Suggest an idea</SuggestLink>

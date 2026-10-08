@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { FreeNote } from "@/components/access/FreeNote";
+import { LockableLink } from "@/components/access/LockableLink";
 import { OUTLIER_STRANDS } from "@/content/curriculum";
 import { LESSONS } from "@/content/lessons";
 
@@ -20,6 +21,7 @@ export default function OutliersPage() {
         Labs that go beyond the NCERT book, for the curious ones. Squeeze Earth into a black hole, ride a light clock at
         nearly the speed of light, and turn a grain of rice into energy.
       </p>
+      <FreeNote />
 
       <div className="mt-8 flex flex-col gap-8">
         {OUTLIER_STRANDS.map((strand) => (
@@ -32,9 +34,10 @@ export default function OutliersPage() {
               {strand.chapters.map((ch) => {
                 const lesson = ch.href ? bySlug.get(ch.href.split("/").pop()!) : undefined;
                 return (
-                  <Link
+                  <LockableLink
                     key={ch.title}
                     href={ch.href ?? "/outliers"}
+                    title={lesson?.title ?? ch.title}
                     className="group flex flex-col rounded-2xl border p-4 transition hover:-translate-y-0.5"
                     style={{ borderColor: strand.colour, background: "rgba(56,189,248,0.06)" }}
                   >
@@ -50,7 +53,7 @@ export default function OutliersPage() {
                     <div className="mt-auto pt-3 text-xs font-semibold" style={{ color: strand.colour }}>
                       Play now →
                     </div>
-                  </Link>
+                  </LockableLink>
                 );
               })}
             </div>

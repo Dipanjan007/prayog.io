@@ -75,6 +75,10 @@ export default function PrivacyPage() {
         <li>Vercel runs the website, from Mumbai.</li>
         <li>Supabase stores the database, in Mumbai.</li>
         <li>Resend sends sign-in codes and account emails. Those emails pass through its servers in the USA.</li>
+        <li>
+          Razorpay takes Family plan payments, in India. We keep only the plan, the amount and the dates; Razorpay keeps
+          the card or UPI details and never gets your child&apos;s details.
+        </li>
         <li>GitHub holds suggestions for our weekly review, with contact details already removed.</li>
       </ul>
       <p className="mt-2">Each of them may use our data only to provide that service to us.</p>

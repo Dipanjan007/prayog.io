@@ -9,9 +9,9 @@ const LOOP = [
 ];
 
 const PLAYABLE = [
+  { href: "/learn/earth-moon-sun", emoji: "🌘", cls: 7, title: "Make an eclipse", text: "Tilt the Earth for the seasons, then line up the Moon and the Sun for a solar and a lunar eclipse." },
   { href: "/learn/circuits", emoji: "🔦", cls: 7, title: "Build a torch that works", text: "Wire up cells, bulbs and switches, test what conducts, then fix a broken torch." },
   { href: "/learn/pressure-winds", emoji: "🏎️", cls: 8, title: "Wind tunnel", text: "Blow roofs off in a cyclone and give a sports car downforce with its rear wing." },
-  { href: "/learn/motion", emoji: "🏁", cls: 9, title: "Drive and graph", text: "Drive a sports car and watch its distance and speed graphs draw live. Stop in the zone." },
 ];
 
 export default function Home() {

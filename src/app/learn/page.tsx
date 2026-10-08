@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { FreeNote } from "@/components/access/FreeNote";
+import { LockableLink } from "@/components/access/LockableLink";
 import { BOOKS, CLASSES, NCERT_STRANDS as STRANDS } from "@/content/curriculum";
 
 export const metadata: Metadata = { title: "Learn" };
@@ -21,6 +23,7 @@ export default function LearnPage() {
         </Link>
         : gravity, black holes and Einstein.
       </p>
+      <FreeNote />
 
       {/* Header row: classes */}
       <div className="mt-8 hidden grid-cols-[10rem_repeat(4,minmax(0,1fr))] gap-3 text-sm text-white/50 md:grid">
@@ -50,24 +53,25 @@ export default function LearnPage() {
                         className="flex flex-col gap-2 rounded-2xl border p-3"
                         style={{ borderColor: strand.colour, background: "rgba(56,189,248,0.08)" }}
                       >
-                        <Link href={ch.href} className="group block transition hover:-translate-y-0.5">
+                        <LockableLink href={ch.href} title={ch.title} className="group block transition hover:-translate-y-0.5">
                           <div className="text-[11px] uppercase tracking-wider text-white/50 md:hidden">Class {c}</div>
                           <div className="text-sm font-semibold">{ch.title}</div>
                           <div className="mt-1 text-xs text-white/60">🎮 {ch.sim}</div>
                           <div className="mt-2 text-xs font-semibold" style={{ color: strand.colour }}>
                             Play now →
                           </div>
-                        </Link>
+                        </LockableLink>
                         {ch.labs?.map((lab) => (
-                          <Link
+                          <LockableLink
                             key={lab.href}
                             href={lab.href}
+                            title={lab.title}
                             className="block rounded-xl border border-white/10 bg-white/[0.03] p-2 transition hover:border-white/30"
                           >
                             <div className="text-[11px] uppercase tracking-wider text-white/40">Second lab</div>
                             <div className="text-xs font-semibold">{lab.title}</div>
                             <div className="mt-0.5 text-[11px] text-white/55">🧪 {lab.sim}</div>
-                          </Link>
+                          </LockableLink>
                         ))}
                       </div>
                     ) : (

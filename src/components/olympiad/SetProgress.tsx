@@ -5,6 +5,7 @@ import { OLY_PROBLEMS, OLY_SETS, problemsInSet } from "@/content/olympiad";
 import { LEVEL_LABEL } from "@/lib/olympiad/score";
 import { olyStore, totals } from "@/lib/olympiad/store";
 import { Stars } from "./Stars";
+import { LockableLink } from "@/components/access/LockableLink";
 
 /** Hub cards: one per set, with solved count and stars from this device. */
 export function SetCards() {
@@ -35,7 +36,7 @@ export function SetCards() {
           );
           const pct = Math.round((100 * t.solved) / probs.length);
           return (
-            <Link key={s.id} href={`/olympiad/${s.id}`} className="glass group rounded-3xl p-4 transition hover:-translate-y-0.5">
+            <LockableLink key={s.id} href={`/olympiad/${s.id}`} title={s.title} className="glass group rounded-3xl p-4 transition hover:-translate-y-0.5">
               <div className="flex items-center gap-2">
                 <span className="h-3 w-3 rounded-full" style={{ background: s.colour }} />
                 <h2 className="font-display text-lg font-semibold">
@@ -54,7 +55,7 @@ export function SetCards() {
                   {t.solved === probs.length ? "Review →" : t.solved ? "Continue →" : "Start →"}
                 </span>
               </div>
-            </Link>
+            </LockableLink>
           );
         })}
       </div>

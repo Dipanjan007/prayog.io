@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 import type { ClassNum } from "@/content/curriculum";
+import type { Tier } from "@/lib/access";
 
 export interface AccountInfo {
   id: string;
@@ -26,6 +27,14 @@ export interface Me {
   account?: AccountInfo | null;
   children?: ChildInfo[];
   child?: (ChildInfo & { classes: { id: string; name: string }[] }) | null;
+  /** What this device can open (see lib/access). */
+  tier?: Tier;
+  /** When the parent's Family plan ends, if they are paying. */
+  familyUntil?: string | null;
+  /** True once Razorpay keys are set. */
+  payments?: boolean;
+  /** The last check failed, usually because the device is offline. */
+  offline?: boolean;
 }
 
 export class ApiError extends Error {
@@ -62,7 +71,7 @@ const listeners = new Set<() => void>();
 
 export function refreshMe(): Promise<Me> {
   loading = api<Me>("/api/me")
-    .catch(() => ({ server: false }) as Me)
+    .catch(() => ({ server: false, offline: true }) as Me)
     .then((m) => {
       me = m;
       listeners.forEach((l) => l());

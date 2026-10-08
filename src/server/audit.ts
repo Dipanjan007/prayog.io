@@ -29,7 +29,9 @@ export type AuditAction =
   | "member_removed"
   | "member_unlocked"
   | "inactivity_warned"
-  | "inactive_deleted";
+  | "inactive_deleted"
+  | "payment_started"
+  | "payment_completed";
 
 interface Entry {
   account?: string | null;

@@ -48,8 +48,10 @@ export async function GET() {
           where account_id = ${account.id} order by created_at`.catch(() => [])
       : undefined;
 
+  const waitlist = await sql`select email, period, created_at from waitlist where email = ${account.email}`.catch(() => []);
+
   await audit("data_exported", { account: account.id });
-  const file = { exported_at: new Date().toISOString(), account: me, children, classes, payments };
+  const file = { exported_at: new Date().toISOString(), account: me, children, classes, payments, waitlist };
   return new NextResponse(JSON.stringify(file, null, 2), {
     headers: {
       "Content-Type": "application/json; charset=utf-8",

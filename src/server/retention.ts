@@ -56,6 +56,9 @@ export async function runRetention() {
   for (const c of gone) await audit("inactive_deleted", { subject: c.id, detail: { role: "school_child" } }, sql);
   result.deletedSchoolChildren = gone.length;
 
+  // Waitlist emails are for one message when payments open; a year is plenty.
+  await sql`delete from waitlist where created_at < now() - interval '1 year'`.catch(() => {});
+
   // Monday copies for the weekly report: only the last few weeks are any use.
   await sql`delete from progress_weeks where week_start < now() - ${REPORT_WEEKS_KEEP}::interval`.catch(() => {});
 

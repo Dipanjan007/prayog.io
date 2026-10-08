@@ -37,6 +37,9 @@ const PRECACHE = [
   "/learn/sound-uses",
   "/learn/house-wiring",
   "/learn/sky-colours",
+  "/learn/water-cycle",
+  "/learn/friction-tension",
+  "/learn/eye-defects",
   "/olympiad",
   "/me",
 ];

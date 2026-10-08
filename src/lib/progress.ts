@@ -103,6 +103,12 @@ export const BADGES: BadgeInfo[] = [
   { id: "cargo-captain", name: "Cargo Captain", how: "Load all three cargo boats as full as they can safely go", emoji: "⚓" },
   { id: "sky-painter", name: "Sky Painter", how: "Finish every step of the sky colours lesson", emoji: "🌅" },
   { id: "rainbow-catcher", name: "Rainbow Catcher", how: "Solve all three Sky detective rounds", emoji: "🌦️" },
+  { id: "near-point-navigator", name: "Near Point Navigator", how: "Finish every step of the eye defects lesson", emoji: "🤓" },
+  { id: "spectacle-shop-star", name: "Spectacle Shop Star", how: "Fit reading glasses for all three customers in the spectacle shop", emoji: "🕶️" },
+  { id: "monsoon-maker", name: "Monsoon Maker", how: "Finish every step of the water cycle lesson", emoji: "🌧️" },
+  { id: "weather-maker", name: "Weather Maker", how: "Solve all three weather rounds", emoji: "⛈️" },
+  { id: "friction-fighter", name: "Friction Fighter", how: "Finish every step of the friction and tension lesson", emoji: "🛷" },
+  { id: "pulley-pro", name: "Pulley Pro", how: "Solve all three pulley puzzles", emoji: "🪝" },
   { id: "sharp-mind", name: "Sharp Mind", how: "Score full marks in a Master quiz", emoji: "🎯" },
 ];
 

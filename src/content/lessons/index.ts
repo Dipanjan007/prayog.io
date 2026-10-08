@@ -30,6 +30,9 @@ import { lesson as simpleMachines } from "./simple-machines";
 import { lesson as soundUses } from "./sound-uses";
 import { lesson as houseWiring } from "./house-wiring";
 import { lesson as skyColours } from "./sky-colours";
+import { lesson as waterCycle } from "./water-cycle";
+import { lesson as frictionTension } from "./friction-tension";
+import { lesson as eyeDefects } from "./eye-defects";
 import type { LessonDef } from "./types";
 
 /** Every playable lesson, in class order. */
@@ -60,6 +63,9 @@ export const LESSONS: LessonDef[] = [
   soundUses,
   houseWiring,
   skyColours,
+  waterCycle,
+  frictionTension,
+  eyeDefects,
   gravity,
   circularMotion,
   blackHoles,

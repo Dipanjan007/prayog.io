@@ -50,7 +50,7 @@ export const STRANDS: Strand[] = [
     colour: "var(--c-violet)",
     chapters: [
       { classNum: 8, title: "Exploring Forces", href: "/learn/forces", sim: "Push a crate, spring balance and magnets", labs: [{ href: "/learn/float-sink", title: "Float or sink?", sim: "Spring balance in water, an egg in salt water, floating ring magnets" }] },
-      { classNum: 9, title: "How Forces Affect Motion", href: "/learn/forces-motion", sim: "Air track collisions and recoil" },
+      { classNum: 9, title: "How Forces Affect Motion", href: "/learn/forces-motion", sim: "Air track collisions and recoil", labs: [{ href: "/learn/friction-tension", title: "Grip, slip and pull", sim: "Measure grip and slip on glass, wood and sandpaper with a spring balance, then link blocks with a string" }] },
     ],
   },
   {
@@ -72,7 +72,7 @@ export const STRANDS: Strand[] = [
     name: "Energy and heat",
     colour: "var(--c-orange)",
     chapters: [
-      { classNum: 7, title: "Heat Transfer in Nature", href: "/learn/heat-transfer", sim: "Heated rod, convection pot and sea breeze" },
+      { classNum: 7, title: "Heat Transfer in Nature", href: "/learn/heat-transfer", sim: "Heated rod, convection pot and sea breeze", labs: [{ href: "/learn/water-cycle", title: "The water cycle", sim: "Turn up the Sun and monsoon wind to rain on the Western Ghats, soak rain into soil, dry a shirt and chill a sweating tumbler" }] },
       { classNum: 9, title: "Work, Energy, and Simple Machines", href: "/learn/work-energy", sim: "Roller coaster energy bars, lever builder", labs: [{ href: "/learn/simple-machines", title: "Pulleys, ramps and the work meter", sim: "Work meter, pulley systems, a ramp and a power race" }] },
     ],
   },
@@ -95,7 +95,7 @@ export const STRANDS: Strand[] = [
       { classNum: 7, title: "Light: Shadows and Reflections", href: "/learn/shadows-reflections", sim: "Shadow stage, pinhole camera and laser mirrors" },
       { classNum: 8, title: "Light: Mirrors and Lenses", href: "/learn/mirrors-lenses", sim: "Plane, concave and convex mirrors and lenses" },
       { classNum: 10, title: "Light: Reflection and Refraction", href: "/learn/light-refraction", sim: "Glass block, lens and mirror bench with live ray diagrams" },
-      { classNum: 10, title: "The Human Eye and the Colourful World", sim: "Eye model and prism", href: "/learn/human-eye", labs: [{ href: "/learn/sky-colours", title: "Why the sky is blue", sim: "Scatter light, paint a sunset, make stars twinkle, catch a rainbow" }] },
+      { classNum: 10, title: "The Human Eye and the Colourful World", sim: "Eye model and prism", href: "/learn/human-eye", labs: [{ href: "/learn/eye-defects", title: "Dadi's reading glasses", sim: "Age an eye from 15 to 80, find its near point, and design reading glasses and bifocals for Dadi" }, { href: "/learn/sky-colours", title: "Why the sky is blue", sim: "Scatter light, paint a sunset, make stars twinkle, catch a rainbow" }] },
     ],
   },
   {

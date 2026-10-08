@@ -33,6 +33,46 @@ export const OLY_SETS: OlySet[] = [
     colour: "#cf7f5c",
     sim: "Collision sim",
   },
+  {
+    id: "optics",
+    title: "Optics",
+    emoji: "🔭",
+    blurb: "Optical benches, two-lens projectors and lasers into water. Get the lens formula and Snell's law right and the picture comes out sharp.",
+    colour: "#7aa6c9",
+    sim: "Optical bench sim",
+  },
+  {
+    id: "electricity",
+    title: "Electricity",
+    emoji: "⚡",
+    blurb: "Pick a resistor, wind a heater coil and tame a solar lamp. Ohm's law and P = V²/R decide everything here.",
+    colour: "#a9b86a",
+    sim: "Circuit sim",
+  },
+  {
+    id: "fluids",
+    title: "Fluids and buoyancy",
+    emoji: "🚢",
+    blurb: "Hydraulic lifts, barges loaded to the line in sea water, and a cube caught between kerosene and water.",
+    colour: "#5fa3b3",
+    sim: "Tank and buoyancy sim",
+  },
+  {
+    id: "heat",
+    title: "Heat and temperature",
+    emoji: "🌡️",
+    blurb: "Mixing bath water, cooling chai in a steel tumbler and leaving just enough ice in a glass of sharbat.",
+    colour: "#d0925f",
+    sim: "Calorimeter sim",
+  },
+  {
+    id: "orbits",
+    title: "Gravitation and orbits",
+    emoji: "🛰️",
+    blurb: "Jump on Mars, park a GSAT over India and toss a sample to a probe above Phobos.",
+    colour: "#9d8fc9",
+    sim: "Orbit sim",
+  },
 ];
 
 export function getSet(id: string) {

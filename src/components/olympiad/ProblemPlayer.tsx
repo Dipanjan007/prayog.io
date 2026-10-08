@@ -213,7 +213,7 @@ export default function ProblemPlayer({ setId, problemId }: { setId: string; pro
                     Within 2%, so the sim ran the exact value, {p.symbol} {fmt(p.answer, 4)} {unit}.
                   </p>
                 )}
-                {!shown.correct && <p className="mt-1 text-xs text-white/45">Check your free-body diagram and your units, then try again.</p>}
+                {!shown.correct && <p className="mt-1 text-xs text-white/45">{["projectiles", "newton", "circular-energy", "momentum"].includes(setId) ? "Check your free-body diagram" : "Check your working"} and your units, then try again.</p>}
               </div>
             )}
           </form>

@@ -5,14 +5,24 @@
 import { planArc, planRiver, type ArcScene, type RiverScene } from "@/lib/sim/oly-projectile";
 import { planIncline, type InclineScene } from "@/lib/sim/oly-incline";
 import { planBank, planLoop, type BankScene, type LoopScene } from "@/lib/sim/oly-track";
+import { isOpticsScene, planOptics, type OpticsScene } from "@/lib/sim/oly-optics";
+import { isCircuitScene, planCircuit, type CircuitScene } from "@/lib/sim/oly-electricity";
+import { isFluidsScene, planFluids, type FluidsScene } from "@/lib/sim/oly-fluids";
+import { isHeatScene, planHeat, type HeatScene } from "@/lib/sim/oly-heat";
+import { isOrbitsScene, planOrbits, type OrbitsScene } from "@/lib/sim/oly-orbits";
 import { planCrash, planPendulum, planRecoil, type CrashScene, type PendulumScene, type RecoilScene } from "@/lib/sim/oly-momentum";
 
-export type Scene = ArcScene | RiverScene | InclineScene | BankScene | LoopScene | RecoilScene | PendulumScene | CrashScene;
+export type Scene = ArcScene | RiverScene | InclineScene | BankScene | LoopScene | RecoilScene | PendulumScene | CrashScene | OpticsScene | CircuitScene | FluidsScene | HeatScene | OrbitsScene;
 
-/** Which of the four reusable sims draws a scene. */
-export type SimFamily = "projectile" | "incline" | "track" | "collision";
+/** Which reusable sim draws a scene. */
+export type SimFamily = "projectile" | "incline" | "track" | "collision" | "optics" | "electricity" | "fluids" | "heat" | "orbits";
 
 export function simFamily(s: Scene): SimFamily {
+  if (isOpticsScene(s)) return "optics";
+  if (isCircuitScene(s)) return "electricity";
+  if (isFluidsScene(s)) return "fluids";
+  if (isHeatScene(s)) return "heat";
+  if (isOrbitsScene(s)) return "orbits";
   switch (s.kind) {
     case "arc":
     case "river":
@@ -35,6 +45,11 @@ export interface Outcome {
 }
 
 export function planOutcome(s: Scene): { outcome: Outcome; duration: number } {
+  if (isOpticsScene(s)) return planOptics(s);
+  if (isCircuitScene(s)) return planCircuit(s);
+  if (isFluidsScene(s)) return planFluids(s);
+  if (isHeatScene(s)) return planHeat(s);
+  if (isOrbitsScene(s)) return planOrbits(s);
   switch (s.kind) {
     case "arc":
       return planArc(s);

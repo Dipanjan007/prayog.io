@@ -1,7 +1,7 @@
 import type { Scene } from "@/lib/olympiad/scene";
 import type { Level } from "@/lib/olympiad/score";
 
-export type SetId = "projectiles" | "newton" | "circular-energy" | "momentum";
+export type SetId = "projectiles" | "newton" | "circular-energy" | "momentum" | "optics" | "electricity" | "fluids" | "heat" | "orbits";
 
 export interface OlySet {
   id: SetId;

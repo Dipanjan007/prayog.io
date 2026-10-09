@@ -75,7 +75,7 @@ export default function LessonPlayer() {
     } else {
       setFeedback({
         ok: false,
-        text: `${r.count} image${r.count === 1 ? "" : "s"} at ${r.angle}° (360 ÷ ${r.angle} − 1 = ${formulaCount(r.angle)}). ${formulaCount(r.angle) === rd.target ? "Right angle: now move the bangle." : r.count < rd.target ? "You need more: close the mirrors." : "Too many: open the mirrors wider."} ${rd.hint}`,
+        text: `${r.count} image${r.count === 1 ? "" : "s"} at ${r.angle}°. Rule: (360° ÷ ${r.angle}°) − 1 = ${formulaCount(r.angle)}. ${formulaCount(r.angle) === rd.target ? "Right angle: now move the bangle." : r.count < rd.target ? "You need more: close the mirrors." : "Too many: open the mirrors wider."} ${rd.hint}`,
       });
     }
   };

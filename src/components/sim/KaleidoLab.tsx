@@ -167,7 +167,7 @@ export default function KaleidoLab({ onReading, target = null }: Props) {
         <>
           <div className="grid grid-cols-2 gap-2 text-center">
             <Stat label="Images you see" value={String(images.length)} />
-            <Stat label="360 ÷ θ − 1" value={String(formulaCount(angle))} />
+            <Stat label="(360° ÷ θ) − 1" value={String(formulaCount(angle))} />
           </div>
           <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
             <div className="text-sm text-white/60">Angle between the mirrors, θ</div>

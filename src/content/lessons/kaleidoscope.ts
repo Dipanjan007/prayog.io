@@ -1,7 +1,7 @@
 /**
  * Class 8 · Curiosity · "Light: Mirrors and Lenses", second lab.
  * Fills gaps the first lab (mirrors-lenses.ts) leaves: multiple images in two plane mirrors
- * at an angle (n = 360 ÷ θ − 1) and the kaleidoscope, endless images in parallel mirrors, and
+ * at an angle (n = (360° ÷ θ) − 1) and the kaleidoscope, endless images in parallel mirrors, and
  * using a convex lens or a concave mirror to bring sunlight to a focus, which is how we find
  * the focal length and how a solar cooker works.
  * Recheck wording and activities against the NCERT chapter PDF whenever the book is revised.
@@ -21,7 +21,7 @@ export const lesson: LessonDef = {
     objective:
       "Hinge two mirrors to count the images of a bangle, make a kaleidoscope and an endless barber-shop tunnel, then focus sunlight with a magnifying glass and a solar cooker dish.",
     learn: [
-      "Two mirrors at an angle θ make 360 ÷ θ − 1 images",
+      "Two mirrors at an angle θ make (360° ÷ θ) − 1 images",
       "Why a kaleidoscope uses mirrors at 60°, and why parallel mirrors make endless images",
       "A convex lens and a concave mirror bring sunlight to a point: the focus",
       "The distance from the lens or mirror to that point is its focal length",
@@ -58,16 +58,16 @@ export const lesson: LessonDef = {
     {
       id: "task:formula",
       title: "Find the rule",
-      text: "Try at least three more angles, such as 45°, 36° and 30°. Compare the number of images with 360 ÷ θ − 1.",
+      text: "Try at least three more angles, such as 45°, 36° and 30°. Compare the number of images with (360° ÷ θ) − 1.",
       found:
-        "Smaller angles give more images, and the number of images matched 360 ÷ θ − 1 each time: 7 at 45°, 9 at 36° and 11 at 30°. When 360 ÷ θ is odd (at 120°, 72° or 40°) the count can be one more if the bangle is not exactly in the middle.",
+        "Smaller angles give more images, and the number of images matched (360° ÷ θ) − 1 each time: 7 at 45°, 9 at 36° and 11 at 30°. When 360° ÷ θ is odd (at 120°, 72° or 40°) the count can be one more if the bangle is not exactly in the middle.",
     },
     {
       id: "task:parallel",
       title: "The barber's tunnel",
       text: "Switch to Parallel mirrors and look at the images.",
       found:
-        "When the mirrors face each other, the angle between them is 0°, and 360 ÷ 0 has no end. Light keeps bouncing back and forth, so the images go on forever, each one further away. Each bounce loses a little light, so they get dimmer until you can no longer see them.",
+        "When the mirrors face each other, the angle between them is 0°, and 360° ÷ 0° has no end. Light keeps bouncing back and forth, so the images go on forever, each one further away. Each bounce loses a little light, so they get dimmer until you can no longer see them.",
     },
     {
       id: "task:burn",
@@ -88,8 +88,9 @@ export const lesson: LessonDef = {
     scientist: "David Brewster",
     years: "1781–1868",
     fact: "Brewster, a Scottish scientist who studied how light reflects, invented the kaleidoscope in 1816 and named it from the Greek for 'seeing beautiful shapes'. He worked out that the mirrors must meet at an angle that divides 360° exactly for the pattern to be perfect. Copies sold in huge numbers in London and Paris within months, but his patent did not stop other makers from copying it, so he earned very little from it.",
-    formula: "n = 360° ÷ θ − 1",
-    formulaNote: "Two plane mirrors at an angle θ make n images of an object between them. It is exact when 360 ÷ θ is even, or when the object is exactly in the middle.",
+    formula: "n = (360° ÷ θ) − 1",
+    formulaNote:
+      "n is the number of images you see. θ (the Greek letter theta) is the angle between the two mirrors, in degrees. 360° is one full turn. ÷ means divide and − means take away. The brackets say: divide first, then take away 1. We take away 1 because one of the pieces of the full turn holds the real object, not an image. It is exact when 360° ÷ θ is even, or when the object is exactly in the middle.",
   },
   ideas: [
     {
@@ -98,8 +99,13 @@ export const lesson: LessonDef = {
     },
     {
       title: "How many images?",
-      text: "Close the mirrors to a smaller angle and you get more images. At 180° the two mirrors make one flat mirror and one image. At 90° there are 3, at 60° there are 5, at 45° there are 7. If 360 ÷ θ is odd and the object is off-centre, you see one more than the rule.",
-      formula: "n = 360° ÷ θ − 1",
+      text: "Close the mirrors to a smaller angle and you get more images. At 180° the two mirrors make one flat mirror and one image. At 90° there are 3, at 60° there are 5, at 45° there are 7. If 360° ÷ θ is odd and the object is off-centre, you see one more than the rule.",
+      formula: "n = (360° ÷ θ) − 1",
+    },
+    {
+      title: "Reading the rule",
+      text: "n is the number of images you see. θ (the Greek letter theta) is the angle between the two mirrors, in degrees. 360° is one full turn. ÷ means divide and − means take away. The two mirrors cut the full turn into 360° ÷ θ equal slices, and one slice holds the real object, so the images are that number minus 1. Work out the bracket first, then take away 1. At 60°: (360° ÷ 60°) − 1 = 6 − 1 = 5.",
+      formula: "(360° ÷ 60°) − 1 = 6 − 1 = 5",
     },
     {
       title: "Kaleidoscopes and mirror tunnels",
@@ -120,13 +126,13 @@ export const lesson: LessonDef = {
       q: "Two plane mirrors are placed at 45° to each other. How many images of a coin between them will you see?",
       options: ["4", "7", "8", "45"],
       answer: 1,
-      why: "n = 360 ÷ 45 − 1 = 8 − 1 = 7.",
+      why: "n = (360° ÷ 45°) − 1 = 8 − 1 = 7.",
     },
     {
       q: "You want to see 11 images of a toy between two mirrors. What angle should the mirrors make?",
       options: ["11°", "30°", "33°", "36°"],
       answer: 1,
-      why: "360 ÷ θ − 1 = 11, so 360 ÷ θ = 12 and θ = 30°.",
+      why: "(360° ÷ θ) − 1 = 11. Add 1 to both sides: 360° ÷ θ = 12, so θ = 360° ÷ 12 = 30°.",
     },
     {
       q: "Why do the images in two facing mirrors in a barber shop get dimmer and dimmer?",

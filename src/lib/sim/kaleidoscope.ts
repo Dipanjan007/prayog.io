@@ -7,9 +7,9 @@
  * meeting at the hinge (the origin). The object sits inside the wedge at angle φ (0 < φ < θ).
  * Images form by bouncing light off one mirror, then the other, and so on. A chain of images
  * that starts with mirror 1 keeps going while (k − 1)θ + φ < 180°, and the same for the chain
- * that starts with mirror 2 with θ − φ in place of φ. When 360 ÷ θ is even the last images of
+ * that starts with mirror 2 with θ − φ in place of φ. When 360° ÷ θ is even the last images of
  * the two chains land on the same spot, so they count once. This gives the textbook rule:
- * n = 360 ÷ θ − 1 images, except when 360 ÷ θ is odd and the object is off-centre (then 360 ÷ θ).
+ * n = (360° ÷ θ) − 1 images, except when 360° ÷ θ is odd and the object is off-centre (then 360 ÷ θ).
  *
  * Sunlight: the Sun is a disc 0.53° across, so even a perfect lens makes a small spot of radius
  * f × 0.00465 at its focus, not a point. Away from the focus the spot is a blurred circle of
@@ -69,7 +69,7 @@ export function hingeImages(thetaDeg: number, phiDeg: number): { chain: Bounce[]
 /** How many images you see of an object at a fraction of the way across the wedge. */
 export const imageCount = (thetaDeg: number, position: number) => hingeImages(thetaDeg, thetaDeg * position).length;
 
-/** The textbook rule, n = 360 ÷ θ − 1. */
+/** The textbook rule, n = (360° ÷ θ) − 1. */
 export const formulaCount = (thetaDeg: number) => 360 / thetaDeg - 1;
 
 /**
@@ -130,9 +130,9 @@ export function timeToChar(conc: number) {
 
 /** Challenge rounds: make exactly this many images. */
 export const ROUNDS = [
-  { target: 7, name: "Seven bangles", hint: "Use n = 360 ÷ θ − 1 to find the angle." },
+  { target: 7, name: "Seven bangles", hint: "Use n = (360° ÷ θ) − 1 to find the angle." },
   { target: 11, name: "A crowd of eleven", hint: "Smaller angles give more images." },
-  { target: 4, name: "The odd one", hint: "No angle on the bench gives 4 with the formula. When 360 ÷ θ is odd, try moving the bangle." },
+  { target: 4, name: "The odd one", hint: "No angle on the bench gives 4 with the formula. When 360° ÷ θ is odd, try moving the bangle." },
 ] as const;
 
 /** Every angle and position that makes the target number of images. */

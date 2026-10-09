@@ -28,6 +28,8 @@ test("each tier sees the right prompt", () => {
   assert.equal(needs("visitor", "/outliers/mass-energy"), "upgrade");
   assert.equal(needs("free", "/learn/sound"), null);
   assert.equal(needs("free", "/learn/eye-defects"), null);
+  assert.equal(needs("free", "/learn/kaleidoscope"), null);
+  assert.equal(needs("visitor", "/learn/kaleidoscope"), "register");
   assert.equal(needs("free", "/outliers/mass-energy"), "upgrade");
   assert.equal(needs("free", "/learn/motion"), null);
   assert.equal(needs("free", "/olympiad/optics/x"), "upgrade");

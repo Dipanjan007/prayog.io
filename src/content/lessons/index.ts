@@ -33,6 +33,7 @@ import { lesson as skyColours } from "./sky-colours";
 import { lesson as waterCycle } from "./water-cycle";
 import { lesson as frictionTension } from "./friction-tension";
 import { lesson as eyeDefects } from "./eye-defects";
+import { lesson as kaleidoscope } from "./kaleidoscope";
 import type { LessonDef } from "./types";
 
 /** Every playable lesson, in class order. */
@@ -66,6 +67,7 @@ export const LESSONS: LessonDef[] = [
   waterCycle,
   frictionTension,
   eyeDefects,
+  kaleidoscope,
   gravity,
   circularMotion,
   blackHoles,
@@ -88,6 +90,7 @@ export const LESSON_HREF: Record<string, string> = {
   "c8-forces": "/learn/forces",
   "c9-friction-tension": "/learn/friction-tension",
   "x-gravity": "/outliers/gravity",
+  "c8-kaleidoscope": "/learn/kaleidoscope",
   "c7-heat-transfer": "/learn/heat-transfer",
   "c10-house-wiring": "/learn/house-wiring",
   "c10-human-eye": "/learn/human-eye",

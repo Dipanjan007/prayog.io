@@ -20,9 +20,11 @@ const noop = () => () => {};
 /**
  * What this device can open. Undefined while we don't know yet. The last
  * answer is remembered so a paying family keeps everything offline, and a
- * server without accounts (device-only mode) opens everything.
+ * server without accounts (device-only mode) opens everything, and so does a
+ * Vercel PR preview.
  */
 export function useTier(): Tier | undefined {
+  const preview = process.env.PRAYOG_PREVIEW === "1";
   const me = useMe();
   const onClient = useSyncExternalStore(noop, () => true, () => false);
   const live: Tier | undefined = !me || me.offline ? undefined : me.server ? (me.tier ?? "visitor") : "school";
@@ -34,6 +36,7 @@ export function useTier(): Tier | undefined {
     } catch {}
   }, [live]);
 
+  if (preview) return "school";
   if (live) return live;
   if (!onClient) return undefined;
   if (me?.offline) return cached() ?? "visitor";

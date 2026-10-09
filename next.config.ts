@@ -38,6 +38,9 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Vercel PR previews open every lab, so a reviewer can try new ones without
+  // signing in (previews have no email settings, so sign-in codes can't go out).
+  env: { PRAYOG_PREVIEW: process.env.VERCEL_ENV === "preview" ? "1" : "" },
   // The Lab tab was removed; its wind tunnel lives on in the Class 8 lesson.
   async redirects() {
     return [{ source: "/lab", destination: "/learn", permanent: false }];

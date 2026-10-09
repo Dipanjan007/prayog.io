@@ -85,9 +85,15 @@ export const lesson: LessonDef = {
     scientist: "Johannes Kepler",
     years: "1571–1630",
     fact: "Smallpox damaged Kepler's eyesight when he was a child, yet in 1604 he became the first to explain that the eye's lens throws an upside-down image onto the retina at the back of the eye.",
-    formula: "1/v − 1/u = 1/f",
+    formula: "(1 ÷ v) − (1 ÷ u) = 1 ÷ f",
     formulaNote: "The lens formula links the object distance u, the image distance v and the focal length f. The eye changes f to keep v fixed on the retina.",
   },
+  symbols: [
+    { sym: "u", meaning: "distance of the object from the eye lens (negative in front)" },
+    { sym: "v", meaning: "distance of the image, the retina, from the lens" },
+    { sym: "f", meaning: "focal length of the lens, in metres" },
+    { sym: "P", meaning: "power of the glasses, in dioptres (D)" },
+  ],
   ideas: [
     {
       title: "Power of accommodation",
@@ -96,7 +102,7 @@ export const lesson: LessonDef = {
     {
       title: "Correcting defects of vision",
       text: "Myopia (near-sightedness): far point closer than infinity, image forms in front of the retina, corrected by a concave lens. Hypermetropia (far-sightedness): near point further than 25 cm, image forms behind the retina, corrected by a convex lens. Presbyopia: both, with age; often bifocal lenses.",
-      formula: "Myopia: f = −(far point)    Power P = 1/f (f in metres)",
+      formula: "Myopia: f = −(far point)    Power P = 1 ÷ f (f in metres)",
     },
     {
       title: "Dispersion",

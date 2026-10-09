@@ -88,6 +88,18 @@ export const lesson: LessonDef = {
     formula: "Friction = μ × N",
     formulaNote: "Friction equals the coefficient of friction μ (set by the two surfaces) times the normal force N pressing them together.",
   },
+  symbols: [
+    { sym: "μ", meaning: "mu, coefficient of friction: how grippy two surfaces are" },
+    { sym: "μs, μk", meaning: "μ for when it is still (static), and when it slides (kinetic)" },
+    { sym: "N", meaning: "normal force: how hard the surfaces press together, in newtons" },
+    { sym: "m", meaning: "mass, in kg" },
+    { sym: "g", meaning: "pull of gravity, 9.8 m/s²" },
+    { sym: "a", meaning: "acceleration, in m/s²" },
+    { sym: "T", meaning: "tension in the string, in N" },
+    { sym: "mh", meaning: "the hanging mass, in kg" },
+    { sym: "M", meaning: "the mass on the table, in kg" },
+    { sym: "≤", meaning: "is less than or equal to" },
+  ],
   ideas: [
     {
       title: "Static and sliding friction",
@@ -111,7 +123,7 @@ export const lesson: LessonDef = {
   ],
   challenge: {
     title: "Pulley puzzles",
-    text: "Each round puts a block on a surface, joined over a pulley to a hanging mass. Pick the hanging mass that gives the target acceleration, within 0.1 m/s², then release. Use a = (mh × g − μk × M × g) ÷ (M + mh). One star per round.",
+    text: "Each round puts a block on a surface, joined over a pulley to a hanging mass. Pick the hanging mass that gives the target acceleration, within 0.1 m/s², then release. Use a = ((mh × g) − (μk × M × g)) ÷ (M + mh). One star per round.",
   },
   quiz: [
     {
@@ -130,7 +142,7 @@ export const lesson: LessonDef = {
       q: "A 2 kg block on a table (μk = 0.2) is joined over a pulley to a 1 kg hanging mass. What is the acceleration? (g = 9.8 m/s²)",
       options: ["0.98 m/s²", "1.96 m/s²", "2.94 m/s²", "3.27 m/s²"],
       answer: 1,
-      why: "Net force = 1 × 9.8 − 0.2 × 2 × 9.8 = 9.8 − 3.92 = 5.88 N. Total mass = 3 kg, so a = 5.88 ÷ 3 = 1.96 m/s².",
+      why: "Net force = (1 × 9.8) − (0.2 × 2 × 9.8) = 9.8 − 3.92 = 5.88 N. Total mass = 3 kg, so a = 5.88 ÷ 3 = 1.96 m/s².",
     },
     {
       q: "A tractor tows a 1500 kg trolley with an acceleration of 0.5 m/s². Road friction on the trolley is 1500 N. What is the tension in the tow bar?",

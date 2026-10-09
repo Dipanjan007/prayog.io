@@ -30,7 +30,7 @@ export const lesson: LessonDef = {
     objective:
       "Whirl a ball, drive a car round a bend and ride along with them, then use the same idea to explain the spinning Earth, the Moon and ISRO's satellites.",
     learn: [
-      "Moving in a circle needs an inward (centripetal) force F = m v² ÷ r",
+      "Moving in a circle needs an inward (centripetal) force F = (m × v²) ÷ r",
       "Cut the string and the ball flies off along the tangent, not outward",
       "Centrifugal force is an apparent force felt only when you ride along",
       "Why you weigh a little less at the equator, and how gravity keeps the Moon and satellites in orbit",
@@ -59,7 +59,7 @@ export const lesson: LessonDef = {
       title: "Feel the pull",
       text: "In Whirl mode with the ball, keep the mass and radius the same. Set the speed to 3 m/s or less, then to double that speed or more. Watch the pink force arrow and the string tension.",
       found:
-        "Double the speed and the inward force becomes four times as big, because F = m v² ÷ r has v squared. A heavier ball or a smaller circle also needs a bigger pull. This inward force is called the centripetal force.",
+        "Double the speed and the inward force becomes four times as big, because F = (m × v²) ÷ r has v squared. A heavier ball or a smaller circle also needs a bigger pull. This inward force is called the centripetal force.",
     },
     {
       id: "task:cut",
@@ -87,21 +87,33 @@ export const lesson: LessonDef = {
       title: "Stay in orbit",
       text: "Switch to Orbits and choose Satellite. Launch it slowly first and watch it fall. Then find a speed where it goes all the way round without hitting the Earth.",
       found:
-        "A satellite is always falling towards the Earth, but it moves sideways so fast that the ground curves away beneath it. Gravity is the string: it gives exactly the centripetal force when v = √(GM ÷ r).",
+        "A satellite is always falling towards the Earth, but it moves sideways so fast that the ground curves away beneath it. Gravity is the string: it gives exactly the centripetal force when v = √((G × M) ÷ r).",
     },
   ],
   discovery: {
     scientist: "Christiaan Huygens",
     years: "1629–1695",
     fact: "Huygens gave centrifugal force its name, from the Latin for 'fleeing the centre'. In 1673, at the end of his book on pendulum clocks, Horologium Oscillatorium, he published its rules: it grows with the square of the speed and gets smaller on a bigger circle.",
-    formula: "F = m v² ÷ r",
+    formula: "F = (m × v²) ÷ r",
     formulaNote: "The inward force needed to keep a mass m moving at speed v round a circle of radius r.",
   },
+  symbols: [
+    { sym: "F", meaning: "inward (centripetal) force, in newtons (N)" },
+    { sym: "m", meaning: "mass of the moving object, in kg" },
+    { sym: "v", meaning: "speed, in m/s" },
+    { sym: "r", meaning: "radius of the circle, in m" },
+    { sym: "a", meaning: "acceleration towards the centre, in m/s²" },
+    { sym: "ω", meaning: "omega, how fast the Earth spins, in radians per second" },
+    { sym: "R", meaning: "radius of the Earth, in m" },
+    { sym: "G", meaning: "the gravitational constant" },
+    { sym: "M", meaning: "mass of the Earth or Sun, in kg" },
+    { sym: "√( )", meaning: "square root of what is inside the bracket" },
+  ],
   ideas: [
     {
       title: "Centripetal force points to the centre",
       text: "On a circle the speed may stay the same, but the direction keeps changing, so the object is accelerating towards the centre. Something must pull it in: string tension for a ball, friction from the road for a car, gravity for the Moon. Double the speed and you need four times the force.",
-      formula: "F = m v² ÷ r      a = v² ÷ r",
+      formula: "F = (m × v²) ÷ r      a = v² ÷ r",
     },
     {
       title: "No pull, no circle",
@@ -118,8 +130,8 @@ export const lesson: LessonDef = {
     },
     {
       title: "Gravity is the string for orbits",
-      text: "The Moon goes round the Earth at about 1 km/s and the Earth goes round the Sun at about 30 km/s. In both, gravity provides exactly the centripetal force. A satellite needs v = √(GM ÷ r): about 7.7 km/s just above the air, and about 3.07 km/s at 35,786 km, where one orbit takes a day. ISRO's GSAT satellites sit there, so they seem to hang still over India.",
-      formula: "G M m ÷ r² = m v² ÷ r   so   v = √(G M ÷ r)",
+      text: "The Moon goes round the Earth at about 1 km/s and the Earth goes round the Sun at about 30 km/s. In both, gravity provides exactly the centripetal force. A satellite needs v = √((G × M) ÷ r): about 7.7 km/s just above the air, and about 3.07 km/s at 35,786 km, where one orbit takes a day. ISRO's GSAT satellites sit there, so they seem to hang still over India.",
+      formula: "(G × M × m) ÷ r² = (m × v²) ÷ r   so   v = √((G × M) ÷ r)",
     },
   ],
   challenge: {
@@ -131,13 +143,13 @@ export const lesson: LessonDef = {
       q: "A 0.5 kg ball is whirled at 4 m/s on a string 1 m long. What is the tension in the string?",
       options: ["2 N", "4 N", "8 N", "16 N"],
       answer: 2,
-      why: "F = m v² ÷ r = 0.5 × 16 ÷ 1 = 8 N. The string must supply all of the centripetal force.",
+      why: "F = (m × v²) ÷ r = (0.5 × 16) ÷ 1 = 8 N. The string must supply all of the centripetal force.",
     },
     {
       q: "A car takes the same curve at double the speed. How much more sideways friction does it need?",
       options: ["The same", "Twice as much", "Four times as much", "Half as much"],
       answer: 2,
-      why: "F = m v² ÷ r depends on v squared, so doubling the speed needs 2² = 4 times the force. That is why speeding on bends is so dangerous.",
+      why: "F = (m × v²) ÷ r depends on v squared, so doubling the speed needs 2² = 4 times the force. That is why speeding on bends is so dangerous.",
     },
     {
       q: "On a merry-go-round you feel pushed outward. What is really happening?",

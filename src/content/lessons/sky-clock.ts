@@ -92,6 +92,12 @@ export const lesson: LessonDef = {
     formula: "12 × 29.5 days ≈ 354 days",
     formulaNote: "Twelve Moon cycles of about 29.5 days make a lunar year, about 11 days shorter than a solar year. That is why many festivals shift dates each year.",
   },
+  symbols: [
+    { sym: "≈", meaning: "is about equal to" },
+    { sym: "×", meaning: "multiply" },
+    { sym: "−", meaning: "take away" },
+    { sym: "→", meaning: "leads to" },
+  ],
   ideas: [
     {
       title: "Day and night",

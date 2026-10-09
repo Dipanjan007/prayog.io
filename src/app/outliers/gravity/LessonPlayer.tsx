@@ -130,7 +130,7 @@ export default function LessonPlayer() {
       lesson={lesson}
       api={api}
       sim={<GravityLab key={round ?? "free"} onReading={onReading} mystery={mysteryWorld ? { world: mysteryWorld, mass: ASTRONAUT_KG } : null} />}
-      simNote="Masses, radii and G are real. In Pull mode the bodies are drawn far bigger than real. Drops play in real time (or 4× slower). The cannon sits on an imaginary 100 km mountain above the air, drawn far taller, and its flight is sped up 900 times (more when the ball is far away). Jupiter has no solid ground, so we stand at its cloud tops. Squeeze mode uses Newton's escape speed formula; close to light speed Einstein's relativity takes over, but it gives the same black hole radius, 2GM ÷ c²."
+      simNote="Masses, radii and G are real. In Pull mode the bodies are drawn far bigger than real. Drops play in real time (or 4× slower). The cannon sits on an imaginary 100 km mountain above the air, drawn far taller, and its flight is sped up 900 times (more when the ball is far away). Jupiter has no solid ground, so we stand at its cloud tops. Squeeze mode uses Newton's escape speed formula; close to light speed Einstein's relativity takes over, but it gives the same black hole radius, (2 × G × M) ÷ c²."
       taskExtras={{
         "task:law": (
           <div className="mt-2 text-xs text-white/50">

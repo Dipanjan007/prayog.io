@@ -378,7 +378,7 @@ export default function SoundHall({ onReading, challenge = null }: Props) {
             </div>
           </div>
           <p className="text-center text-xs text-white/50 tabular-nums">
-            T = 0.161 × V ÷ A = 0.161 × {Math.round(V)} ÷ {A.toFixed(1)} = {T.toFixed(2)} s
+            T = (0.161 × V) ÷ A = (0.161 × {Math.round(V)}) ÷ {A.toFixed(1)} = {T.toFixed(2)} s
             {!challenge && ` · speech needs ${SPEECH_RT.min} to ${SPEECH_RT.max} s`}
           </p>
           <div className="grid grid-cols-2 gap-2">
@@ -423,7 +423,7 @@ export default function SoundHall({ onReading, challenge = null }: Props) {
         <>
           <div className="grid grid-cols-2 gap-2 text-center">
             <Stat label="Echo time" value={lastScan ? `${(lastScan.echo * 1e6).toFixed(1)} µs` : "–"} />
-            <Stat label="Depth = v × t ÷ 2" value={lastScan ? `${(depthFromEcho(lastScan.echo) * 100).toFixed(1)} cm` : "–"} />
+            <Stat label="Depth = (v × t) ÷ 2" value={lastScan ? `${(depthFromEcho(lastScan.echo) * 100).toFixed(1)} cm` : "–"} />
           </div>
           {lastScan && (
             <p className={`text-center text-sm ${lastScan.crack ? "text-pink-300" : "text-white/60"}`}>

@@ -67,9 +67,18 @@ export const lesson: LessonDef = {
     scientist: "Nicole Oresme",
     years: "about 1320–1382",
     fact: "Around 1350, the French scholar Oresme drew some of the first graphs, with time along one side and speed up the other. He used them to show that the area under the graph gives the distance travelled.",
-    formula: "s = ut + ½at²",
+    formula: "s = (u × t) + (½ × a × t²)",
     formulaNote: "Distance travelled with steady acceleration. It is the area under the speed–time graph.",
   },
+  symbols: [
+    { sym: "u", meaning: "starting speed, in m/s" },
+    { sym: "v", meaning: "final speed, in m/s" },
+    { sym: "a", meaning: "acceleration: how fast the speed changes, in m/s²" },
+    { sym: "t", meaning: "time taken, in s" },
+    { sym: "s", meaning: "distance covered, in m" },
+    { sym: "½", meaning: "one half" },
+    { sym: "t², u², v²", meaning: "t × t, u × u, v × v" },
+  ],
   ideas: [
     {
       title: "Speed",
@@ -88,7 +97,7 @@ export const lesson: LessonDef = {
     {
       title: "Equations of uniform acceleration",
       text: "For steady acceleration, these link the starting velocity u, final velocity v, acceleration a, time t and distance s. The area under a speed–time graph is the distance travelled.",
-      formula: "v = u + at    s = ut + ½at²    v² = u² + 2as",
+      formula: "v = u + (a × t)    s = (u × t) + (½ × a × t²)    v² = u² + (2 × a × s)",
     },
   ],
   challenge: {

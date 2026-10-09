@@ -32,7 +32,7 @@ export const lesson: LessonDef = {
       "Discover that light has the same speed for everyone, and use a light clock to see why a fast-moving clock must tick slower.",
     learn: [
       "The speed of light is the same for every observer, however fast they move",
-      "A moving light clock ticks slower by the factor γ = 1 ÷ √(1 − v²/c²)",
+      "A moving light clock ticks slower by the factor γ = 1 ÷ √(1 − (v² ÷ c²))",
       "Time dilation lets cosmic-ray muons reach the ground",
       "GPS satellites must correct their clocks for relativity",
     ],
@@ -91,9 +91,17 @@ export const lesson: LessonDef = {
     scientist: "Albert Einstein",
     years: "1879–1955",
     fact: "In 1905 Einstein was working as a clerk at the Swiss patent office in Bern. That year he published special relativity, and a few months later E = mc².",
-    formula: "Δt = γ Δt₀,  γ = 1 ÷ √(1 − v²/c²)",
+    formula: "Δt = γ Δt₀,  γ = 1 ÷ √(1 − (v² ÷ c²))",
     formulaNote: "A clock moving at speed v shows time Δt₀ while γ times more time, Δt, passes for you.",
   },
+  symbols: [
+    { sym: "Δt₀", meaning: "time on the moving clock (the astronaut's time)" },
+    { sym: "Δt", meaning: "time on the clock that stays behind (Earth's time)" },
+    { sym: "γ", meaning: "gamma, the factor clocks slow down by" },
+    { sym: "v", meaning: "speed of the spaceship" },
+    { sym: "c", meaning: "speed of light, 2.998 × 10⁸ m/s" },
+    { sym: "√( )", meaning: "square root of what is inside the bracket" },
+  ],
   ideas: [
     {
       title: "Light speed is the same for everyone",
@@ -103,7 +111,7 @@ export const lesson: LessonDef = {
     {
       title: "Why moving clocks run slow",
       text: "In a light clock, light goes up and down a distance L. On a moving train, the platform sees the light travel a slanted path that is longer. Light cannot speed up, so each tick must take longer. Using Pythagoras on the slanted path gives the factor γ.",
-      formula: "γ = 1 ÷ √(1 − v²/c²)",
+      formula: "γ = 1 ÷ √(1 − (v² ÷ c²))",
     },
     {
       title: "Small at everyday speeds, huge near c",

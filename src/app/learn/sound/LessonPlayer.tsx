@@ -79,7 +79,7 @@ export default function LessonPlayer() {
         setFeedback("All three spots mapped. Well done, captain!");
       }
     } else {
-      setFeedback("Not quite. Remember the sound goes down and back up: depth = 1500 × t ÷ 2.");
+      setFeedback("Not quite. Remember the sound goes down and back up: depth = (1500 × t) ÷ 2.");
     }
   };
 

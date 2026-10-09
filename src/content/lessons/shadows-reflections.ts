@@ -80,6 +80,10 @@ export const lesson: LessonDef = {
     formula: "∠i = ∠r",
     formulaNote: "Law of reflection: light leaves a mirror at the same angle at which it arrives.",
   },
+  symbols: [
+    { sym: "∠i", meaning: "angle of incidence: between the incoming ray and the normal" },
+    { sym: "∠r", meaning: "angle of reflection: between the reflected ray and the normal" },
+  ],
   ideas: [
     {
       title: "Light travels in a straight line",

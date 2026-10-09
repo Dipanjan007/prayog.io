@@ -85,7 +85,7 @@ export default function LessonPlayer() {
         setFeedback("All three horizons found. Schwarzschild would be proud!");
       }
     } else {
-      setFeedback(`Not quite. Use r_s = 2GM ÷ c², or squeeze the object in the lab until the horizon forms. Give your answer in ${obj.unit}.`);
+      setFeedback(`Not quite. Use r_s = (2 × G × M) ÷ c², or squeeze the object in the lab until the horizon forms. Give your answer in ${obj.unit}.`);
     }
   };
 

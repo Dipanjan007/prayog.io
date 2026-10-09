@@ -121,7 +121,7 @@ export const HEAT_PROBLEMS: OlyProblem[] = [
       "All the ice warms from −8 °C to 0 °C, but only (m − 25 g) of it melts. Set heat given out = m c_ice × 8 + (m − 0.025) × L.",
     ],
     solution: [
-      { text: "Ice is still floating at the end, so everything settles at 0 °C. Heat given out by the sharbat and the glass cooling to 0 °C:", math: "Q = (0.30 × 4186 + 0.15 × 840) × 32 = (1255.8 + 126) × 32 = 44 218 J" },
+      { text: "Ice is still floating at the end, so everything settles at 0 °C. Heat given out by the sharbat and the glass cooling to 0 °C:", math: "Q = [(0.30 × 4186) + (0.15 × 840)] × 32 = (1255.8 + 126) × 32 = 44 218 J" },
       { text: "All m kg of ice warms from −8 °C to 0 °C.", math: "Q₁ = m × 2100 × 8 = 16 800 m" },
       { text: "Only the ice that melts takes latent heat. That is m − 0.025 kg.", math: "Q₂ = (m − 0.025) × 334 000 = 334 000 m − 8350" },
       { text: "Heat given out equals heat taken in.", math: "44 218 = 16 800 m + 334 000 m − 8350  ⇒  350 800 m = 52 568" },

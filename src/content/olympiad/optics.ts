@@ -35,11 +35,11 @@ export const OPTICS_PROBLEMS: OlyProblem[] = [
     range: [51, 250],
     hints: [
       "Measure every distance from the lens. The candle is 30 cm to the left of the lens, so u = −30 cm in the NCERT convention.",
-      "Use the lens formula 1/v − 1/u = 1/f to find v, then add v to the lens position to get the mark on the bench.",
+      "Use the lens formula (1 ÷ v) − (1 ÷ u) = 1 ÷ f to find v, then add v to the lens position to get the mark on the bench.",
     ],
     solution: [
       { text: "Distances are measured from the lens. Light goes left to right, so the candle on the left has a negative distance.", math: "u = 20 − 50 = −30 cm,   f = +20 cm" },
-      { text: "Use the lens formula.", math: "1/v = 1/f + 1/u = 1/20 − 1/30 = (3 − 2)/60 = 1/60  ⇒  v = +60 cm" },
+      { text: "Use the lens formula.", math: "1/v = (1/f) + (1/u) = (1/20) − (1/30) = (3 − 2)/60 = 1/60  ⇒  v = +60 cm" },
       { text: "v is positive, so the image is real and on the far side of the lens, 60 cm from it.", math: "screen mark = 50 + 60 = 110 cm" },
       { text: "Check the size with the magnification.", math: "m = v/u = 60/(−30) = −2,   image height = −2 × 3.0 = −6.0 cm" },
       { text: "So Riya sees a flame 6.0 cm tall and upside down. The candle sits between f and 2f, so the image is beyond 2f and magnified, just as the ray diagram predicts." },
@@ -68,9 +68,9 @@ export const OPTICS_PROBLEMS: OlyProblem[] = [
       "That first image is the object for lens 2. Measure its distance from lens 2, with the sign, and use the lens formula again.",
     ],
     solution: [
-      { text: "Lens 1: the hallmark is 15 cm to its left.", math: "u₁ = −15 cm,   1/v₁ = 1/10 − 1/15 = 1/30  ⇒  v₁ = +30 cm" },
+      { text: "Lens 1: the hallmark is 15 cm to its left.", math: "u₁ = −15 cm,   1/v₁ = (1/10) − (1/15) = 1/30  ⇒  v₁ = +30 cm" },
       { text: "So lens 1 makes a real image at the 25 + 30 = 55 cm mark. Lens 2 is at 65 cm, so this image is 10 cm to its left and acts as its object.", math: "u₂ = 55 − 65 = −10 cm" },
-      { text: "Lens 2.", math: "1/v₂ = 1/8 − 1/10 = (5 − 4)/40 = 1/40  ⇒  v₂ = +40 cm" },
+      { text: "Lens 2.", math: "1/v₂ = (1/8) − (1/10) = (5 − 4)/40 = 1/40  ⇒  v₂ = +40 cm" },
       { text: "The final image is real, 40 cm behind lens 2 (at the 105 cm mark). That is where the card goes.", math: "d = 40 cm" },
       { text: "Total magnification is the product. Two inversions make the picture upright.", math: "m = (30/−15) × (40/−10) = (−2) × (−4) = +8,   height = 8 × 5.0 mm = 4.0 cm" },
     ],

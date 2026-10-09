@@ -87,26 +87,39 @@ export const lesson: LessonDef = {
     formula: "V = I × R",
     formulaNote: "Ohm's law: the voltage across a wire equals the current through it times its resistance.",
   },
+  symbols: [
+    { sym: "V", meaning: "voltage (potential difference), in volts (V)" },
+    { sym: "I", meaning: "current, in amperes (A)" },
+    { sym: "R", meaning: "resistance, in ohms (Ω)" },
+    { sym: "ρ", meaning: "rho, resistivity of the material, in Ω m" },
+    { sym: "L", meaning: "length of the wire, in m" },
+    { sym: "A", meaning: "area of the wire's cross-section, in m²" },
+    { sym: "Rs, Rp", meaning: "total resistance in series, and in parallel" },
+    { sym: "P", meaning: "power, in watts (W)" },
+    { sym: "H", meaning: "heat made, in joules (J)" },
+    { sym: "t", meaning: "time, in s" },
+    { sym: "I²", meaning: "I × I" },
+  ],
   ideas: [
     {
       title: "Ohm's law",
       text: "At a fixed temperature, the potential difference V across a metal wire is proportional to the current I through it. The V–I graph is a straight line through the origin. The ammeter goes in series and the voltmeter goes in parallel across the part.",
-      formula: "V = IR    1 Ω = 1 V / 1 A",
+      formula: "V = I × R    1 Ω = 1 V ÷ 1 A",
     },
     {
       title: "Resistivity",
       text: "The resistance of a wire is proportional to its length and inversely proportional to its area of cross-section. Resistivity ρ depends only on the material and its temperature. Its SI unit is Ω m. Alloys such as nichrome have a high ρ, so they are used in heaters, irons and toasters.",
-      formula: "R = ρ L / A",
+      formula: "R = (ρ × L) ÷ A",
     },
     {
       title: "Resistors in series and parallel",
       text: "In series the same current flows through every resistor and the voltages add up. In parallel every resistor gets the same voltage and the currents add up. Our homes are wired in parallel, so each appliance gets the full voltage and can be switched on or off on its own.",
-      formula: "Series: Rs = R₁ + R₂ + R₃    Parallel: 1/Rp = 1/R₁ + 1/R₂ + 1/R₃",
+      formula: "Series: Rs = R₁ + R₂ + R₃    Parallel: 1 ÷ Rp = (1 ÷ R₁) + (1 ÷ R₂) + (1 ÷ R₃)",
     },
     {
       title: "Heating effect and power",
       text: "A current through a resistor turns electrical energy into heat. Power is the rate of using energy, measured in watts (1 W = 1 V × 1 A). Electricity bills count energy in kilowatt hours, also called units.",
-      formula: "P = VI = I²R = V²/R    H = I²Rt    1 kWh = 3.6 × 10⁶ J",
+      formula: "P = V × I = I² × R = V² ÷ R    H = I² × R × t    1 kWh = 3.6 × 10⁶ J",
     },
   ],
   challenge: {
@@ -118,7 +131,7 @@ export const lesson: LessonDef = {
       q: "A 4 Ω resistor is connected to a 12 V battery. What current flows?",
       options: ["48 A", "3 A", "0.33 A", "16 A"],
       answer: 1,
-      why: "I = V/R = 12 V ÷ 4 Ω = 3 A.",
+      why: "I = V ÷ R = 12 V ÷ 4 Ω = 3 A.",
     },
     {
       q: "A wire of resistance 10 Ω is cut into two equal halves. What is the resistance of each half?",
@@ -141,7 +154,7 @@ export const lesson: LessonDef = {
       q: "Two 6 Ω resistors are connected in parallel. What is the total resistance?",
       options: ["12 Ω", "6 Ω", "3 Ω", "36 Ω"],
       answer: 2,
-      why: "1/Rp = 1/6 + 1/6 = 2/6, so Rp = 3 Ω. In parallel the total is smaller than the smallest resistor.",
+      why: "1 ÷ Rp = (1 ÷ 6) + (1 ÷ 6) = 2 ÷ 6, so Rp = 3 Ω. In parallel the total is smaller than the smallest resistor.",
     },
     {
       q: "Why are the lights and fans in a house connected in parallel?",

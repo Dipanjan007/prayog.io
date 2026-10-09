@@ -85,6 +85,20 @@ export const lesson: LessonDef = {
     formula: "Load × load arm = Effort × effort arm",
     formulaNote: "The law of the lever: a long effort arm lets a small push lift a heavy load.",
   },
+  symbols: [
+    { sym: "W", meaning: "work done, in joules (J)" },
+    { sym: "F", meaning: "force, in newtons (N)" },
+    { sym: "s", meaning: "distance moved in the direction of the force, in m" },
+    { sym: "P", meaning: "power, in watts (W)" },
+    { sym: "t", meaning: "time, in s" },
+    { sym: "KE", meaning: "kinetic energy, the energy of motion, in J" },
+    { sym: "PE", meaning: "potential energy, the energy of height, in J" },
+    { sym: "m", meaning: "mass, in kg" },
+    { sym: "v", meaning: "speed, in m/s" },
+    { sym: "g", meaning: "pull of gravity, 9.8 m/s²" },
+    { sym: "h, h′", meaning: "height at the top, and lower down, in m" },
+    { sym: "MA", meaning: "mechanical advantage: how many times a machine multiplies your effort" },
+  ],
   ideas: [
     {
       title: "Work and power",
@@ -99,7 +113,7 @@ export const lesson: LessonDef = {
     {
       title: "Conservation of energy",
       text: "Energy can neither be created nor destroyed. It only changes from one form to another. Without friction, KE + PE stays constant. With friction, some of it becomes heat, but the total including heat is still the same.",
-      formula: "mgh (top) = ½mv² + mgh' (lower down), with no friction",
+      formula: "m × g × h (top) = (½ × m × v²) + (m × g × h′) (lower down), with no friction",
     },
     {
       title: "Levers and the principle of moments",

@@ -99,6 +99,12 @@ export const lesson: LessonDef = {
     formula: "360° ÷ 24 h = 15° per hour",
     formulaNote: "The Earth turns 15 degrees every hour, which is why the Sun seems to move across the sky.",
   },
+  symbols: [
+    { sym: "°", meaning: "degrees of angle; a full turn is 360°" },
+    { sym: "h", meaning: "hours" },
+    { sym: "¼", meaning: "one quarter" },
+    { sym: "latitude", meaning: "how far north of the equator a place is, in degrees" },
+  ],
   ideas: [
     {
       title: "Rotation: day and night",

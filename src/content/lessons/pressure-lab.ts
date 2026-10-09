@@ -96,6 +96,14 @@ export const lesson: LessonDef = {
     formula: "P = F ÷ A",
     formulaNote: "Pressure is the force acting on each square metre of area. 1 pascal (Pa) = 1 N/m².",
   },
+  symbols: [
+    { sym: "P, p", meaning: "pressure, in pascals (Pa)" },
+    { sym: "F", meaning: "force, in newtons (N)" },
+    { sym: "A", meaning: "area the force presses on, in m²" },
+    { sym: "h", meaning: "depth below the water surface, in m" },
+    { sym: "ρ", meaning: "rho, density of the liquid, in kg/m³" },
+    { sym: "g", meaning: "pull of gravity, about 9.8 m/s²" },
+  ],
   ideas: [
     {
       title: "Pressure is force on each unit area",

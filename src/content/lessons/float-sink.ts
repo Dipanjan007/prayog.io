@@ -85,6 +85,13 @@ export const lesson: LessonDef = {
     formula: "Upthrust = weight of liquid displaced",
     formulaNote: "Archimedes' principle: a liquid pushes up on an object with a force equal to the weight of the liquid the object pushes aside.",
   },
+  symbols: [
+    { sym: "Upthrust", meaning: "the upward push of a liquid on an object in it, in newtons (N)" },
+    { sym: "Weight", meaning: "the pull of gravity on the object, in N" },
+    { sym: "density", meaning: "how much mass is packed into each unit of volume, in g/cm³ or kg/m³" },
+    { sym: "÷", meaning: "divide" },
+    { sym: "−", meaning: "take away" },
+  ],
   ideas: [
     {
       title: "Upthrust",

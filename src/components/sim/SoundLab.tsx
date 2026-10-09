@@ -328,7 +328,7 @@ export default function SoundLab({ onReading, mystery = null }: Props) {
         <>
           <div className="grid grid-cols-2 gap-2 text-center">
             <Stat label="Echo time" value={lastClap ? `${lastClap.delay.toFixed(3)} s` : "–"} />
-            <Stat label="Distance = v × t ÷ 2" value={lastClap ? `${distanceFromEcho(lastClap.delay, AIR_V).toFixed(1)} m` : "–"} />
+            <Stat label="Distance = (v × t) ÷ 2" value={lastClap ? `${distanceFromEcho(lastClap.delay, AIR_V).toFixed(1)} m` : "–"} />
           </div>
           {lastClap && (
             <p className={`text-center text-sm ${lastClap.distinct ? "text-lime-300" : "text-amber-200"}`}>
@@ -357,7 +357,7 @@ export default function SoundLab({ onReading, mystery = null }: Props) {
         <>
           <div className="grid grid-cols-2 gap-2 text-center">
             <Stat label="Echo time" value={lastPing ? `${lastPing.delay.toFixed(3)} s` : "–"} />
-            <Stat label="Depth = v × t ÷ 2" value={lastPing ? (mystery ? "Your turn" : `${Math.round(distanceFromEcho(lastPing.delay, SEA_V))} m`) : "–"} />
+            <Stat label="Depth = (v × t) ÷ 2" value={lastPing ? (mystery ? "Your turn" : `${Math.round(distanceFromEcho(lastPing.delay, SEA_V))} m`) : "–"} />
           </div>
           {!mystery && <Slider label="Depth of the sea" value={`${depth} m`} min={SONAR_RANGE.min} max={SONAR_RANGE.max} step={10} v={depth} onChange={setDepth} />}
           <button className="btn-primary !py-2 text-sm disabled:opacity-50" onClick={fire} disabled={busy}>

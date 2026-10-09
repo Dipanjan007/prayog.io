@@ -108,6 +108,11 @@ export const lesson: LessonDef = {
     formulaNote:
       "This is Lord Rayleigh's law (1871), which Raman built on: tiny particles scatter light more strongly the shorter its wavelength, so blue scatters about 5 to 6 times more than red.",
   },
+  symbols: [
+    { sym: "λ", meaning: "lambda, wavelength of the light; blue is short, red is long" },
+    { sym: "∝", meaning: "goes up in step with (is proportional to)" },
+    { sym: "λ⁴", meaning: "λ × λ × λ × λ" },
+  ],
   ideas: [
     {
       title: "Tyndall effect",

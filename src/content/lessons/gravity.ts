@@ -22,7 +22,7 @@ export const lesson: LessonDef = {
     objective:
       "Feel the pull between two masses, weigh yourself on other worlds, fire Newton's cannon into orbit, and squeeze a planet until even light cannot escape.",
     learn: [
-      "Every mass pulls every other mass: F = G m₁m₂ ÷ r²",
+      "Every mass pulls every other mass: F = (G × m₁ × m₂) ÷ r²",
       "Mass stays the same everywhere, but weight W = mg changes from world to world",
       "Without air, a feather and a cricket ball fall together",
       "Orbit speed (about 7.9 km/s) and escape speed (about 11.2 km/s) for Earth",
@@ -76,26 +76,39 @@ export const lesson: LessonDef = {
       title: "Squeeze it to a black hole",
       text: "In Squeeze mode, keep the mass the same and squeeze the Earth (or the Sun) smaller and smaller. Can you make the escape speed beat the speed of light?",
       found:
-        "Squeezing the same mass into a smaller ball raises the escape speed, since v = √(2GM ÷ R). Squeeze all of Earth into about 9 mm, the size of a marble, and the escape speed passes the speed of light. Nothing, not even light, can get out. That is a black hole.",
+        "Squeezing the same mass into a smaller ball raises the escape speed, since v = √((2 × G × M) ÷ R). Squeeze all of Earth into about 9 mm, the size of a marble, and the escape speed passes the speed of light. Nothing, not even light, can get out. That is a black hole.",
     },
   ],
   discovery: {
     scientist: "Henry Cavendish",
     years: "1731–1810",
     fact: "In 1798 Cavendish hung a rod with two small lead balls on a thin wire and brought two big lead balls close to them. The tiny pull between the balls twisted the wire by a very small angle. From that twist he worked out the density of the whole Earth, so his experiment is called \"weighing the Earth\". It was the first measurement of gravity between everyday objects, and it gives us the value of G.",
-    formula: "F = G m₁m₂ ÷ r²",
+    formula: "F = (G × m₁ × m₂) ÷ r²",
     formulaNote: "Any two masses pull each other with a force that grows with each mass and falls with the square of the distance between them.",
   },
+  symbols: [
+    { sym: "F", meaning: "pull of gravity between two masses, in newtons (N)" },
+    { sym: "G", meaning: "the gravitational constant, 6.674 × 10⁻¹¹ N m²/kg²" },
+    { sym: "m₁, m₂", meaning: "the two masses, in kg" },
+    { sym: "r", meaning: "distance between their centres, in m" },
+    { sym: "g", meaning: "pull of gravity at the surface, in m/s²" },
+    { sym: "M", meaning: "mass of the planet, in kg" },
+    { sym: "R", meaning: "radius of the planet, in m" },
+    { sym: "W", meaning: "weight, in N" },
+    { sym: "m", meaning: "mass of the object, in kg" },
+    { sym: "c", meaning: "speed of light, about 3 × 10⁸ m/s" },
+    { sym: "√( )", meaning: "square root of what is inside the bracket" },
+  ],
   ideas: [
     {
       title: "Universal law of gravitation",
       text: "Every object in the universe pulls every other object. The force is along the line joining their centres. It is very weak for everyday objects because G is tiny, but huge for planets and stars. The pulls on the two bodies are equal and opposite, as Newton's third law says.",
-      formula: "F = G m₁m₂ ÷ r²,  G = 6.674 × 10⁻¹¹ N m²/kg²",
+      formula: "F = (G × m₁ × m₂) ÷ r²,  G = 6.674 × 10⁻¹¹ N m²/kg²",
     },
     {
       title: "Free fall and g",
-      text: "When only gravity acts, an object is in free fall. Its acceleration g does not depend on its own mass. On a planet of mass M and radius R, g = GM ÷ R². That gives about 9.8 m/s² on Earth, 1.6 on the Moon, 3.7 on Mars and 24.8 on Jupiter. In 1971 Apollo 15 astronaut David Scott dropped a hammer and a falcon feather on the Moon, and they landed together.",
-      formula: "g = G M ÷ R²",
+      text: "When only gravity acts, an object is in free fall. Its acceleration g does not depend on its own mass. On a planet of mass M and radius R, g = (G × M) ÷ R². That gives about 9.8 m/s² on Earth, 1.6 on the Moon, 3.7 on Mars and 24.8 on Jupiter. In 1971 Apollo 15 astronaut David Scott dropped a hammer and a falcon feather on the Moon, and they landed together.",
+      formula: "g = (G × M) ÷ R²",
     },
     {
       title: "Mass and weight",
@@ -105,12 +118,12 @@ export const lesson: LessonDef = {
     {
       title: "Orbits and escape",
       text: "A satellite is always falling towards Earth, but it moves sideways so fast that it keeps missing. Near Earth this needs about 7.9 km/s, which is about 28,000 km/h. To leave Earth for good, a ball fired from the ground would need about 11.2 km/s. Chandrayaan-3 did not go that fast at once: ISRO raised its orbit step by step, then sent it towards the Moon.",
-      formula: "v orbit = √(GM ÷ r),  v escape = √(2GM ÷ R)",
+      formula: "v orbit = √((G × M) ÷ r),  v escape = √((2 × G × M) ÷ R)",
     },
     {
       title: "The road to black holes",
-      text: "Escape speed depends on both mass and radius. Keep the mass the same but make the radius smaller, and the escape speed goes up. If a mass is squeezed inside the radius 2GM ÷ c², escape needs more than the speed of light, so nothing can come out. For Earth this radius is about 9 mm. For the Sun it is about 3 km.",
-      formula: "r = 2GM ÷ c²",
+      text: "Escape speed depends on both mass and radius. Keep the mass the same but make the radius smaller, and the escape speed goes up. If a mass is squeezed inside the radius (2 × G × M) ÷ c², escape needs more than the speed of light, so nothing can come out. For Earth this radius is about 9 mm. For the Sun it is about 3 km.",
+      formula: "r = (2 × G × M) ÷ c²",
     },
   ],
   challenge: {
@@ -151,13 +164,13 @@ export const lesson: LessonDef = {
       q: "A planet is squeezed to a smaller radius, but its mass stays the same. What happens to the escape speed from its surface?",
       options: ["It goes down", "It stays the same", "It goes up", "It becomes zero"],
       answer: 2,
-      why: "v escape = √(2GM ÷ R). A smaller R gives a bigger escape speed. Squeeze enough and it passes the speed of light: a black hole.",
+      why: "v escape = √((2 × G × M) ÷ R). A smaller R gives a bigger escape speed. Squeeze enough and it passes the speed of light: a black hole.",
     },
     {
       q: "About how fast must a satellite move sideways to orbit just above Earth's air?",
       options: ["340 m/s", "7.9 km/s", "11.2 km/s", "300,000 km/s"],
       answer: 1,
-      why: "Orbit speed near Earth is √(GM ÷ r), about 7.9 km/s. 11.2 km/s is the escape speed.",
+      why: "Orbit speed near Earth is √((G × M) ÷ r), about 7.9 km/s. 11.2 km/s is the escape speed.",
     },
   ],
 };

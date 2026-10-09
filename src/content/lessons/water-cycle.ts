@@ -119,6 +119,11 @@ export const lesson: LessonDef = {
     formula: "Rain ≈ evaporation (whole Earth, in a year)",
     formulaNote: "Water is not used up: every drop the Sun lifts from seas, lakes and plants comes back down as rain or snow somewhere.",
   },
+  symbols: [
+    { sym: "≈", meaning: "is about equal to" },
+    { sym: "dew point", meaning: "the temperature at which air is so cool that water vapour turns into drops" },
+    { sym: "×", meaning: "multiply" },
+  ],
   ideas: [
     {
       title: "Evaporation and the Sun",

@@ -92,7 +92,7 @@ export const FLUIDS_PROBLEMS: OlyProblem[] = [
     ],
     solution: [
       { text: "At the level of the boundary, the pressure is the same in both arms of the U-tube.", math: "ρ_k × 13.0 = 1000 × 10.4  ⇒  ρ_k = 10 400 / 13.0 = 800 kg/m³" },
-      { text: "Let the cube's face area be A. It has 1.8 cm in water and 5.0 − 1.8 = 3.2 cm in kerosene.", math: "Buoyant force = (1000 × 1.8 + 800 × 3.2) × A × g  (heights in cm, a common factor)" },
+      { text: "Let the cube's face area be A. It has 1.8 cm in water and 5.0 − 1.8 = 3.2 cm in kerosene.", math: "Buoyant force = [(1000 × 1.8) + (800 × 3.2)] × A × g  (heights in cm, a common factor)" },
       { text: "The cube floats, so its weight equals the buoyant force.", math: "ρ × 5.0 × A × g = (1800 + 2560) × A × g" },
       { text: "Cancel A and g and solve.", math: "ρ = 4360 / 5.0 = 872 kg/m³" },
       { text: "Check: 872 lies between 800 and 1000, so the cube must sink through kerosene but float on water. Anything outside that range could never rest at the boundary." },

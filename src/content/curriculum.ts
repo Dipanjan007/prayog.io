@@ -138,15 +138,50 @@ export const MATHS_BOOKS: Record<ClassNum, string> = {
   10: "Mathematics",
 };
 
-/** Maths chapters, one flagship lab per class to start, on the Maths map at /maths. */
+/** Maths chapters on the Maths map at /maths, with their second labs. */
 export const MATHS_STRANDS: Strand[] = [
   {
     id: "geometry",
     name: "Geometry",
     colour: "var(--c-cyan)",
     chapters: [
+      {
+        classNum: 7,
+        title: "Parallel and Intersecting Lines",
+        href: "/maths/parallel-lines",
+        sim: "Turn a road across railway rails and lay new lines parallel",
+        labs: [{ href: "/maths/tilings", title: "Tiles, corners and 360°", sim: "Fit regular tiles round a corner and mix shapes into floor patterns" }],
+      },
       { classNum: 7, title: "A Tale of Three Intersecting Lines", href: "/maths/triangles", sim: "Join sticks into triangles, stretch the corners and watch the angles add up" },
       { classNum: 8, title: "The Baudhayana-Pythagoras Theorem", href: "/maths/pythagoras", sim: "Grow squares on a triangle and send fire ladders to the right windows" },
+    ],
+  },
+  {
+    id: "numbers",
+    name: "Numbers",
+    colour: "var(--c-yellow)",
+    chapters: [
+      {
+        classNum: 7,
+        title: "Working with Fractions",
+        href: "/maths/fractions",
+        sim: "Cut a chocolate bar both ways, share laddoos and fill lassi glasses",
+        labs: [{ href: "/maths/decimals", title: "Zoom beyond the point", sim: "Zoom into tenths and hundredths, run a canteen bill and slide digits by 10 and 100" }],
+      },
+    ],
+  },
+  {
+    id: "algebra",
+    name: "Algebra",
+    colour: "var(--c-orange)",
+    chapters: [
+      {
+        classNum: 7,
+        title: "Finding the Unknown",
+        href: "/maths/equations",
+        sim: "Find the marbles hiding in mystery bags on a mandi balance",
+        labs: [{ href: "/maths/letter-numbers", title: "Matchstick rules", sim: "Grow matchstick and tile patterns and write their rule with n" }],
+      },
     ],
   },
   {

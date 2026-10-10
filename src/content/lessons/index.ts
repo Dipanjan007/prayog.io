@@ -37,6 +37,12 @@ import { lesson as triangles } from "./triangles";
 import { lesson as pythagoras } from "./pythagoras";
 import { lesson as coordinates } from "./coordinates";
 import { lesson as heightsDistances } from "./heights-distances";
+import { lesson as parallelLines } from "./parallel-lines";
+import { lesson as tilings } from "./tilings";
+import { lesson as fractions } from "./fractions";
+import { lesson as decimals } from "./decimals";
+import { lesson as equations } from "./equations";
+import { lesson as letterNumbers } from "./letter-numbers";
 import type { LessonDef } from "./types";
 
 /** Every playable lesson, in class order. */
@@ -80,6 +86,12 @@ export const LESSONS: LessonDef[] = [
   pythagoras,
   coordinates,
   heightsDistances,
+  parallelLines,
+  tilings,
+  fractions,
+  decimals,
+  equations,
+  letterNumbers,
 ];
 
 /** Where each lesson is played, by lesson id. */
@@ -123,4 +135,10 @@ export const LESSON_HREF: Record<string, string> = {
   "c8-pythagoras": "/maths/pythagoras",
   "c9-coordinates": "/maths/coordinates",
   "c10-heights-distances": "/maths/heights-distances",
+  "c7-parallel-lines": "/maths/parallel-lines",
+  "c7-tilings": "/maths/tilings",
+  "c7-fractions": "/maths/fractions",
+  "c7-decimals": "/maths/decimals",
+  "c7-equations": "/maths/equations",
+  "c7-letter-numbers": "/maths/letter-numbers",
 };

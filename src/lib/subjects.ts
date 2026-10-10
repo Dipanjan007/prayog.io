@@ -3,6 +3,7 @@
  * A subject is listed only once it has playable labs; add Chemistry and
  * Biology here when their first labs ship.
  */
+import { CATALOGUE } from "@/content/curriculum";
 
 export interface Subject {
   id: "physics" | "maths";
@@ -27,11 +28,8 @@ export const SUBJECTS: Subject[] = [
     id: "maths",
     label: "Maths",
     icon: "📐",
-    tabs: [
-      { href: "/maths", label: "Lab" },
-      { href: "/maths/outliers", label: "Outliers" },
-      { href: "/maths/olympiad", label: "Olympiad" },
-    ],
+    // Outliers and Olympiad tabs appear once their first labs ship.
+    tabs: [{ href: "/maths", label: "Lab" }, ...(CATALOGUE.mathsOutliers ? [{ href: "/maths/outliers", label: "Outliers" }] : [])],
   },
 ];
 

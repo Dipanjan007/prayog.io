@@ -15,9 +15,12 @@ test("each page sits under the right subject", () => {
 test("tabs match their own pages only", () => {
   assert.ok(tabActive("/olympiad/optics", "/olympiad"));
   assert.ok(!tabActive("/outliers", "/learn"));
-  assert.ok(tabActive("/maths/outliers/fractals", "/maths/outliers"));
-  assert.ok(!tabActive("/maths/outliers/fractals", "/maths"));
-  assert.ok(!tabActive("/maths/olympiad", "/maths"));
   assert.ok(tabActive("/maths/pythagoras", "/maths"));
+  // The deepest matching tab wins, so a Maths Outliers page is not also under Lab.
+  const maths = SUBJECTS.find((s) => s.id === "maths")!;
+  if (maths.tabs.some((t) => t.href === "/maths/outliers")) {
+    assert.ok(tabActive("/maths/outliers/fractals", "/maths/outliers"));
+    assert.ok(!tabActive("/maths/outliers/fractals", "/maths"));
+  }
   assert.ok(SUBJECTS.every((s) => s.tabs.length > 0));
 });

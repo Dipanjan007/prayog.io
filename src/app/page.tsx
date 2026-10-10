@@ -78,7 +78,7 @@ export default function Home() {
           <h3 className="font-display mt-2 text-2xl font-semibold">Every chapter, Class 7 to 10</h3>
           <p className="mt-2 text-white/60">
             {CATALOGUE.lessons} NCERT Physics chapters, each built around a lab you can play, plus {CATALOGUE.labs} second labs for
-            the extra topics a chapter squeezes in. New: {CATALOGUE.maths} Maths labs, one for each class.
+            the extra topics a chapter squeezes in. New: {CATALOGUE.maths + CATALOGUE.mathsLabs} Maths labs for Classes 7 to 10.
           </p>
           <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
             <Link href="/learn" className="text-cyan-200 hover:underline">

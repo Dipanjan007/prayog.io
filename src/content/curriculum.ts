@@ -168,6 +168,14 @@ export const MATHS_STRANDS: Strand[] = [
         sim: "Cut a chocolate bar both ways, share laddoos and fill lassi glasses",
         labs: [{ href: "/maths/decimals", title: "Zoom beyond the point", sim: "Zoom into tenths and hundredths, run a canteen bill and slide digits by 10 and 100" }],
       },
+      {
+        classNum: 8,
+        title: "A Square and A Cube",
+        href: "/maths/squares-cubes",
+        sim: "Lay square tiles, stack unit cubes and hunt Ramanujan's 1729",
+        labs: [{ href: "/maths/powers", title: "Fold to the Moon", sim: "Fold paper until it reaches the Moon and write huge numbers with powers of 10" }],
+      },
+      { classNum: 8, title: "Fractions in Disguise", href: "/maths/percentages", sim: "Shade a 10 × 10 grid and run a Diwali sale with discounts and GST" },
     ],
   },
   {
@@ -183,6 +191,12 @@ export const MATHS_STRANDS: Strand[] = [
         labs: [{ href: "/maths/letter-numbers", title: "Matchstick rules", sim: "Grow matchstick and tile patterns and write their rule with n" }],
       },
     ],
+  },
+  {
+    id: "ratio",
+    name: "Ratio, chance and data",
+    colour: "var(--c-lime)",
+    chapters: [{ classNum: 8, title: "Proportional Reasoning-1", href: "/maths/proportion", sim: "Mix Holi colours, scale a nimbu-paani recipe and read a town map" }],
   },
   {
     id: "coordinates",

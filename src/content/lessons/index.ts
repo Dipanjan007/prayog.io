@@ -43,6 +43,10 @@ import { lesson as fractions } from "./fractions";
 import { lesson as decimals } from "./decimals";
 import { lesson as equations } from "./equations";
 import { lesson as letterNumbers } from "./letter-numbers";
+import { lesson as squaresCubes } from "./squares-cubes";
+import { lesson as powers } from "./powers";
+import { lesson as percentages } from "./percentages";
+import { lesson as proportion } from "./proportion";
 import type { LessonDef } from "./types";
 
 /** Every playable lesson, in class order. */
@@ -92,6 +96,10 @@ export const LESSONS: LessonDef[] = [
   decimals,
   equations,
   letterNumbers,
+  squaresCubes,
+  powers,
+  percentages,
+  proportion,
 ];
 
 /** Where each lesson is played, by lesson id. */
@@ -141,4 +149,8 @@ export const LESSON_HREF: Record<string, string> = {
   "c7-decimals": "/maths/decimals",
   "c7-equations": "/maths/equations",
   "c7-letter-numbers": "/maths/letter-numbers",
+  "c8-squares-cubes": "/maths/squares-cubes",
+  "c8-powers": "/maths/powers",
+  "c8-percentages": "/maths/percentages",
+  "c8-proportion": "/maths/proportion",
 };

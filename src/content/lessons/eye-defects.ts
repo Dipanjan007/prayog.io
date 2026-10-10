@@ -74,7 +74,7 @@ export const lesson: LessonDef = {
       title: "Reading glasses for Dadi",
       text: "Keep the age at 55 or more and hold the newspaper at 25 cm. Choose Reading glasses and find a lens power that makes the words sharp.",
       found:
-        "A convex lens adds the power the stiff eye lens is missing. For a near point of 1 m, a +3 D lens makes a virtual image of the paper (at 25 cm) 1 m away, right where Dadi can focus: 1/v − 1/u = 1/f gives 1/(−1) − 1/(−0.25) = 3, so P = +3 D.",
+        "A convex lens adds the power the stiff eye lens is missing. For a near point of 1 m, a +3 D lens makes a virtual image of the paper (at 25 cm) 1 m away, right where Dadi can focus: (1 ÷ v) − (1 ÷ u) = 1 ÷ f gives 1/(−1) − 1/(−0.25) = 3, so P = +3 D.",
     },
     {
       id: "task:bifocal",
@@ -98,16 +98,23 @@ export const lesson: LessonDef = {
     formula: "P = 1 ÷ f",
     formulaNote: "The power of a lens in dioptres is 1 divided by its focal length in metres. A convex lens has positive power, a concave lens negative.",
   },
+  symbols: [
+    { sym: "P", meaning: "power of the lens, in dioptres (D)" },
+    { sym: "f", meaning: "focal length, in metres" },
+    { sym: "u", meaning: "distance of the object from the lens (negative in front)" },
+    { sym: "v", meaning: "distance of the image from the lens" },
+    { sym: "d", meaning: "near point: the closest distance you can read at, in m" },
+  ],
   ideas: [
     {
       title: "Accommodation",
       text: "The eye lens is soft and its shape is changed by the ciliary muscles. For far things they relax, the lens is thin and has its least power. For near things they squeeze, the lens gets thicker and its power rises. The distance from the lens to the retina never changes, so the eye changes its focal length instead. A normal eye sees clearly from its near point (about 25 cm) to its far point (infinity).",
-      formula: "1/v − 1/u = 1/f   with v = 2.5 cm fixed",
+      formula: "(1 ÷ v) − (1 ÷ u) = 1 ÷ f   with v = 2.5 cm fixed",
     },
     {
       title: "Presbyopia",
       text: "With age the ciliary muscles weaken and the eye lens loses flexibility, so the power of accommodation falls. The near point slowly moves away: about 25 cm for a teenager, about 1 m at 60. Near things blur, so people hold books and phones far away. It is corrected with a convex lens (reading glasses).",
-      formula: "Reading glasses: P = 1/0.25 − 1/d   (d = near point in metres)",
+      formula: "Reading glasses: P = (1 ÷ 0.25) − (1 ÷ d)   (d = near point in metres)",
     },
     {
       title: "Bifocal lenses",
@@ -120,7 +127,7 @@ export const lesson: LessonDef = {
   ],
   challenge: {
     title: "Spectacle shop",
-    text: "Three customers come to your counter. Their ages are hidden. Measure each one's near point with the sim (no glasses, move the object until it just turns sharp), work out the power with P = 1/0.25 − 1/d, set it and hand over the glasses. One star per customer.",
+    text: "Three customers come to your counter. Their ages are hidden. Measure each one's near point with the sim (no glasses, move the object until it just turns sharp), work out the power with P = (1 ÷ 0.25) − (1 ÷ d), set it and hand over the glasses. One star per customer.",
   },
   quiz: [
     {
@@ -144,7 +151,7 @@ export const lesson: LessonDef = {
       q: "Dadi's near point is 1 m. What power of reading glasses lets her read at 25 cm?",
       options: ["−3 D", "+1 D", "+3 D", "+4 D"],
       answer: 2,
-      why: "P = 1/0.25 − 1/1 = 4 − 1 = +3 D. The lens forms a virtual image of the page 1 m away, where she can focus.",
+      why: "P = (1 ÷ 0.25) − (1 ÷ 1) = 4 − 1 = +3 D. The lens forms a virtual image of the page 1 m away, where she can focus.",
     },
     {
       q: "In a common bifocal lens, the upper part is…",

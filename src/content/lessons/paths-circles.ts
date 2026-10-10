@@ -120,6 +120,17 @@ export const lesson: LessonDef = {
     formula: "average velocity = displacement ÷ time",
     formulaNote: "Velocity is speed with a direction, measured along the straight arrow from start to finish.",
   },
+  symbols: [
+    { sym: "h", meaning: "greatest height reached, in m" },
+    { sym: "u", meaning: "starting speed thrown upward, in m/s" },
+    { sym: "g", meaning: "pull of gravity, 9.8 m/s²" },
+    { sym: "v", meaning: "speed around the circle, in m/s" },
+    { sym: "r", meaning: "radius of the circle, in m" },
+    { sym: "T", meaning: "time for one full turn, in s" },
+    { sym: "π", meaning: "pi, about 3.14" },
+    { sym: "|displacement|", meaning: "size of the displacement, ignoring its direction" },
+    { sym: "≥", meaning: "is greater than or equal to" },
+  ],
   ideas: [
     {
       title: "Distance and displacement",
@@ -134,12 +145,12 @@ export const lesson: LessonDef = {
     {
       title: "Thrown up and caught",
       text: "A ball thrown straight up at speed u rises to a height h and falls back into your hand. Distance travelled = 2h. Displacement = 0. Its velocity points up on the way up, is zero for an instant at the top, and points down on the way back.",
-      formula: "h = u² ÷ 2g    (g = 9.8 m/s²)",
+      formula: "h = u² ÷ (2 × g)    (g = 9.8 m/s²)",
     },
     {
       title: "Uniform circular motion",
       text: "Moving round a circle at a steady speed is uniform circular motion. The speed stays the same, but the direction keeps changing, so the velocity keeps changing. That means it is accelerated motion. At every point the velocity is along the tangent, at right angles to the radius. If nothing pulls the object round any more, it moves off along that tangent.",
-      formula: "v = 2πr ÷ T",
+      formula: "v = (2 × π × r) ÷ T",
     },
   ],
   challenge: {

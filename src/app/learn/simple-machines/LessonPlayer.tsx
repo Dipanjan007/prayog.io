@@ -138,7 +138,7 @@ export default function LessonPlayer() {
           <div className="mt-2 space-y-0.5 text-xs text-white/55 tabular-nums">
             {rampRuns.map((p) => (
               <div key={p.id}>
-                {p.m} kg, L = {p.L.toFixed(2)} m: F = {p.F.toFixed(0)} N, F × L = {p.FL.toFixed(0)} J, m g h = {p.mgh.toFixed(0)} J
+                {p.m} kg, L = {p.L.toFixed(2)} m: F = {p.F.toFixed(0)} N, F × L = {p.FL.toFixed(0)} J, m × g × h = {p.mgh.toFixed(0)} J
               </div>
             ))}
           </div>

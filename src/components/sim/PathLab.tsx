@@ -398,7 +398,7 @@ function ThrowPanel({
       )}
       <Slider label="Throw speed u" value={`${u} m/s`} min={U_RANGE.min} max={U_RANGE.max} step={1} v={u} onChange={setU} disabled={flying} />
       <p className="text-center text-xs text-white/50 tabular-nums">
-        Highest point h = u² ÷ 2g = {maxHeight(u).toFixed(1)} m · back in your hand after {flightTime(u).toFixed(2)} s
+        Highest point h = u² ÷ (2 × g) = {maxHeight(u).toFixed(1)} m · back in your hand after {flightTime(u).toFixed(2)} s
       </p>
       <button className="btn-primary !py-2 text-sm disabled:opacity-50" onClick={onThrow} disabled={flying}>
         🏏 Throw the ball up
@@ -430,7 +430,7 @@ function MarblePanel({
         <Stat label="Velocity heading" value={released ? "fixed" : directionText(d.x, d.y)} small tone="text-pink-300" />
       </div>
       <p className="text-center text-xs text-white/50 tabular-nums">
-        Ring radius {MARBLE_R * 100} cm · one turn every {((2 * Math.PI * MARBLE_R) / v).toFixed(2)} s (T = 2πr ÷ v)
+        Ring radius {MARBLE_R * 100} cm · one turn every {((2 * Math.PI * MARBLE_R) / v).toFixed(2)} s (T = (2 × π × r) ÷ v)
       </p>
       {released ? (
         <>

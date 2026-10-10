@@ -81,9 +81,21 @@ export const lesson: LessonDef = {
     scientist: "Christiaan Huygens, John Wallis and Christopher Wren",
     years: "1668",
     fact: "In 1668 London's Royal Society asked scientists for the rules of colliding objects. Huygens, Wallis and Wren each sent in answers, and together they showed that the total momentum stays the same in a collision.",
-    formula: "m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂",
+    formula: "(m₁ × u₁) + (m₂ × u₂) = (m₁ × v₁) + (m₂ × v₂)",
     formulaNote: "Conservation of momentum: total momentum before a collision equals total momentum after it.",
   },
+  symbols: [
+    { sym: "F", meaning: "force, in newtons (N)" },
+    { sym: "m", meaning: "mass, in kg" },
+    { sym: "a", meaning: "acceleration, in m/s²" },
+    { sym: "t", meaning: "time the force acts, in s" },
+    { sym: "u", meaning: "speed before, in m/s" },
+    { sym: "v", meaning: "speed after, in m/s" },
+    { sym: "p", meaning: "momentum: mass × velocity, in kg m/s" },
+    { sym: "m₁, m₂", meaning: "the masses of the two objects" },
+    { sym: "u₁, u₂", meaning: "their speeds before the collision" },
+    { sym: "v₁, v₂", meaning: "their speeds after the collision" },
+  ],
   ideas: [
     {
       title: "First law: inertia",
@@ -92,7 +104,7 @@ export const lesson: LessonDef = {
     {
       title: "Second law: F = ma",
       text: "The net force on an object equals its mass times its acceleration. One newton is the force that gives a 1 kg mass an acceleration of 1 m/s². A force acting for a time changes momentum: F × t = change in momentum. A fielder pulling the hands back makes t longer, so the force on the hands is smaller.",
-      formula: "F = m × a    F × t = mv − mu",
+      formula: "F = m × a    F × t = (m × v) − (m × u)",
     },
     {
       title: "Third law: action and reaction",
@@ -102,7 +114,7 @@ export const lesson: LessonDef = {
     {
       title: "Momentum and its conservation",
       text: "Momentum is mass times velocity, and it has a direction. When objects collide or push each other apart, the total momentum stays the same as long as no outside force acts.",
-      formula: "p = m × v (kg m/s)    m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂",
+      formula: "p = m × v (kg m/s)    (m₁ × u₁) + (m₂ × u₂) = (m₁ × v₁) + (m₂ × v₂)",
     },
   ],
   challenge: {

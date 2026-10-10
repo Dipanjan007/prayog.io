@@ -26,7 +26,7 @@ export const lesson: LessonDef = {
     learn: [
       "Sound cannot travel through a vacuum, even when the source still vibrates",
       "Reverberation, and how curtains, carpets, panels and people cut it down",
-      "Sabine's formula for reverberation time: T = 0.161 V ÷ A",
+      "Sabine's formula for reverberation time: T = (0.161 × V) ÷ A",
       "Uses of ultrasound, infrasound, and hearing ranges of people and animals",
     ],
     realLife:
@@ -63,14 +63,14 @@ export const lesson: LessonDef = {
       title: "Tame the hall",
       text: "Switch to Hall mode. The bare auditorium rings for over 8 s. Add carpet, curtains, panels or an audience until the reverberation time is below 1.5 s. Clap to hear and see the difference.",
       found:
-        "Every bounce off a soft surface soaks up some sound. More absorption A means a shorter reverberation time, T = 0.161 V ÷ A. For speech, 1 to 1.5 s is good. Too long and words blur, too short and the hall sounds dead.",
+        "Every bounce off a soft surface soaks up some sound. More absorption A means a shorter reverberation time, T = (0.161 × V) ÷ A. For speech, 1 to 1.5 s is good. Too long and words blur, too short and the hall sounds dead.",
     },
     {
       id: "task:crack",
       title: "Find the hidden crack",
       text: "Switch to Ultrasound mode. Slide the probe along the steel block and send pulses until an echo comes back early.",
       found:
-        "Normally the pulse bounces off the bottom of the block. Over a crack it bounces off the crack instead, so the echo returns sooner. Depth = v × t ÷ 2. Railway rails and bridge parts are checked this way without cutting them open.",
+        "Normally the pulse bounces off the bottom of the block. Over a crack it bounces off the crack instead, so the echo returns sooner. Depth = (v × t) ÷ 2. Railway rails and bridge parts are checked this way without cutting them open.",
     },
     {
       id: "task:hearing",
@@ -84,9 +84,17 @@ export const lesson: LessonDef = {
     scientist: "Wallace Clement Sabine",
     years: "1868–1919",
     fact: "In 1895 Harvard asked young physics teacher Sabine to fix the Fogg lecture hall, where every word rang on for over 5 seconds. Working at night, he and helpers carried seat cushions in from a nearby theatre and timed how long a sound lasted. This began the science of architectural acoustics.",
-    formula: "T = 0.161 × V ÷ A",
+    formula: "T = (0.161 × V) ÷ A",
     formulaNote: "Reverberation time (s) is 0.161 times the room's volume (m³) divided by its total absorption (m²).",
   },
+  symbols: [
+    { sym: "T", meaning: "reverberation time: how long a sound keeps echoing, in s" },
+    { sym: "V", meaning: "volume of the hall, in m³" },
+    { sym: "A", meaning: "total sound absorption of the surfaces, in m²" },
+    { sym: "0.161", meaning: "a fixed number from Sabine's experiments" },
+    { sym: "v", meaning: "speed of sound in the material, in m/s" },
+    { sym: "t", meaning: "time for the echo to come back, in s" },
+  ],
   ideas: [
     {
       title: "Sound needs a medium",
@@ -95,12 +103,12 @@ export const lesson: LessonDef = {
     {
       title: "Reverberation",
       text: "In a big hall, sound bounces off the walls, ceiling and floor many times, so it lingers. This lasting sound is reverberation. Halls cut it with soft materials that absorb sound: curtains, carpets, panels of fibreboard, cushioned seats, and the audience itself. Ceilings are often curved so sound spreads evenly.",
-      formula: "T = 0.161 × V ÷ A",
+      formula: "T = (0.161 × V) ÷ A",
     },
     {
       title: "Uses of ultrasound",
       text: "Ultrasound is sound above 20 kHz. It cleans hard-to-reach parts like spiral tubes and electronic parts in a bath of liquid. It finds cracks and flaws inside metal blocks by their echoes. Doctors use ultrasound scans to see organs and a baby in the womb. Bats and dolphins find their way and their food with ultrasound echoes.",
-      formula: "depth = v × t ÷ 2",
+      formula: "depth = (v × t) ÷ 2",
     },
     {
       title: "Infrasound and hearing ranges",
@@ -128,19 +136,19 @@ export const lesson: LessonDef = {
       q: "A hall has volume 1610 m³ and total absorption 230 m². What is its reverberation time?",
       options: ["0.7 s", "1.13 s", "7 s", "37 s"],
       answer: 1,
-      why: "T = 0.161 × V ÷ A = 0.161 × 1610 ÷ 230 = 259.2 ÷ 230 ≈ 1.13 s.",
+      why: "T = (0.161 × V) ÷ A = (0.161 × 1610) ÷ 230 = 259.2 ÷ 230 ≈ 1.13 s.",
     },
     {
       q: "Which change would make the reverberation in a school hall LONGER?",
       options: ["Hanging heavy curtains", "Filling the seats with people", "Removing the carpet", "Adding acoustic panels"],
       answer: 2,
-      why: "A bare floor reflects more sound than carpet, so the total absorption A falls and T = 0.161 V ÷ A rises.",
+      why: "A bare floor reflects more sound than carpet, so the total absorption A falls and T = (0.161 × V) ÷ A rises.",
     },
     {
       q: "An ultrasound pulse in a steel block (v = 6000 m/s) returns after 20 µs, while the block is 12 cm thick. What does this mean?",
       options: ["There is a crack 6 cm down", "There is a crack 12 cm down", "The block is fine", "There is a crack 24 cm down"],
       answer: 0,
-      why: "depth = v × t ÷ 2 = 6000 × 0.000020 ÷ 2 = 0.06 m = 6 cm. That is less than the 12 cm thickness, so the pulse hit a flaw inside.",
+      why: "depth = (v × t) ÷ 2 = (6000 × 0.000020) ÷ 2 = 0.06 m = 6 cm. That is less than the 12 cm thickness, so the pulse hit a flaw inside.",
     },
   ],
 };

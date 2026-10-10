@@ -415,7 +415,7 @@ export default function SpinLab({ onReading, target = null }: Props) {
                 <Stat label="Tension" value={released ? "0 N" : `${force < 10 ? fmt(force, 2) : fmt(force)} N`} accent={COL_IN} />
               </div>
               <p className="text-center text-xs text-white/60 tabular-nums">
-                F = m v² ÷ r = {fmt(ball.m)} × {fmt(ball.v)}² ÷ {fmt(ball.r)} = {force < 10 ? fmt(force, 2) : fmt(force)} N
+                F = (m × v²) ÷ r = ({fmt(ball.m)} × {fmt(ball.v)}²) ÷ {fmt(ball.r)} = {force < 10 ? fmt(force, 2) : fmt(force)} N
               </p>
               <Slider label="Mass of the ball" value={`${fmt(ball.m)} kg`} min={BALL.m[0]} max={BALL.m[1]} step={BALL.m[2]} v={ball.m} onChange={setBallK("m")} />
               <Slider label="Speed" value={`${fmt(ball.v)} m/s`} min={BALL.v[0]} max={BALL.v[1]} step={BALL.v[2]} v={ball.v} onChange={setBallK("v")} />
@@ -435,7 +435,7 @@ export default function SpinLab({ onReading, target = null }: Props) {
             <>
               <div className="grid grid-cols-3 gap-2 text-center">
                 <Stat label="Speed" value={`${fmt(carSet.v)} m/s`} sub={`${Math.round(carSet.v * 3.6)} km/h`} />
-                <Stat label="Needed" value={challenge ? "?" : `${fmt(force / 1000, 2)} kN`} sub="m v² ÷ r" accent={COL_IN} />
+                <Stat label="Needed" value={challenge ? "?" : `${fmt(force / 1000, 2)} kN`} sub="(m × v²) ÷ r" accent={COL_IN} />
                 <Stat label="Tyre grip" value={challenge ? "?" : `${fmt(grip / 1000, 2)} kN`} sub="μ m g" />
               </div>
               {!challenge && <GripBar need={force} grip={grip} />}
@@ -578,7 +578,7 @@ export default function SpinLab({ onReading, target = null }: Props) {
                       : challenge
                         ? `In orbit at ${(satDone.v / 1000).toFixed(2)} km/s. Is the path a circle, or an oval?`
                         : Math.abs(satDone.v / vCirc - 1) <= 0.02
-                          ? `A circular orbit! At ${(satDone.v / 1000).toFixed(2)} km/s gravity gives exactly m v² ÷ r.`
+                          ? `A circular orbit! At ${(satDone.v / 1000).toFixed(2)} km/s gravity gives exactly (m × v²) ÷ r.`
                           : `In orbit, but on an oval path. A circle needs ${fmt(vCirc / 1000, 2)} km/s here.`}
                 </p>
               )}
@@ -687,7 +687,7 @@ function BodyCard({ body }: { body: "moon" | "sun" }) {
           <span>{centripetalAcc(v, r).toFixed(5)} m/s²</span>
         </div>
         <div className="mt-1 flex justify-between">
-          <span className="text-white/60">Pull of {moon ? "Earth's" : "the Sun's"} gravity, GM ÷ r²</span>
+          <span className="text-white/60">Pull of {moon ? "Earth's" : "the Sun's"} gravity, (G × M) ÷ r²</span>
           <span style={{ color: COL_IN }}>{gravityAcc(GM, r).toFixed(5)} m/s²</span>
         </div>
         <p className="mt-2 text-xs text-white/60">

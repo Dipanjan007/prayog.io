@@ -24,13 +24,13 @@ export const NEWTON_PROBLEMS: OlyProblem[] = [
     range: [0.1, 20],
     hints: [
       "Use s = ½ a t² to find the acceleration the bucket needs.",
-      "For two masses over a pulley, a = (M − m) g / (M + m). Solve this for m.",
+      "For two masses over a pulley, a = [(M − m) × g] / (M + m). Solve this for m.",
     ],
     solution: [
       { text: "Find the acceleration needed.", math: "1.5 = ½ a (2.0)²  ⇒  a = 0.75 m/s²" },
       { text: "Newton's second law for each mass. The bucket goes down and the counterweight goes up, with the same a.", math: "M g − T = M a,   T − m g = m a" },
       { text: "Add the two equations to remove the tension.", math: "(M − m) g = (M + m) a" },
-      { text: "Solve for m.", math: "m = M (g − a) / (g + a) = 5.0 × 9.05 / 10.55 = 4.29 kg" },
+      { text: "Solve for m.", math: "m = [M (g − a)] / (g + a) = (5.0 × 9.05) / 10.55 = 4.29 kg" },
       { text: "The rope tension is 45.3 N, a little less than the bucket's 49 N weight. That small difference is what makes it speed up gently.", math: "T = M (g − a) = 5.0 × 9.05 = 45.3 N" },
     ],
     scene: (m) => ({ kind: "atwood", m1: 5.0, m2: m, d: 1.5, targetT: 2.0 }),
@@ -59,7 +59,7 @@ export const NEWTON_PROBLEMS: OlyProblem[] = [
     solution: [
       { text: "Find the deceleration needed.", math: "0 = 3.0² − 2 a × 4.0  ⇒  a = 1.125 m/s²" },
       { text: "Along the slope, friction acts up and gravity's part acts down. Their difference causes the deceleration.", math: "m a = μₖ m g cosθ − m g sinθ" },
-      { text: "Solve for μₖ. The mass cancels.", math: "μₖ = (a/g + sinθ) / cosθ = (0.1148 + 0.3420) / 0.9397 = 0.486" },
+      { text: "Solve for μₖ. The mass cancels.", math: "μₖ = [(a/g) + sinθ] / cosθ = (0.1148 + 0.3420) / 0.9397 = 0.486" },
       { text: "Check that the crate stays put once it stops. It will not slip if μₛ ≥ tanθ = 0.364. The ramp has μₛ = 0.60, so it stays." },
     ],
     scene: (mu) => ({ kind: "slide", thetaDeg: 20, L: 4.0, v0: 3.0, muK: mu, muS: 0.6 }),
@@ -89,7 +89,7 @@ export const NEWTON_PROBLEMS: OlyProblem[] = [
       { text: "Find the acceleration needed.", math: "2.4 = ½ a (2.0)²  ⇒  a = 1.2 m/s²" },
       { text: "Crate, taking up the slope as positive. Friction is kinetic and points down the slope.", math: "T − m g (sinθ + μₖ cosθ) = m a" },
       { text: "Counterweight, taking down as positive.", math: "M g − T = M a" },
-      { text: "Add and solve for M.", math: "M = m [a + g (sinθ + μₖ cosθ)] / (g − a) = 8.0 × (1.2 + 9.8 × 0.7165) / 8.6 = 7.65 kg" },
+      { text: "Add and solve for M.", math: "M = {m [a + g (sinθ + μₖ cosθ)]} / (g − a) = [8.0 × (1.2 + (9.8 × 0.7165))] / 8.6 = 7.65 kg" },
       {
         text: "Check that it starts at all. Static friction can hold back up to 20.4 N. The pull Mg = 75 N beats mg sinθ + 20.4 N = 59.6 N, so the crate moves. The tension while it moves is 65.8 N.",
         math: "μₛ m g cosθ = 0.30 × 8.0 × 9.8 × 0.866 = 20.4 N,   T = M (g − a) = 65.8 N",

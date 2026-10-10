@@ -77,6 +77,10 @@ export const lesson: LessonDef = {
     formula: "V total = V₁ + V₂",
     formulaNote: "Cells joined one after another (in series) add their voltages, which is why a torch uses two cells.",
   },
+  symbols: [
+    { sym: "V total", meaning: "total voltage when cells are joined end to end, in volts (V)" },
+    { sym: "V₁, V₂", meaning: "voltage of each cell" },
+  ],
   ideas: [
     {
       title: "Closed and open circuits",

@@ -99,6 +99,12 @@ export const lesson: LessonDef = {
     formula: "360° ÷ 24 h = 15° per hour",
     formulaNote: "The Earth turns 15 degrees every hour, which is why the Sun seems to move across the sky.",
   },
+  symbols: [
+    { sym: "°", meaning: "degrees of angle; a full turn is 360°" },
+    { sym: "h", meaning: "hours" },
+    { sym: "¼", meaning: "one quarter" },
+    { sym: "latitude", meaning: "how far north of the equator a place is, in degrees" },
+  ],
   ideas: [
     {
       title: "Rotation: day and night",
@@ -108,7 +114,7 @@ export const lesson: LessonDef = {
     {
       title: "Revolution: the year",
       text: "The Earth revolves around the Sun in about 365¼ days. A calendar year has 365 days, so every fourth year gets one extra day, 29 February. That year is a leap year with 366 days.",
-      formula: "4 × 365¼ = 3 × 365 + 366 days",
+      formula: "4 × 365¼ = (3 × 365) + 366 days",
     },
     {
       title: "The tilted axis: seasons",

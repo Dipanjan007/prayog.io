@@ -29,7 +29,7 @@ export const lesson: LessonDef = {
     learn: [
       "A moving object is measured shorter along its motion: L = L₀ ÷ γ",
       "Only the length along the motion shrinks; the height stays the same",
-      "Speeds do not simply add near light speed: w = (u + v) ÷ (1 + uv/c²)",
+      "Speeds do not simply add near light speed: w = (u + v) ÷ (1 + ((u × v) ÷ c²))",
       "At everyday speeds the old rule u + v works perfectly well",
     ],
     realLife:
@@ -83,11 +83,20 @@ export const lesson: LessonDef = {
     formula: "L = L₀ ÷ γ",
     formulaNote: "An object of length L₀ at rest measures shorter, L, when it moves past you, by the factor γ.",
   },
+  symbols: [
+    { sym: "L₀", meaning: "length of the object when it is not moving (rest length)" },
+    { sym: "L", meaning: "length measured while it moves past you" },
+    { sym: "γ", meaning: "gamma, the stretch factor; it is 1 when still and grows near light speed" },
+    { sym: "v", meaning: "speed of the object" },
+    { sym: "c", meaning: "speed of light, about 3 × 10⁸ m/s" },
+    { sym: "u, w", meaning: "two speeds being added, and their combined speed" },
+    { sym: "√( )", meaning: "square root of what is inside the bracket" },
+  ],
   ideas: [
     {
       title: "Moving things shrink along their motion",
       text: "If a rocket is L₀ long when parked, you measure it shorter while it flies past. The factor is the same γ as for time. Only the length along the motion shrinks. The height and width stay the same.",
-      formula: "L = L₀ ÷ γ = L₀ × √(1 − v²/c²)",
+      formula: "L = L₀ ÷ γ = L₀ × √(1 − (v² ÷ c²))",
     },
     {
       title: "Time and length go together",
@@ -95,8 +104,8 @@ export const lesson: LessonDef = {
     },
     {
       title: "Einstein's rule for adding speeds",
-      text: "On a rocket at speed u, fire a probe at speed v. Galileo's rule says the probe moves at u + v. Einstein's rule divides by (1 + uv/c²). The answer always stays below c. If the probe is light, the answer is exactly c.",
-      formula: "w = (u + v) ÷ (1 + uv/c²)",
+      text: "On a rocket at speed u, fire a probe at speed v. Galileo's rule says the probe moves at u + v. Einstein's rule divides by (1 + ((u × v) ÷ c²)). The answer always stays below c. If the probe is light, the answer is exactly c.",
+      formula: "w = (u + v) ÷ (1 + ((u × v) ÷ c²))",
     },
     {
       title: "The cosmic speed limit",
@@ -130,7 +139,7 @@ export const lesson: LessonDef = {
       q: "A spaceship at 0.7c shines a torch forwards. How fast is the light for someone on Earth?",
       options: ["1.7c", "0.3c", "Exactly c", "0.7c"],
       answer: 2,
-      why: "Put v = c into Einstein's rule: (u + c) ÷ (1 + u/c) = c. Light is always at c.",
+      why: "Put v = c into Einstein's rule: (u + c) ÷ (1 + (u ÷ c)) = c. Light is always at c.",
     },
     {
       q: "Why do we not notice length contraction for a Mumbai local train?",

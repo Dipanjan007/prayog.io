@@ -29,9 +29,9 @@ export const lesson: LessonDef = {
     objective:
       "Squeeze Earth, the Sun and a giant star into smaller and smaller balls, watch gravity grow, and find the size at which each one becomes a black hole.",
     learn: [
-      "Surface gravity g = GM/R² grows fast when the same mass is squeezed smaller",
-      "Escape speed v = √(2GM/R), and why a black hole forms when it reaches the speed of light",
-      "The Schwarzschild radius r_s = 2GM/c² (Earth about 9 mm, Sun about 3 km)",
+      "Surface gravity g = (G × M) ÷ R² grows fast when the same mass is squeezed smaller",
+      "Escape speed v = √((2 × G × M) ÷ R), and why a black hole forms when it reaches the speed of light",
+      "The Schwarzschild radius r_s = (2 × G × M) ÷ c² (Earth about 9 mm, Sun about 3 km)",
       "How a dying star's core becomes a white dwarf, a neutron star or a black hole",
       "How black holes bend and trap light, and the first real pictures of them",
     ],
@@ -69,7 +69,7 @@ export const lesson: LessonDef = {
       title: "More mass, bigger horizon",
       text: "Now turn the Sun and the big star (20 Suns) into black holes too. Compare their event horizon radius r_s.",
       found:
-        "The Sun's horizon is about 2.95 km and the 20-Sun star's is about 59 km, 20 times bigger. The Schwarzschild radius grows in step with mass: r_s = 2GM/c². Double the mass, double the horizon.",
+        "The Sun's horizon is about 2.95 km and the 20-Sun star's is about 59 km, 20 times bigger. The Schwarzschild radius grows in step with mass: r_s = (2 × G × M) ÷ c². Double the mass, double the horizon.",
     },
     {
       id: "task:fate",
@@ -90,24 +90,36 @@ export const lesson: LessonDef = {
     scientist: "Karl Schwarzschild",
     years: "1873–1916",
     fact: "In 1915, while serving as a soldier on the Russian front in World War I, Schwarzschild solved Einstein's brand new equations of gravity for a ball of mass. His answer, published in 1916, hides a special radius: the black hole's event horizon. He died a few months later.",
-    formula: "r_s = 2GM ÷ c²",
+    formula: "r_s = (2 × G × M) ÷ c²",
     formulaNote: "Squeeze a mass M inside this radius and not even light can escape.",
   },
+  symbols: [
+    { sym: "r_s", meaning: "Schwarzschild radius: the size of the event horizon, in m" },
+    { sym: "G", meaning: "the gravitational constant, 6.674 × 10⁻¹¹ N m²/kg²" },
+    { sym: "M", meaning: "mass of the star or black hole, in kg" },
+    { sym: "c", meaning: "speed of light, about 3 × 10⁸ m/s" },
+    { sym: "g", meaning: "pull of gravity at the surface, in m/s²" },
+    { sym: "R", meaning: "radius of the object, in m" },
+    { sym: "v", meaning: "escape speed, in m/s" },
+    { sym: "L", meaning: "length of the object being stretched, in m" },
+    { sym: "r", meaning: "distance from the centre, in m" },
+    { sym: "c², R², r³", meaning: "c × c, R × R, r × r × r" },
+  ],
   ideas: [
     {
       title: "Squeezing makes gravity stronger",
       text: "Gravity at the surface of a ball of mass M and radius R is g = GM/R². Keep the mass the same and halve the radius: you are now twice as close to the centre, so g becomes 4 times bigger. Earth's g is about 9.8 m/s².",
-      formula: "g = GM ÷ R²",
+      formula: "g = (G × M) ÷ R²",
     },
     {
       title: "Escape speed and dark stars",
       text: "Throw a cricket ball up and it falls back. Throw it at the escape speed and it never returns. For a ball of mass M and radius R this speed is √(2GM/R): 11.2 km/s for Earth and 618 km/s for the Sun. In 1783 John Michell wondered about a star so dense that its escape speed beats the speed of light, a dark star. Set v = c and you get R = 2GM/c², the same radius Schwarzschild found with Einstein's theory.",
-      formula: "v = √(2GM ÷ R)",
+      formula: "v = √((2 × G × M) ÷ R)",
     },
     {
       title: "Event horizon",
-      text: "The event horizon is the boundary at r_s = 2GM/c². Light and anything else that crosses it can never come back out. It is not a solid surface. For Earth r_s is about 8.9 mm, for the Sun about 2.95 km, and it grows in step with mass.",
-      formula: "r_s = 2GM ÷ c²",
+      text: "The event horizon is the boundary at r_s = (2 × G × M) ÷ c². Light and anything else that crosses it can never come back out. It is not a solid surface. For Earth r_s is about 8.9 mm, for the Sun about 2.95 km, and it grows in step with mass.",
+      formula: "r_s = (2 × G × M) ÷ c²",
     },
     {
       title: "How stars die",
@@ -125,12 +137,12 @@ export const lesson: LessonDef = {
     {
       title: "Spaghettification (just for fun)",
       text: "Near a small black hole, gravity pulls much harder on your feet than on your head, so you would be stretched like a noodle. Around a giant black hole the stretch at the horizon is gentle. You could cross it without noticing, but you could never come back.",
-      formula: "stretch ≈ 2GM × L ÷ r³",
+      formula: "stretch ≈ (2 × G × M × L) ÷ r³",
     },
   ],
   challenge: {
     title: "Mystery black holes",
-    text: "Three mystery objects with their masses. For each, find the radius at which it becomes a black hole, within 5%. Work it out with r_s = 2GM/c² (G = 6.674 × 10⁻¹¹, c = 3 × 10⁸ m/s) or squeeze it in the lab. One star per object.",
+    text: "Three mystery objects with their masses. For each, find the radius at which it becomes a black hole, within 5%. Work it out with r_s = (2 × G × M) ÷ c² (G = 6.674 × 10⁻¹¹, c = 3 × 10⁸ m/s) or squeeze it in the lab. One star per object.",
   },
   quiz: [
     {
@@ -143,13 +155,13 @@ export const lesson: LessonDef = {
       q: "About how big is the Sun's Schwarzschild radius?",
       options: ["3 mm", "3 km", "3000 km", "As big as the Sun now"],
       answer: 1,
-      why: "r_s = 2GM/c² = 2 × 6.674 × 10⁻¹¹ × 1.989 × 10³⁰ ÷ (3 × 10⁸)² ≈ 2950 m, about 3 km.",
+      why: "r_s = (2 × G × M) ÷ c² = (2 × 6.674 × 10⁻¹¹ × 1.989 × 10³⁰) ÷ (3 × 10⁸)² ≈ 2950 m, about 3 km.",
     },
     {
       q: "Black hole A has 3 times the mass of black hole B. How does A's event horizon radius compare?",
       options: ["Same size", "3 times bigger", "9 times bigger", "3 times smaller"],
       answer: 1,
-      why: "r_s = 2GM/c² is proportional to M, so 3 times the mass gives 3 times the radius.",
+      why: "r_s = (2 × G × M) ÷ c² is proportional to M, so 3 times the mass gives 3 times the radius.",
     },
     {
       q: "A dying star leaves behind a core of about 2 Suns. What is it most likely to become?",

@@ -34,14 +34,14 @@ export default function LessonPlayer() {
         let miss: string;
         if (target.kind === "car") {
           ok = carRoundOk(r.drive!.v, target.mu, target.r, CAR_TOLERANCE);
-          miss = r.drive?.skid ? "Skidded! Too fast for the tyres. Use μ m g = m v² ÷ r." : "Safe, but you can go faster. Find the limit v = √(μ g r).";
+          miss = r.drive?.skid ? "Skidded! Too fast for the tyres. Use μ × m × g = (m × v²) ÷ r." : "Safe, but you can go faster. Find the limit v = √(μ g r).";
         } else {
           const vc = circularSpeed(GM_EARTH, R_EARTH + target.altKm * 1000);
           ok = r.launch?.fate === "orbit" && withinTolerance(r.launch.v, vc, ORBIT_TOLERANCE);
           miss =
             r.launch?.fate === "orbit"
               ? "It stays up, but the path is an oval, not a circle. Make gravity per kg equal v² ÷ r."
-              : "Not a circle. For a circle, v = √(GM ÷ r) with r measured from the centre of the Earth.";
+              : "Not a circle. For a circle, v = √((G × M) ÷ r) with r measured from the centre of the Earth.";
         }
         if (ok) {
           const done = round + 1;

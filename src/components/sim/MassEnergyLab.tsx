@@ -296,7 +296,7 @@ export default function MassEnergyLab({ onReading, target = null }: Props) {
           </div>
           {ray && (
             <p className="text-center text-xs text-white/60 tabular-nums">
-              Einstein: bending = 4GM ÷ (c²b).{" "}
+              Einstein: bending = (4 × G × M) ÷ (c² × b).{" "}
               {strong
                 ? "Gravity this strong bends light even more than this simple formula says."
                 : `A Newton-style guess gives only half: ${sci(newtonBend(b.mass, rayB * b.radius) * RAD_TO_ARCSEC, 3)}″.`}

@@ -52,6 +52,8 @@ import { lesson as twoVariables } from "./two-variables";
 import { lesson as probability } from "./probability";
 import { lesson as data } from "./data";
 import { lesson as quadratics } from "./quadratics";
+import { lesson as ciphers } from "./ciphers";
+import { lesson as infiniteSums } from "./infinite-sums";
 import type { LessonDef } from "./types";
 
 /** Every playable lesson, in class order. */
@@ -110,6 +112,8 @@ export const LESSONS: LessonDef[] = [
   probability,
   data,
   quadratics,
+  ciphers,
+  infiniteSums,
 ];
 
 /** Where each lesson is played, by lesson id. */
@@ -168,4 +172,6 @@ export const LESSON_HREF: Record<string, string> = {
   "c9-probability": "/maths/probability",
   "c9-data": "/maths/data",
   "c10-quadratics": "/maths/quadratics",
+  "xm-ciphers": "/maths/outliers/ciphers",
+  "xm-infinite-sums": "/maths/outliers/infinite-sums",
 };

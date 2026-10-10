@@ -230,7 +230,20 @@ export const MATHS_STRANDS: Strand[] = [
 ];
 
 /** Maths beyond the NCERT books, on the Maths Outliers tab at /maths/outliers. */
-export const MATHS_OUTLIER_STRANDS: Strand[] = [];
+export const MATHS_OUTLIER_STRANDS: Strand[] = [
+  {
+    id: "infinity",
+    name: "Infinity",
+    colour: "var(--c-violet)",
+    chapters: [{ classNum: 9, title: "Infinite sums", href: "/maths/outliers/infinite-sums", sim: "Eat half a laddoo forever, race Zeno's tortoise and see which endless sums settle", extra: true }],
+  },
+  {
+    id: "codes",
+    name: "Codes and growth",
+    colour: "var(--c-lime)",
+    chapters: [{ classNum: 8, title: "Secret codes", href: "/maths/outliers/ciphers", sim: "Spin a cipher wheel, do clock sums and crack a code by counting letters", extra: true }],
+  },
+];
 
 /** The NCERT Physics strands shown on the Learn map. */
 export const NCERT_STRANDS: Strand[] = STRANDS.map((s) => ({ ...s, chapters: s.chapters.filter((c) => !c.extra) })).filter(

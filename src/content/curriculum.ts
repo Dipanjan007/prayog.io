@@ -130,7 +130,40 @@ export const STRANDS: Strand[] = [
   },
 ];
 
-/** The NCERT strands shown on the Learn map. */
+/** NCERT Maths books in use: Ganita Prakash (Classes 7 and 8), Ganita Manjari (Class 9, 2026-27) and Mathematics (Class 10). */
+export const MATHS_BOOKS: Record<ClassNum, string> = {
+  7: "Ganita Prakash",
+  8: "Ganita Prakash",
+  9: "Ganita Manjari",
+  10: "Mathematics",
+};
+
+/** Maths chapters, one flagship lab per class to start, on the Maths map at /maths. */
+export const MATHS_STRANDS: Strand[] = [
+  {
+    id: "geometry",
+    name: "Geometry",
+    colour: "var(--c-cyan)",
+    chapters: [
+      { classNum: 7, title: "A Tale of Three Intersecting Lines", href: "/learn/triangles", sim: "Join sticks into triangles, stretch the corners and watch the angles add up" },
+      { classNum: 8, title: "The Baudhayana-Pythagoras Theorem", href: "/learn/pythagoras", sim: "Grow squares on a triangle and send fire ladders to the right windows" },
+    ],
+  },
+  {
+    id: "coordinates",
+    name: "Coordinate geometry",
+    colour: "var(--c-violet)",
+    chapters: [{ classNum: 9, title: "Orienting Yourself: The Use of Coordinates", href: "/learn/coordinates", sim: "Fly a delivery drone over a city grid with two numbers" }],
+  },
+  {
+    id: "trigonometry",
+    name: "Trigonometry",
+    colour: "var(--c-pink)",
+    chapters: [{ classNum: 10, title: "Some Applications of Trigonometry", href: "/learn/heights-distances", sim: "Measure the Qutub Minar with a clinometer, then look down from a lighthouse" }],
+  },
+];
+
+/** The NCERT Physics strands shown on the Learn map. */
 export const NCERT_STRANDS: Strand[] = STRANDS.map((s) => ({ ...s, chapters: s.chapters.filter((c) => !c.extra) })).filter(
   (s) => s.chapters.length > 0,
 );
@@ -153,4 +186,6 @@ export const CATALOGUE = {
   /** Second labs under NCERT chapters. */
   labs: ncert.reduce((n, c) => n + (c.labs?.length ?? 0), 0),
   outliers: OUTLIER_STRANDS.reduce((n, s) => n + s.chapters.filter((c) => c.href).length, 0),
+  /** Maths chapters with a playable lesson. */
+  maths: MATHS_STRANDS.reduce((n, s) => n + s.chapters.filter((c) => c.href).length, 0),
 };

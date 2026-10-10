@@ -56,7 +56,7 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
     <>
       <DiscoverySplash lesson={lesson} canRestart={hasProgress && !replay} onRestart={() => restartLesson(lesson.id)} />
       <div className="mb-6">
-        <Link href={lesson.book === "Outliers" ? "/outliers" : "/learn"} className="text-sm text-white/50 hover:text-white">
+        <Link href={lesson.book === "Outliers" ? "/outliers" : lesson.subject === "maths" ? "/maths" : "/learn"} className="text-sm text-white/50 hover:text-white">
           ← Class {lesson.classNum} · {lesson.book} · {lesson.chapter}
         </Link>
         <div className="mt-2 flex flex-wrap items-end justify-between gap-3">
@@ -147,7 +147,7 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
               <p className={`mb-3 rounded-xl px-3 py-2 text-sm ${predictedRight ? "bg-lime-300/10 text-lime-200" : "bg-amber-300/10 text-amber-100"}`}>
                 {predictedRight
                   ? `Your prediction was right: ${lesson.predict.options[lesson.predict.answer].toLowerCase()}.`
-                  : `Surprise! The answer is: ${lesson.predict.options[lesson.predict.answer].toLowerCase()}. Scientists change their minds when experiments show them something new.`}
+                  : `Surprise! The answer is: ${lesson.predict.options[lesson.predict.answer].toLowerCase()}. ${lesson.subject === "maths" ? "Mathematicians" : "Scientists"} change their minds when ${lesson.subject === "maths" ? "a test shows" : "experiments show"} them something new.`}
               </p>
             )}
             <div className="mb-2 rounded-xl border border-violet-300/30 bg-violet-300/[0.07] p-3">

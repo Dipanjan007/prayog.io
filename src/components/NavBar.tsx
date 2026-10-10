@@ -30,7 +30,7 @@ export default function NavBar() {
               key={l.href}
               href={l.href}
               className={`rounded-full px-1 py-1.5 text-[13px] transition sm:px-3 sm:text-sm ${
-                path.startsWith(l.href) ? "bg-white/10 text-white" : "text-white/60 hover:text-white"
+                path.startsWith(l.href) || (l.href === "/learn" && path.startsWith("/maths")) ? "bg-white/10 text-white" : "text-white/60 hover:text-white"
               }`}
             >
               {l.label}

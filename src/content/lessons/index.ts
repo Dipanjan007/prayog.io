@@ -33,6 +33,10 @@ import { lesson as skyColours } from "./sky-colours";
 import { lesson as waterCycle } from "./water-cycle";
 import { lesson as frictionTension } from "./friction-tension";
 import { lesson as eyeDefects } from "./eye-defects";
+import { lesson as triangles } from "./triangles";
+import { lesson as pythagoras } from "./pythagoras";
+import { lesson as coordinates } from "./coordinates";
+import { lesson as heightsDistances } from "./heights-distances";
 import type { LessonDef } from "./types";
 
 /** Every playable lesson, in class order. */
@@ -72,6 +76,10 @@ export const LESSONS: LessonDef[] = [
   timeDilation,
   lengthContraction,
   massEnergy,
+  triangles,
+  pythagoras,
+  coordinates,
+  heightsDistances,
 ];
 
 /** Where each lesson is played, by lesson id. */
@@ -111,4 +119,8 @@ export const LESSON_HREF: Record<string, string> = {
   "c7-time-motion": "/learn/time-motion",
   "c7-water-cycle": "/learn/water-cycle",
   "c9-work-energy": "/learn/work-energy",
+  "c7-triangles": "/learn/triangles",
+  "c8-pythagoras": "/learn/pythagoras",
+  "c9-coordinates": "/learn/coordinates",
+  "c10-heights-distances": "/learn/heights-distances",
 };

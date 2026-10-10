@@ -93,7 +93,7 @@ export const STRANDS: Strand[] = [
     colour: "var(--c-pink)",
     chapters: [
       { classNum: 7, title: "Light: Shadows and Reflections", href: "/learn/shadows-reflections", sim: "Shadow stage, pinhole camera and laser mirrors" },
-      { classNum: 8, title: "Light: Mirrors and Lenses", href: "/learn/mirrors-lenses", sim: "Plane, concave and convex mirrors and lenses" },
+      { classNum: 8, title: "Light: Mirrors and Lenses", href: "/learn/mirrors-lenses", sim: "Plane, concave and convex mirrors and lenses", labs: [{ href: "/learn/kaleidoscope", title: "Kaleidoscopes and burning spots", sim: "Hinge two mirrors to count bangles, build a kaleidoscope and a barber-shop tunnel, burn a card with sunlight" }] },
       { classNum: 10, title: "Light: Reflection and Refraction", href: "/learn/light-refraction", sim: "Glass block, lens and mirror bench with live ray diagrams" },
       { classNum: 10, title: "The Human Eye and the Colourful World", sim: "Eye model and prism", href: "/learn/human-eye", labs: [{ href: "/learn/eye-defects", title: "Dadi's reading glasses", sim: "Age an eye from 15 to 80, find its near point, and design reading glasses and bifocals for Dadi" }, { href: "/learn/sky-colours", title: "Why the sky is blue", sim: "Scatter light, paint a sunset, make stars twinkle, catch a rainbow" }] },
     ],

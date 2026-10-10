@@ -109,6 +109,8 @@ export const BADGES: BadgeInfo[] = [
   { id: "weather-maker", name: "Weather Maker", how: "Solve all three weather rounds", emoji: "⛈️" },
   { id: "friction-fighter", name: "Friction Fighter", how: "Finish every step of the friction and tension lesson", emoji: "🛷" },
   { id: "pulley-pro", name: "Pulley Pro", how: "Solve all three pulley puzzles", emoji: "🪝" },
+  { id: "pattern-maker", name: "Pattern Maker", how: "Finish every step of the kaleidoscope lesson", emoji: "🔮" },
+  { id: "image-counter", name: "Image Counter", how: "Solve all three bangle-counting rounds", emoji: "🪞" },
   { id: "sharp-mind", name: "Sharp Mind", how: "Score full marks in a Master quiz", emoji: "🎯" },
 ];
 

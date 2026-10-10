@@ -152,7 +152,13 @@ export const MATHS_STRANDS: Strand[] = [
         sim: "Turn a road across railway rails and lay new lines parallel",
         labs: [{ href: "/maths/tilings", title: "Tiles, corners and 360°", sim: "Fit regular tiles round a corner and mix shapes into floor patterns" }],
       },
-      { classNum: 7, title: "A Tale of Three Intersecting Lines", href: "/maths/triangles", sim: "Join sticks into triangles, stretch the corners and watch the angles add up" },
+      {
+        classNum: 7,
+        title: "A Tale of Three Intersecting Lines",
+        href: "/maths/triangles",
+        sim: "Join sticks into triangles, stretch the corners and watch the angles add up",
+        labs: [{ href: "/maths/twin-triangles", title: "Twin triangles", sim: "Send a friend SSS, SAS, ASA or RHS clues and see how many triangles fit" }],
+      },
       { classNum: 8, title: "The Baudhayana-Pythagoras Theorem", href: "/maths/pythagoras", sim: "Grow squares on a triangle and send fire ladders to the right windows" },
       { classNum: 10, title: "Triangles", href: "/maths/similar-triangles", sim: "Scale a triangle, slide a line parallel to a side and measure the Great Pyramid with shadows" },
     ],
@@ -236,7 +242,13 @@ export const MATHS_STRANDS: Strand[] = [
         sim: "Push a rectangle into a parallelogram on a geoboard and mark out land plots",
         labs: [{ href: "/maths/quadrilaterals", title: "Four corners, many names", sim: "Drag four corners and name the shape from its sides, angles and diagonals" }],
       },
-      { classNum: 10, title: "Surface Areas and Volumes", href: "/maths/solids", sim: "Pour cones into a glass and build ice-cream cones, capsules and tents with live volume and area" },
+      {
+        classNum: 10,
+        title: "Surface Areas and Volumes",
+        href: "/maths/solids",
+        sim: "Pour cones into a glass and build ice-cream cones, capsules and tents with live volume and area",
+        labs: [{ href: "/maths/circle-areas", title: "Pizza slices and sprinklers", sim: "Cut pizza slices to measure arcs and sectors, and set a lawn sprinkler" }],
+      },
     ],
   },
   {
@@ -249,7 +261,15 @@ export const MATHS_STRANDS: Strand[] = [
     id: "trigonometry",
     name: "Trigonometry",
     colour: "var(--c-pink)",
-    chapters: [{ classNum: 10, title: "Some Applications of Trigonometry", href: "/maths/heights-distances", sim: "Measure the Qutub Minar with a clinometer, then look down from a lighthouse" }],
+    chapters: [
+      {
+        classNum: 10,
+        title: "Some Applications of Trigonometry",
+        href: "/maths/heights-distances",
+        sim: "Measure the Qutub Minar with a clinometer, then look down from a lighthouse",
+        labs: [{ href: "/maths/trig-ratios", title: "Slides, ramps and sin θ", sim: "Tilt and stretch a slide to see sin θ, cos θ and tan θ stay fixed, then build a wheelchair ramp" }],
+      },
+    ],
   },
 ];
 

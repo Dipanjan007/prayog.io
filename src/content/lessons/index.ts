@@ -61,6 +61,9 @@ import { lesson as sequences } from "./sequences";
 import { lesson as inverseProportion } from "./inverse-proportion";
 import { lesson as area } from "./area";
 import { lesson as quadrilaterals } from "./quadrilaterals";
+import { lesson as trigRatios } from "./trig-ratios";
+import { lesson as circleAreas } from "./circle-areas";
+import { lesson as twinTriangles } from "./twin-triangles";
 import type { LessonDef } from "./types";
 
 /** Every playable lesson, in class order. */
@@ -128,6 +131,9 @@ export const LESSONS: LessonDef[] = [
   inverseProportion,
   area,
   quadrilaterals,
+  trigRatios,
+  circleAreas,
+  twinTriangles,
 ];
 
 /** Where each lesson is played, by lesson id. */
@@ -195,4 +201,7 @@ export const LESSON_HREF: Record<string, string> = {
   "c8-inverse-proportion": "/maths/inverse-proportion",
   "c8-area": "/maths/area",
   "c8-quadrilaterals": "/maths/quadrilaterals",
+  "c10-trig-ratios": "/maths/trig-ratios",
+  "c10-circle-areas": "/maths/circle-areas",
+  "c7-twin-triangles": "/maths/twin-triangles",
 };

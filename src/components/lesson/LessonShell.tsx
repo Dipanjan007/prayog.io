@@ -56,7 +56,7 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
     <>
       <DiscoverySplash lesson={lesson} canRestart={hasProgress && !replay} onRestart={() => restartLesson(lesson.id)} />
       <div className="mb-6">
-        <Link href={lesson.book === "Outliers" ? "/outliers" : lesson.subject === "maths" ? "/maths" : "/learn"} className="text-sm text-white/50 hover:text-white">
+        <Link href={`${lesson.subject === "maths" ? "/maths" : ""}${lesson.book === "Outliers" ? "/outliers" : lesson.subject === "maths" ? "" : "/learn"}`} className="text-sm text-white/50 hover:text-white">
           ← Class {lesson.classNum} · {lesson.book} · {lesson.chapter}
         </Link>
         <div className="mt-2 flex flex-wrap items-end justify-between gap-3">

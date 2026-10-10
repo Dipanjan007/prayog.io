@@ -163,6 +163,9 @@ export const MATHS_STRANDS: Strand[] = [
   },
 ];
 
+/** Maths beyond the NCERT books, on the Maths Outliers tab at /maths/outliers. */
+export const MATHS_OUTLIER_STRANDS: Strand[] = [];
+
 /** The NCERT Physics strands shown on the Learn map. */
 export const NCERT_STRANDS: Strand[] = STRANDS.map((s) => ({ ...s, chapters: s.chapters.filter((c) => !c.extra) })).filter(
   (s) => s.chapters.length > 0,
@@ -188,4 +191,7 @@ export const CATALOGUE = {
   outliers: OUTLIER_STRANDS.reduce((n, s) => n + s.chapters.filter((c) => c.href).length, 0),
   /** Maths chapters with a playable lesson. */
   maths: MATHS_STRANDS.reduce((n, s) => n + s.chapters.filter((c) => c.href).length, 0),
+  /** Second labs under Maths chapters. */
+  mathsLabs: MATHS_STRANDS.reduce((n, s) => n + s.chapters.reduce((k, c) => k + (c.labs?.length ?? 0), 0), 0),
+  mathsOutliers: MATHS_OUTLIER_STRANDS.reduce((n, s) => n + s.chapters.filter((c) => c.href).length, 0),
 };

@@ -42,6 +42,16 @@ test("Maths lessons open with a free account, like every NCERT lesson", () => {
   assert.equal(needs("school", "/maths/coordinates"), null);
 });
 
+test("Maths Outliers and Olympiad are extras, like Physics", () => {
+  assert.equal(contentKey("/maths/outliers"), "/maths/outliers");
+  assert.equal(contentKey("/maths/olympiad"), "/maths/olympiad");
+  assert.equal(contentKey("/maths/outliers/fractals"), "/maths/outliers/fractals");
+  assert.equal(contentKey("/maths/olympiad/counting/x"), "/maths/olympiad/counting");
+  assert.equal(needs("free", "/maths/outliers/fractals"), "upgrade");
+  assert.equal(needs("visitor", "/maths/olympiad/counting/x"), "upgrade");
+  assert.equal(needs("family", "/maths/olympiad/counting/x"), null);
+});
+
 test("best tier wins", () => {
   assert.equal(bestTier("free", "family"), "family");
   assert.equal(bestTier("school", "visitor"), "school");

@@ -27,7 +27,11 @@ export const SUBJECTS: Subject[] = [
     id: "maths",
     label: "Maths",
     icon: "📐",
-    tabs: [{ href: "/maths", label: "Lab" }],
+    tabs: [
+      { href: "/maths", label: "Lab" },
+      { href: "/maths/outliers", label: "Outliers" },
+      { href: "/maths/olympiad", label: "Olympiad" },
+    ],
   },
 ];
 
@@ -38,5 +42,9 @@ export function subjectFor(path: string): Subject | null {
   return SUBJECTS.find((s) => s.tabs.some((t) => under(path, t.href))) ?? null;
 }
 
-/** True when the tab is the one this page sits under. */
-export const tabActive = (path: string, href: string) => under(path, href);
+/** True when the tab is the one this page sits under: the deepest tab that matches wins, so /maths/outliers is not also Lab. */
+export function tabActive(path: string, href: string) {
+  if (!under(path, href)) return false;
+  const tabs = subjectFor(path)?.tabs ?? [];
+  return !tabs.some((t) => t.href.length > href.length && t.href.startsWith(`${href}/`) && under(path, t.href));
+}

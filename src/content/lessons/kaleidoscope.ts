@@ -92,6 +92,13 @@ export const lesson: LessonDef = {
     formulaNote:
       "n is the number of images you see. θ (the Greek letter theta) is the angle between the two mirrors, in degrees. 360° is one full turn. ÷ means divide and − means take away. The brackets say: divide first, then take away 1. We take away 1 because one of the pieces of the full turn holds the real object, not an image. It is exact when 360° ÷ θ is even, or when the object is exactly in the middle.",
   },
+  symbols: [
+    { sym: "n", meaning: "number of images you see" },
+    { sym: "θ", meaning: "angle between the two mirrors, in degrees (say 'theta')" },
+    { sym: "360°", meaning: "one full turn round the hinge" },
+    { sym: "f", meaning: "focal length: distance from the lens or mirror to where sunlight meets" },
+    { sym: "d", meaning: "distance from the lens or mirror to the card" },
+  ],
   ideas: [
     {
       title: "Images of images",

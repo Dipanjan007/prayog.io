@@ -6,7 +6,7 @@ import { LESSONS } from "@/content/lessons";
 
 export const metadata: Metadata = {
   title: "Maths Outliers",
-  description: "Maths beyond the NCERT book: endless sums that settle on a number, and secret codes you can crack.",
+  description: "Maths beyond the NCERT book: the golden ratio, fractals, chasing π, infinite sums, secret codes and the chessboard legend.",
 };
 
 const bySlug = new Map(LESSONS.map((l) => [l.id.replace(/^xm-/, ""), l]));
@@ -18,8 +18,8 @@ export default function MathsOutliersPage() {
         <span className="text-gradient">Maths Outliers</span>
       </h1>
       <p className="mt-2 max-w-2xl text-white/60">
-        Maths that goes beyond the NCERT book, for the curious ones. Eat half a laddoo forever, race Zeno&apos;s tortoise,
-        and crack a secret code.
+        Maths that goes beyond the NCERT book, for the curious ones. Grow a sunflower with the golden angle, build a
+        snowflake with an endless edge, chase π and crack a secret code.
       </p>
       <FreeNote />
 

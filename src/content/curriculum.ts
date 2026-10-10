@@ -276,16 +276,31 @@ export const MATHS_STRANDS: Strand[] = [
 /** Maths beyond the NCERT books, on the Maths Outliers tab at /maths/outliers. */
 export const MATHS_OUTLIER_STRANDS: Strand[] = [
   {
+    id: "nature",
+    name: "Patterns in nature",
+    colour: "var(--c-yellow)",
+    chapters: [
+      { classNum: 7, title: "Sunflowers and the golden ratio", href: "/maths/outliers/golden-ratio", sim: "Grow a sunflower seed by seed and hunt the golden angle", extra: true },
+      { classNum: 9, title: "Shapes that never end", href: "/maths/outliers/fractals", sim: "Step a Sierpinski triangle and a Koch snowflake with an endless edge", extra: true },
+    ],
+  },
+  {
     id: "infinity",
     name: "Infinity",
     colour: "var(--c-violet)",
-    chapters: [{ classNum: 9, title: "Infinite sums", href: "/maths/outliers/infinite-sums", sim: "Eat half a laddoo forever, race Zeno's tortoise and see which endless sums settle", extra: true }],
+    chapters: [
+      { classNum: 9, title: "Infinite sums", href: "/maths/outliers/infinite-sums", sim: "Eat half a laddoo forever, race Zeno's tortoise and see which endless sums settle", extra: true },
+      { classNum: 9, title: "Chasing π", href: "/maths/outliers/chasing-pi", sim: "Squeeze π between polygons and add Madhava's series until it reaches Aryabhata's 3.1416", extra: true },
+    ],
   },
   {
     id: "codes",
     name: "Codes and growth",
     colour: "var(--c-lime)",
-    chapters: [{ classNum: 8, title: "Secret codes", href: "/maths/outliers/ciphers", sim: "Spin a cipher wheel, do clock sums and crack a code by counting letters", extra: true }],
+    chapters: [
+      { classNum: 8, title: "Secret codes", href: "/maths/outliers/ciphers", sim: "Spin a cipher wheel, do clock sums and crack a code by counting letters", extra: true },
+      { classNum: 8, title: "The chessboard and the rice", href: "/maths/outliers/chessboard", sim: "Double rice grains square by square and race ₹1 lakh a day against 1 paisa doubled", extra: true },
+    ],
   },
 ];
 

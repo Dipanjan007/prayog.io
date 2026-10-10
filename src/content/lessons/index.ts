@@ -64,6 +64,10 @@ import { lesson as quadrilaterals } from "./quadrilaterals";
 import { lesson as trigRatios } from "./trig-ratios";
 import { lesson as circleAreas } from "./circle-areas";
 import { lesson as twinTriangles } from "./twin-triangles";
+import { lesson as goldenRatio } from "./golden-ratio";
+import { lesson as chessboard } from "./chessboard";
+import { lesson as fractals } from "./fractals";
+import { lesson as chasingPi } from "./chasing-pi";
 import type { LessonDef } from "./types";
 
 /** Every playable lesson, in class order. */
@@ -134,6 +138,10 @@ export const LESSONS: LessonDef[] = [
   trigRatios,
   circleAreas,
   twinTriangles,
+  goldenRatio,
+  chessboard,
+  fractals,
+  chasingPi,
 ];
 
 /** Where each lesson is played, by lesson id. */
@@ -204,4 +212,8 @@ export const LESSON_HREF: Record<string, string> = {
   "c10-trig-ratios": "/maths/trig-ratios",
   "c10-circle-areas": "/maths/circle-areas",
   "c7-twin-triangles": "/maths/twin-triangles",
+  "xm-golden-ratio": "/maths/outliers/golden-ratio",
+  "xm-chessboard": "/maths/outliers/chessboard",
+  "xm-fractals": "/maths/outliers/fractals",
+  "xm-chasing-pi": "/maths/outliers/chasing-pi",
 };

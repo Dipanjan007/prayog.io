@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
+import SubjectPanel from "@/components/SubjectPanel";
 import ServiceWorker from "@/components/ServiceWorker";
 import SyncProgress from "@/components/SyncProgress";
 import SendSuggestions from "@/components/SendSuggestions";
@@ -27,10 +28,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col font-sans">
         <NavBar />
-        <main className="mx-auto w-full max-w-6xl flex-1 px-4 pb-24 pt-4 sm:px-6">
-          <AccessGate>{children}</AccessGate>
-        </main>
-        <footer className="mx-auto w-full max-w-6xl px-4 pb-8 text-xs text-white/40 sm:px-6">
+        <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-6 px-4 pb-24 pt-4 sm:px-6 lg:flex-row">
+          <SubjectPanel />
+          <main className="min-w-0 flex-1">
+            <AccessGate>{children}</AccessGate>
+          </main>
+        </div>
+        <footer className="mx-auto w-full max-w-7xl px-4 pb-8 text-xs text-white/40 sm:px-6">
           Prayog follows the NCERT syllabus. No ads and no tracking.{" "}
           <Link href="/privacy" className="underline hover:text-white/70">
             Privacy

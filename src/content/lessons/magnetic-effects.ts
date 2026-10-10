@@ -90,6 +90,14 @@ export const lesson: LessonDef = {
     formula: "F = B × I × L",
     formulaNote: "The force on a current-carrying wire in a magnetic field: stronger field B, bigger current I and longer wire L give a bigger push. This is how motors turn.",
   },
+  symbols: [
+    { sym: "F", meaning: "force on the wire, in newtons (N)" },
+    { sym: "B", meaning: "strength of the magnetic field, in teslas (T)" },
+    { sym: "I", meaning: "current, in amperes (A)" },
+    { sym: "L", meaning: "length of wire inside the field, in m" },
+    { sym: "r", meaning: "distance from the wire, in m" },
+    { sym: "∝", meaning: "goes up in step with (is proportional to)" },
+  ],
   ideas: [
     {
       title: "Magnetic field and field lines",
@@ -98,7 +106,7 @@ export const lesson: LessonDef = {
     {
       title: "Field due to a current",
       text: "Around a straight wire the field lines are concentric circles. Use the right-hand thumb rule to find their direction. The field grows with the current and falls as you move away from the wire. A circular loop gives straight lines at its centre. A solenoid gives a uniform field inside, like a bar magnet.",
-      formula: "Straight wire: B ∝ I / r",
+      formula: "Straight wire: B ∝ I ÷ r",
     },
     {
       title: "Force on a conductor",

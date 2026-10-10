@@ -81,6 +81,10 @@ export const lesson: LessonDef = {
     formula: "P = 1 ÷ f",
     formulaNote: "The power of a lens, in dioptres, is 1 divided by its focal length in metres. A stronger lens has a shorter focal length.",
   },
+  symbols: [
+    { sym: "P", meaning: "power of a lens, in dioptres (D)" },
+    { sym: "f", meaning: "focal length, in metres; negative for a concave lens" },
+  ],
   ideas: [
     {
       title: "Plane mirror",

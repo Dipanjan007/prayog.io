@@ -218,6 +218,18 @@ export default function ProblemPlayer({ setId, problemId }: { setId: string; pro
             )}
           </form>
 
+          <details className="rounded-2xl border border-cyan-300/20 bg-cyan-300/[0.04] p-3" data-testid="symbols">
+            <summary className="cursor-pointer text-sm text-cyan-200">What the symbols mean</summary>
+            <dl className="mt-2 grid gap-x-3 gap-y-1 text-sm sm:grid-cols-[auto_1fr]">
+              {set.symbols.map((s) => (
+                <div key={s.sym} className="contents">
+                  <dt className="font-mono text-cyan-200">{s.sym}</dt>
+                  <dd className="mb-1 text-white/70 sm:mb-0">{s.meaning}</dd>
+                </div>
+              ))}
+            </dl>
+          </details>
+
           {/* Hints and solution */}
           <div className="glass rounded-3xl p-4">
             <div className="flex flex-wrap gap-2">

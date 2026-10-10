@@ -328,7 +328,7 @@ export default function GravityLab({ onReading, mystery = null }: Props) {
             <Stat label="Compared with 📌" value={`× ${fmtRatio(ratio)}`} />
           </div>
           <p className="text-center text-xs text-white/50 tabular-nums">
-            F = G m₁m₂ ÷ r² = 6.674 × 10⁻¹¹ × ({m1} × 10²⁴) × ({m2} × 10²²) ÷ ({r} × 10⁸ m)²
+            F = (G × m₁ × m₂) ÷ r² = (6.674 × 10⁻¹¹ × ({m1} × 10²⁴) × ({m2} × 10²²)) ÷ ({r} × 10⁸ m)²
           </p>
           <Slider label="Mass m₁ (big body)" value={`${m1} × 10²⁴ kg`} min={1} max={8} step={1} v={m1} onChange={setM1} />
           <Slider label="Mass m₂ (small body)" value={`${m2} × 10²² kg`} min={1} max={8} step={1} v={m2} onChange={setM2} />
@@ -388,7 +388,7 @@ export default function GravityLab({ onReading, mystery = null }: Props) {
             💥 Fire the cannon
           </button>
           <p className="text-center text-xs text-white/40">
-            The mountain is {MOUNTAIN_H / 1000} km tall, above the air. Here orbit speed is √(GM ÷ r) = {(circularSpeed(WORLDS.earth.M, r0) / 1000).toFixed(2)} km/s.
+            The mountain is {MOUNTAIN_H / 1000} km tall, above the air. Here orbit speed is √((G × M) ÷ r) = {(circularSpeed(WORLDS.earth.M, r0) / 1000).toFixed(2)} km/s.
           </p>
         </>
       )}
@@ -927,7 +927,7 @@ function drawSqueeze(ctx: CanvasRenderingContext2D, w: number, h: number, label:
     }
   }
   ctx.fillStyle = "#fb923c";
-  ctx.fillText(bh ? "light trapped" : rsPx >= 2 ? "orange ring: 2GM ÷ c²" : `2GM ÷ c² = ${fmtLen(rs)}`, zx, zy + zr + 22);
+  ctx.fillText(bh ? "light trapped" : rsPx >= 2 ? "orange ring: (2 × G × M) ÷ c²" : `(2 × G × M) ÷ c² = ${fmtLen(rs)}`, zx, zy + zr + 22);
 
   // Escape speed bar on a log scale, from 1 km/s to the speed of light.
   const bx = 14;

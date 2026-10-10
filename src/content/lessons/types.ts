@@ -26,6 +26,8 @@ export interface LessonDef {
   hook: { title: string; text: string };
   predict: { question: string; options: string[]; answer: number };
   tasks: { id: string; title: string; text: string; found: string }[];
+  /** What each symbol in the lesson's formulas means, in plain words for students. */
+  symbols: { sym: string; meaning: string }[];
   ideas: { title: string; text: string; formula?: string }[];
   /** The person behind the big idea: a fact students remember, and the formula they gave us. */
   discovery: {

@@ -95,6 +95,11 @@ export const lesson: LessonDef = {
     formula: "V = n × V₁",
     formulaNote: "n identical cells joined in series give n times the voltage of one cell: three lemon cells of about 0.9 V give about 2.8 V.",
   },
+  symbols: [
+    { sym: "V", meaning: "total voltage of the battery, in volts (V)" },
+    { sym: "n", meaning: "number of cells joined in series" },
+    { sym: "V₁", meaning: "voltage of one cell, such as 1.5 V" },
+  ],
   ideas: [
     {
       title: "Current makes a magnet",

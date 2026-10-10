@@ -77,7 +77,7 @@ export default function LessonPlayer() {
       );
     } else {
       setFeedback(
-        `Not quite. At ${b}c it measures ${L.toFixed(1)} m, ${L > r.L ? "too long: go faster" : "too short: go slower"}. Use L ÷ L₀ = √(1 − v²/c²).`,
+        `Not quite. At ${b}c it measures ${L.toFixed(1)} m, ${L > r.L ? "too long: go faster" : "too short: go slower"}. Use L ÷ L₀ = √(1 − (v² ÷ c²)).`,
       );
     }
   };

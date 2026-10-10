@@ -74,9 +74,17 @@ export const lesson: LessonDef = {
     scientist: "Daniel Bernoulli",
     years: "1700–1782",
     fact: "Bernoulli trained as a doctor. His 1738 book Hydrodynamica showed that faster-moving fluid has lower pressure, and his trick of putting a thin tube into a flowing pipe was later used to measure blood pressure for about 170 years.",
-    formula: "P + ½ρv² = constant",
+    formula: "P + (½ × ρ × v²) = constant",
     formulaNote: "Bernoulli's principle: where air (density ρ) moves faster (bigger v), its pressure P drops. That is how wings lift planes and push racing cars down.",
   },
+  symbols: [
+    { sym: "P", meaning: "pressure of the air, in pascals (Pa)" },
+    { sym: "ρ", meaning: "rho, density of the air, about 1.2 kg/m³" },
+    { sym: "v", meaning: "speed of the air, in m/s" },
+    { sym: "½", meaning: "one half" },
+    { sym: "F", meaning: "force, in N" },
+    { sym: "A", meaning: "area, in m²" },
+  ],
   ideas: [
     {
       title: "Air exerts pressure",

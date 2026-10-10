@@ -79,7 +79,7 @@ export default function LessonPlayer() {
         setFeedback("All three trips solved. You have mastered time dilation!");
       }
     } else {
-      setFeedback("Not quite. Find γ = 1 ÷ √(1 − v²/c²) for this speed, then Earth years = γ × astronaut years.");
+      setFeedback("Not quite. Find γ = 1 ÷ √(1 − (v² ÷ c²)) for this speed, then Earth years = γ × astronaut years.");
     }
   };
 

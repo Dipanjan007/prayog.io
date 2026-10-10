@@ -120,6 +120,20 @@ export const lesson: LessonDef = {
     formula: "MA = Load ÷ Effort",
     formulaNote: "Mechanical advantage: how many times a machine multiplies the force you put in.",
   },
+  symbols: [
+    { sym: "MA", meaning: "mechanical advantage: load ÷ effort" },
+    { sym: "W", meaning: "work done, in joules (J)" },
+    { sym: "F", meaning: "force, in newtons (N)" },
+    { sym: "d", meaning: "distance moved, in m" },
+    { sym: "θ", meaning: "theta, angle between the force and the motion" },
+    { sym: "cos", meaning: "cosine of the angle, a calculator button; cos 0° = 1" },
+    { sym: "P", meaning: "power, in watts (W)" },
+    { sym: "t", meaning: "time, in s" },
+    { sym: "m", meaning: "mass, in kg" },
+    { sym: "g", meaning: "pull of gravity, 9.8 m/s²" },
+    { sym: "h", meaning: "height raised, in m" },
+    { sym: "L", meaning: "length of the ramp, in m" },
+  ],
   ideas: [
     {
       title: "Work can be positive, negative or zero",
@@ -138,8 +152,8 @@ export const lesson: LessonDef = {
     },
     {
       title: "Inclined plane",
-      text: "A ramp lets you raise a load with a force smaller than its weight. With no friction, the force along a ramp of length L up to height h is m g h ÷ L. A longer ramp means a gentler slope and a smaller force, but the work F × L is always m g h. Machines make work easier, not smaller.",
-      formula: "F × L = m g h  (no friction);   MA = L ÷ h",
+      text: "A ramp lets you raise a load with a force smaller than its weight. With no friction, the force along a ramp of length L up to height h is (m × g × h) ÷ L. A longer ramp means a gentler slope and a smaller force, but the work F × L is always m g h. Machines make work easier, not smaller.",
+      formula: "F × L = m × g × h  (no friction);   MA = L ÷ h",
     },
   ],
   challenge: {
@@ -169,13 +183,13 @@ export const lesson: LessonDef = {
       q: "A 60 kg box is pulled up a smooth ramp 4 m long onto a platform 1.2 m high. What force is needed along the ramp? (g = 9.8 m/s²)",
       options: ["About 147 N", "About 176 N", "About 588 N", "About 706 N"],
       answer: 1,
-      why: "F × L = m g h, so F = 60 × 9.8 × 1.2 ÷ 4 ≈ 176 N. That is much less than the 588 N weight.",
+      why: "F × L = m × g × h, so F = (60 × 9.8 × 1.2) ÷ 4 ≈ 176 N. That is much less than the 588 N weight.",
     },
     {
       q: "A 50 kg student runs up stairs 3 m high in 5 s. What is her power? (g = 9.8 m/s²)",
       options: ["30 W", "150 W", "294 W", "1470 W"],
       answer: 2,
-      why: "W = m g h = 50 × 9.8 × 3 = 1470 J. P = W ÷ t = 1470 ÷ 5 = 294 W.",
+      why: "W = m × g × h = 50 × 9.8 × 3 = 1470 J. P = W ÷ t = 1470 ÷ 5 = 294 W.",
     },
   ],
 };

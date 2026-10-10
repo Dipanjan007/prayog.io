@@ -3,7 +3,7 @@
  * Covers §12.4 Domestic electric circuits (live, neutral and earth wires; 220 V, 50 Hz AC;
  * fuse and MCB; separate 5 A and 15 A circuits; appliances in parallel; short circuit;
  * overloading; earthing) and, from "Electricity", §11.8 Electric power
- * (P = VI = I²R = V²/R, the kilowatt hour and the electricity bill).
+ * (P = V × I = I² × R = V² ÷ R, the kilowatt hour and the electricity bill).
  * Recheck wording against the NCERT chapter PDFs whenever the books are revised.
  */
 import type { BudgetRound } from "@/lib/sim/wiring";
@@ -112,6 +112,14 @@ export const lesson: LessonDef = {
     formula: "P = V × I",
     formulaNote: "Power in watts equals the voltage times the current. Energy is power times time, so a bill counts kilowatt hours.",
   },
+  symbols: [
+    { sym: "P", meaning: "power of the appliance, in watts (W)" },
+    { sym: "V", meaning: "mains voltage, 220 V in India" },
+    { sym: "I", meaning: "current, in amperes (A)" },
+    { sym: "R", meaning: "resistance, in ohms (Ω)" },
+    { sym: "kWh", meaning: "kilowatt hour, one 'unit' on the electricity bill" },
+    { sym: "I₁, I₂, …", meaning: "the current through each appliance" },
+  ],
   ideas: [
     {
       title: "Live, neutral and earth",
@@ -120,7 +128,7 @@ export const lesson: LessonDef = {
     {
       title: "Two circuits, all in parallel",
       text: "Homes use a 5 A circuit for bulbs and fans and a 15 A circuit for geysers, irons, ACs and other heavy appliances. Every appliance is connected in parallel across live and neutral, so each gets the full 220 V and has its own switch. Their currents add up in the main wire.",
-      formula: "I = P / V    I(total) = I₁ + I₂ + I₃ + …",
+      formula: "I = P ÷ V    I(total) = I₁ + I₂ + I₃ + …",
     },
     {
       title: "Short circuit, overloading and fuses",
@@ -133,7 +141,7 @@ export const lesson: LessonDef = {
     {
       title: "Power and the bill",
       text: "Power is the rate of using electrical energy. The unit of energy on your bill is the kilowatt hour (kWh), also called a unit: 1 kW used for 1 hour.",
-      formula: "P = VI = I²R = V²/R    1 kWh = 3.6 × 10⁶ J    Bill = units × tariff",
+      formula: "P = V × I = I² × R = V² ÷ R    1 kWh = 3.6 × 10⁶ J    Bill = units × tariff",
     },
   ],
   challenge: {
@@ -151,7 +159,7 @@ export const lesson: LessonDef = {
       q: "An electric iron is rated 1100 W, 220 V. What current does it take?",
       options: ["0.2 A", "5 A", "11 A", "242 A"],
       answer: 1,
-      why: "I = P / V = 1100 ÷ 220 = 5 A.",
+      why: "I = P ÷ V = 1100 ÷ 220 = 5 A.",
     },
     {
       q: "Why are household appliances connected in parallel?",

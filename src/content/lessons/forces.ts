@@ -98,6 +98,13 @@ export const lesson: LessonDef = {
     formula: "F = m × a",
     formulaNote: "Newton's second law: the force needed equals mass times acceleration. Push a heavier crate and it speeds up less for the same push.",
   },
+  symbols: [
+    { sym: "F", meaning: "force, in newtons (N)" },
+    { sym: "m", meaning: "mass, in kg" },
+    { sym: "a", meaning: "acceleration, in m/s²" },
+    { sym: "W", meaning: "weight, in N" },
+    { sym: "g", meaning: "pull of gravity, about 9.8 m/s² on the Earth" },
+  ],
   ideas: [
     {
       title: "A force is a push or a pull",

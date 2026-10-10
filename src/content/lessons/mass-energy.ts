@@ -110,6 +110,17 @@ export const lesson: LessonDef = {
     formula: "E = m × c²",
     formulaNote: "Energy equals mass times the speed of light squared, so a tiny mass holds a huge energy.",
   },
+  symbols: [
+    { sym: "E", meaning: "energy, in joules (J)" },
+    { sym: "m", meaning: "mass, in kg" },
+    { sym: "c", meaning: "speed of light, about 3 × 10⁸ m/s" },
+    { sym: "c²", meaning: "c × c, about 9 × 10¹⁶" },
+    { sym: "L", meaning: "the Sun's power output, 3.828 × 10²⁶ watts" },
+    { sym: "G", meaning: "the gravitational constant" },
+    { sym: "M", meaning: "mass of the star or planet, in kg" },
+    { sym: "b", meaning: "how close the light passes to the centre, in m" },
+    { sym: "r", meaning: "distance from the centre, in m" },
+  ],
   ideas: [
     {
       title: "Mass is frozen energy",
@@ -119,7 +130,7 @@ export const lesson: LessonDef = {
     {
       title: "How the Sun shines",
       text: "Deep in the Sun's core, 4 hydrogen nuclei fuse into 1 helium nucleus. The helium has about 0.7% less mass than the 4 hydrogens, and that missing mass comes out as energy. The Sun's power is 3.828 × 10²⁶ W, so it loses about 4.26 million tonnes of mass every second. Even so, in 4.6 billion years it has lost less than 0.1% of its mass.",
-      formula: "Mass lost per second = L ÷ c² = 3.828 × 10²⁶ ÷ (3 × 10⁸)² ≈ 4.26 × 10⁹ kg",
+      formula: "Mass lost per second = L ÷ c² = (3.828 × 10²⁶) ÷ (3 × 10⁸)² ≈ 4.26 × 10⁹ kg",
     },
     {
       title: "Nuclear power in India",
@@ -129,12 +140,12 @@ export const lesson: LessonDef = {
     {
       title: "Mass curves space-time",
       text: "Einstein's general relativity (1915) says mass curves space and time around it, and things moving freely follow the curves. A rubber sheet dented by a ball is only an analogy: real space-time is not a sheet and nothing pulls it downward. Starlight passing the Sun's edge bends by 1.75 arcseconds, twice the Newton-style guess. Very compact stars curve space-time far more, which leads to black holes.",
-      formula: "Bending angle = 4GM ÷ (c² × b)",
+      formula: "Bending angle = (4 × G × M) ÷ (c² × b)",
     },
     {
       title: "Gravity slows clocks",
       text: "A clock deeper in gravity ticks slower than one higher up. GPS satellites orbit 20,200 km up, in weaker gravity, so their clocks gain about 45 μs a day. Their speed slows them by about 7 μs a day, so the net gain is about 38 μs a day. Without correcting this, GPS positions would drift by about 10 km every day.",
-      formula: "Clock rate = √(1 − 2GM ÷ (r c²))",
+      formula: "Clock rate = √(1 − ((2 × G × M) ÷ (r × c²)))",
     },
   ],
   challenge: {
@@ -163,7 +174,7 @@ export const lesson: LessonDef = {
       q: "Roughly how much mass does the Sun turn into energy every second?",
       options: ["4.26 kg", "4.26 tonnes", "4.26 million tonnes", "All of Earth's mass"],
       answer: 2,
-      why: "Mass lost = L ÷ c² = 3.828 × 10²⁶ ÷ 9 × 10¹⁶ ≈ 4.26 × 10⁹ kg, which is 4.26 million tonnes each second.",
+      why: "Mass lost = L ÷ c² = (3.828 × 10²⁶) ÷ (9 × 10¹⁶) ≈ 4.26 × 10⁹ kg, which is 4.26 million tonnes each second.",
     },
     {
       q: "Why does 1 kg of uranium in a reactor give millions of times more energy than 1 kg of coal?",

@@ -107,9 +107,16 @@ export const lesson: LessonDef = {
     scientist: "Joseph Fourier",
     years: "1768–1830",
     fact: "Fourier worked out the maths of how heat flows through solids. In 1824 he was also the first to suggest that the air around Earth traps heat and keeps the planet warm, the greenhouse effect.",
-    formula: "Heat flow per second = k × A × ΔT ÷ L",
+    formula: "Heat flow per second = (k × A × ΔT) ÷ L",
     formulaNote: "Fourier's law: heat flows faster through a good conductor (big k), a wider rod (A), a bigger temperature difference (ΔT) and a shorter rod (L).",
   },
+  symbols: [
+    { sym: "k", meaning: "how well the material conducts heat" },
+    { sym: "A", meaning: "area heat flows through, in m²" },
+    { sym: "ΔT", meaning: "delta T, the temperature difference between the two ends, in °C" },
+    { sym: "L", meaning: "thickness the heat must cross, in m" },
+    { sym: ">", meaning: "conducts better than" },
+  ],
   ideas: [
     {
       title: "Conduction",

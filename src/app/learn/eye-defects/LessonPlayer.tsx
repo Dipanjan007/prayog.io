@@ -115,7 +115,7 @@ export default function LessonPlayer() {
       }
       setFeedback({
         ok: true,
-        text: `${c.name.split(",")[0]} is happy! Near point ${fmtDist(1 / c.amp)}, so P = 1/0.25 − 1/${(1 / c.amp).toFixed(2)} = ${fmtD(right)}.`,
+        text: `${c.name.split(",")[0]} is happy! Near point ${fmtDist(1 / c.amp)}, so P = (1 ÷ 0.25) − (1 ÷ ${(1 / c.amp).toFixed(2)}) = ${fmtD(right)}.`,
       });
       setRound(done < CUSTOMERS.length ? done : null);
     } else if (r.power < right)

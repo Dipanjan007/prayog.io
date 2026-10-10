@@ -80,7 +80,7 @@ export const lesson: LessonDef = {
       title: "Ping the seabed",
       text: "Switch to SONAR mode and send an ultrasound ping from the ship. Read the echo time.",
       found:
-        "The ship sends ultrasound down and times the echo from the seabed. The sound goes down and back up, so depth = v × t ÷ 2, with v about 1500 m/s in sea water.",
+        "The ship sends ultrasound down and times the echo from the seabed. The sound goes down and back up, so depth = (v × t) ÷ 2, with v about 1500 m/s in sea water.",
     },
   ],
   discovery: {
@@ -90,6 +90,14 @@ export const lesson: LessonDef = {
     formula: "v = f × λ",
     formulaNote: "The speed of a wave equals its frequency times its wavelength.",
   },
+  symbols: [
+    { sym: "v", meaning: "speed of sound, in m/s" },
+    { sym: "f", meaning: "frequency: waves each second, in hertz (Hz)" },
+    { sym: "λ", meaning: "lambda, wavelength: length of one wave, in m" },
+    { sym: "T", meaning: "time period of one wave, in s" },
+    { sym: "d", meaning: "distance to the wall, in m" },
+    { sym: "t", meaning: "time for the echo to come back, in s" },
+  ],
   ideas: [
     {
       title: "Sound is a longitudinal wave",
@@ -98,7 +106,7 @@ export const lesson: LessonDef = {
     {
       title: "Frequency, pitch, amplitude, loudness",
       text: "Frequency is the number of vibrations each second, measured in hertz (Hz). A higher frequency gives a higher pitch. Amplitude is the largest change from the normal state. A larger amplitude gives a louder sound. Time period T is the time for one vibration.",
-      formula: "f = 1 / T",
+      formula: "f = 1 ÷ T",
     },
     {
       title: "Wave speed",
@@ -108,7 +116,7 @@ export const lesson: LessonDef = {
     {
       title: "Echo, hearing range and SONAR",
       text: "An echo is sound reflected from a large surface. To hear it apart from the original sound, it must come back after at least 0.1 s, so the wall must be at least about 17.2 m away. Humans hear from 20 Hz to 20 kHz. Sound above 20 kHz is ultrasound. SONAR sends ultrasound into water and times the echo to find the depth of the sea or a submarine.",
-      formula: "2d = v × t,  so  d = v × t ÷ 2",
+      formula: "2 × d = v × t,  so  d = (v × t) ÷ 2",
     },
   ],
   challenge: {
@@ -155,7 +163,7 @@ export const lesson: LessonDef = {
       q: "A ship's SONAR gets an echo from the seabed after 2 s. Sound travels at 1500 m/s in sea water. How deep is the sea?",
       options: ["3000 m", "750 m", "1500 m", "6000 m"],
       answer: 2,
-      why: "2d = v × t = 1500 × 2 = 3000 m, so d = 1500 m.",
+      why: "2 × d = v × t = 1500 × 2 = 3000 m, so d = 1500 m.",
     },
     {
       q: "A dog whistle gives a sound of 30 kHz. Why can't we hear it?",

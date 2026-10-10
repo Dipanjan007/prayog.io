@@ -88,9 +88,18 @@ export const lesson: LessonDef = {
     scientist: "Galileo Galilei",
     years: "1564–1642",
     fact: "The story goes that as a 19-year-old in Pisa Cathedral, Galileo timed a swinging lamp against his own pulse. Wide swings and small swings took the same time, the idea behind pendulum clocks.",
-    formula: "T = 2π √(L ÷ g)",
+    formula: "T = 2π × √(L ÷ g)",
     formulaNote: "A pendulum's time period depends only on its length L (and gravity g), not on its mass or how wide it swings.",
   },
+  symbols: [
+    { sym: "T", meaning: "time period: time for one full swing, in seconds (s)" },
+    { sym: "L", meaning: "length of the pendulum string, in metres (m)" },
+    { sym: "g", meaning: "pull of gravity, about 9.8 m/s²" },
+    { sym: "π", meaning: "pi, about 3.14" },
+    { sym: "√( )", meaning: "square root of what is inside the bracket" },
+    { sym: "÷", meaning: "divide" },
+    { sym: "×", meaning: "multiply" },
+  ],
   ideas: [
     {
       title: "Clocks, old and new",

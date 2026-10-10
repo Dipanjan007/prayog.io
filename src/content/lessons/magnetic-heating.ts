@@ -83,6 +83,14 @@ export const lesson: LessonDef = {
     formula: "H = I² × R × t",
     formulaNote: "Joule's law of heating: the heat made in a wire grows with the square of the current, so doubling the current gives four times the heat. That is why a fuse wire melts.",
   },
+  symbols: [
+    { sym: "H", meaning: "heat made, in joules (J)" },
+    { sym: "I", meaning: "current, in amperes (A)" },
+    { sym: "R", meaning: "resistance, in ohms (Ω)" },
+    { sym: "t", meaning: "time, in seconds (s)" },
+    { sym: "I²", meaning: "I × I" },
+    { sym: "∝", meaning: "goes up in step with (is proportional to)" },
+  ],
   ideas: [
     {
       title: "Magnetic effect of current",

@@ -83,6 +83,18 @@ export const lesson: LessonDef = {
     formula: "n = sin i ÷ sin r",
     formulaNote: "Snell's law: the refractive index n of glass or water links the angle of the ray going in (i) to the angle inside (r).",
   },
+  symbols: [
+    { sym: "n", meaning: "refractive index: how much a material slows and bends light" },
+    { sym: "i", meaning: "angle of incidence, between the incoming ray and the normal" },
+    { sym: "r", meaning: "angle of refraction, between the bent ray and the normal" },
+    { sym: "sin", meaning: "the sine of the angle, a button on the calculator" },
+    { sym: "u", meaning: "object distance (negative when in front)" },
+    { sym: "v", meaning: "image distance" },
+    { sym: "f", meaning: "focal length" },
+    { sym: "m", meaning: "magnification: image height ÷ object height" },
+    { sym: "P", meaning: "power of a lens, in dioptres (D), with f in metres" },
+    { sym: "n₂₁", meaning: "refractive index of medium 2 compared with medium 1" },
+  ],
   ideas: [
     {
       title: "Laws of refraction",
@@ -97,12 +109,12 @@ export const lesson: LessonDef = {
     {
       title: "Lens and mirror formulas",
       text: "Measure every distance from the lens's optical centre or the mirror's pole. Distances in the direction light travels are positive; the object is on the left, so u is negative.",
-      formula: "Lens: 1/v − 1/u = 1/f    Mirror: 1/v + 1/u = 1/f",
+      formula: "Lens: (1 ÷ v) − (1 ÷ u) = 1 ÷ f    Mirror: (1 ÷ v) + (1 ÷ u) = 1 ÷ f",
     },
     {
       title: "Magnification and power",
       text: "Negative magnification means a real, inverted image; positive means virtual and erect. Power in dioptres is 1 ÷ f with f in metres: positive for convex, negative for concave lenses.",
-      formula: "Lens: m = v/u    Mirror: m = −v/u    P = 1/f (D)",
+      formula: "Lens: m = v ÷ u    Mirror: m = −(v ÷ u)    P = 1 ÷ f (D)",
     },
   ],
   challenge: {
@@ -131,7 +143,7 @@ export const lesson: LessonDef = {
       q: "An object is 15 cm from a convex lens of focal length 10 cm. Where is the image?",
       options: ["6 cm on the same side", "30 cm on the other side", "25 cm on the other side", "At infinity"],
       answer: 1,
-      why: "1/v = 1/f + 1/u = 1/10 − 1/15 = 1/30, so v = +30 cm: real, on the other side.",
+      why: "1 ÷ v = (1 ÷ f) + (1 ÷ u) = (1 ÷ 10) − (1 ÷ 15) = 1 ÷ 30, so v = +30 cm: real, on the other side.",
     },
     {
       q: "Which mirror is used as a rear-view mirror in vehicles?",
@@ -143,7 +155,7 @@ export const lesson: LessonDef = {
       q: "What is the power of a concave lens of focal length 2 m?",
       options: ["+2 D", "−2 D", "+0.5 D", "−0.5 D"],
       answer: 3,
-      why: "P = 1/f = 1/(−2 m) = −0.5 D. Concave lenses have negative power.",
+      why: "P = 1 ÷ f = 1 ÷ (−2 m) = −0.5 D. Concave lenses have negative power.",
     },
     {
       q: "Where should an object be placed in front of a concave mirror to get a real image the same size as the object?",

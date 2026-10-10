@@ -67,12 +67,12 @@ export const ELECTRICITY_PROBLEMS: OlyProblem[] = [
     range: [0.2, 40],
     hints: [
       "First find the resistance the coil needs. With the voltage fixed, P = V² / R.",
-      "Then use R = ρ L / A, where A is the area of the wire's round cross-section, π d² / 4. Remember to turn millimetres into metres.",
+      "Then use R = (ρ L) / A, where A is the area of the wire's round cross-section, (π d²) / 4. Remember to turn millimetres into metres.",
     ],
     solution: [
       { text: "The supply voltage is fixed, so use P = V² / R to find the coil's resistance.", math: "R = V² / P = 230² / 1500 = 52900 / 1500 = 35.27 Ω" },
-      { text: "Find the cross-section area of the wire. The diameter is 0.50 mm = 5.0 × 10⁻⁴ m.", math: "A = π d² / 4 = 3.1416 × (5.0 × 10⁻⁴)² / 4 = 1.963 × 10⁻⁷ m²" },
-      { text: "Now R = ρ L / A gives the length.", math: "L = R A / ρ = 35.27 × 1.963 × 10⁻⁷ / 1.10 × 10⁻⁶ = 6.30 m" },
+      { text: "Find the cross-section area of the wire. The diameter is 0.50 mm = 5.0 × 10⁻⁴ m.", math: "A = (π d²) / 4 = [3.1416 × (5.0 × 10⁻⁴)²] / 4 = 1.963 × 10⁻⁷ m²" },
+      { text: "Now R = (ρ × L) ÷ A gives the length.", math: "L = (R A) / ρ = (35.27 × 1.963 × 10⁻⁷) / (1.10 × 10⁻⁶) = 6.30 m" },
       { text: "Check the fuse. The current is below 7 A, so the fuse holds.", math: "I = P / V = 1500 / 230 = 6.52 A" },
       { text: "A coil 10% shorter has 10% less resistance and draws 7.25 A, which blows the fuse. Shorter wire means more power, not less." },
     ],

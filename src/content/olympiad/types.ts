@@ -12,6 +12,8 @@ export interface OlySet {
   colour: string;
   /** Which reusable sim the set mostly uses. */
   sim: string;
+  /** What each symbol in the set's working means, in plain words. */
+  symbols: { sym: string; meaning: string }[];
 }
 
 export interface SolutionStep {

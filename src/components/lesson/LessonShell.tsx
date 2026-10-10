@@ -156,7 +156,7 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
                 {lesson.discovery.scientist} <span className="font-normal text-white/50">· {lesson.discovery.years}</span>
               </div>
               <p className="mt-1 text-sm text-white/70">{lesson.discovery.fact}</p>
-              <div className="mt-2 rounded-lg bg-black/30 px-3 py-2 font-mono text-sm text-cyan-200">{lesson.discovery.formula}</div>
+              <FormulaBox formula={lesson.discovery.formula} />
               <p className="mt-1 text-xs text-white/60">{lesson.discovery.formulaNote}</p>
             </div>
             <div className="grid gap-2">
@@ -164,10 +164,24 @@ export default function LessonShell({ lesson, api, sim, simNote, taskExtras, cha
                 <div key={idea.title} className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
                   <div className="font-semibold">{idea.title}</div>
                   <p className="mt-1 text-sm text-white/70">{idea.text}</p>
-                  {idea.formula && <div className="mt-2 rounded-lg bg-black/30 px-3 py-2 font-mono text-sm text-cyan-200">{idea.formula}</div>}
+                  {idea.formula && <FormulaBox formula={idea.formula} />}
                 </div>
               ))}
             </div>
+            {lesson.symbols.length > 0 && (
+              <div className="mt-2 rounded-xl border border-cyan-300/20 bg-cyan-300/[0.04] p-3" data-testid="symbols">
+                <div className="text-[11px] uppercase tracking-wider text-cyan-200/80">What the symbols mean</div>
+                <dl className="mt-2 grid gap-x-3 gap-y-1 text-sm sm:grid-cols-[auto_1fr]">
+                  {lesson.symbols.map((s) => (
+                    <div key={s.sym} className="contents">
+                      <dt className="font-mono text-cyan-200">{s.sym}</dt>
+                      <dd className="mb-1 text-white/70 sm:mb-0">{s.meaning}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <p className="mt-2 text-xs text-white/50">Brackets come first: work out what is inside ( ) before anything else, then × and ÷, then + and −.</p>
+              </div>
+            )}
             {!done.has("ideas") && (
               <button
                 className="btn-primary mt-4"
@@ -298,5 +312,16 @@ function Step({
       {open && <div className="mt-3">{children}</div>}
       {!open && lockedHint && <p className="mt-2 text-xs text-white/60">{lockedHint}</p>}
     </li>
+  );
+}
+
+/** Shows a formula, one equation per line where several are written side by side. */
+function FormulaBox({ formula }: { formula: string }) {
+  return (
+    <div className="mt-2 space-y-1 rounded-lg bg-black/30 px-3 py-2 font-mono text-sm text-cyan-200">
+      {formula.split(/\s{3,}|;\s+/).map((part) => (
+        <div key={part}>{part}</div>
+      ))}
+    </div>
   );
 }

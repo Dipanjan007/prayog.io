@@ -56,6 +56,8 @@ import { lesson as ciphers } from "./ciphers";
 import { lesson as infiniteSums } from "./infinite-sums";
 import { lesson as similarTriangles } from "./similar-triangles";
 import { lesson as solids } from "./solids";
+import { lesson as integers } from "./integers";
+import { lesson as sequences } from "./sequences";
 import type { LessonDef } from "./types";
 
 /** Every playable lesson, in class order. */
@@ -118,6 +120,8 @@ export const LESSONS: LessonDef[] = [
   infiniteSums,
   similarTriangles,
   solids,
+  integers,
+  sequences,
 ];
 
 /** Where each lesson is played, by lesson id. */
@@ -180,4 +184,6 @@ export const LESSON_HREF: Record<string, string> = {
   "xm-infinite-sums": "/maths/outliers/infinite-sums",
   "c10-similar-triangles": "/maths/similar-triangles",
   "c10-solids": "/maths/solids",
+  "c7-integers": "/maths/integers",
+  "c9-sequences": "/maths/sequences",
 };

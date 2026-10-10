@@ -169,6 +169,7 @@ export const MATHS_STRANDS: Strand[] = [
         sim: "Cut a chocolate bar both ways, share laddoos and fill lassi glasses",
         labs: [{ href: "/maths/decimals", title: "Zoom beyond the point", sim: "Zoom into tenths and hundredths, run a canteen bill and slide digits by 10 and 100" }],
       },
+      { classNum: 7, title: "Operations with Integers", href: "/maths/integers", sim: "Ride a lift into the basements, chill Leh below zero and cancel + and − tokens" },
       {
         classNum: 8,
         title: "A Square and A Cube",
@@ -198,6 +199,7 @@ export const MATHS_STRANDS: Strand[] = [
         sim: "Build an auto fare meter and watch its straight-line graph",
         labs: [{ href: "/maths/two-variables", title: "Pens, notebooks and one line", sim: "Find every pair that makes 2x + 3y = 12 and cross two lines to crack bills" }],
       },
+      { classNum: 9, title: "Predicting What Comes Next: Exploring Sequences and Progressions", href: "/maths/sequences", sim: "Build stadium rows and savings jars term by term, and race a doubling jar" },
       { classNum: 10, title: "Quadratic Equations", href: "/maths/quadratics", sim: "Bend y = ax² + bx + c with sliders and fence a garden with 40 m of wire" },
     ],
   },

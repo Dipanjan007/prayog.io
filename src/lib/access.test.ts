@@ -10,7 +10,7 @@ test("free lists have the promised sizes, and the copy reads naturally", () => {
 });
 
 test("hub pages and other routes are always open", () => {
-  for (const p of ["/", "/learn", "/olympiad", "/outliers", "/plans", "/join", "/privacy"]) assert.equal(contentKey(p), null);
+  for (const p of ["/", "/learn", "/maths", "/olympiad", "/outliers", "/plans", "/join", "/privacy"]) assert.equal(contentKey(p), null);
 });
 
 test("problems and second labs follow their set or chapter", () => {
@@ -33,6 +33,13 @@ test("each tier sees the right prompt", () => {
   assert.equal(needs("free", "/olympiad/optics/x"), "upgrade");
   assert.equal(needs("family", "/outliers/mass-energy"), null);
   assert.equal(needs("school", "/learn/sound"), null);
+});
+
+test("Maths lessons open with a free account, like every NCERT lesson", () => {
+  assert.equal(contentKey("/maths/triangles"), "/maths/triangles");
+  assert.equal(needs("visitor", "/maths/pythagoras"), "register");
+  assert.equal(needs("free", "/maths/pythagoras"), null);
+  assert.equal(needs("school", "/maths/coordinates"), null);
 });
 
 test("best tier wins", () => {

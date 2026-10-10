@@ -157,3 +157,11 @@ input[type="range"].range::-moz-range-thumb {
 @keyframes flow {
   to { stroke-dashoffset: -20; }
 }
+
+/* A row that scrolls sideways without showing a scrollbar. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

@@ -1,6 +1,6 @@
 /**
  * Who can open which lab. Visitors get a taste. A free account opens every
- * NCERT lesson, because the syllabus itself is free everywhere and children
+ * NCERT lesson (Physics and Maths), because the syllabus itself is free everywhere and children
  * only build the habit if tonight's chapter is open. The Family plan (or a
  * school) adds the full Olympiad track and Outliers. Paying never buys a
  * game advantage: XP, stars and the leaderboard work the same.
@@ -39,7 +39,7 @@ export const OPENS = {
 /** "1 Olympiad set", "2 Olympiad sets". */
 export const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? "" : "s"}`;
 
-const freeWithAccount = (key: string) => key.startsWith("/learn/") || FREE_OPEN.includes(key);
+const freeWithAccount = (key: string) => key.startsWith("/learn/") || key.startsWith("/maths/") || FREE_OPEN.includes(key);
 
 // A second lab opens with the chapter it belongs to.
 const LAB_CHAPTER = new Map(
@@ -48,7 +48,7 @@ const LAB_CHAPTER = new Map(
 
 /** The lesson, lab or Olympiad set a path belongs to, or null when the page is open to all. */
 export function contentKey(path: string): string | null {
-  const m = path.match(/^\/(learn|outliers|olympiad)\/([^/?#]+)/);
+  const m = path.match(/^\/(learn|maths|outliers|olympiad)\/([^/?#]+)/);
   if (!m) return null;
   const key = `/${m[1]}/${m[2]}`;
   return LAB_CHAPTER.get(key) ?? key;

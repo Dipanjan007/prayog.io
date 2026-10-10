@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { FreeNote } from "@/components/access/FreeNote";
 import StrandMap from "@/components/learn/StrandMap";
-import SubjectTabs from "@/components/learn/SubjectTabs";
 import { CATALOGUE, MATHS_BOOKS, MATHS_STRANDS } from "@/content/curriculum";
 
 export const metadata: Metadata = {
@@ -12,8 +11,7 @@ export const metadata: Metadata = {
 export default function MathsPage() {
   return (
     <div className="pt-4">
-      <SubjectTabs current="maths" />
-      <h1 className="mt-4 font-display text-4xl font-bold">Your maths map</h1>
+      <h1 className="font-display text-4xl font-bold">Your maths map</h1>
       <p className="mt-2 max-w-2xl text-white/60">
         NCERT Maths you can play with: {CATALOGUE.maths} chapters so far, one for each class from 7 to 10. Drag, stretch and measure, and
         the numbers change in front of you.

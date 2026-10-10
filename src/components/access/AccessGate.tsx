@@ -26,7 +26,7 @@ export default function AccessGate({ children }: { children: ReactNode }) {
       <LockPanel need={need} />
       <p className="mt-6 text-center text-sm text-white/45">
         Or go back to{" "}
-        <Link href={path.startsWith("/olympiad") ? "/olympiad" : path.startsWith("/outliers") ? "/outliers" : "/learn"} className="text-cyan-300 hover:underline">
+        <Link href={path.startsWith("/olympiad") ? "/olympiad" : path.startsWith("/outliers") ? "/outliers" : path.startsWith("/maths") ? "/maths" : "/learn"} className="text-cyan-300 hover:underline">
           the free labs
         </Link>
         .

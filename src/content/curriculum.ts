@@ -145,21 +145,21 @@ export const MATHS_STRANDS: Strand[] = [
     name: "Geometry",
     colour: "var(--c-cyan)",
     chapters: [
-      { classNum: 7, title: "A Tale of Three Intersecting Lines", href: "/learn/triangles", sim: "Join sticks into triangles, stretch the corners and watch the angles add up" },
-      { classNum: 8, title: "The Baudhayana-Pythagoras Theorem", href: "/learn/pythagoras", sim: "Grow squares on a triangle and send fire ladders to the right windows" },
+      { classNum: 7, title: "A Tale of Three Intersecting Lines", href: "/maths/triangles", sim: "Join sticks into triangles, stretch the corners and watch the angles add up" },
+      { classNum: 8, title: "The Baudhayana-Pythagoras Theorem", href: "/maths/pythagoras", sim: "Grow squares on a triangle and send fire ladders to the right windows" },
     ],
   },
   {
     id: "coordinates",
     name: "Coordinate geometry",
     colour: "var(--c-violet)",
-    chapters: [{ classNum: 9, title: "Orienting Yourself: The Use of Coordinates", href: "/learn/coordinates", sim: "Fly a delivery drone over a city grid with two numbers" }],
+    chapters: [{ classNum: 9, title: "Orienting Yourself: The Use of Coordinates", href: "/maths/coordinates", sim: "Fly a delivery drone over a city grid with two numbers" }],
   },
   {
     id: "trigonometry",
     name: "Trigonometry",
     colour: "var(--c-pink)",
-    chapters: [{ classNum: 10, title: "Some Applications of Trigonometry", href: "/learn/heights-distances", sim: "Measure the Qutub Minar with a clinometer, then look down from a lighthouse" }],
+    chapters: [{ classNum: 10, title: "Some Applications of Trigonometry", href: "/maths/heights-distances", sim: "Measure the Qutub Minar with a clinometer, then look down from a lighthouse" }],
   },
 ];
 

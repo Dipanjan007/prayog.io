@@ -119,8 +119,8 @@ export const LESSON_HREF: Record<string, string> = {
   "c7-time-motion": "/learn/time-motion",
   "c7-water-cycle": "/learn/water-cycle",
   "c9-work-energy": "/learn/work-energy",
-  "c7-triangles": "/learn/triangles",
-  "c8-pythagoras": "/learn/pythagoras",
-  "c9-coordinates": "/learn/coordinates",
-  "c10-heights-distances": "/learn/heights-distances",
+  "c7-triangles": "/maths/triangles",
+  "c8-pythagoras": "/maths/pythagoras",
+  "c9-coordinates": "/maths/coordinates",
+  "c10-heights-distances": "/maths/heights-distances",
 };

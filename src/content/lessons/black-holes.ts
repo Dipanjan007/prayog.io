@@ -29,9 +29,9 @@ export const lesson: LessonDef = {
     objective:
       "Squeeze Earth, the Sun and a giant star into smaller and smaller balls, watch gravity grow, and find the size at which each one becomes a black hole.",
     learn: [
-      "Surface gravity g = GM/R² grows fast when the same mass is squeezed smaller",
-      "Escape speed v = √(2GM/R), and why a black hole forms when it reaches the speed of light",
-      "The Schwarzschild radius r_s = 2GM/c² (Earth about 9 mm, Sun about 3 km)",
+      "Surface gravity g = (G × M) ÷ R² grows fast when the same mass is squeezed smaller",
+      "Escape speed v = √((2 × G × M) ÷ R), and why a black hole forms when it reaches the speed of light",
+      "The Schwarzschild radius r_s = (2 × G × M) ÷ c² (Earth about 9 mm, Sun about 3 km)",
       "How a dying star's core becomes a white dwarf, a neutron star or a black hole",
       "How black holes bend and trap light, and the first real pictures of them",
     ],
@@ -69,7 +69,7 @@ export const lesson: LessonDef = {
       title: "More mass, bigger horizon",
       text: "Now turn the Sun and the big star (20 Suns) into black holes too. Compare their event horizon radius r_s.",
       found:
-        "The Sun's horizon is about 2.95 km and the 20-Sun star's is about 59 km, 20 times bigger. The Schwarzschild radius grows in step with mass: r_s = 2GM/c². Double the mass, double the horizon.",
+        "The Sun's horizon is about 2.95 km and the 20-Sun star's is about 59 km, 20 times bigger. The Schwarzschild radius grows in step with mass: r_s = (2 × G × M) ÷ c². Double the mass, double the horizon.",
     },
     {
       id: "task:fate",
@@ -118,7 +118,7 @@ export const lesson: LessonDef = {
     },
     {
       title: "Event horizon",
-      text: "The event horizon is the boundary at r_s = 2GM/c². Light and anything else that crosses it can never come back out. It is not a solid surface. For Earth r_s is about 8.9 mm, for the Sun about 2.95 km, and it grows in step with mass.",
+      text: "The event horizon is the boundary at r_s = (2 × G × M) ÷ c². Light and anything else that crosses it can never come back out. It is not a solid surface. For Earth r_s is about 8.9 mm, for the Sun about 2.95 km, and it grows in step with mass.",
       formula: "r_s = (2 × G × M) ÷ c²",
     },
     {
@@ -142,7 +142,7 @@ export const lesson: LessonDef = {
   ],
   challenge: {
     title: "Mystery black holes",
-    text: "Three mystery objects with their masses. For each, find the radius at which it becomes a black hole, within 5%. Work it out with r_s = 2GM/c² (G = 6.674 × 10⁻¹¹, c = 3 × 10⁸ m/s) or squeeze it in the lab. One star per object.",
+    text: "Three mystery objects with their masses. For each, find the radius at which it becomes a black hole, within 5%. Work it out with r_s = (2 × G × M) ÷ c² (G = 6.674 × 10⁻¹¹, c = 3 × 10⁸ m/s) or squeeze it in the lab. One star per object.",
   },
   quiz: [
     {
@@ -161,7 +161,7 @@ export const lesson: LessonDef = {
       q: "Black hole A has 3 times the mass of black hole B. How does A's event horizon radius compare?",
       options: ["Same size", "3 times bigger", "9 times bigger", "3 times smaller"],
       answer: 1,
-      why: "r_s = 2GM/c² is proportional to M, so 3 times the mass gives 3 times the radius.",
+      why: "r_s = (2 × G × M) ÷ c² is proportional to M, so 3 times the mass gives 3 times the radius.",
     },
     {
       q: "A dying star leaves behind a core of about 2 Suns. What is it most likely to become?",

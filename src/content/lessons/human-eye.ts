@@ -134,7 +134,7 @@ export const lesson: LessonDef = {
       q: "A person's far point is 2 m. What power of lens do they need?",
       options: ["+2 D", "−2 D", "+0.5 D", "−0.5 D"],
       answer: 3,
-      why: "The lens must have f = −2 m (it makes far objects appear at the far point), so P = 1/(−2) = −0.5 D.",
+      why: "The lens must have f = −2 m (it makes far objects appear at the far point), so P = 1 ÷ (−2) = −0.5 D.",
     },
     {
       q: "The ability of the eye to change its focal length is called…",

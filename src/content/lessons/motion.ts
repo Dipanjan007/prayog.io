@@ -139,7 +139,7 @@ export const lesson: LessonDef = {
       q: "A car at 20 m/s brakes with a deceleration of 4 m/s². How far does it travel before stopping?",
       options: ["5 m", "50 m", "80 m", "100 m"],
       answer: 1,
-      why: "v² = u² + 2as gives 0 = 400 − 8s, so s = 50 m.",
+      why: "v² = u² + (2 × a × s) gives 0 = 400 − (8 × s), so s = 50 m.",
     },
     {
       q: "You run one full lap of a circular track and finish where you started. What is your displacement?",

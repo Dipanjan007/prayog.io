@@ -151,7 +151,7 @@ export const lesson: LessonDef = {
       q: "Dadi's near point is 1 m. What power of reading glasses lets her read at 25 cm?",
       options: ["−3 D", "+1 D", "+3 D", "+4 D"],
       answer: 2,
-      why: "P = 1/0.25 − 1/1 = 4 − 1 = +3 D. The lens forms a virtual image of the page 1 m away, where she can focus.",
+      why: "P = (1 ÷ 0.25) − (1 ÷ 1) = 4 − 1 = +3 D. The lens forms a virtual image of the page 1 m away, where she can focus.",
     },
     {
       q: "In a common bifocal lens, the upper part is…",

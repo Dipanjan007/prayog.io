@@ -355,7 +355,7 @@ export default function MachineBench({ onReading, job = null }: Props) {
             <Stat label="Balance" value={`${rF.toFixed(0)} N`} tone={rampLimit ? (rF <= rampLimit ? "pos" : "neg") : undefined} />
             <Stat label="Slope" value={`${theta.toFixed(0)}°`} />
             <Stat label="F × L" value={`${(rF * L).toFixed(0)} J`} />
-            <Stat label="m g h" value={`${mgh.toFixed(0)} J`} />
+            <Stat label="m × g × h" value={`${mgh.toFixed(0)} J`} />
           </div>
           <p className="text-center text-xs text-white/50 tabular-nums">
             Lifting straight up needs m g = {weight(rm).toFixed(0)} N. On this ramp: {rF.toFixed(0)} N.

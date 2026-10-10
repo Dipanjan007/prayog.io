@@ -93,6 +93,7 @@ export const lesson: LessonDef = {
     { sym: "f", meaning: "focal length" },
     { sym: "m", meaning: "magnification: image height ÷ object height" },
     { sym: "P", meaning: "power of a lens, in dioptres (D), with f in metres" },
+    { sym: "n₂₁", meaning: "refractive index of medium 2 compared with medium 1" },
   ],
   ideas: [
     {
@@ -142,7 +143,7 @@ export const lesson: LessonDef = {
       q: "An object is 15 cm from a convex lens of focal length 10 cm. Where is the image?",
       options: ["6 cm on the same side", "30 cm on the other side", "25 cm on the other side", "At infinity"],
       answer: 1,
-      why: "1/v = (1/f) + (1/u) = (1/10) − (1/15) = 1/30, so v = +30 cm: real, on the other side.",
+      why: "1 ÷ v = (1 ÷ f) + (1 ÷ u) = (1 ÷ 10) − (1 ÷ 15) = 1 ÷ 30, so v = +30 cm: real, on the other side.",
     },
     {
       q: "Which mirror is used as a rear-view mirror in vehicles?",
@@ -154,7 +155,7 @@ export const lesson: LessonDef = {
       q: "What is the power of a concave lens of focal length 2 m?",
       options: ["+2 D", "−2 D", "+0.5 D", "−0.5 D"],
       answer: 3,
-      why: "P = 1/f = 1/(−2 m) = −0.5 D. Concave lenses have negative power.",
+      why: "P = 1 ÷ f = 1 ÷ (−2 m) = −0.5 D. Concave lenses have negative power.",
     },
     {
       q: "Where should an object be placed in front of a concave mirror to get a real image the same size as the object?",

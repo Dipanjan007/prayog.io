@@ -107,6 +107,7 @@ export const lesson: LessonDef = {
     { sym: "R", meaning: "radius of the Earth, in m" },
     { sym: "G", meaning: "the gravitational constant" },
     { sym: "M", meaning: "mass of the Earth or Sun, in kg" },
+    { sym: "cos", meaning: "cosine of the angle, a button on the calculator; cos(0°) = 1 at the equator" },
     { sym: "√( )", meaning: "square root of what is inside the bracket" },
   ],
   ideas: [
@@ -126,7 +127,7 @@ export const lesson: LessonDef = {
     {
       title: "Mapping it to the spinning Earth",
       text: "The Earth turns once a day (23 h 56 min against the stars). At the equator the ground moves at about 465 m/s; in Delhi about 409 m/s; at the poles zero. Part of gravity is used up as centripetal force, so a 50 kg student weighs about 1.7 N (0.3%) less at the equator from spin alone. The Earth also bulges at the equator, so you are farther from its centre. Together g goes from 9.832 m/s² at the poles to 9.780 m/s² at the equator.",
-      formula: "v = ω R cos(latitude)      a = ω² R ≈ 0.034 m/s² at the equator",
+      formula: "v = ω × R × cos(latitude)      a = ω² × R ≈ 0.034 m/s² at the equator",
     },
     {
       title: "Gravity is the string for orbits",

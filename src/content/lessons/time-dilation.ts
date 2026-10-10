@@ -91,7 +91,7 @@ export const lesson: LessonDef = {
     scientist: "Albert Einstein",
     years: "1879–1955",
     fact: "In 1905 Einstein was working as a clerk at the Swiss patent office in Bern. That year he published special relativity, and a few months later E = mc².",
-    formula: "Δt = γ Δt₀,  γ = 1 ÷ √(1 − (v² ÷ c²))",
+    formula: "Δt = γ × Δt₀,  γ = 1 ÷ √(1 − (v² ÷ c²))",
     formulaNote: "A clock moving at speed v shows time Δt₀ while γ times more time, Δt, passes for you.",
   },
   symbols: [

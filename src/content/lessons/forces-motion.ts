@@ -93,6 +93,8 @@ export const lesson: LessonDef = {
     { sym: "v", meaning: "speed after, in m/s" },
     { sym: "p", meaning: "momentum: mass × velocity, in kg m/s" },
     { sym: "m₁, m₂", meaning: "the masses of the two objects" },
+    { sym: "u₁, u₂", meaning: "their speeds before the collision" },
+    { sym: "v₁, v₂", meaning: "their speeds after the collision" },
   ],
   ideas: [
     {

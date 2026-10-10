@@ -145,7 +145,7 @@ export default function CircuitLab({ onReading, puzzle = null }: Props) {
       // Glow brightness from power per metre of wire. Exaggerated so a few watts already show.
       glow: activeMode === "pair" ? 0 : Math.min(1, Math.sqrt(glowPerMetre / 12)),
       label: `${MATERIALS[material].label} · ${length.toFixed(2)} m · ${area} mm²`,
-      rText: `R = ρL/A = ${fmt(rWire)} Ω`,
+      rText: `R = (ρ × L) ÷ A = ${fmt(rWire)} Ω`,
     },
     pair: { r1, r2, how, i1: pair.i1, i2: pair.i2, r: pair.r },
   };
@@ -250,7 +250,7 @@ export default function CircuitLab({ onReading, puzzle = null }: Props) {
           <div className="grid grid-cols-3 gap-2 text-center">
             <Tile label="Voltmeter V" value={`${volts} V`} />
             <Tile label="Ammeter I" value={fmtAmps(i)} warn={overload} />
-            <Tile label={activeMode === "pair" ? "Total R" : "R = V/I"} value={`${fmt(r)} Ω`} />
+            <Tile label={activeMode === "pair" ? "Total R" : "R = V ÷ I"} value={`${fmt(r)} Ω`} />
           </div>
         )
       )}

@@ -248,8 +248,8 @@ export default function EnergyLab({ onReading, challenge = null }: Props) {
       {activeMode === "coaster" ? (
         <>
           <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-3">
-            <Bar label="Potential energy (mgh)" value={e.pe} max={e0} colour="bg-cyan-400" />
-            <Bar label="Kinetic energy (½mv²)" value={e.ke} max={e0} colour="bg-lime-400" />
+            <Bar label="Potential energy (m × g × h)" value={e.pe} max={e0} colour="bg-cyan-400" />
+            <Bar label="Kinetic energy (½ × m × v²)" value={e.ke} max={e0} colour="bg-lime-400" />
             <Bar label="Heat from friction" value={e.heat} max={e0} colour="bg-orange-400" />
             <Bar label="Total" value={e.total} max={e0} colour="bg-violet-400" />
             <div className="mt-2 flex justify-between text-xs text-white/50">
@@ -307,7 +307,7 @@ export default function EnergyLab({ onReading, challenge = null }: Props) {
             {challenge && <div className="mt-1 text-xs text-white/50">Test track: hill 1 is {challenge.h1} m, the last hill is {challenge.h2} m.</div>}
           </div>
           <p className="text-center text-xs text-white/40">
-            Drag the round handles or use the sliders. Hauling the cart up to {track.h0.toFixed(1)} m takes W = mgh = {kJ(liftWork)} kJ of work. A{" "}
+            Drag the round handles or use the sliders. Hauling the cart up to {track.h0.toFixed(1)} m takes W = m × g × h = {kJ(liftWork)} kJ of work. A{" "}
             {motor / 1000} kW motor does it in {(liftWork / motor).toFixed(1)} s, because P = W/t.
           </p>
         </>
@@ -316,7 +316,7 @@ export default function EnergyLab({ onReading, challenge = null }: Props) {
           <div className="grid grid-cols-3 gap-2 text-center">
             <Readout label="Load × arm" value={`${Math.round(lever.loadMoment)}`} unit="N m" />
             <Readout label="Effort × arm" value={`${Math.round(lever.effortMoment)}`} unit="N m" />
-            <Readout label="MA = L/E" value={effort > 0 ? lever.ma.toFixed(2) : "–"} unit="" />
+            <Readout label="MA = L ÷ E" value={effort > 0 ? lever.ma.toFixed(2) : "–"} unit="" />
           </div>
           <Choice options={CLASSES.map((x) => ({ id: String(x.id), label: x.label }))} value={String(cls)} onChange={(v) => setCls(Number(v) as LeverClass)} />
           <Choice options={LOADS.map((x) => ({ id: String(x.w), label: x.label }))} value={String(load)} onChange={(v) => setLoad(Number(v))} />

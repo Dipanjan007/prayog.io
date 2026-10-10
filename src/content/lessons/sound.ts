@@ -116,7 +116,7 @@ export const lesson: LessonDef = {
     {
       title: "Echo, hearing range and SONAR",
       text: "An echo is sound reflected from a large surface. To hear it apart from the original sound, it must come back after at least 0.1 s, so the wall must be at least about 17.2 m away. Humans hear from 20 Hz to 20 kHz. Sound above 20 kHz is ultrasound. SONAR sends ultrasound into water and times the echo to find the depth of the sea or a submarine.",
-      formula: "2d = v × t,  so  d = (v × t) ÷ 2",
+      formula: "2 × d = v × t,  so  d = (v × t) ÷ 2",
     },
   ],
   challenge: {
@@ -163,7 +163,7 @@ export const lesson: LessonDef = {
       q: "A ship's SONAR gets an echo from the seabed after 2 s. Sound travels at 1500 m/s in sea water. How deep is the sea?",
       options: ["3000 m", "750 m", "1500 m", "6000 m"],
       answer: 2,
-      why: "2d = v × t = 1500 × 2 = 3000 m, so d = 1500 m.",
+      why: "2 × d = v × t = 1500 × 2 = 3000 m, so d = 1500 m.",
     },
     {
       q: "A dog whistle gives a sound of 30 kHz. Why can't we hear it?",

@@ -96,6 +96,7 @@ export const lesson: LessonDef = {
     { sym: "R", meaning: "radius of the planet, in m" },
     { sym: "W", meaning: "weight, in N" },
     { sym: "m", meaning: "mass of the object, in kg" },
+    { sym: "v", meaning: "speed, in m/s: v orbit to stay in orbit, v escape to leave for good" },
     { sym: "c", meaning: "speed of light, about 3 × 10⁸ m/s" },
     { sym: "√( )", meaning: "square root of what is inside the bracket" },
   ],

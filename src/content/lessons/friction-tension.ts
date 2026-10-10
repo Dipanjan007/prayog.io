@@ -148,7 +148,7 @@ export const lesson: LessonDef = {
       q: "A tractor tows a 1500 kg trolley with an acceleration of 0.5 m/s². Road friction on the trolley is 1500 N. What is the tension in the tow bar?",
       options: ["750 N", "1500 N", "2250 N", "4500 N"],
       answer: 2,
-      why: "On the trolley alone: T − friction = m × a, so T = 1500 + 1500 × 0.5 = 1500 + 750 = 2250 N.",
+      why: "On the trolley alone: T − friction = m × a, so T = 1500 + (1500 × 0.5) = 1500 + 750 = 2250 N.",
     },
     {
       q: "In a tug of war the rope pulls both teams with the same tension. What decides which team wins?",

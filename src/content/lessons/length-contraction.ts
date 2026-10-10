@@ -29,7 +29,7 @@ export const lesson: LessonDef = {
     learn: [
       "A moving object is measured shorter along its motion: L = L₀ ÷ γ",
       "Only the length along the motion shrinks; the height stays the same",
-      "Speeds do not simply add near light speed: w = (u + v) ÷ (1 + (u × v ÷ c²))",
+      "Speeds do not simply add near light speed: w = (u + v) ÷ (1 + ((u × v) ÷ c²))",
       "At everyday speeds the old rule u + v works perfectly well",
     ],
     realLife:
@@ -104,8 +104,8 @@ export const lesson: LessonDef = {
     },
     {
       title: "Einstein's rule for adding speeds",
-      text: "On a rocket at speed u, fire a probe at speed v. Galileo's rule says the probe moves at u + v. Einstein's rule divides by (1 + (u × v ÷ c²)). The answer always stays below c. If the probe is light, the answer is exactly c.",
-      formula: "w = (u + v) ÷ (1 + (u × v ÷ c²))",
+      text: "On a rocket at speed u, fire a probe at speed v. Galileo's rule says the probe moves at u + v. Einstein's rule divides by (1 + ((u × v) ÷ c²)). The answer always stays below c. If the probe is light, the answer is exactly c.",
+      formula: "w = (u + v) ÷ (1 + ((u × v) ÷ c²))",
     },
     {
       title: "The cosmic speed limit",

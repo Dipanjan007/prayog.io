@@ -114,7 +114,7 @@ export const lesson: LessonDef = {
     {
       title: "Revolution: the year",
       text: "The Earth revolves around the Sun in about 365¼ days. A calendar year has 365 days, so every fourth year gets one extra day, 29 February. That year is a leap year with 366 days.",
-      formula: "4 × 365¼ = 3 × 365 + 366 days",
+      formula: "4 × 365¼ = (3 × 365) + 366 days",
     },
     {
       title: "The tilted axis: seasons",

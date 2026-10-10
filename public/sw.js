@@ -45,6 +45,8 @@ const PRECACHE = [
   "/maths/pythagoras",
   "/maths/coordinates",
   "/maths/heights-distances",
+  "/maths/solids",
+  "/maths/similar-triangles",
   "/maths/outliers/infinite-sums",
   "/maths/outliers",
   "/maths/outliers/ciphers",

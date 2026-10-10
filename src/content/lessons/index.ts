@@ -54,6 +54,8 @@ import { lesson as data } from "./data";
 import { lesson as quadratics } from "./quadratics";
 import { lesson as ciphers } from "./ciphers";
 import { lesson as infiniteSums } from "./infinite-sums";
+import { lesson as similarTriangles } from "./similar-triangles";
+import { lesson as solids } from "./solids";
 import type { LessonDef } from "./types";
 
 /** Every playable lesson, in class order. */
@@ -114,6 +116,8 @@ export const LESSONS: LessonDef[] = [
   quadratics,
   ciphers,
   infiniteSums,
+  similarTriangles,
+  solids,
 ];
 
 /** Where each lesson is played, by lesson id. */
@@ -174,4 +178,6 @@ export const LESSON_HREF: Record<string, string> = {
   "c10-quadratics": "/maths/quadratics",
   "xm-ciphers": "/maths/outliers/ciphers",
   "xm-infinite-sums": "/maths/outliers/infinite-sums",
+  "c10-similar-triangles": "/maths/similar-triangles",
+  "c10-solids": "/maths/solids",
 };

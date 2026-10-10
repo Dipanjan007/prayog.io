@@ -154,6 +154,7 @@ export const MATHS_STRANDS: Strand[] = [
       },
       { classNum: 7, title: "A Tale of Three Intersecting Lines", href: "/maths/triangles", sim: "Join sticks into triangles, stretch the corners and watch the angles add up" },
       { classNum: 8, title: "The Baudhayana-Pythagoras Theorem", href: "/maths/pythagoras", sim: "Grow squares on a triangle and send fire ladders to the right windows" },
+      { classNum: 10, title: "Triangles", href: "/maths/similar-triangles", sim: "Scale a triangle, slide a line parallel to a side and measure the Great Pyramid with shadows" },
     ],
   },
   {
@@ -214,6 +215,12 @@ export const MATHS_STRANDS: Strand[] = [
         labs: [{ href: "/maths/data", title: "Mean, median and the century", sim: "Drag a cricketer's scores and watch the mean, median and mode move" }],
       },
     ],
+  },
+  {
+    id: "mensuration",
+    name: "Area and volume",
+    colour: "var(--c-sky)",
+    chapters: [{ classNum: 10, title: "Surface Areas and Volumes", href: "/maths/solids", sim: "Pour cones into a glass and build ice-cream cones, capsules and tents with live volume and area" }],
   },
   {
     id: "coordinates",

@@ -47,6 +47,11 @@ import { lesson as squaresCubes } from "./squares-cubes";
 import { lesson as powers } from "./powers";
 import { lesson as percentages } from "./percentages";
 import { lesson as proportion } from "./proportion";
+import { lesson as linearPolynomials } from "./linear-polynomials";
+import { lesson as twoVariables } from "./two-variables";
+import { lesson as probability } from "./probability";
+import { lesson as data } from "./data";
+import { lesson as quadratics } from "./quadratics";
 import type { LessonDef } from "./types";
 
 /** Every playable lesson, in class order. */
@@ -100,6 +105,11 @@ export const LESSONS: LessonDef[] = [
   powers,
   percentages,
   proportion,
+  linearPolynomials,
+  twoVariables,
+  probability,
+  data,
+  quadratics,
 ];
 
 /** Where each lesson is played, by lesson id. */
@@ -153,4 +163,9 @@ export const LESSON_HREF: Record<string, string> = {
   "c8-powers": "/maths/powers",
   "c8-percentages": "/maths/percentages",
   "c8-proportion": "/maths/proportion",
+  "c9-linear-polynomials": "/maths/linear-polynomials",
+  "c9-two-variables": "/maths/two-variables",
+  "c9-probability": "/maths/probability",
+  "c9-data": "/maths/data",
+  "c10-quadratics": "/maths/quadratics",
 };

@@ -190,13 +190,30 @@ export const MATHS_STRANDS: Strand[] = [
         sim: "Find the marbles hiding in mystery bags on a mandi balance",
         labs: [{ href: "/maths/letter-numbers", title: "Matchstick rules", sim: "Grow matchstick and tile patterns and write their rule with n" }],
       },
+      {
+        classNum: 9,
+        title: "Introduction to Linear Polynomials",
+        href: "/maths/linear-polynomials",
+        sim: "Build an auto fare meter and watch its straight-line graph",
+        labs: [{ href: "/maths/two-variables", title: "Pens, notebooks and one line", sim: "Find every pair that makes 2x + 3y = 12 and cross two lines to crack bills" }],
+      },
+      { classNum: 10, title: "Quadratic Equations", href: "/maths/quadratics", sim: "Bend y = ax² + bx + c with sliders and fence a garden with 40 m of wire" },
     ],
   },
   {
     id: "ratio",
     name: "Ratio, chance and data",
     colour: "var(--c-lime)",
-    chapters: [{ classNum: 8, title: "Proportional Reasoning-1", href: "/maths/proportion", sim: "Mix Holi colours, scale a nimbu-paani recipe and read a town map" }],
+    chapters: [
+      { classNum: 8, title: "Proportional Reasoning-1", href: "/maths/proportion", sim: "Mix Holi colours, scale a nimbu-paani recipe and read a town map" },
+      {
+        classNum: 9,
+        title: "The Mathematics of Maybe: Introduction to Probability",
+        href: "/maths/probability",
+        sim: "Toss coins, roll dice, spin and draw thousands of times, then build mela games",
+        labs: [{ href: "/maths/data", title: "Mean, median and the century", sim: "Drag a cricketer's scores and watch the mean, median and mode move" }],
+      },
+    ],
   },
   {
     id: "coordinates",

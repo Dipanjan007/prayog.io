@@ -58,6 +58,9 @@ import { lesson as similarTriangles } from "./similar-triangles";
 import { lesson as solids } from "./solids";
 import { lesson as integers } from "./integers";
 import { lesson as sequences } from "./sequences";
+import { lesson as inverseProportion } from "./inverse-proportion";
+import { lesson as area } from "./area";
+import { lesson as quadrilaterals } from "./quadrilaterals";
 import type { LessonDef } from "./types";
 
 /** Every playable lesson, in class order. */
@@ -122,6 +125,9 @@ export const LESSONS: LessonDef[] = [
   solids,
   integers,
   sequences,
+  inverseProportion,
+  area,
+  quadrilaterals,
 ];
 
 /** Where each lesson is played, by lesson id. */
@@ -186,4 +192,7 @@ export const LESSON_HREF: Record<string, string> = {
   "c10-solids": "/maths/solids",
   "c7-integers": "/maths/integers",
   "c9-sequences": "/maths/sequences",
+  "c8-inverse-proportion": "/maths/inverse-proportion",
+  "c8-area": "/maths/area",
+  "c8-quadrilaterals": "/maths/quadrilaterals",
 };

@@ -208,7 +208,13 @@ export const MATHS_STRANDS: Strand[] = [
     name: "Ratio, chance and data",
     colour: "var(--c-lime)",
     chapters: [
-      { classNum: 8, title: "Proportional Reasoning-1", href: "/maths/proportion", sim: "Mix Holi colours, scale a nimbu-paani recipe and read a town map" },
+      {
+        classNum: 8,
+        title: "Proportional Reasoning-1",
+        href: "/maths/proportion",
+        sim: "Mix Holi colours, scale a nimbu-paani recipe and read a town map",
+        labs: [{ href: "/maths/inverse-proportion", title: "Faster car, shorter trip", sim: "Drive Delhi to Agra at different speeds and share a wall among workers" }],
+      },
       {
         classNum: 9,
         title: "The Mathematics of Maybe: Introduction to Probability",
@@ -222,7 +228,16 @@ export const MATHS_STRANDS: Strand[] = [
     id: "mensuration",
     name: "Area and volume",
     colour: "var(--c-sky)",
-    chapters: [{ classNum: 10, title: "Surface Areas and Volumes", href: "/maths/solids", sim: "Pour cones into a glass and build ice-cream cones, capsules and tents with live volume and area" }],
+    chapters: [
+      {
+        classNum: 8,
+        title: "Area",
+        href: "/maths/area",
+        sim: "Push a rectangle into a parallelogram on a geoboard and mark out land plots",
+        labs: [{ href: "/maths/quadrilaterals", title: "Four corners, many names", sim: "Drag four corners and name the shape from its sides, angles and diagonals" }],
+      },
+      { classNum: 10, title: "Surface Areas and Volumes", href: "/maths/solids", sim: "Pour cones into a glass and build ice-cream cones, capsules and tents with live volume and area" },
+    ],
   },
   {
     id: "coordinates",

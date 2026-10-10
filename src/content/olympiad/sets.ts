@@ -1,6 +1,7 @@
-import type { OlySet } from "./types";
+import { MATHS_OLY_SETS } from "./maths-sets";
+import type { OlySet, OlySubject } from "./types";
 
-export const OLY_SETS: OlySet[] = [
+const PHYSICS_OLY_SETS: OlySet[] = [
   {
     id: "projectiles",
     symbols: [
@@ -201,6 +202,23 @@ export const OLY_SETS: OlySet[] = [
   },
 ];
 
+/** Every set, Physics first, then Maths. Use `setsFor` to show one track. */
+export const OLY_SETS: OlySet[] = [...PHYSICS_OLY_SETS, ...MATHS_OLY_SETS];
+
 export function getSet(id: string) {
   return OLY_SETS.find((s) => s.id === id);
+}
+
+export function subjectOf(set: Pick<OlySet, "subject">): OlySubject {
+  return set.subject ?? "physics";
+}
+
+/** The sets of one track, in order. */
+export function setsFor(subject: OlySubject) {
+  return OLY_SETS.filter((s) => subjectOf(s) === subject);
+}
+
+/** Where a track's pages live: "/olympiad" or "/maths/olympiad". */
+export function olyBase(subject: OlySubject) {
+  return subject === "maths" ? "/maths/olympiad" : "/olympiad";
 }

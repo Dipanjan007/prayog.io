@@ -157,3 +157,22 @@ export const C = {
   dim: "rgba(255,255,255,0.45)",
   faint: "rgba(255,255,255,0.15)",
 };
+
+/** Centred text wrapped onto as many lines as it needs to fit the canvas, centred on (x, y). */
+export function wrapLabel(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, w: number, opts: { color?: string; size?: number } = {}) {
+  const size = opts.size ?? 11;
+  ctx.font = `${size}px ui-sans-serif, system-ui, sans-serif`;
+  const max = w - 24;
+  const lines: string[] = [];
+  let line = "";
+  for (const word of text.split(" ")) {
+    const next = line ? `${line} ${word}` : word;
+    if (line && ctx.measureText(next).width > max) {
+      lines.push(line);
+      line = word;
+    } else line = next;
+  }
+  if (line) lines.push(line);
+  const lh = size * 1.35;
+  lines.forEach((l, i) => label(ctx, l, x, y + (i - (lines.length - 1) / 2) * lh, w, { size, color: opts.color, align: "center" }));
+}

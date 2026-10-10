@@ -1,10 +1,17 @@
 import type { Scene } from "@/lib/olympiad/scene";
 import type { Level } from "@/lib/olympiad/score";
 
-export type SetId = "projectiles" | "newton" | "circular-energy" | "momentum" | "optics" | "electricity" | "fluids" | "heat" | "orbits";
+export type PhysicsSetId = "projectiles" | "newton" | "circular-energy" | "momentum" | "optics" | "electricity" | "fluids" | "heat" | "orbits";
+export type MathsSetId = "number-sense" | "angles-polygons" | "triangles" | "areas-circles" | "counting" | "probability" | "equations" | "sequences" | "coordinates-heights";
+export type SetId = PhysicsSetId | MathsSetId;
+
+/** Which Olympiad track a set belongs to. Sets without one are Physics. */
+export type OlySubject = "physics" | "maths";
 
 export interface OlySet {
   id: SetId;
+  /** Maths sets live under /maths/olympiad; the rest are Physics, under /olympiad. */
+  subject?: "maths";
   title: string;
   emoji: string;
   blurb: string;

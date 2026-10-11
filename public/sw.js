@@ -1,6 +1,6 @@
 // Prayog offline cache: pages are network-first (fall back to the last copy),
 // and built assets are cache-first since their file names change per build.
-const CACHE = "prayog-v12";
+const CACHE = "prayog-v13";
 const PRECACHE = [
   "/",
   "/learn",
@@ -78,6 +78,16 @@ const PRECACHE = [
   "/maths/tilings",
   "/maths/parallel-lines",
   "/olympiad",
+  "/maths/olympiad",
+  "/maths/olympiad/number-sense",
+  "/maths/olympiad/angles-polygons",
+  "/maths/olympiad/triangles",
+  "/maths/olympiad/areas-circles",
+  "/maths/olympiad/counting",
+  "/maths/olympiad/probability",
+  "/maths/olympiad/equations",
+  "/maths/olympiad/sequences",
+  "/maths/olympiad/coordinates-heights",
   "/me",
 ];
 

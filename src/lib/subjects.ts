@@ -28,8 +28,12 @@ export const SUBJECTS: Subject[] = [
     id: "maths",
     label: "Maths",
     icon: "📐",
-    // Outliers and Olympiad tabs appear once their first labs ship.
-    tabs: [{ href: "/maths", label: "Lab" }, ...(CATALOGUE.mathsOutliers ? [{ href: "/maths/outliers", label: "Outliers" }] : [])],
+    // The Outliers tab appears once its first labs ship.
+    tabs: [
+      { href: "/maths", label: "Lab" },
+      ...(CATALOGUE.mathsOutliers ? [{ href: "/maths/outliers", label: "Outliers" }] : []),
+      { href: "/maths/olympiad", label: "Olympiad" },
+    ],
   },
 ];
 

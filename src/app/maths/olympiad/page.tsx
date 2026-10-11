@@ -31,7 +31,7 @@ export default function MathsOlympiadHub() {
           <h2 className="text-[11px] uppercase tracking-wider text-cyan-200/80">What are the Maths Olympiads?</h2>
           <p className="mt-1 text-white/80">
             In India the path starts with <b>IOQM</b> (Indian Olympiad Qualifier in Mathematics), open from Class 8. Top scorers sit the <b>RMO</b> and then the <b>INMO</b>, and the best few
-            train to represent India at the <b>IMO</b>. Contests like <b>NMTC</b> also have junior papers for Classes 7 and 8. These problems are at the junior level.
+            train to represent India at the <b>IMO</b>. Contests like <b>NMTC</b> also have papers for Classes 7 and 8. These problems are at that younger level.
           </p>
         </div>
         <div>

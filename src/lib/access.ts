@@ -1,6 +1,6 @@
 /**
  * Who can open which lab. Visitors get a taste. A free account opens every
- * NCERT lesson, because the syllabus itself is free everywhere and children
+ * NCERT lesson (Physics and Maths), because the syllabus itself is free everywhere and children
  * only build the habit if tonight's chapter is open. The Family plan (or a
  * school) adds the full Olympiad track and Outliers. Paying never buys a
  * game advantage: XP, stars and the leaderboard work the same.
@@ -8,7 +8,7 @@
  * This is checked in the browser, so it is a nudge, not a lock: lessons
  * are static pages that also work offline.
  */
-import { STRANDS } from "@/content/curriculum";
+import { MATHS_STRANDS, STRANDS } from "@/content/curriculum";
 
 export type Tier = "visitor" | "free" | "family" | "school";
 
@@ -39,16 +39,19 @@ export const OPENS = {
 /** "1 Olympiad set", "2 Olympiad sets". */
 export const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? "" : "s"}`;
 
-const freeWithAccount = (key: string) => key.startsWith("/learn/") || FREE_OPEN.includes(key);
+/** Maths Outliers and the Maths Olympiad are extras, like their Physics tabs. */
+const mathsExtra = (key: string) => key.startsWith("/maths/outliers/") || key.startsWith("/maths/olympiad/");
+const freeWithAccount = (key: string) =>
+  key.startsWith("/learn/") || (key.startsWith("/maths/") && !mathsExtra(key)) || FREE_OPEN.includes(key);
 
 // A second lab opens with the chapter it belongs to.
 const LAB_CHAPTER = new Map(
-  STRANDS.flatMap((s) => s.chapters.flatMap((c) => (c.href ? (c.labs ?? []).map((l) => [l.href, c.href!] as const) : []))),
+  [...STRANDS, ...MATHS_STRANDS].flatMap((s) => s.chapters.flatMap((c) => (c.href ? (c.labs ?? []).map((l) => [l.href, c.href!] as const) : []))),
 );
 
 /** The lesson, lab or Olympiad set a path belongs to, or null when the page is open to all. */
 export function contentKey(path: string): string | null {
-  const m = path.match(/^\/(learn|outliers|olympiad)\/([^/?#]+)/);
+  const m = path.match(/^\/(learn|maths\/outliers|maths\/olympiad|maths|outliers|olympiad)\/([^/?#]+)/);
   if (!m) return null;
   const key = `/${m[1]}/${m[2]}`;
   return LAB_CHAPTER.get(key) ?? key;

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { getProblem, getSet, problemsInSet } from "@/content/olympiad";
+import { getProblem, getSet, olyBase, problemsInSet, subjectOf } from "@/content/olympiad";
 import { planOutcome, type Outcome } from "@/lib/olympiad/scene";
 import { LEVEL_LABEL, MAX_HINTS, TOLERANCE, fmt, isCorrect, parseAnswer, simValue, starsFor, xpFor } from "@/lib/olympiad/score";
 import { olyStore, recordSolve, recordTry } from "@/lib/olympiad/store";
@@ -25,6 +25,8 @@ export default function ProblemPlayer({ setId, problemId }: { setId: string; pro
   const siblings = problemsInSet(setId);
   const idx = siblings.findIndex((q) => q.id === p.id);
   const next = siblings[idx + 1];
+  const maths = subjectOf(set) === "maths";
+  const base = olyBase(subjectOf(set));
 
   const state = olyStore.use();
   const best = state.problems[p.id];
@@ -97,11 +99,19 @@ export default function ProblemPlayer({ setId, problemId }: { setId: string; pro
   return (
     <div className="pt-2">
       <nav className="text-sm text-white/45" aria-label="Breadcrumb">
-        <Link href="/olympiad" className="hover:text-white">
+        {maths && (
+          <>
+            <Link href="/maths" className="hover:text-white">
+              Maths
+            </Link>
+            {" › "}
+          </>
+        )}
+        <Link href={base} className="hover:text-white">
           Olympiad
         </Link>
         {" › "}
-        <Link href={`/olympiad/${set.id}`} className="hover:text-white">
+        <Link href={`${base}/${set.id}`} className="hover:text-white">
           {set.title}
         </Link>
       </nav>
@@ -213,7 +223,7 @@ export default function ProblemPlayer({ setId, problemId }: { setId: string; pro
                     Within 2%, so the sim ran the exact value, {p.symbol} {fmt(p.answer, 4)} {unit}.
                   </p>
                 )}
-                {!shown.correct && <p className="mt-1 text-xs text-white/45">{["projectiles", "newton", "circular-energy", "momentum"].includes(setId) ? "Check your free-body diagram" : "Check your working"} and your units, then try again.</p>}
+                {!shown.correct && <p className="mt-1 text-xs text-white/45">{maths ? "Check your working step by step, then try again." : `${["projectiles", "newton", "circular-energy", "momentum"].includes(setId) ? "Check your free-body diagram" : "Check your working"} and your units, then try again.`}</p>}
               </div>
             )}
           </form>
@@ -304,11 +314,11 @@ export default function ProblemPlayer({ setId, problemId }: { setId: string; pro
 
           <div className="flex flex-wrap gap-2">
             {next ? (
-              <Link href={`/olympiad/${set.id}/${next.id}`} className="btn-ghost">
+              <Link href={`${base}/${set.id}/${next.id}`} className="btn-ghost">
                 Next: {next.title} →
               </Link>
             ) : (
-              <Link href="/olympiad" className="btn-ghost">
+              <Link href={base} className="btn-ghost">
                 Back to all sets →
               </Link>
             )}

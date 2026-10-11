@@ -41,7 +41,7 @@ export default function OlympiadHub() {
         </div>
       </div>
 
-      <SetCards />
+      <SetCards subject="physics" />
     </div>
   );
 }

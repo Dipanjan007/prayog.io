@@ -1,0 +1,44 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { getSet, problemsInSet, setsFor, subjectOf } from "@/content/olympiad";
+import { ProblemList } from "@/components/olympiad/SetProgress";
+
+export function generateStaticParams() {
+  return setsFor("maths")
+    .filter((s) => problemsInSet(s.id).length > 0)
+    .map((s) => ({ set: s.id }));
+}
+
+export const dynamicParams = false;
+
+export async function generateMetadata({ params }: PageProps<"/maths/olympiad/[set]">): Promise<Metadata> {
+  const { set } = await params;
+  const s = getSet(set);
+  return { title: s ? `${s.title} · Maths Olympiad` : "Maths Olympiad" };
+}
+
+export default async function MathsSetPage({ params }: PageProps<"/maths/olympiad/[set]">) {
+  const { set } = await params;
+  const s = getSet(set);
+  if (!s || subjectOf(s) !== "maths" || problemsInSet(s.id).length === 0) notFound();
+  return (
+    <div className="pt-2">
+      <nav className="text-sm text-white/45" aria-label="Breadcrumb">
+        <Link href="/maths" className="hover:text-white">
+          Maths
+        </Link>
+        {" › "}
+        <Link href="/maths/olympiad" className="hover:text-white">
+          Olympiad
+        </Link>
+      </nav>
+      <h1 className="font-display mt-1 text-3xl font-bold sm:text-4xl">
+        {s.emoji} {s.title}
+      </h1>
+      <p className="mt-2 max-w-2xl text-white/60">{s.blurb}</p>
+      <p className="mt-1 text-xs text-white/45">🎮 {s.sim} · Warm-up, standard, then Olympiad level.</p>
+      <ProblemList setId={s.id} />
+    </div>
+  );
+}

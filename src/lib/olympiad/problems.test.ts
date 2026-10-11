@@ -1,12 +1,13 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { OLY_PROBLEMS, OLY_SETS, problemsInSet } from "@/content/olympiad";
+import { OLY_PROBLEMS, OLY_SETS, getSet, problemsFor, problemsInSet, setsFor, subjectOf } from "@/content/olympiad";
 import { planOutcome, simFamily } from "./scene";
 import { HAND_OPTICS } from "./hand-optics";
 import { HAND_ELECTRICITY } from "./hand-electricity";
 import { HAND_FLUIDS } from "./hand-fluids";
 import { HAND_HEAT } from "./hand-heat";
 import { HAND_ORBITS } from "./hand-orbits";
+import { HAND_MATHS } from "./hand-maths";
 import { fmt, isCorrect, parseAnswer, simValue, starsFor, xpFor } from "./score";
 
 /** Hand-worked answers (see each problem's solution). The code must agree to 0.5%. */
@@ -25,7 +26,7 @@ const BASE_HAND: Record<string, number> = {
   "crossing-crash": 8.083,
 };
 
-const HAND: Record<string, number> = { ...BASE_HAND, ...HAND_OPTICS, ...HAND_ELECTRICITY, ...HAND_FLUIDS, ...HAND_HEAT, ...HAND_ORBITS };
+const HAND: Record<string, number> = { ...BASE_HAND, ...HAND_OPTICS, ...HAND_ELECTRICITY, ...HAND_FLUIDS, ...HAND_HEAT, ...HAND_ORBITS, ...HAND_MATHS };
 
 test("there are at least 12 problems in at least 4 sets, each set with all three levels", () => {
   assert.ok(OLY_PROBLEMS.length >= 12);
@@ -41,9 +42,52 @@ test("there are at least 12 problems in at least 4 sets, each set with all three
 test("every set with problems uses its own sim", () => {
   const fams = new Set(OLY_PROBLEMS.map((p) => simFamily(p.scene(p.answer))));
   for (const f of ["collision", "incline", "projectile", "track"]) assert.ok(fams.has(f as never), f);
-  for (const s of OLY_SETS) {
+  for (const s of setsFor("physics")) {
     if (["projectiles", "newton", "circular-energy", "momentum"].includes(s.id)) continue;
     for (const p of problemsInSet(s.id)) assert.equal(simFamily(p.scene(p.answer)), s.id, p.id);
+  }
+  for (const s of setsFor("maths")) {
+    const want = MATHS_FAMILY[s.id];
+    assert.ok(want, `${s.id} has a sim family`);
+    for (const p of problemsInSet(s.id)) assert.ok(want.includes(simFamily(p.scene(p.answer))), p.id);
+  }
+});
+
+/** The sims each Maths set may use. */
+const MATHS_FAMILY: Record<string, string[]> = {
+  "number-sense": ["number", "count"],
+  "angles-polygons": ["polygon"],
+  triangles: ["triangle"],
+  "areas-circles": ["fill"],
+  counting: ["count"],
+  probability: ["count"],
+  equations: ["equation"],
+  sequences: ["pattern"],
+  "coordinates-heights": ["triangle"],
+};
+
+test("the two tracks are kept apart", () => {
+  const maths = setsFor("maths");
+  const physics = setsFor("physics");
+  assert.equal(physics.length, 9);
+  assert.equal(maths.length, 9);
+  assert.equal(maths.length + physics.length, OLY_SETS.length);
+  for (const s of maths) assert.equal(s.subject, "maths");
+  for (const p of problemsFor("maths")) assert.equal(subjectOf(getSet(p.set)!), "maths", p.id);
+  assert.equal(problemsFor("maths").length + problemsFor("physics").length, OLY_PROBLEMS.length);
+  // Like Physics: 9 sets of 3 (warm-up, standard, Olympiad).
+  for (const s of maths) assert.equal(problemsInSet(s.id).length, 3, s.id);
+  assert.equal(problemsFor("maths").length, 27);
+});
+
+test("maths working brackets a division before a subtraction or addition", () => {
+  // "a ÷ b − c" reads two ways to a student; write "(a ÷ b) − c". Same rule as src/lib/formula-style.test.ts.
+  const risky = /÷\s*[^\s()]+\s*[−+]/u;
+  for (const p of problemsFor("maths")) {
+    for (const st of p.solution) assert.ok(!risky.test(st.math ?? ""), `${p.id}: add brackets to "${st.math}"`);
+    for (const h of p.hints) assert.ok(!risky.test(h), `${p.id}: add brackets to the hint "${h}"`);
+    // Maths uses the real signs, not keyboard stand-ins.
+    for (const st of p.solution) assert.ok(!/(\d|\))\s*[*x]\s*(\d|\()|\d\s*\/\s*\d|\d\s-\s\d|\^/.test(st.math ?? ""), `${p.id}: use − × ÷ ² in "${st.math}"`);
   }
 });
 

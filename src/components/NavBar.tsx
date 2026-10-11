@@ -4,40 +4,37 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { levelFor, useProgress } from "@/lib/progress";
 import { useProfile } from "@/lib/profile";
-
-const LINKS = [
-  { href: "/learn", label: "Learn" },
-  { href: "/outliers", label: "Outliers" },
-  { href: "/olympiad", label: "Olympiad" },
-  { href: "/me", label: "Me" },
-];
+import { subjectFor, tabActive } from "@/lib/subjects";
 
 export default function NavBar() {
   const path = usePathname();
   const progress = useProgress();
   const profile = useProfile();
   const { level } = levelFor(progress.xp);
+  // The tabs of the subject this page belongs to; pages like Home and Me have none.
+  const tabs = subjectFor(path)?.tabs ?? [];
 
   return (
     <header className="sticky top-0 z-30 border-b border-white/5 bg-[#070a14]/70 backdrop-blur-xl">
-      <nav className="mx-auto flex max-w-6xl items-center gap-1.5 px-3 py-3 sm:gap-4 sm:px-6">
-        <Link href="/" className="font-display text-lg font-bold sm:text-xl">
+      <nav className="mx-auto flex max-w-7xl items-center gap-1.5 px-3 py-3 sm:gap-4 sm:px-6">
+        <Link href="/" className="shrink-0 font-display text-lg font-bold sm:text-xl">
           <span className="text-gradient">prayog</span>
         </Link>
-        <div className="flex gap-0.5 sm:ml-2 sm:gap-1">
-          {LINKS.map((l) => (
+        {/* On narrow phones the tabs scroll sideways instead of pushing the page wider. */}
+        <div className="no-scrollbar flex min-w-0 gap-0.5 overflow-x-auto sm:ml-2 sm:gap-1">
+          {tabs.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className={`rounded-full px-1 py-1.5 text-[13px] transition sm:px-3 sm:text-sm ${
-                path.startsWith(l.href) ? "bg-white/10 text-white" : "text-white/60 hover:text-white"
+              className={`shrink-0 rounded-full px-2 py-1.5 text-[13px] transition sm:px-3 sm:text-sm ${
+                tabActive(path, l.href) ? "bg-white/10 text-white" : "text-white/60 hover:text-white"
               }`}
             >
               {l.label}
             </Link>
           ))}
         </div>
-        <div className="ml-auto flex items-center gap-1.5 text-sm sm:gap-2">
+        <div className="ml-auto flex shrink-0 items-center gap-1.5 text-sm sm:gap-2">
           {progress.streak.count > 0 && (
             <span className="hidden rounded-full bg-orange-400/15 px-2.5 py-1 text-orange-200 sm:inline" title="Day streak">
               🔥 {progress.streak.count}

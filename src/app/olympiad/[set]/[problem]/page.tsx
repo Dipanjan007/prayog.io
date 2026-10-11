@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { OLY_PROBLEMS, getProblem } from "@/content/olympiad";
+import { getProblem, getSet, problemsFor, subjectOf } from "@/content/olympiad";
 import ProblemPlayer from "@/components/olympiad/ProblemPlayer";
 
 export function generateStaticParams() {
-  return OLY_PROBLEMS.map((p) => ({ set: p.set, problem: p.id }));
+  return problemsFor("physics").map((p) => ({ set: p.set, problem: p.id }));
 }
 
 export const dynamicParams = false;
@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: PageProps<"/olympiad/[set]/[p
 
 export default async function ProblemPage({ params }: PageProps<"/olympiad/[set]/[problem]">) {
   const { set, problem } = await params;
-  if (!getProblem(set, problem)) notFound();
+  const s = getSet(set);
+  if (!getProblem(set, problem) || !s || subjectOf(s) !== "physics") notFound();
   return <ProblemPlayer setId={set} problemId={problem} />;
 }

@@ -7,6 +7,12 @@ import { needs } from "@/lib/access";
 import { useTier } from "@/lib/useTier";
 import { LockPanel } from "./LockPanel";
 
+/** The hub page a locked page belongs to. */
+function backTo(path: string) {
+  const hub = path.match(/^\/(maths\/olympiad|maths\/outliers|olympiad|outliers|maths)(\/|$)/);
+  return hub ? `/${hub[1]}` : "/learn";
+}
+
 /** Stands in front of a lab opened by its address when this device can't open it yet. */
 export default function AccessGate({ children }: { children: ReactNode }) {
   const path = usePathname();
@@ -26,7 +32,7 @@ export default function AccessGate({ children }: { children: ReactNode }) {
       <LockPanel need={need} />
       <p className="mt-6 text-center text-sm text-white/45">
         Or go back to{" "}
-        <Link href={path.startsWith("/olympiad") ? "/olympiad" : path.startsWith("/outliers") ? "/outliers" : "/learn"} className="text-cyan-300 hover:underline">
+        <Link href={backTo(path)} className="text-cyan-300 hover:underline">
           the free labs
         </Link>
         .

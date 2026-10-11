@@ -33,6 +33,41 @@ import { lesson as skyColours } from "./sky-colours";
 import { lesson as waterCycle } from "./water-cycle";
 import { lesson as frictionTension } from "./friction-tension";
 import { lesson as eyeDefects } from "./eye-defects";
+import { lesson as triangles } from "./triangles";
+import { lesson as pythagoras } from "./pythagoras";
+import { lesson as coordinates } from "./coordinates";
+import { lesson as heightsDistances } from "./heights-distances";
+import { lesson as parallelLines } from "./parallel-lines";
+import { lesson as tilings } from "./tilings";
+import { lesson as fractions } from "./fractions";
+import { lesson as decimals } from "./decimals";
+import { lesson as equations } from "./equations";
+import { lesson as letterNumbers } from "./letter-numbers";
+import { lesson as squaresCubes } from "./squares-cubes";
+import { lesson as powers } from "./powers";
+import { lesson as percentages } from "./percentages";
+import { lesson as proportion } from "./proportion";
+import { lesson as linearPolynomials } from "./linear-polynomials";
+import { lesson as twoVariables } from "./two-variables";
+import { lesson as probability } from "./probability";
+import { lesson as data } from "./data";
+import { lesson as quadratics } from "./quadratics";
+import { lesson as ciphers } from "./ciphers";
+import { lesson as infiniteSums } from "./infinite-sums";
+import { lesson as similarTriangles } from "./similar-triangles";
+import { lesson as solids } from "./solids";
+import { lesson as integers } from "./integers";
+import { lesson as sequences } from "./sequences";
+import { lesson as inverseProportion } from "./inverse-proportion";
+import { lesson as area } from "./area";
+import { lesson as quadrilaterals } from "./quadrilaterals";
+import { lesson as trigRatios } from "./trig-ratios";
+import { lesson as circleAreas } from "./circle-areas";
+import { lesson as twinTriangles } from "./twin-triangles";
+import { lesson as goldenRatio } from "./golden-ratio";
+import { lesson as chessboard } from "./chessboard";
+import { lesson as fractals } from "./fractals";
+import { lesson as chasingPi } from "./chasing-pi";
 import type { LessonDef } from "./types";
 
 /** Every playable lesson, in class order. */
@@ -72,6 +107,41 @@ export const LESSONS: LessonDef[] = [
   timeDilation,
   lengthContraction,
   massEnergy,
+  triangles,
+  pythagoras,
+  coordinates,
+  heightsDistances,
+  parallelLines,
+  tilings,
+  fractions,
+  decimals,
+  equations,
+  letterNumbers,
+  squaresCubes,
+  powers,
+  percentages,
+  proportion,
+  linearPolynomials,
+  twoVariables,
+  probability,
+  data,
+  quadratics,
+  ciphers,
+  infiniteSums,
+  similarTriangles,
+  solids,
+  integers,
+  sequences,
+  inverseProportion,
+  area,
+  quadrilaterals,
+  trigRatios,
+  circleAreas,
+  twinTriangles,
+  goldenRatio,
+  chessboard,
+  fractals,
+  chasingPi,
 ];
 
 /** Where each lesson is played, by lesson id. */
@@ -111,4 +181,39 @@ export const LESSON_HREF: Record<string, string> = {
   "c7-time-motion": "/learn/time-motion",
   "c7-water-cycle": "/learn/water-cycle",
   "c9-work-energy": "/learn/work-energy",
+  "c7-triangles": "/maths/triangles",
+  "c8-pythagoras": "/maths/pythagoras",
+  "c9-coordinates": "/maths/coordinates",
+  "c10-heights-distances": "/maths/heights-distances",
+  "c7-parallel-lines": "/maths/parallel-lines",
+  "c7-tilings": "/maths/tilings",
+  "c7-fractions": "/maths/fractions",
+  "c7-decimals": "/maths/decimals",
+  "c7-equations": "/maths/equations",
+  "c7-letter-numbers": "/maths/letter-numbers",
+  "c8-squares-cubes": "/maths/squares-cubes",
+  "c8-powers": "/maths/powers",
+  "c8-percentages": "/maths/percentages",
+  "c8-proportion": "/maths/proportion",
+  "c9-linear-polynomials": "/maths/linear-polynomials",
+  "c9-two-variables": "/maths/two-variables",
+  "c9-probability": "/maths/probability",
+  "c9-data": "/maths/data",
+  "c10-quadratics": "/maths/quadratics",
+  "xm-ciphers": "/maths/outliers/ciphers",
+  "xm-infinite-sums": "/maths/outliers/infinite-sums",
+  "c10-similar-triangles": "/maths/similar-triangles",
+  "c10-solids": "/maths/solids",
+  "c7-integers": "/maths/integers",
+  "c9-sequences": "/maths/sequences",
+  "c8-inverse-proportion": "/maths/inverse-proportion",
+  "c8-area": "/maths/area",
+  "c8-quadrilaterals": "/maths/quadrilaterals",
+  "c10-trig-ratios": "/maths/trig-ratios",
+  "c10-circle-areas": "/maths/circle-areas",
+  "c7-twin-triangles": "/maths/twin-triangles",
+  "xm-golden-ratio": "/maths/outliers/golden-ratio",
+  "xm-chessboard": "/maths/outliers/chessboard",
+  "xm-fractals": "/maths/outliers/fractals",
+  "xm-chasing-pi": "/maths/outliers/chasing-pi",
 };

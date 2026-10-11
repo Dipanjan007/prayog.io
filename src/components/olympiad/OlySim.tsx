@@ -6,6 +6,13 @@ import { isCircuitScene } from "@/lib/sim/oly-electricity";
 import { isFluidsScene } from "@/lib/sim/oly-fluids";
 import { isHeatScene } from "@/lib/sim/oly-heat";
 import { isOrbitsScene } from "@/lib/sim/oly-orbits";
+import { isNumberScene } from "@/lib/sim/oly-number";
+import { isCountScene } from "@/lib/sim/oly-count";
+import { isPolygonScene } from "@/lib/sim/oly-polygon";
+import { isTriangleScene } from "@/lib/sim/oly-triangle";
+import { isFillScene } from "@/lib/sim/oly-fill";
+import { isEquationScene } from "@/lib/sim/oly-equation";
+import { isPatternScene } from "@/lib/sim/oly-pattern";
 import OlyCollision from "./OlyCollision";
 import OlyIncline from "./OlyIncline";
 import OlyProjectile from "./OlyProjectile";
@@ -15,6 +22,13 @@ import OlyCircuit from "./OlyCircuit";
 import OlyFluids from "./OlyFluids";
 import OlyHeat from "./OlyHeat";
 import OlyOrbits from "./OlyOrbits";
+import OlyNumber from "./OlyNumber";
+import OlyCount from "./OlyCount";
+import OlyPolygon from "./OlyPolygon";
+import OlyTriangle from "./OlyTriangle";
+import OlyFill from "./OlyFill";
+import OlyEquation from "./OlyEquation";
+import OlyPattern from "./OlyPattern";
 
 interface Props {
   scene: Scene;
@@ -26,6 +40,13 @@ interface Props {
 /** Picks the right reusable sim for a scene. */
 export default function OlySim(props: Props) {
   const { scene, ...rest } = props;
+  if (isNumberScene(scene)) return <OlyNumber scene={scene} {...rest} />;
+  if (isCountScene(scene)) return <OlyCount scene={scene} {...rest} />;
+  if (isPolygonScene(scene)) return <OlyPolygon scene={scene} {...rest} />;
+  if (isTriangleScene(scene)) return <OlyTriangle scene={scene} {...rest} />;
+  if (isFillScene(scene)) return <OlyFill scene={scene} {...rest} />;
+  if (isEquationScene(scene)) return <OlyEquation scene={scene} {...rest} />;
+  if (isPatternScene(scene)) return <OlyPattern scene={scene} {...rest} />;
   if (isOpticsScene(scene)) return <OlyOptics scene={scene} {...rest} />;
   if (isCircuitScene(scene)) return <OlyCircuit scene={scene} {...rest} />;
   if (isFluidsScene(scene)) return <OlyFluids scene={scene} {...rest} />;

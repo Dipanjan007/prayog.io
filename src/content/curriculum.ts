@@ -130,7 +130,181 @@ export const STRANDS: Strand[] = [
   },
 ];
 
-/** The NCERT strands shown on the Learn map. */
+/** NCERT Maths books in use: Ganita Prakash (Classes 7 and 8), Ganita Manjari (Class 9, 2026-27) and Mathematics (Class 10). */
+export const MATHS_BOOKS: Record<ClassNum, string> = {
+  7: "Ganita Prakash",
+  8: "Ganita Prakash",
+  9: "Ganita Manjari",
+  10: "Mathematics",
+};
+
+/** Maths chapters on the Maths map at /maths, with their second labs. */
+export const MATHS_STRANDS: Strand[] = [
+  {
+    id: "geometry",
+    name: "Geometry",
+    colour: "var(--c-cyan)",
+    chapters: [
+      {
+        classNum: 7,
+        title: "Parallel and Intersecting Lines",
+        href: "/maths/parallel-lines",
+        sim: "Turn a road across railway rails and lay new lines parallel",
+        labs: [{ href: "/maths/tilings", title: "Tiles, corners and 360°", sim: "Fit regular tiles round a corner and mix shapes into floor patterns" }],
+      },
+      {
+        classNum: 7,
+        title: "A Tale of Three Intersecting Lines",
+        href: "/maths/triangles",
+        sim: "Join sticks into triangles, stretch the corners and watch the angles add up",
+        labs: [{ href: "/maths/twin-triangles", title: "Twin triangles", sim: "Send a friend SSS, SAS, ASA or RHS clues and see how many triangles fit" }],
+      },
+      { classNum: 8, title: "The Baudhayana-Pythagoras Theorem", href: "/maths/pythagoras", sim: "Grow squares on a triangle and send fire ladders to the right windows" },
+      { classNum: 10, title: "Triangles", href: "/maths/similar-triangles", sim: "Scale a triangle, slide a line parallel to a side and measure the Great Pyramid with shadows" },
+    ],
+  },
+  {
+    id: "numbers",
+    name: "Numbers",
+    colour: "var(--c-yellow)",
+    chapters: [
+      {
+        classNum: 7,
+        title: "Working with Fractions",
+        href: "/maths/fractions",
+        sim: "Cut a chocolate bar both ways, share laddoos and fill lassi glasses",
+        labs: [{ href: "/maths/decimals", title: "Zoom beyond the point", sim: "Zoom into tenths and hundredths, run a canteen bill and slide digits by 10 and 100" }],
+      },
+      { classNum: 7, title: "Operations with Integers", href: "/maths/integers", sim: "Ride a lift into the basements, chill Leh below zero and cancel + and − tokens" },
+      {
+        classNum: 8,
+        title: "A Square and A Cube",
+        href: "/maths/squares-cubes",
+        sim: "Lay square tiles, stack unit cubes and hunt Ramanujan's 1729",
+        labs: [{ href: "/maths/powers", title: "Fold to the Moon", sim: "Fold paper until it reaches the Moon and write huge numbers with powers of 10" }],
+      },
+      { classNum: 8, title: "Fractions in Disguise", href: "/maths/percentages", sim: "Shade a 10 × 10 grid and run a Diwali sale with discounts and GST" },
+    ],
+  },
+  {
+    id: "algebra",
+    name: "Algebra",
+    colour: "var(--c-orange)",
+    chapters: [
+      {
+        classNum: 7,
+        title: "Finding the Unknown",
+        href: "/maths/equations",
+        sim: "Find the marbles hiding in mystery bags on a mandi balance",
+        labs: [{ href: "/maths/letter-numbers", title: "Matchstick rules", sim: "Grow matchstick and tile patterns and write their rule with n" }],
+      },
+      {
+        classNum: 9,
+        title: "Introduction to Linear Polynomials",
+        href: "/maths/linear-polynomials",
+        sim: "Build an auto fare meter and watch its straight-line graph",
+        labs: [{ href: "/maths/two-variables", title: "Pens, notebooks and one line", sim: "Find every pair that makes 2x + 3y = 12 and cross two lines to crack bills" }],
+      },
+      { classNum: 9, title: "Predicting What Comes Next: Exploring Sequences and Progressions", href: "/maths/sequences", sim: "Build stadium rows and savings jars term by term, and race a doubling jar" },
+      { classNum: 10, title: "Quadratic Equations", href: "/maths/quadratics", sim: "Bend y = ax² + bx + c with sliders and fence a garden with 40 m of wire" },
+    ],
+  },
+  {
+    id: "ratio",
+    name: "Ratio, chance and data",
+    colour: "var(--c-lime)",
+    chapters: [
+      {
+        classNum: 8,
+        title: "Proportional Reasoning-1",
+        href: "/maths/proportion",
+        sim: "Mix Holi colours, scale a nimbu-paani recipe and read a town map",
+        labs: [{ href: "/maths/inverse-proportion", title: "Faster car, shorter trip", sim: "Drive Delhi to Agra at different speeds and share a wall among workers" }],
+      },
+      {
+        classNum: 9,
+        title: "The Mathematics of Maybe: Introduction to Probability",
+        href: "/maths/probability",
+        sim: "Toss coins, roll dice, spin and draw thousands of times, then build mela games",
+        labs: [{ href: "/maths/data", title: "Mean, median and the century", sim: "Drag a cricketer's scores and watch the mean, median and mode move" }],
+      },
+    ],
+  },
+  {
+    id: "mensuration",
+    name: "Area and volume",
+    colour: "var(--c-sky)",
+    chapters: [
+      {
+        classNum: 8,
+        title: "Area",
+        href: "/maths/area",
+        sim: "Push a rectangle into a parallelogram on a geoboard and mark out land plots",
+        labs: [{ href: "/maths/quadrilaterals", title: "Four corners, many names", sim: "Drag four corners and name the shape from its sides, angles and diagonals" }],
+      },
+      {
+        classNum: 10,
+        title: "Surface Areas and Volumes",
+        href: "/maths/solids",
+        sim: "Pour cones into a glass and build ice-cream cones, capsules and tents with live volume and area",
+        labs: [{ href: "/maths/circle-areas", title: "Pizza slices and sprinklers", sim: "Cut pizza slices to measure arcs and sectors, and set a lawn sprinkler" }],
+      },
+    ],
+  },
+  {
+    id: "coordinates",
+    name: "Coordinate geometry",
+    colour: "var(--c-violet)",
+    chapters: [{ classNum: 9, title: "Orienting Yourself: The Use of Coordinates", href: "/maths/coordinates", sim: "Fly a delivery drone over a city grid with two numbers" }],
+  },
+  {
+    id: "trigonometry",
+    name: "Trigonometry",
+    colour: "var(--c-pink)",
+    chapters: [
+      {
+        classNum: 10,
+        title: "Some Applications of Trigonometry",
+        href: "/maths/heights-distances",
+        sim: "Measure the Qutub Minar with a clinometer, then look down from a lighthouse",
+        labs: [{ href: "/maths/trig-ratios", title: "Slides, ramps and sin θ", sim: "Tilt and stretch a slide to see sin θ, cos θ and tan θ stay fixed, then build a wheelchair ramp" }],
+      },
+    ],
+  },
+];
+
+/** Maths beyond the NCERT books, on the Maths Outliers tab at /maths/outliers. */
+export const MATHS_OUTLIER_STRANDS: Strand[] = [
+  {
+    id: "nature",
+    name: "Patterns in nature",
+    colour: "var(--c-yellow)",
+    chapters: [
+      { classNum: 7, title: "Sunflowers and the golden ratio", href: "/maths/outliers/golden-ratio", sim: "Grow a sunflower seed by seed and hunt the golden angle", extra: true },
+      { classNum: 9, title: "Shapes that never end", href: "/maths/outliers/fractals", sim: "Step a Sierpinski triangle and a Koch snowflake with an endless edge", extra: true },
+    ],
+  },
+  {
+    id: "infinity",
+    name: "Infinity",
+    colour: "var(--c-violet)",
+    chapters: [
+      { classNum: 9, title: "Infinite sums", href: "/maths/outliers/infinite-sums", sim: "Eat half a laddoo forever, race Zeno's tortoise and see which endless sums settle", extra: true },
+      { classNum: 9, title: "Chasing π", href: "/maths/outliers/chasing-pi", sim: "Squeeze π between polygons and add Madhava's series until it reaches Aryabhata's 3.1416", extra: true },
+    ],
+  },
+  {
+    id: "codes",
+    name: "Codes and growth",
+    colour: "var(--c-lime)",
+    chapters: [
+      { classNum: 8, title: "Secret codes", href: "/maths/outliers/ciphers", sim: "Spin a cipher wheel, do clock sums and crack a code by counting letters", extra: true },
+      { classNum: 8, title: "The chessboard and the rice", href: "/maths/outliers/chessboard", sim: "Double rice grains square by square and race ₹1 lakh a day against 1 paisa doubled", extra: true },
+    ],
+  },
+];
+
+/** The NCERT Physics strands shown on the Learn map. */
 export const NCERT_STRANDS: Strand[] = STRANDS.map((s) => ({ ...s, chapters: s.chapters.filter((c) => !c.extra) })).filter(
   (s) => s.chapters.length > 0,
 );
@@ -153,4 +327,9 @@ export const CATALOGUE = {
   /** Second labs under NCERT chapters. */
   labs: ncert.reduce((n, c) => n + (c.labs?.length ?? 0), 0),
   outliers: OUTLIER_STRANDS.reduce((n, s) => n + s.chapters.filter((c) => c.href).length, 0),
+  /** Maths chapters with a playable lesson. */
+  maths: MATHS_STRANDS.reduce((n, s) => n + s.chapters.filter((c) => c.href).length, 0),
+  /** Second labs under Maths chapters. */
+  mathsLabs: MATHS_STRANDS.reduce((n, s) => n + s.chapters.reduce((k, c) => k + (c.labs?.length ?? 0), 0), 0),
+  mathsOutliers: MATHS_OUTLIER_STRANDS.reduce((n, s) => n + s.chapters.filter((c) => c.href).length, 0),
 };

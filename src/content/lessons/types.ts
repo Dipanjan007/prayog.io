@@ -8,6 +8,8 @@ export interface QuizQuestion {
 /** Everything a lesson needs apart from its simulation. */
 export interface LessonDef {
   id: string;
+  /** Physics unless set. */
+  subject?: "maths";
   classNum: number;
   book: string;
   chapter: string;
